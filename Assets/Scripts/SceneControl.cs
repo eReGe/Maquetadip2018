@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Video;
 
 namespace Control{
 public class SceneControl : MonoBehaviour {
@@ -10,7 +11,8 @@ public class SceneControl : MonoBehaviour {
 	public GameObject[] AnimStarters; //1 personas  //2 sostenibilidad   //3 infraestructuras
 	public GameObject[] AnimFinishers;
 	public GameObject[] Maquetas;
-	public GameObject[] LeyendaMarcador;
+    public GameObject[] ZonasLisas;
+    public GameObject[] LeyendaMarcador;
 	public GameObject[] LeyendaMarcadorb;
 	public GameObject[] LeyendaMarcadorc;
 		public GameObject[] SpriteTablet1;
@@ -24,8 +26,17 @@ public class SceneControl : MonoBehaviour {
 	private ReadMunicipiData rmd;
 	public OscIn oscIn;
 
+        //VIDEO PLAYER
+        public VideoPlayer videoPlayerMaqueta;
+        public VideoClip[] videosMaqueta;
+        public VideoPlayer videoPlayerLiso;
+        private bool isTransition = false;
+        private bool isIntro = false;
 
-	//CONTROL
+
+        //CONTROL
+        public float estadoActual;  //codigos del json que indican en que estado estamos 
+        public string superposicionActual;
 		public bool[] activeTablets;
 		public string[] lenguajeTablets;
 
@@ -167,6 +178,24 @@ public class SceneControl : MonoBehaviour {
 		Text text = textTr .GetComponent<Text>();*/
 			//Text t=Titulos[0].GetComponent<Text>();
 
+        //VIDEOS en off
+        for (int i = 0; i < Maquetas.Length; i++)
+        {
+            Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+            Color cv = m[2].color;
+            cv.a = 0;
+
+            m[2].color = cv;
+        }
+        for (int i = 0; i < ZonasLisas.Length; i++)
+        {
+            Material[] m = ZonasLisas[i].GetComponent<Renderer>().materials;
+            Color cv = m[1].color;
+            cv.a = 0;
+
+            m[1].color = cv;
+        }
+
 		for(int i=0;i<LeyendaMarcador.Length;i++){
 			LeyendaMarcador [i].GetComponent<MeshRenderer> ().enabled = false;
 			//LeyendaMarcadorb [i].GetComponent<SpriteRenderer> ().enabled = false;
@@ -195,17 +224,39 @@ public class SceneControl : MonoBehaviour {
 	
 	//UPDATE
 	void Update () {
-		
-		/*AnimationTrigger atScript = AnimStarters[0].GetComponent<AnimationTrigger>();
-		if(atScript.finish==true){
-			AnimationTrigger atScript2 = AnimFinishers[0].GetComponent<AnimationTrigger>();
-			atScript2.isGrowing = true;
-		}*/
+            keyControl();
+            
+            if (isTransition) {
+                Debug.Log("isPlaying"+ videoPlayerMaqueta.frame+" fc: "+ videoPlayerMaqueta.frameCount);
+                if (videoPlayerMaqueta.frame == (long)videoPlayerMaqueta.frameCount)
+                {
+                    isTransition = false;
+                    videoPlayerMaqueta.Stop();
+                    StartIntro(estadoActual);
+                }
+            }
+            if (isIntro)//video introduccion tema
+            {
+                Debug.Log("isPlaying" + videoPlayerMaqueta.frame + " fc: " + videoPlayerMaqueta.frameCount);
+                if (videoPlayerLiso.frame == (long)videoPlayerLiso.frameCount)
+                {
+                    isTransition = false;
+                    videoPlayerLiso.Stop();
+                    StartContent(estadoActual);
+                }
+            }
 
-				timer = timer + Time.deltaTime;
+
+            /*AnimationTrigger atScript = AnimStarters[0].GetComponent<AnimationTrigger>();
+            if(atScript.finish==true){
+                AnimationTrigger atScript2 = AnimFinishers[0].GetComponent<AnimationTrigger>();
+                atScript2.isGrowing = true;
+            }*/
+
+            timer = timer + Time.deltaTime;
 			//timer = 0;
 		//LIMPIAR SI ESTA 10 segundos sin actividad
-			if (!activeTablets [0] && !activeTablets [1] && !activeTablets [2] && timer>10) {
+			if (!activeTablets [0] && !activeTablets [1] && !activeTablets [2] && timer>60) {
 
 				for (int i = 0; i < AnimFinishers.Length; i++) {
 					AnimationTrigger at = AnimFinishers [i].GetComponent<AnimationTrigger> ();
@@ -213,7 +264,7 @@ public class SceneControl : MonoBehaviour {
 				}
 				timer = 0;
 			}
-			if (timer >= 10) {
+			if (timer >= 60) {
 				timer = 0;
 
 			}
@@ -226,6 +277,7 @@ public class SceneControl : MonoBehaviour {
 
 
 		//LIMITES
+        /*
 			Color c0=new Color();
 				int numLimites = 17;
 			if (activeTablets [0] || activeTablets [1] || activeTablets [2]) {
@@ -251,7 +303,7 @@ public class SceneControl : MonoBehaviour {
 					m [numLimites].color = c0;
 				}
 			}
-			
+			*/
 
 
 		//PARCS
@@ -486,6 +538,21 @@ public class SceneControl : MonoBehaviour {
 				
 
 	}//END UPDATE
+
+    void keyControl()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("startbiblio");
+            StartBiblio(0);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Clean");
+            Clean1();
+        }
+
+        }
 
 	void fillArrays(){
 		rmd=GetComponent<ReadMunicipiData>();
@@ -810,22 +877,74 @@ public class SceneControl : MonoBehaviour {
 		
 			//ESPERA
 
-		oscIn.Map( "/persones/espera", Clean1 );
+		//oscIn.Map( "/persones/espera", Clean1 );
 		oscIn.Map( "/sostenibilitat/espera", Clean2 );
 		oscIn.Map( "/tecnologia/espera", Clean3 );
 
 
 	}
 
-		//PERSONAS
 
-	public void StartBiblio(int value)
+    //CONTROL DE ANIMACIONES DE VIDEO
+    public void StartIntro(float state)
+    {
+            StartBiblio2(0);
+
+    }
+
+    public void StartContent(float state)
+    {
+
+
+    }
+
+    //PERSONAS
+    public void StartBiblio(int value)
+    {
+            isTransition = true;
+            videoPlayerMaqueta.clip = videosMaqueta[Random.Range(0,2)];
+            //videoPlayerMaqueta.frame = 0;
+            videoPlayerMaqueta.Play();
+
+            videoPlayerLiso.Play();
+            //videos ON
+            for (int i = 0; i < Maquetas.Length; i++)
+            {
+                Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+                Color cv = m[2].color;
+                cv.a = 1;
+
+                m[2].color = cv;
+            }
+            for (int i = 0; i < ZonasLisas.Length; i++)
+            {
+                Material[] m = ZonasLisas[i].GetComponent<Renderer>().materials;
+                Color cv = m[1].color;
+                cv.a = 1;
+
+                m[1].color = cv;
+            }
+
+            
+            
+            /*for (int i = 0; i < Maquetas.Length; i++)
+            {
+                Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+                Color cv = m[2].color;
+                cv.a = 0;
+
+                m[2].color = cv;
+            }
+            StartBiblio2(value);*/
+
+    }
+    public void StartBiblio2(int value)    
 	{
 		Debug.Log( "Received: biblio "+value);
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
 			activeTablets [0] = true;
-		mc.colorToChange = colorBibliotecas;
+		    mc.colorToChange = colorBibliotecas;
 			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
@@ -1704,9 +1823,9 @@ public class SceneControl : MonoBehaviour {
 	}
 
 	//Limpiadores
-	public void Clean1(  OscMessage message  )
-	{
-		Debug.Log( "Received: Clean1 " + message );
+	public void Clean1()//OscMessage message
+        {
+            Debug.Log("Received: Clean1 ");// + message );
 		MarkerControl mc=AnimFinishers[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimFinishers[0].GetComponent<AnimationTrigger>();
 			mc.colorToChange = Color.white;
@@ -1781,5 +1900,6 @@ public class SceneControl : MonoBehaviour {
 		//public List<Escena> escenas;
 
 	}
+
 }
 }//END NAMESPACE

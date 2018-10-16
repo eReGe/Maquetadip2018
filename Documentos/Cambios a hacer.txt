@@ -1,0 +1,42 @@
+PROCESO DE VIDEOS
+
+Estado de espera
+
+al entrar en un contenido
+Video de transicion (1s)
+Comienza video de presentacion
+Se muestran contenidos
+
+Al salir de contenidos
+Quitar contenidos
+video de transición
+Se muestra estado de espera
+
+
+
+StartIntro(float numero)
+- Se lanza despues de limpiar la maqueta con videos cortos
+	- Los videos cortos deben ser de 1 segundo, en el frame 12 cambiaran los materiales de la maqueta y acaban en transparente
+- dependiendo del numero, comenzara la intro de video del estadoactual, y cuando acabe, se lanzarán los contenidos con startContent
+- Cuando acabe el video de intro, lanza el contenido y las leyendas
+- Tendrá en cuenta el lenguaje para lanzar cada video
+
+StartContent(float numero, bool superposicion)
+- Dependiendo del numero, lanzará los contenidos de dicho estado
+- debe de ser util para estados normales, así como para estados de superposicion.
+- Lanza contenido y leyendas
+
+Stopcontent(float numero)
+-Quitará los contenidos que se le indiquen en el estado actual
+
+Changelanguage(float tablet, string language)
+- Cambia el lenguaje de las posiciones de cada tablet (por defecto catalan)
+
+VARIABLES
+Estadoactual= estado en el que se encuentra
+EstadoSiguiente = estado al que se dirije
+Estadosuperposicion = contenido que se muestra en superposicion
+SuperposicionActiva= si hay superposicion o normales
+
+LEYENDAS
+Hueco para la actual y hueco para posible superposicion
