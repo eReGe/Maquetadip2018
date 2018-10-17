@@ -57,6 +57,7 @@ public class MarkerBehaviour : MonoBehaviour {
 		m3=new List<int>();
 		sceneControl = GameObject.Find ("SceneControl");
 		timeLapseNeuronal = timeLapseNeuronalset + Random.Range (-1,1);
+        speedAlarm = speedAlarm + Random.Range(-8,8);
 	}
 	public void setYpos(float _y){
 		yPos = _y;

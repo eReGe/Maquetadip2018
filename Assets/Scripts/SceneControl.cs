@@ -26,16 +26,21 @@ public class SceneControl : MonoBehaviour {
 	private ReadMunicipiData rmd;
 	public OscIn oscIn;
 
+        //ANIMACIONES
+        public GameObject[] BiblioBusAnim;
         //VIDEO PLAYER
         public VideoPlayer videoPlayerMaqueta;
         public VideoClip[] videosMaqueta;
         public VideoPlayer videoPlayerLiso;
         private bool isTransition = false;
+        private bool isEndTransition = false;
         private bool isIntro = false;
 
 
         //CONTROL
-        public float estadoActual;  //codigos del json que indican en que estado estamos 
+        public float[] estadoActual;  //codigos del json que indican en que estado estamos [tema, subestado,datos]
+        public float estadoSiguiente;
+        public float estadoSuperposicion;
         public string superposicionActual;
 		public bool[] activeTablets;
 		public string[] lenguajeTablets;
@@ -178,23 +183,31 @@ public class SceneControl : MonoBehaviour {
 		Text text = textTr .GetComponent<Text>();*/
 			//Text t=Titulos[0].GetComponent<Text>();
 
-        //VIDEOS en off
+        //Inizalizar estados
+        estadoActual = new float[3];
+        for (int i = 0; i < 3; i++)
+        {
+                estadoActual[i] = 0;
+        }
+
+        //Materiales apagados de inicio (municipios, lineas, contornos, material liso,etc)
         for (int i = 0; i < Maquetas.Length; i++)
         {
             Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
-            Color cv = m[2].color;
-            cv.a = 0;
+            Color cm = m[3].color;
+                cm.a = 0;
+                Color cv = m[1].color;
+                cv.a = 0;
 
-            m[2].color = cv;
+            m[1].color = cv; //colorLiso
+            m[3].color = cm; //Municipios
         }
-        for (int i = 0; i < ZonasLisas.Length; i++)
-        {
-            Material[] m = ZonasLisas[i].GetComponent<Renderer>().materials;
-            Color cv = m[1].color;
-            cv.a = 0;
+        changeAlphaMaterialPlanos(1,0);
 
-            m[1].color = cv;
-        }
+        //VIDEOS en off
+        changeAlphaVideoMaqueta(2,0);
+        changeAlphaVideoLisas(2,0);
+        
 
 		for(int i=0;i<LeyendaMarcador.Length;i++){
 			LeyendaMarcador [i].GetComponent<MeshRenderer> ().enabled = false;
@@ -226,23 +239,54 @@ public class SceneControl : MonoBehaviour {
 	void Update () {
             keyControl();
             
-            if (isTransition) {
+            if (isTransition) {//transicion de maqueta a contenido
+                if (videoPlayerMaqueta.frame >= 20)//frame en el cual se cambia el fondo
+                {
+                    Debug.Log("enciende materialliso");
+                    changeAlphaMaterialMaqueta(1, 1);
+                    changeAlphaMaterialPlanos(1, 1);
+
+                }
                 Debug.Log("isPlaying"+ videoPlayerMaqueta.frame+" fc: "+ videoPlayerMaqueta.frameCount);
                 if (videoPlayerMaqueta.frame == (long)videoPlayerMaqueta.frameCount)
                 {
                     isTransition = false;
                     videoPlayerMaqueta.Stop();
-                    StartIntro(estadoActual);
+                    changeAlphaVideoMaqueta(2, 0);
+                    changeAlphaVideoLisas(2, 0);
+                    //StartIntro(estadoActual[0]);
+                }
+            }
+            if (isEndTransition)
+            {//transicion de maqueta a contenido
+                if (videoPlayerMaqueta.frame >= 20)//frame en el cual se cambia el fondo
+                {
+                    Debug.Log("Apaga materialliso");
+                    changeAlphaMaterialMaqueta(1, 0);
+                    changeAlphaMaterialPlanos(1, 0);
+
+                }
+                Debug.Log("isPlaying" + videoPlayerMaqueta.frame + " fc: " + videoPlayerMaqueta.frameCount);
+                if (videoPlayerMaqueta.frame == (long)videoPlayerMaqueta.frameCount)
+                {
+                    isEndTransition = false;
+                    videoPlayerMaqueta.Stop();
+                    changeAlphaVideoMaqueta(2, 0);
+                    changeAlphaVideoLisas(2, 0);
+                    //StartIntro(estadoActual[0]);
                 }
             }
             if (isIntro)//video introduccion tema
             {
-                Debug.Log("isPlaying" + videoPlayerMaqueta.frame + " fc: " + videoPlayerMaqueta.frameCount);
+                
+                Debug.Log("isPlaying" + videoPlayerLiso.frame + " fc: " + videoPlayerLiso.frameCount);
                 if (videoPlayerLiso.frame == (long)videoPlayerLiso.frameCount)
                 {
-                    isTransition = false;
+               
                     videoPlayerLiso.Stop();
-                    StartContent(estadoActual);
+                    StartContent(estadoActual[0]);
+                    changeAlphaVideoLisas(2, 0);
+                    StartContent(estadoActual[1]);
                 }
             }
 
@@ -538,14 +582,123 @@ public class SceneControl : MonoBehaviour {
 				
 
 	}//END UPDATE
+    
 
+    void changeAlphaMaterialMaqueta(int material, float a)
+    {
+            for (int i = 0; i < Maquetas.Length; i++)
+            {
+                Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+                Color cv = m[material].color;
+                cv.a = a;
+
+                m[material].color = cv; //colorLiso
+            }
+
+    }
+    void changeAlphaMaterialPlanos( int material, float a)
+    {
+        for (int i = 0; i < ZonasLisas.Length; i++)
+        {
+            Material[] m = ZonasLisas[i].GetComponent<Renderer>().materials;
+            Color cv = m[material].color;
+            cv.a = a;
+
+            m[material].color = cv; //colorLiso
+        }
+
+    }
+    void changeAlphaVideoMaqueta(int material,float a)
+    {
+         for (int i = 0; i < Maquetas.Length; i++)
+        {
+            Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+            Color cv = m[material].color;
+            cv.a = a;
+
+            m[material].color = cv; //colorLiso
+        }
+    }
+    void changeAlphaVideoLisas(int material,float a)
+    {
+         for (int i = 0; i < ZonasLisas.Length; i++)
+        {
+            Material[] m = ZonasLisas[i].GetComponent<Renderer>().materials;
+            Color cv = m[material].color;
+            cv.a = a;
+
+            m[material].color = cv; //colorLiso
+        }
+    }
+
+    //Control de teclado para testing
     void keyControl()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)) //PERSONAS
+        {
+            Debug.Log("Personas");
+            StartTransition(0);
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) //PERSONAS
+        {
+            Debug.Log("Personas");
+            EndTransition(0);
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("startbiblio");
-            StartBiblio(0);
+            StartBiblio2(111);
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("startbuses");
+            StartBiblio2(112);
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("startlabs");
+            StartBiblio2(113);
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("startteleasistencia");
+            StartTeleasis(1);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("startHestia");
+            StartTeleasis(2);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("startGovernObert");
+            //StartGovernObert(1);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("startXALOC");
+            //StartTeleasis(2);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("startPoligons");
+            //StartGovernObert(1);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("startKM2");
+            //StartTeleasis(2);
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("startPatrimoni");
+            //StartGovernObert(1);
+        }
+
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Clean");
@@ -842,7 +995,7 @@ public class SceneControl : MonoBehaviour {
 		// 1) For messages with one argument, simply provide the address and
 		// a method with one argument. In this case, OnTest1 takes a float argument.
 		//PERSONAS
-			oscIn.MapInt( "/persones/biblioteques", StartBiblio);
+			//oscIn.MapInt( "/persones/biblioteques", StartBiblio);
 		//oscIn.Map( "/persones/bibliobuses", StartBuses);
 			oscIn.MapInt( "/persones/teleasistencia", StartTeleasis);
 		oscIn.MapInt( "/persones/parcs", StartParcs);
@@ -886,46 +1039,96 @@ public class SceneControl : MonoBehaviour {
 
 
     //CONTROL DE ANIMACIONES DE VIDEO
-    public void StartIntro(float state)
-    {
-            StartBiblio2(0);
-
-    }
-
-    public void StartContent(float state)
-    {
-
-
-    }
-
-    //PERSONAS
-    public void StartBiblio(int value)
+    public void StartTransition(float state)//transicion de maqueta a tema
     {
             isTransition = true;
-            videoPlayerMaqueta.clip = videosMaqueta[Random.Range(0,2)];
+
+            videoPlayerMaqueta.clip = videosMaqueta[1];
             //videoPlayerMaqueta.frame = 0;
             videoPlayerMaqueta.Play();
 
             videoPlayerLiso.Play();
             //videos ON
-            for (int i = 0; i < Maquetas.Length; i++)
-            {
-                Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
-                Color cv = m[2].color;
-                cv.a = 1;
+            changeAlphaVideoMaqueta(2, 1);
+            changeAlphaVideoLisas(2, 1);
 
-                m[2].color = cv;
-            }
-            for (int i = 0; i < ZonasLisas.Length; i++)
-            {
-                Material[] m = ZonasLisas[i].GetComponent<Renderer>().materials;
-                Color cv = m[1].color;
-                cv.a = 1;
+     }
+    public void EndTransition(float state)//transicion de maqueta a tema
+    {
+            isEndTransition = true;
 
-                m[1].color = cv;
-            }
+            videoPlayerMaqueta.clip = videosMaqueta[1];
+            //videoPlayerMaqueta.frame = 0;
+            videoPlayerMaqueta.Play();
+            videoPlayerLiso.Play();
+            //videos ON
+            changeAlphaVideoMaqueta(2, 1);
+            changeAlphaVideoLisas(2, 1);
 
+     }
+
+    public void StartIntro(float state) //Comienza videos introductorios
+    {
             
+
+    }
+
+    public void StartContent(float state) //Lanza contenido
+    {
+            StartBiblio2((int)estadoActual[2]);
+
+     }
+
+    //PERSONAS
+    public void StartBiblio(int value,bool superposicion)
+    {
+            if (!superposicion) estadoActual[0] = 1; //si no es superposicion se cambia el estado actual
+
+            if (value == 0) //valor por defecto
+            {
+                if (!superposicion)
+                {
+                    estadoActual[1] = 11;
+                }
+                
+            }
+            else if (value == 1) //Bibliotecas
+            {
+                if (!superposicion)
+                {
+                    estadoActual[2] = 111;
+                }
+                else
+                {
+                    estadoSuperposicion = 111;
+                }
+
+            }
+            else if (value == 2) //bibliobuses
+            {
+                if (!superposicion)
+                {
+                    estadoActual[2] = 112;
+                }
+                else
+                {
+                    estadoSuperposicion = 112;
+                }
+            }
+            else if (value == 3)//bibliolabs
+            {
+                if (!superposicion)
+                {
+                    estadoActual[2] = 113;
+                }
+                else
+                {
+                    estadoSuperposicion = 113;
+                }
+            }
+            
+            
+
             
             /*for (int i = 0; i < Maquetas.Length; i++)
             {
@@ -938,7 +1141,7 @@ public class SceneControl : MonoBehaviour {
             StartBiblio2(value);*/
 
     }
-    public void StartBiblio2(int value)    
+    public void StartBiblio2(int value)    //recibe el valor del dato a mostrar y elegirá el tipo que es y como animarlo
 	{
 		Debug.Log( "Received: biblio "+value);
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
@@ -949,37 +1152,32 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			/*if (value == 0) {
-				mc.colorToChange = colorBibliotecas;
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
-				at.contenido = "XarxaBiblio";
-				if (lenguajeTablets [0] == "cat") {
-					Titulos [0].text = "Xarxa Biblioteques";
-					Subtitulos [0].text = "";
-				} else {
-					Titulos [0].text = "Network Of libraries";
-					Subtitulos [0].text = "";
-				}
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			} */
-				if (value == 1 || value==0) {
-				mc.colorToChange = colorBibliotecas;
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
-				at.contenido = "Bibliotecas";
-				if (lenguajeTablets [0] == "cat") {
-					Titulos [0].text = "Biblioteques";
-					Subtitulos [0].text = "";
-				} else {
-					Titulos [0].text = "Libraries";
-					Subtitulos [0].text = "";
-				}
+			
+			if (value == 111) { //bibliotecas
+			    mc.colorToChange = colorBibliotecas;
+			    LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
+			    at.contenido = "Bibliotecas";
+			    if (lenguajeTablets [0] == "cat") {
+				    Titulos [0].text = "Biblioteques";
+				    Subtitulos [0].text = "";
+			    } else {
+				    Titulos [0].text = "Libraries";
+				    Subtitulos [0].text = "";
+			    }
 
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			}
-			else if (value == 2) {
-				mc.colorToChange = colorBibliobuses;
+			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
+			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+                at.isGrowing = true;
+            }
+			else if (value == 112) { //bibliobuses
+                //activar bibliobus
+                for (int i=0;i < BiblioBusAnim.Length; i++)
+                {
+                    BiblioBusAnim[i].active = true;
+                }
+               
+                //at.contenido = "Bibliobuses";
+                mc.colorToChange = colorBibliobuses;
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliobuses;
 				if (lenguajeTablets [0] == "cat") {
 					Titulos [0].text = "Bibliobusos";
@@ -988,14 +1186,21 @@ public class SceneControl : MonoBehaviour {
 					Titulos [0].text = "Mobile Libraries";
 					Subtitulos [0].text = "";
 				}
-				at.contenido = "Bibliobuses";
+				
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[1];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			}
-		
+            }
+            else if (value == 113)//bibliolabs
+            {
+                //bibliolabs
+                //activar marcadores con color azulado brillante
+                changeAlphaMaterialMaqueta(3, 1);
+                
+            }
 
-			at.isGrowing = true;
+
+           
 
 
 
@@ -1824,8 +2029,18 @@ public class SceneControl : MonoBehaviour {
 
 	//Limpiadores
 	public void Clean1()//OscMessage message
-        {
+    {
             Debug.Log("Received: Clean1 ");// + message );
+        //Limpiar contornos
+        changeAlphaMaterialMaqueta(3, 0);
+        
+        //limpiar animaciones
+        //Limpiar bibliobus
+        for (int i=0;i < BiblioBusAnim.Length; i++)
+        {
+            BiblioBusAnim[i].active = false;
+        }
+
 		MarkerControl mc=AnimFinishers[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimFinishers[0].GetComponent<AnimationTrigger>();
 			mc.colorToChange = Color.white;
