@@ -158,7 +158,8 @@ public class SceneControl : MonoBehaviour {
 		//PERSONES
 	public Color colorBibliotecas;
 	public Color colorBibliobuses;
-	public Color colorTeleasis;
+        public Color colorBiblioLabs;
+        public Color colorTeleasis;
 	public Color colorGovernObert;
 	public Color colorHestia;
 	public Color colorXaloc;
