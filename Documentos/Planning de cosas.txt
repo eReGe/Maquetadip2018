@@ -1,0 +1,50 @@
+Cosas a hacer esta semana:
+
+- Ordenar capas de materiales
+MAQUETA 1
+1 - Fondo de satelite
+2 Fondo de satelite extra
+3 Rios
+4 Animacion Rios
+5 Luces noche
+6 Animacion Luces
+7 Fondo Liso
+8 Video de transicion MAQUETA
+9 Textura de Maqueta 2 (para las animaciones de mostrar contenidos
+9 Zonas de los municipios
+10 Municipios solos
+11 Lineas de los municipios
+
+
+ZONAS LISAS
+1 Fondo de satelite o animacion de mar
+2 Fondo liso de zonas planas
+3 Video de transicion de zonas planas
+
+MAQUETA 2
+
+1 Fondo para cotas
+
+MAQUETA 3
+1 Zonas de los municipios
+2 Parques
+3 Poligonos
+4 Zonas turisticas 1
+5 zonas turisticas 2
+6 zonas turisticas 3
+7 Video Para animaciones (Fibra optica
+3 Lineas de los municipios
+
+
+
+
+- Comenzar a lanzar animaciones despues de los videos de Raul
+1. Recibe mensaje de video
+2.Lanza video de rau y video de loading en maqueta con color del tema actual
+3. O bien recibe mensaje de  que acaba video, o cuando acabe el propio lanza la animacion
+4. Lanza la animacion de entrada (dependera del tema)
+5. Cuando reciba mensaje de volver o pase tiempo de espera, vuelve al estado de espera del tema
+
+- Decidir que animaciones van en la maqueta fantasma, y programarlo
+- Decidir una forma de hacer fade de municipios para la superposicion
+- Decidir forma de quitar video cuando se haga skip video

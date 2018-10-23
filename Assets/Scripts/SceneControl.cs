@@ -92,7 +92,10 @@ public class SceneControl : MonoBehaviour {
 		//LEYENDAS
 		public string[] subtitulos1;
 		public string[] subtitulos2;
-		public string[] subtitulos3;
+		public string[] subtitulos3; 
+
+		//MUNICIPIOS
+		public Texture[] imgMunicipio;
 
 	private bool alpha=true;
 		//PERSONES
@@ -223,7 +226,7 @@ public class SceneControl : MonoBehaviour {
         {
             Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
             Color cm = m[layerLuces].color;
-                cm.a = 0;
+                cm.a = 1;
                 Color cv = m[layerFondoLiso].color;
                 cv.a = 0;
 
