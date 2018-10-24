@@ -226,7 +226,7 @@ public class SceneControl : MonoBehaviour {
         {
             Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
             Color cm = m[layerLuces].color;
-                cm.a = 1;
+                cm.a = 0;
                 Color cv = m[layerFondoLiso].color;
                 cv.a = 0;
 
