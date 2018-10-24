@@ -25,6 +25,7 @@ public class SceneControl : MonoBehaviour {
 		public Text[] Subtitulos;
 	private ReadMunicipiData rmd;
 	public OscIn oscIn;
+		private bool isLandscape = true;  //para saber si estamos en modo paisaje o contenido
 
         //ANIMACIONES
         public GameObject[] BiblioBusAnim;
@@ -47,16 +48,41 @@ public class SceneControl : MonoBehaviour {
 		public string[] lenguajeTablets;
         public string[] lenguajes;
 
-        public int layerCotas = 0;
-        public int layerSatelite = 1;
-        public int layerFondoLiso = 2;
-        public int layerVideoMaqueta = 3;
-        public int layerExteriorMaqueta=4;
-        public int layerLuces = 5;
+        //public int layerCotas = 0;
+        
 
-        public int layerLisoExteriorMaqueta = 0;
-        public int layerLisoFondo = 1;
-        public int layerLisoVideoTransicion = 2;
+		//MAQUETA PRINCIPAL
+		public int layerSatelite;
+		public int layerExteriorMaqueta;
+		public int layerRios;
+		public int layerRios2;
+		public int layerLuces;
+		public int layerLuces2;
+		public int layerFondoLiso;
+		public int layerVideoMaqueta;
+		public int layerAnimaciones;
+		public int layerZonasSup;
+		public int layerMunicipios;
+		public int layerFronteras;
+		public int layerVideoMapping;
+
+		//zonas planas
+		public int layerLisoExteriorMaqueta = 0;
+		public int layerLisoFondo = 1;
+		public int layerLisoVideoTransicion = 2;
+
+		//MAQUETA COTAS
+		public int layerMCcotas=0;
+
+		//MAQUETA ANIMACIONES
+		public int layerMAzonas=0;
+		public int layerMAparques=1;
+		public int layerMAPoligonos=2;
+		public int layerMAturismo1=3;
+		public int layerMAturismo2=4;
+		public int layerMAturismo3=5;
+		public int layerMAvideoAnimado=6;
+		public int layerMAfronteras=7;
 
         public bool writeJSON = false;
 		public bool	isParcs = false;
@@ -225,13 +251,43 @@ public class SceneControl : MonoBehaviour {
         for (int i = 0; i < Maquetas.Length; i++)
         {
             Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
-            Color cm = m[layerLuces].color;
-                cm.a = 0;
-                Color cv = m[layerFondoLiso].color;
-                cv.a = 0;
+            Color c = m[layerLuces].color;
+                c.a = 0;
+				m[layerLuces].color = c; //Luces1
 
-            m[layerFondoLiso].color = cv; //colorLiso
-            m[layerLuces].color = cm; //Municipios
+				c = m[layerLuces2].color;
+				c.a = 0;
+				m[layerLuces2].color = c; //Luces2
+
+                c = m[layerFondoLiso].color;
+                c.a = 0;
+				m[layerFondoLiso].color = c; //colorLiso
+
+				c = m[layerVideoMaqueta].color;
+				c.a = 0;
+				m[layerVideoMaqueta].color = c; //Video Maqueta
+
+				c = m[layerAnimaciones].color;
+				c = new Color (0,0,0,0);
+
+				m[layerAnimaciones].color = c; //Animaciones
+
+				c = m[layerZonasSup].color;
+				c.a = 0;
+				m[layerZonasSup].color = c; //ZonasMunicipios para superposicion
+
+				c = m[layerMunicipios].color;
+				c.a = 0;
+				m[layerMunicipios].color = c; //Municipios solos
+
+				c = m[layerFronteras].color;
+				c.a = 0;
+				m[layerFronteras].color = c; //Fornteras
+
+				c = m[layerVideoMapping].color;
+				c.a = 0;
+				m[layerVideoMapping].color = c; //Video mapping
+
         }
         //changeAlphaMaterialPlanos(1,0);
 
@@ -276,6 +332,8 @@ public class SceneControl : MonoBehaviour {
                     Debug.Log("enciende materialliso");
                     changeAlphaMaterialMaqueta(layerFondoLiso, 1);
                     changeAlphaMaterialPlanos(layerLisoFondo, 1);
+					changeAlphaMaterialMaqueta (layerRios, 0);
+					changeAlphaMaterialMaqueta (layerRios2, 0);
 
                 }
                 Debug.Log("isPlaying"+ videoPlayerMaqueta.frame+" fc: "+ videoPlayerMaqueta.frameCount);
@@ -283,6 +341,7 @@ public class SceneControl : MonoBehaviour {
                 {
                     isTransition = false;
                     videoPlayerMaqueta.Stop();
+
                     changeAlphaVideoMaqueta(layerVideoMaqueta, 0);
                     changeAlphaVideoLisas(layerLisoVideoTransicion, 0);
                     //StartIntro(estadoActual[0]);
@@ -295,12 +354,15 @@ public class SceneControl : MonoBehaviour {
                     Debug.Log("Apaga materialliso");
                     changeAlphaMaterialMaqueta(layerFondoLiso, 0);
                     changeAlphaMaterialPlanos(layerLisoFondo, 0);
+					changeAlphaMaterialMaqueta (layerRios, 1);
+					changeAlphaMaterialMaqueta (layerRios2, 1);
 
                 }
                 Debug.Log("isPlaying" + videoPlayerMaqueta.frame + " fc: " + videoPlayerMaqueta.frameCount);
                 if (videoPlayerMaqueta.frame == (long)videoPlayerMaqueta.frameCount)
                 {
                     isEndTransition = false;
+					isLandscape = true;
                     videoPlayerMaqueta.Stop();
                     changeAlphaVideoMaqueta(layerVideoMaqueta, 0);
                     changeAlphaVideoLisas(layerLisoVideoTransicion, 0);
@@ -320,6 +382,19 @@ public class SceneControl : MonoBehaviour {
                     StartContent(estadoActual[1]);
                 }
             }
+			/*if (isAnimIntro)//animacion de entrada de datos
+			{
+
+				Debug.Log("isPlaying" + videoPlayerLiso.frame + " fc: " + videoPlayerLiso.frameCount);
+				if (videoPlayerLiso.frame == (long)videoPlayerLiso.frameCount)
+				{
+
+					videoPlayerLiso.Stop();
+					StartContent(estadoActual[0]);
+					changeAlphaVideoLisas(layerLisoVideoTransicion, 0);
+					StartContent(estadoActual[1]);
+				}
+			}*/
 
 
             /*AnimationTrigger atScript = AnimStarters[0].GetComponent<AnimationTrigger>();
@@ -1122,6 +1197,7 @@ public class SceneControl : MonoBehaviour {
     public void StartTransition(float state)//transicion de maqueta a tema
     {
             isTransition = true;
+			isLandscape = false;
 
             videoPlayerMaqueta.clip = videosMaqueta[Random.Range(0, videosMaqueta.Length)];
             //videoPlayerMaqueta.frame = 0;
@@ -1338,23 +1414,12 @@ public class SceneControl : MonoBehaviour {
 			else if (value == 112) { //bibliobuses
                 estadoActual[2] = value;
                 //activar bibliobus
-                for (int i=0;i < BiblioBusAnim.Length; i++)
-                {
-                    BiblioBusAnim[i].active = true;
-                }
+				changeAlphaMaterialMaqueta(layerVideoMapping,1);
+				changeColorVideoMaqueta (layerVideoMapping, colorBibliobuses);
                
                 //at.contenido = "Bibliobuses";
-                mc.colorToChange = colorBibliobuses;
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliobuses;
                 writeTextLanguage(0,value);
-				/*if (lenguajeTablets [0] == "cat") {
-					Titulos [0].text = "Bibliobusos";
-					Subtitulos [0].text = "";
-				} else if {
-					Titulos [0].text = "Mobile Libraries";
-					Subtitulos [0].text = "";
-				}*/
-				
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[1];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
@@ -1364,8 +1429,8 @@ public class SceneControl : MonoBehaviour {
                 estadoActual[2] = value;
                 //bibliolabs
                 //activar marcadores con color azulado brillante
-                changeAlphaMaterialMaqueta(3, 1);
-                
+				changeAlphaMaterialMaqueta(layerMunicipios, 1);
+				 
             }
 
 
@@ -2223,6 +2288,9 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = false;
 			LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = false;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = false;
+
+		changeAlphaMaterialMaqueta(layerMunicipios, 0);
+		changeAlphaMaterialMaqueta(layerVideoMapping,0);
 	}
 	public void Clean2(  OscMessage message  )
 	{
