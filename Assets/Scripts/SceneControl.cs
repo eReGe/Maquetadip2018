@@ -37,6 +37,8 @@ public class SceneControl : MonoBehaviour {
         public VideoPlayer videoPlayerMaqueta;
         public VideoClip[] videosMaqueta;
         public VideoPlayer videoPlayerLiso;
+		public VideoPlayer videoPlayerMapping;
+		public VideoClip[] videosMapping;
 		public VideoPlayer videoPlayerSuperficie;
 		public GameObject[] superficiesVideos;
 		public VideoClip[] videosSuperficie;
@@ -440,7 +442,8 @@ public class SceneControl : MonoBehaviour {
 				Debug.Log("isPlaying" + videoPlayerSuperficie.frame + " fc: " + videoPlayerSuperficie.frameCount);
 				if (videoPlayerSuperficie.frame == (long)videoPlayerSuperficie.frameCount || skipVideo)
                 {
-               
+					videoPlayerMapping.Stop ();
+					changeAlphaVideoMaqueta (layerVideoMapping, 0);
 					videoPlayerSuperficie.Stop();
 					for(int i=0;i<superficiesVideos.Length;i++){
 						superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = false;
@@ -840,7 +843,7 @@ public class SceneControl : MonoBehaviour {
 		void enableAnimationLayer (int onoff){ //int[] capas,
 
 			if(onoff==0){
-				caScript.startAnimation (4);
+				caScript.startAnimation (4);// (Random.Range(4,5));
 				/*for (int i = 0; i < Maquetas.Length; i++)
 				{
 					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
@@ -851,7 +854,7 @@ public class SceneControl : MonoBehaviour {
 				}*/
 			}
 			if(onoff==1){
-					caScript.startAnimation (1);
+				caScript.startAnimation (Random.Range(1,3));
 					/*for (int i = 0; i < Maquetas.Length; i++)
 				{
 					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
@@ -1413,7 +1416,7 @@ public class SceneControl : MonoBehaviour {
     {
             isTransition = true;
 			isLandscape = false;
-
+			estadoActual [0] = state;
             videoPlayerMaqueta.clip = videosMaqueta[Random.Range(0, videosMaqueta.Length)];
             //videoPlayerMaqueta.frame = 0;
             videoPlayerMaqueta.Play();
@@ -1475,8 +1478,23 @@ public class SceneControl : MonoBehaviour {
     public void StartIntro(float state) //Comienza videos introductorios
     {
 			estadoSiguiente = state;
-			videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length +1)];
+			videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+			videoPlayerMapping.clip=videosMapping[Random.Range(0,videosMapping.Length )];
+			videoPlayerMapping.Play ();
+			if (estadoActual[0]==1)//personas
+			{
+				changeColorVideoMaqueta (layerVideoMapping,colorPERSONAS );
+			}
+			if (estadoActual[0] == 2)//sostenibilidad
+			{
+				changeColorVideoMaqueta (layerVideoMapping,colorSOSTENIBILIDAD );
+			}
+			if (estadoActual[0] == 3)//tecnologia
+			{
+				changeColorVideoMaqueta (layerVideoMapping,colorTECNOLOGIA );
+			}
 
+			changeAlphaVideoMaqueta (layerVideoMapping, 1);
 			videoPlayerSuperficie.Play ();
 			videoPlayerSuperficie.frame = 0;
 			for(int i=0;i<superficiesVideos.Length;i++){
@@ -1721,7 +1739,7 @@ public class SceneControl : MonoBehaviour {
             }
 
 			//Animaciones maqueta2
-			changeAlphaMaterialMaquetaAnim(layerMAfronteras,1);
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.28f);
 			enableAnimationLayer(1);
            
 

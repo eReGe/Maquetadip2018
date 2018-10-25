@@ -36,7 +36,9 @@ MAQUETA 3
 3 Lineas de los municipios
 
 
-
+TAREAAAAS
+-Poner los codigos de los contenidos por variables.
+- Cambiar los valores de los municipios en el material on the fly y ver un metodo de indexarlos bien
 
 
 

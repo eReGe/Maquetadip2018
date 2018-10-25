@@ -77,28 +77,28 @@ public  class cotasAnimation : MonoBehaviour {
 				animationType = 0;
 			}
 		}
-		if(animationType==2){
+		if(animationType==4){
 			myCamera.farClipPlane = cota;
 			cota=cota- pasoCota*2;
 			if(cota<=minCota){
 				animationType = 0;
 			}
 		}
-		if(animationType==3){
+		if(animationType==2){
 			myCamera.nearClipPlane = cota;
 			cota=cota- pasoCota;
 			if(cota<=minCota){
 				animationType = 0;
 			}
 		}
-		if(animationType==4){
+		if(animationType==5){
 			myCamera.nearClipPlane = cota;
 			cota=cota+ pasoCota*2;
 			if(cota>=maxCota){
 				animationType = 0;
 			}
 		}
-		if(animationType==5){
+		if(animationType==3){
 			myCamera.nearClipPlane = cota;
 			cota=cota- pasoCota;
 			myCamera.farClipPlane = cota2;
