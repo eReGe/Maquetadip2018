@@ -33,6 +33,9 @@ public class SceneControl : MonoBehaviour {
         public VideoPlayer videoPlayerMaqueta;
         public VideoClip[] videosMaqueta;
         public VideoPlayer videoPlayerLiso;
+		public VideoPlayer videoPlayerSuperficie;
+		public GameObject[] superficiesVideos;
+		public VideoClip[] videosSuperficie;
         public VideoClip[] videosLiso;
         private bool isTransition = false;
         private bool isEndTransition = false;
@@ -294,6 +297,11 @@ public class SceneControl : MonoBehaviour {
         //VIDEOS en off
         changeAlphaVideoMaqueta(layerVideoMaqueta,0);
         changeAlphaVideoLisas(layerLisoVideoTransicion,0);
+
+		//VIDEOS DE MOTION EN OFF
+			for(int i=0;i<superficiesVideos.Length;i++){
+				superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = false;
+		}
         
 
 		for(int i=0;i<LeyendaMarcador.Length;i++){
@@ -372,14 +380,18 @@ public class SceneControl : MonoBehaviour {
             if (isIntro)//video introduccion tema
             {
                 
-                Debug.Log("isPlaying" + videoPlayerLiso.frame + " fc: " + videoPlayerLiso.frameCount);
-                if (videoPlayerLiso.frame == (long)videoPlayerLiso.frameCount)
+				Debug.Log("isPlaying" + videoPlayerSuperficie.frame + " fc: " + videoPlayerSuperficie.frameCount);
+				if (videoPlayerSuperficie.frame == (long)videoPlayerSuperficie.frameCount)
                 {
                
-                    videoPlayerLiso.Stop();
-                    StartContent(estadoActual[0]);
-                    changeAlphaVideoLisas(layerLisoVideoTransicion, 0);
-                    StartContent(estadoActual[1]);
+					videoPlayerSuperficie.Stop();
+					for(int i=0;i<superficiesVideos.Length;i++){
+						superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = false;
+					}
+					isIntro = false;
+					//START CONTENT
+					StartContent(estadoSiguiente);
+                    
                 }
             }
 			/*if (isAnimIntro)//animacion de entrada de datos
@@ -806,22 +818,25 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("startbiblio");
-            StartBiblio2(111);
+			StartIntro (111);
+            //StartBiblio2(111);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             Debug.Log("startbuses");
-            StartBiblio2(112);
+				StartIntro (112);
+            //StartBiblio2(112);
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("startlabs");
-            StartBiblio2(113);
+			StartIntro (113);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             Debug.Log("startteleasistencia");
-            StartTeleasis(1);
+				StartIntro (120);
+            //StartTeleasis(1);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -831,7 +846,8 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X))
         {
             Debug.Log("startGovernObert");
-            //StartGovernObert(1);
+				StartIntro (130);
+            //StartGovernObert(130);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -1155,7 +1171,7 @@ public class SceneControl : MonoBehaviour {
 			oscIn.MapInt( "/persones/teleasistencia", StartTeleasis);
 		oscIn.MapInt( "/persones/parcs", StartParcs);
 
-		oscIn.Map( "/persones/govern_obert", StartGovernObert);
+		//oscIn.Map( "/persones/govern_obert", StartGovernObert);
 		oscIn.Map( "/persones/xaloc", StartXaloc);
 		oscIn.Map( "/persones/km2", StartKm2);
 
@@ -1259,13 +1275,34 @@ public class SceneControl : MonoBehaviour {
 
     public void StartIntro(float state) //Comienza videos introductorios
     {
-            
+			estadoSiguiente = state;
+			videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length +1)];
+
+			videoPlayerSuperficie.Play ();
+			videoPlayerSuperficie.frame = 0;
+			for(int i=0;i<superficiesVideos.Length;i++){
+				superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = true;
+			}
+			isIntro = true;
 
     }
 
     public void StartContent(float state) //Lanza contenido
     {
-            StartBiblio2((int)estadoActual[2]);
+			if(state==111 || state==112 || state==113) //bibliotecas
+			{
+				StartBiblio2((int)state);
+			}
+
+			if(state==120) //teleasistencia
+			{
+				StartTeleasis((int)state);
+			}
+
+			if(state==130 || state==131 || state==132) //governObert
+			{
+				StartGovernObert((int)state);
+			}
 
      }
 
@@ -1302,21 +1339,65 @@ public class SceneControl : MonoBehaviour {
                 {
                     if (lenguajeTablets[i] == "cat")
                     {
-                        Titulos[0].text = "Bibliobusos";
-                        Subtitulos[0].text = "";
+                        Titulos[i].text = "Bibliobusos";
+						Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == "eng")
                     {
-                        Titulos[0].text = "Mobile Libraries";
-                        Subtitulos[0].text = "";
+						Titulos[i].text = "Mobile Libraries";
+						Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == "esp")
                     {
-                        Titulos[0].text = "Bibliobuses";
-                        Subtitulos[0].text = "";
+						Titulos[i].text = "Bibliobuses";
+						Subtitulos[i].text = "";
                     }
                 }
             }
+
+			//Teleasistencia
+			if (estado == 120)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets [0] == "cat") {
+						Titulos [i].text = "Municipis amb el servei de teleassistència ";
+						Subtitulos [i].text = "72.000 usuaris";
+					} else if (lenguajeTablets[i] == "eng") {
+						Titulos [i].text = "Municipalities with Telecare Service";
+						Subtitulos [i].text = "72.000 users";
+					}
+					else if (lenguajeTablets[i] == "esp")
+					{
+						Titulos[i].text = "Municipios con servicio de teleasistencia";
+						Subtitulos[i].text = "72.000 usuarios";
+					}
+				}
+			}
+
+			//GovernObert
+			if (estado == 130)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == "cat")
+					{
+						Titulos[i].text="Municipis amb actuacions de Govern Obert";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == "eng")
+					{
+						Titulos [i].text = "Municipalities with Open Government actions";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == "esp")
+					{
+						Titulos[i].text = "Municipios con actuaciones del gobierno";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+
     }
 
     //PERSONAS
@@ -1399,13 +1480,6 @@ public class SceneControl : MonoBehaviour {
 			    LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
 			    at.contenido = "Bibliotecas";
                 writeTextLanguage(0, value);
-                /*if (lenguajeTablets [0] == "cat") {
-				    Titulos [0].text = "Biblioteques";
-				    Subtitulos [0].text = "";
-			    } else {
-				    Titulos [0].text = "Libraries";
-				    Subtitulos [0].text = "";
-			    }*/
 
 			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
@@ -1430,6 +1504,14 @@ public class SceneControl : MonoBehaviour {
                 //bibliolabs
                 //activar marcadores con color azulado brillante
 				changeAlphaMaterialMaqueta(layerMunicipios, 1);
+				mc.colorToChange = colorBibliotecas;
+				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
+				at.contenido = "Bibliotecas";
+				writeTextLanguage(0, value);
+
+				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
+				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+				at.isGrowing = true;
 				 
             }
 
@@ -1439,19 +1521,8 @@ public class SceneControl : MonoBehaviour {
 
 
 	}
-	/*public void StartBuses(OscMessage message)
-	{
-		Debug.Log( "Received: buses " );
-		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
-		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-		mc.colorToChange = colorBibliobuses;
-			at.contenido = "Bibliobuses";
-		at.isGrowing = true;
-			Titulos[0].text="Bibliobuses";
-			Subtitulos[0].text="101 Municipios";
-	}
-	*/
-		public void StartTeleasis(int value )
+	
+	public void StartTeleasis(int value )
 	{
 		Debug.Log( "Received: teleasis ");
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
@@ -1474,18 +1545,12 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[3];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			}*/
-			if(value == 1 || value==0){
+			if(value == 120 || value==0){
 				mc.colorToChange = colorTeleasis;
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorTeleasis;
 				at.contenido = "Teleasistencia";
 				at.isGrowing = true;
-				if (lenguajeTablets [0] == "cat") {
-					Titulos [0].text = "Municipis amb el servei de teleassistència ";
-					Subtitulos [0].text = "72.000 usuaris";
-				} else {
-					Titulos [0].text = "Municipalities with Telecare Service";
-					Subtitulos [0].text = "72.000 users";
-				}
+				writeTextLanguage (0, value);
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[3];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
@@ -1507,26 +1572,24 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			}
 	}
-	public void StartGovernObert(OscMessage message )
+		public void StartGovernObert(int value )
 	{
-		LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
+			estadoActual[2] = value;
+
+			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			activeTablets [0] = true;
-		Debug.Log( "Received: GovernObert ");
-		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
-		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-		mc.colorToChange = colorGovernObert;
-			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorGovernObert;
-		at.contenido = "GovernOBERT";
-		at.isGrowing = true;
-			if (lenguajeTablets [0] == "cat") {
-				Titulos[0].text="Municipis amb actuacions de Govern Obert";
-				Subtitulos[0].text="";
-			} else {
-				Titulos [0].text = "Municipalities with Open Government actions";
-				Subtitulos [0].text = "";
-			}
+			Debug.Log( "Received: GovernObert ");
+			MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
+			AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
+			mc.colorToChange = colorGovernObert;
+				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorGovernObert;
+			at.contenido = "GovernOBERT";
+			at.isGrowing = true;
+
+			writeTextLanguage(0, value);
+
 
 	}
 	public void StartXaloc(OscMessage message )
