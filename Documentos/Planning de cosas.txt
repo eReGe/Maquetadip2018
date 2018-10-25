@@ -54,6 +54,7 @@ Animacion in y out de contenidos (Tanto en maqueta 1 como en la de animaciones
 	- Zonas
 	
 Fade in y out de contenidos ( en maqueta 1 )
+Hacer funciones con fade in, fade out y fadeout and in  (3 opciones)
 
 	Zonas
 	Municipios

@@ -34,22 +34,22 @@ public  class cotasAnimation : MonoBehaviour {
 			myCamera.farClipPlane = minCota;
 			cota = minCota;
 		}
-		if(animationType==2){
+		if(animationType==4){
 			myCamera.nearClipPlane = minCota;
 			myCamera.farClipPlane = maxCota;
 			cota = maxCota;
 		}
-		if(animationType==3){
+		if(animationType==2){
 			myCamera.nearClipPlane = maxCota;
 			myCamera.farClipPlane = maxCota;
 			cota = maxCota;
 		}
-		if(animationType==4){
+		if(animationType==5){
 			myCamera.nearClipPlane = minCota;
 			myCamera.farClipPlane = maxCota;
 			cota = minCota;
 		}
-		if(animationType==5){
+		if(animationType==3){
 			myCamera.nearClipPlane = 450;
 			myCamera.farClipPlane = 450;
 			cota = 450;

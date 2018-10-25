@@ -44,6 +44,7 @@ public class SceneControl : MonoBehaviour {
         private bool isTransition = false;
         private bool isEndTransition = false;
         private bool isIntro = false;
+		private cotasAnimation caScript;
 
 
         //CONTROL
@@ -248,6 +249,10 @@ public class SceneControl : MonoBehaviour {
                 lenguajeTablets[i] = "cat";
         }
 
+
+		//Scriptsexternos
+		caScript = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+
         //Inizalizar estados
         estadoActual = new float[3];
         for (int i = 0; i < 3; i++)
@@ -275,8 +280,8 @@ public class SceneControl : MonoBehaviour {
 				c.a = 0;
 				m[layerVideoMaqueta].color = c; //Video Maqueta
 
-				c = m[layerAnimaciones].color;
-				c = new Color (0,0,0,0);
+				//c = m[layerAnimaciones].color;
+				//c = new Color (0,0,0,0);
 
 				m[layerAnimaciones].color = c; //Animaciones
 
@@ -297,7 +302,54 @@ public class SceneControl : MonoBehaviour {
 				m[layerVideoMapping].color = c; //Video mapping
 
         }
-        //changeAlphaMaterialPlanos(1,0);
+        //Maqueta animaciones
+			for (int i = 0; i < MaquetasAnimaciones.Length; i++)
+		{
+			Material[] m = MaquetasAnimaciones[i].GetComponent<Renderer>().materials;
+				/*public int layerMAzonas=0;
+		public int layerMAparques=1;
+		public int layerMAPoligonos=2;
+		public int layerMAturismo1=3;
+		public int layerMAturismo2=4;
+		public int layerMAturismo3=5;
+		public int layerMAvideoAnimado=6;
+		public int layerMAfronteras=7;*/
+
+				Color c = m[layerMAzonas].color;
+			c.a = 0;
+				m[layerMAzonas].color = c; //Zonas municipios
+
+				c = m[layerMAparques].color;
+			c.a = 0;
+				m[layerMAparques].color = c; //Parques
+
+				c = m[layerMAPoligonos].color;
+			c.a = 0;
+				m[layerMAPoligonos].color = c; //Poligonos
+
+				c = m[layerMAturismo1].color;
+			c.a = 0;
+				m[layerMAturismo1].color = c; //Turismo1
+
+				c = m[layerMAturismo2].color;
+			c.a = 0;
+				m[layerMAturismo2].color = c; //Turismo2
+
+				c = m[layerMAturismo3].color;
+			c.a = 0;
+				m[layerMAturismo3].color = c; //Turismo3
+
+				c = m[layerMAvideoAnimado].color;
+			c.a = 0;
+				m[layerMAvideoAnimado].color = c; //VideoAnimado
+
+			
+
+				c = m[layerMAfronteras].color;
+			c.a = 0;
+				m[layerMAfronteras].color = c; //Fronteras
+
+		}
 
         //VIDEOS en off
         changeAlphaVideoMaqueta(layerVideoMaqueta,0);
@@ -720,6 +772,18 @@ public class SceneControl : MonoBehaviour {
             }
 
     }
+	void changeAlphaMaterialMaquetaAnim(int material, float a)
+	{
+		for (int i = 0; i < MaquetasAnimaciones.Length; i++)
+		{
+			Material[] m = MaquetasAnimaciones[i].GetComponent<Renderer>().materials;
+			Color cv = m[material].color;
+			cv.a = a;
+
+			m[material].color = cv; //colorLiso
+		}
+
+	}
     void changeAlphaMaterialPlanos( int material, float a)
     {
         for (int i = 0; i < ZonasLisas.Length; i++)
@@ -772,6 +836,32 @@ public class SceneControl : MonoBehaviour {
             m[material].color = cv; //colorLiso
         }
     }
+
+		void enableAnimationLayer (int onoff){ //int[] capas,
+
+			if(onoff==0){
+				caScript.startAnimation (4);
+				/*for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[layerAnimaciones].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (0,0,0,0);
+					m[layerAnimaciones].color=c;
+				}*/
+			}
+			if(onoff==1){
+					caScript.startAnimation (1);
+					/*for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[layerAnimaciones].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (1,1,1,1);
+					m[layerAnimaciones].color=c;
+				}*/
+			}
+	}
 
     //Control de teclado para testing
     void keyControl()
@@ -891,19 +981,12 @@ public class SceneControl : MonoBehaviour {
             Clean1();
         }
 		if (Input.GetKeyDown(KeyCode.T))
-		{
-				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+		{ 
 				changeAlphaMaterialMaqueta (8, 1);
 
-				ca.startAnimation(1);
-				for (int i = 0; i < Maquetas.Length; i++)
-				{
-					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
-					Color c = m[8].color;
-					c = m[layerAnimaciones].color;
-					c = new Color (1,1,1,1);
-					m[8].color=c;
-				}
+				caScript.startAnimation(1);
+				enableAnimationLayer (1);
+			
 			Debug.Log("Anim");
 			
 		}
@@ -1604,6 +1687,8 @@ public class SceneControl : MonoBehaviour {
 			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
                 at.isGrowing = true;
+
+				
             }
 			else if (value == 112) { //bibliobuses
                 estadoActual[2] = value;
@@ -1635,7 +1720,9 @@ public class SceneControl : MonoBehaviour {
 				 
             }
 
-
+			//Animaciones maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,1);
+			enableAnimationLayer(1);
            
 
 
@@ -2460,14 +2547,14 @@ public class SceneControl : MonoBehaviour {
     {
             Debug.Log("Received: Clean1 ");// + message );
         //Limpiar contornos
-        changeAlphaMaterialMaqueta(3, 0);
+		
+		
         
         //limpiar animaciones
-        //Limpiar bibliobus
-        for (int i=0;i < BiblioBusAnim.Length; i++)
-        {
-            BiblioBusAnim[i].active = false;
-        }
+		enableAnimationLayer(0);
+		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
+
+        
 
 		MarkerControl mc=AnimFinishers[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimFinishers[0].GetComponent<AnimationTrigger>();
