@@ -10,7 +10,11 @@ public class SceneControl : MonoBehaviour {
 		public float timer=0;
 	public GameObject[] AnimStarters; //1 personas  //2 sostenibilidad   //3 infraestructuras
 	public GameObject[] AnimFinishers;
+	public Camera CamaraCotas;
+	public Camera CamaraAnimaciones;
 	public GameObject[] Maquetas;
+	public GameObject[] MaquetasCotas;
+	public GameObject[] MaquetasAnimaciones;
     public GameObject[] ZonasLisas;
     public GameObject[] LeyendaMarcador;
 	public GameObject[] LeyendaMarcadorb;
@@ -50,6 +54,7 @@ public class SceneControl : MonoBehaviour {
 		public bool[] activeTablets;
 		public string[] lenguajeTablets;
         public string[] lenguajes;
+		private bool skipVideo=false;
 
         //public int layerCotas = 0;
         
@@ -381,7 +386,7 @@ public class SceneControl : MonoBehaviour {
             {
                 
 				Debug.Log("isPlaying" + videoPlayerSuperficie.frame + " fc: " + videoPlayerSuperficie.frameCount);
-				if (videoPlayerSuperficie.frame == (long)videoPlayerSuperficie.frameCount)
+				if (videoPlayerSuperficie.frame == (long)videoPlayerSuperficie.frameCount || skipVideo)
                 {
                
 					videoPlayerSuperficie.Stop();
@@ -389,6 +394,7 @@ public class SceneControl : MonoBehaviour {
 						superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = false;
 					}
 					isIntro = false;
+					skipVideo = false;
 					//START CONTENT
 					StartContent(estadoSiguiente);
                     
@@ -814,6 +820,10 @@ public class SceneControl : MonoBehaviour {
             Debug.Log("Cambia idioma tablet1:"+r+" Estado:"+ (int)estadoActual[2]);
             writeTextLanguage(0,(int)estadoActual[2]);  
         }
+		if (Input.GetKeyDown(KeyCode.Alpha0)) //PERSONAS
+		{
+				skipVideo = true;
+		}
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -852,13 +862,18 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("startXALOC");
-            //StartTeleasis(2);
+			StartIntro (15);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             Debug.Log("startPoligons");
-            //StartGovernObert(1);
+				StartIntro (16);
         }
+			if (Input.GetKeyDown(KeyCode.C))
+		{
+			Debug.Log("startServeisempresas");
+				//StartIntro (17);
+		}
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log("startKM2");
@@ -875,8 +890,109 @@ public class SceneControl : MonoBehaviour {
             Debug.Log("Clean");
             Clean1();
         }
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+				changeAlphaMaterialMaqueta (8, 1);
 
-        }
+				ca.startAnimation(1);
+				for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[8].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (1,1,1,1);
+					m[8].color=c;
+				}
+			Debug.Log("Anim");
+			
+		}
+		if (Input.GetKeyDown(KeyCode.Y))
+		{
+				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+				changeAlphaMaterialMaqueta (8, 1);
+
+				ca.startAnimation(2);
+				for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[8].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (1,1,1,1);
+					m[8].color=c;
+				}
+			Debug.Log("Anim");
+
+		}
+		if (Input.GetKeyDown(KeyCode.U))
+		{
+				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+				changeAlphaMaterialMaqueta (8, 1);
+
+				ca.startAnimation(3);
+				for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[8].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (1,1,1,1);
+					m[8].color=c;
+				}
+			Debug.Log("Anim");
+
+		}
+		if (Input.GetKeyDown(KeyCode.I))
+		{
+				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+				changeAlphaMaterialMaqueta (8, 1);
+
+				ca.startAnimation(4);
+				for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[8].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (1,1,1,1);
+					m[8].color=c;
+				}
+			Debug.Log("Anim");
+
+		}
+			if (Input.GetKeyDown(KeyCode.O))
+		{
+				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+				changeAlphaMaterialMaqueta (8, 1);
+
+				ca.startAnimation(5);
+				for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[8].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (1,1,1,1);
+					m[8].color=c;
+				}
+			Debug.Log("Anim");
+
+		}
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
+				changeAlphaMaterialMaqueta (8, 1);
+
+				ca.startAnimation(6);
+				for (int i = 0; i < Maquetas.Length; i++)
+				{
+					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+					Color c = m[8].color;
+					c = m[layerAnimaciones].color;
+					c = new Color (1,1,1,1);
+					m[8].color=c;
+				}
+			Debug.Log("Anim");
+
+		}
+   }
 
 	void fillArrays(){
 		rmd=GetComponent<ReadMunicipiData>();
@@ -1172,7 +1288,7 @@ public class SceneControl : MonoBehaviour {
 		oscIn.MapInt( "/persones/parcs", StartParcs);
 
 		//oscIn.Map( "/persones/govern_obert", StartGovernObert);
-		oscIn.Map( "/persones/xaloc", StartXaloc);
+		//oscIn.Map( "/persones/xaloc", StartXaloc);
 		oscIn.Map( "/persones/km2", StartKm2);
 
 		//SOSTENIBILIDAD
@@ -1302,6 +1418,10 @@ public class SceneControl : MonoBehaviour {
 			if(state==130 || state==131 || state==132) //governObert
 			{
 				StartGovernObert((int)state);
+			}
+			if(state==15 || state==16 || state==17) //Promocion de empresas
+			{
+				StartPromocio((int)state);
 			}
 
      }
@@ -1592,19 +1712,21 @@ public class SceneControl : MonoBehaviour {
 
 
 	}
-	public void StartXaloc(OscMessage message )
+		public void StartPromocio(int value) //xaloc, poligonos y serveis
 	{
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[6];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			activeTablets [0] = true;
 		Debug.Log( "Received: Xaloc ");
-		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
-		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-		mc.colorToChange = colorXaloc;
+
+		if(value == 15  || value==0){ //XALOC
+			MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
+			AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
+			mc.colorToChange = colorXaloc;
 			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorXaloc;
-		at.contenido = "Xaloc";
-		at.isGrowing = true;
+			at.contenido = "Xaloc";
+			at.isGrowing = true;
 			if (lenguajeTablets [0] == "cat") {
 				Titulos[0].text="Municipis dins de la xarxa Xaloc";
 				Subtitulos[0].text="";
@@ -1612,6 +1734,15 @@ public class SceneControl : MonoBehaviour {
 				Titulos [0].text = "Municipalities within the Xaloc network";
 				Subtitulos [0].text = "";
 			}
+		}
+		if(value == 16  || value==0){//poligonos
+
+		}
+		if(value == 17  || value==0){//serveis a empreses
+
+		}
+
+		
 
 	}
 	public void StartKm2(OscMessage message )

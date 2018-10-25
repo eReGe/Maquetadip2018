@@ -9,6 +9,7 @@ public class cotasControl : MonoBehaviour {
     public float pasoCota;
     public float maxCota;
     public float minCota;
+	public int animationType;
     float cota;
     // Use this for initialization
 
@@ -32,4 +33,6 @@ public class cotasControl : MonoBehaviour {
         //if (cota < minCota) cota = minCota;
         if (cota > maxCota) cota = minCota;
     }
+
+	
 }

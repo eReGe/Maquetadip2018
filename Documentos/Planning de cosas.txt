@@ -11,9 +11,9 @@ MAQUETA 1
 7 Fondo Liso
 8 Video de transicion MAQUETA
 9 Textura de Maqueta 2 (para las animaciones de mostrar contenidos
-9 Zonas de los municipios
-10 Municipios solos
-11 Lineas de los municipios
+10 Zonas de los municipios
+11 Municipios solos
+12 Lineas de los municipios
 
 
 ZONAS LISAS
@@ -34,6 +34,60 @@ MAQUETA 3
 6 zonas turisticas 3
 7 Video Para animaciones (Fibra optica
 3 Lineas de los municipios
+
+
+
+
+
+
+
+FUNCIONES
+
+Animacion in y out de contenidos (Tanto en maqueta 1 como en la de animaciones
+
+	SIEMPRE
+	- Lineas de municipios (camaracotas)
+	
+	A veces
+	- Video de loading maqueta
+	- Municipios
+	- Zonas
+	
+Fade in y out de contenidos ( en maqueta 1 )
+
+	Zonas
+	Municipios
+	Municipios Solos
+
+DONDE CAMBIAR LOS CODIGOS DE LOS CONTENIDOS
+
+- StarContent() IMPORTANTE para que vaya a los contenidos apropiados
+
+- WriteTextLanguage() Importante para las leyendas en el idioma adecuado
+
+- En los lanzadores de contenidos
+	-StartBiblio2
+	-StartTeleasis
+	- StartGovernObert
+	-StartXaloc  - pasara a ser StartOcupacio
+	-StartKm2
+	-StartPatrimoni
+	-StartOficinaPatrimoni
+	
+	-StartXarxa
+	-StartOtaga??  No hay este contenido?
+	-StartEmissions
+	-StartRenovables
+	-StartMesura
+	-StartTurisme
+	
+	-StartServeiGestio
+	-StartPlataforma
+	StartInfraestructures
+	-StratPoligons
+	StartFibra
+	
+
 
 
 
