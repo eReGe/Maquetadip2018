@@ -59,6 +59,27 @@ public class SceneControl : MonoBehaviour {
         public string[] lenguajes;
 		private bool skipVideo=false;
 
+		public int[] codigosBibliotecas;
+		public int[] codigosTeleasistencia;
+		public int[] codigosGovernObert;
+		public int[] codigosPromocioEconomica;
+		public int[] codigosKm2;
+		public int[] codigosPatrimoni;
+		public int[] codigosOficinaPatrimoni;
+
+		public int[] codigosXarxaCiutats;
+		public int[] codigosPAES;
+		public int[] codigosRenovables;
+		public int[] codigosEvaluacio;
+		public int[] codigosParques;
+		public int[] codigosTurismo;
+
+		public int[] codigosServeisGestio;
+		public int[] codigosPlataformaUrbana;
+		public int[] codigosGeografia;
+		public int[] codigosFibraOptica;
+
+
         //public int layerCotas = 0;
         
 
@@ -94,6 +115,7 @@ public class SceneControl : MonoBehaviour {
 		public int layerMAturismo3=5;
 		public int layerMAvideoAnimado=6;
 		public int layerMAfronteras=7;
+
 
         public bool writeJSON = false;
 		public bool	isParcs = false;
@@ -224,6 +246,16 @@ public class SceneControl : MonoBehaviour {
 		public Color	colorPlataforma3;
 	public Color	colorInfraestructures;
 		public Color	colorSitmun;
+
+		//IMAGENES
+		public Texture texturaXaloc;
+		public Texture texturaPoligonos;
+		public Texture[] texturasPatrimonios;
+		public Texture[] texturasRenovables;
+		public Texture[] texturasParques;
+		public Texture[] texturasParquesSolos;
+		public Texture[] texturasTurismo;
+		public Texture[] texturasRutasTurismo;
 	 
 
 
@@ -318,7 +350,7 @@ public class SceneControl : MonoBehaviour {
 		public int layerMAfronteras=7;*/
 
 				Color c = m[layerMAzonas].color;
-			c.a = 0;
+			c.a = 1;
 				m[layerMAzonas].color = c; //Zonas municipios
 
 				c = m[layerMAparques].color;
@@ -392,7 +424,10 @@ public class SceneControl : MonoBehaviour {
 	//UPDATE
 	void Update () {
             keyControl();
-            
+            //zonas limpar
+			if(caScript.animationType==0 && !caScript.isUp){
+				changeAlphaMaterialMaquetaAnim(layerMAzonas,0);
+			}
             if (isTransition) {//transicion de maqueta a contenido
                 if (videoPlayerMaqueta.frame >= 20)//frame en el cual se cambia el fondo
                 {
@@ -787,6 +822,25 @@ public class SceneControl : MonoBehaviour {
 		}
 
 	}
+	void changeColorMaterialMaquetaAnim(int material, Color c)
+	{
+		for (int i = 0; i < MaquetasAnimaciones.Length; i++)
+		{
+			Material[] m = MaquetasAnimaciones[i].GetComponent<Renderer>().materials;
+			m[material].color = c; //colorLiso
+		}
+
+	}
+	void changeTextureMaterialMaquetaAnim(int material, Texture t)
+	{
+		for (int i = 0; i < MaquetasAnimaciones.Length; i++)
+		{
+			Material[] m = MaquetasAnimaciones[i].GetComponent<Renderer>().materials;
+			
+				m[material].SetTexture("_MainTex",t);
+		}
+
+	}
     void changeAlphaMaterialPlanos( int material, float a)
     {
         for (int i = 0; i < ZonasLisas.Length; i++)
@@ -921,24 +975,24 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("startbiblio");
-			StartIntro (111);
+				StartIntro (codigosBibliotecas[0]);
             //StartBiblio2(111);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
             Debug.Log("startbuses");
-				StartIntro (112);
+				StartIntro (codigosBibliotecas[1]);
             //StartBiblio2(112);
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("startlabs");
-			StartIntro (113);
+				StartIntro (codigosBibliotecas[2]);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             Debug.Log("startteleasistencia");
-				StartIntro (120);
+				StartIntro (codigosTeleasistencia[0]);
             //StartTeleasis(1);
         }
         if (Input.GetKeyDown(KeyCode.S))
@@ -949,7 +1003,7 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X))
         {
             Debug.Log("startGovernObert");
-				StartIntro (130);
+				StartIntro (codigosGovernObert[0]);
             //StartGovernObert(130);
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -1506,21 +1560,21 @@ public class SceneControl : MonoBehaviour {
 
     public void StartContent(float state) //Lanza contenido
     {
-			if(state==111 || state==112 || state==113) //bibliotecas
+			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
 			{
 				StartBiblio2((int)state);
 			}
 
-			if(state==120) //teleasistencia
+			if(state==codigosTeleasistencia[0]) //teleasistencia
 			{
 				StartTeleasis((int)state);
 			}
 
-			if(state==130 || state==131 || state==132) //governObert
+			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] ) //governObert
 			{
 				StartGovernObert((int)state);
 			}
-			if(state==15 || state==16 || state==17) //Promocion de empresas
+			if(state==codigosPromocioEconomica[0] || state==codigosPromocioEconomica[1] || state==codigosPromocioEconomica[2]) //Promocion de empresas
 			{
 				StartPromocio((int)state);
 			}
@@ -1531,7 +1585,7 @@ public class SceneControl : MonoBehaviour {
     public void writeTextLanguage(int tablet,int estado) {
 
             //Bibliotecas
-            if (estado == 111)
+			if (estado == codigosBibliotecas[0])
             {
                 Debug.Log("Cambia texto leyenda bibliotecaz");
                 for (int i = 0; i < 3; i++)
@@ -1539,22 +1593,22 @@ public class SceneControl : MonoBehaviour {
                     if (lenguajeTablets[i] == "cat")
                     {
                         Titulos[i].text = "Biblioteques";
-                        Subtitulos[i].text = "";
+                        Subtitulos[i].text = "Superposicion";
                     }
                     else if (lenguajeTablets[i] == "eng")
                     {
                         Titulos[i].text = "Libraries";
-                        Subtitulos[i].text = "";
+						Subtitulos[i].text = "Superposition";
                     }
                     else if (lenguajeTablets[i] == "esp")
                     {
                         Titulos[i].text = "Bibliotecas";
-                        Subtitulos[i].text = "";
+                        Subtitulos[i].text = "Superposicion";
                     }
                 }
             }
             //Bibliobuses
-            if (estado == 112)
+			if (estado == codigosBibliotecas[1])
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -1575,6 +1629,28 @@ public class SceneControl : MonoBehaviour {
                     }
                 }
             }
+			//Bibliolabs
+			if (estado == codigosBibliotecas[2])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == "cat")
+					{
+						Titulos[i].text = "BiblioLabs";
+						Subtitulos[i].text = "";
+					}
+					else if (lenguajeTablets[i] == "eng")
+					{
+						Titulos[i].text = "BiblioLabs";
+						Subtitulos[i].text = "";
+					}
+					else if (lenguajeTablets[i] == "esp")
+					{
+						Titulos[i].text = "BiblioLabs";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
 
 			//Teleasistencia
 			if (estado == 120)
@@ -1597,7 +1673,7 @@ public class SceneControl : MonoBehaviour {
 			}
 
 			//GovernObert
-			if (estado == 130)
+			if (estado == codigosTeleasistencia[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -1622,7 +1698,7 @@ public class SceneControl : MonoBehaviour {
     }
 
     //PERSONAS
-    public void StartBiblio(int value,bool superposicion)
+    public void StartBiblio(int value,bool superposicion) //NO SIRVE¿¿??
     {
             if (!superposicion) estadoActual[0] = 1; //si no es superposicion se cambia el estado actual
 
@@ -1695,7 +1771,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			
-			if (value == 111) { //bibliotecas
+			if (value == codigosBibliotecas[0]) { //bibliotecas
                 estadoActual[2] = value;
 			    mc.colorToChange = colorBibliotecas;
 			    LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
@@ -1708,7 +1784,7 @@ public class SceneControl : MonoBehaviour {
 
 				
             }
-			else if (value == 112) { //bibliobuses
+			else if (value == codigosBibliotecas[1]) { //bibliobuses
                 estadoActual[2] = value;
                 //activar bibliobus
 				changeAlphaMaterialMaqueta(layerVideoMapping,1);
@@ -1720,8 +1796,16 @@ public class SceneControl : MonoBehaviour {
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[1];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+
+
+				//Encender capas de municipios
+				Debug.Log("Layer:"+layerMAzonas+" ");
+
+				changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
+				changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturaXaloc);
             }
-            else if (value == 113)//bibliolabs
+			else if (value == codigosBibliotecas[2])//bibliolabs
             {
                 estadoActual[2] = value;
                 //bibliolabs
@@ -1734,12 +1818,12 @@ public class SceneControl : MonoBehaviour {
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-				at.isGrowing = true;
+				//at.isGrowing = true;
 				 
             }
 
 			//Animaciones maqueta2
-			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.28f);
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
            
 
@@ -1770,7 +1854,7 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[3];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			}*/
-			if(value == 120 || value==0){
+			if(value == codigosTeleasistencia[0] || value==0){
 				mc.colorToChange = colorTeleasis;
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorTeleasis;
 				at.contenido = "Teleasistencia";
@@ -2569,6 +2653,7 @@ public class SceneControl : MonoBehaviour {
 		
         
         //limpiar animaciones
+		
 		enableAnimationLayer(0);
 		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
 

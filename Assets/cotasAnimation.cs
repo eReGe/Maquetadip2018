@@ -13,6 +13,7 @@ public  class cotasAnimation : MonoBehaviour {
 	public int animationType; //0 parado  1 arriba a abajo llena   2 arriba a abajo vacia 3 ababjo a arriba llena 4 ababjo a arriba llena  5 de enmedio a los lados llena 6 de enmedio a los lados vacia
     float cota;
 	float cota2;
+	public bool isUp;
     // Use this for initialization
 
     void Start () {
@@ -75,6 +76,7 @@ public  class cotasAnimation : MonoBehaviour {
 			cota=cota+ pasoCota;
 			if(cota>=maxCota){
 				animationType = 0;
+				isUp = true;
 			}
 		}
 		if(animationType==4){
@@ -82,6 +84,7 @@ public  class cotasAnimation : MonoBehaviour {
 			cota=cota- pasoCota*2;
 			if(cota<=minCota){
 				animationType = 0;
+				isUp = false;
 			}
 		}
 		if(animationType==2){
@@ -89,6 +92,7 @@ public  class cotasAnimation : MonoBehaviour {
 			cota=cota- pasoCota;
 			if(cota<=minCota){
 				animationType = 0;
+				isUp = true;
 			}
 		}
 		if(animationType==5){
@@ -96,6 +100,7 @@ public  class cotasAnimation : MonoBehaviour {
 			cota=cota+ pasoCota*2;
 			if(cota>=maxCota){
 				animationType = 0;
+				isUp = false;
 			}
 		}
 		if(animationType==3){
@@ -105,6 +110,7 @@ public  class cotasAnimation : MonoBehaviour {
 			cota2=cota2+ pasoCota;
 			if(cota<=minCota && cota2>=maxCota){
 				animationType = 0;
+				isUp = true;
 			}
 
 		}
@@ -115,6 +121,7 @@ public  class cotasAnimation : MonoBehaviour {
 			cota2=cota2- pasoCota*2;
 			if(cota>=maxCota && cota2<=maxCota){
 				animationType = 0;
+				isUp = false;
 			}
 		}
 	}
