@@ -1,5 +1,16 @@
 Cosas a hacer esta semana:
 
+TAREAAAAS
+- Video de fibra óptica y lanzarlo
+- Poner lo de turismo
+- Animacion de rios funcionando
+- Video de fibra optica
+- Hacer el network
+- Hacer una superposicion de municipios
+- Hacer superposicion de puntos con mascara a la mitad
+
+
+
 - Ordenar capas de materiales
 MAQUETA 1
 1 - Fondo de satelite
@@ -36,9 +47,7 @@ MAQUETA 3
 3 Lineas de los municipios
 
 
-TAREAAAAS
--Poner los codigos de los contenidos por variables.
-- Cambiar los valores de los municipios en el material on the fly y ver un metodo de indexarlos bien
+
 
 
 

@@ -134,14 +134,14 @@ public class LightRotation : MonoBehaviour {
 		for (int i = 0; i < Maquetas.Length; i++) {
 			Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
 			c = m [1].color;
-			cLights = m [3].color;
+			cLights = m [4].color;
 			cLights = Color.Lerp (startColorL, endColorL, t2);
 			c = Color.Lerp (startColor, endColor, t2);
 			m [0].color = c;
 			m [1].color = c;
 			m [2].color = c;
 
-			m [3].color = cLights;
+			m [4].color = cLights;
 			//Debug.Log ("t="+t);
 
 			//m [5].color = c;
@@ -165,7 +165,7 @@ public class LightRotation : MonoBehaviour {
 		for (int i = 0; i < Maquetas.Length; i++) {
 			Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
 
-			cLights = m [3].color;
+			cLights = m [4].color;
 			float r=Random.Range (-0.07f, 0.071f);
 			cLights.a = cLights.a + r;
 			if(cLights.a<colorLightsNight.a-0.1f){
@@ -177,7 +177,7 @@ public class LightRotation : MonoBehaviour {
 			//cLights = Color.Lerp (startColorL, endColorL, t2);
 
 
-			m [3].color = cLights;
+			m [4].color = cLights;
 			//Debug.Log ("t="+t);
 
 			//m [5].color = c;

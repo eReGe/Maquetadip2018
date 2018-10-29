@@ -120,7 +120,9 @@ public class SceneControl : MonoBehaviour {
 		public int layerMAvideoAnimado=6;
 		public int layerMACo2impar=7;
 		public int layerMACo2par=8;
-		public int layerMAfronteras=9;
+		public int layerMAFibra=9;
+		public int layerMAFibra2=10;
+		public int layerMAfronteras=11;
 
 
         public bool writeJSON = false;
@@ -383,7 +385,13 @@ public class SceneControl : MonoBehaviour {
 			c.a = 0;
 				m[layerMAvideoAnimado].color = c; //VideoAnimado
 
-			
+
+				c = m[layerMAFibra].color;
+				c.a = 0;
+				m[layerMAFibra].color = c; //fibra óptica
+				c = m[layerMAFibra2].color;
+				c.a = 0;
+				m[layerMAFibra2].color = c; //fibra óptica2
 
 				c = m[layerMAfronteras].color;
 			c.a = 0;
@@ -586,7 +594,7 @@ public class SceneControl : MonoBehaviour {
 
 				}else if(!isEndParcs ){
 					float spd = parcFlickerSpeed;
-					for (int i = 0; i < Maquetas.Length; i++) {
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
 						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c = m [numTexturaParcs].color;
 						c.a = c.a + parcFlickerSpeed;
@@ -634,54 +642,54 @@ public class SceneControl : MonoBehaviour {
 		//EMISIONS
 			Color c1 = new Color();
 			if(isEmisions){
-				
-				for (int i = 0; i < Maquetas.Length; i++) {
+				if(!isEndEmisions){
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
 
 
-					if(contEmisions%2==1){
-						alphaCo2impar += alphaCo2Speed;
-						alphaCo2par -= alphaCo2Speed;
+						if(contEmisions%2==1){
+							alphaCo2impar += alphaCo2Speed;
+							alphaCo2par -= alphaCo2Speed;
+						}
+						else{
+							alphaCo2impar -= alphaCo2Speed;
+							alphaCo2par += alphaCo2Speed;
+						}
+						if(alphaCo2impar <=0){
+							alphaCo2impar = 0;
+						}
+						if(alphaCo2par <=0){
+							alphaCo2par = 0;
+						}
+						if(alphaCo2impar >=1){
+							alphaCo2impar = 1;
+						}
+						if(alphaCo2par >=1){
+							alphaCo2par = 1;
+						}
+
+						changeAlphaMaterialMaquetaAnim (layerMACo2par,alphaCo2par);
+						changeAlphaMaterialMaquetaAnim (layerMACo2impar,alphaCo2impar);
+
+						/*Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
+						for (int j = 5; j <=14; j++) {  //5-14
+							c1 = m [j].color;
+							c1.a = 0;
+							m [j].color = c1;
+						}
+						c1 = m [contEmisions].color;
+						c1.a = 0.6f;
+
+						m [contEmisions].color = c1;*/
+
+
+						//writeLeyendaCo2 ();
+						//Titulos[2].text="Plataforma";
+						//string t=co2Anys[contEmisions-5];
+						//Subtitulos[1].text=t;
+
 					}
-					else{
-						alphaCo2impar -= alphaCo2Speed;
-						alphaCo2par += alphaCo2Speed;
-					}
-					if(alphaCo2impar <=0){
-						alphaCo2impar = 0;
-					}
-					if(alphaCo2par <=0){
-						alphaCo2par = 0;
-					}
-					if(alphaCo2impar >=1){
-						alphaCo2impar = 1;
-					}
-					if(alphaCo2par >=1){
-						alphaCo2par = 1;
-					}
-
-					changeAlphaMaterialMaquetaAnim (layerMACo2par,alphaCo2par);
-					changeAlphaMaterialMaquetaAnim (layerMACo2impar,alphaCo2impar);
-
-					/*Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
-					for (int j = 5; j <=14; j++) {  //5-14
-						c1 = m [j].color;
-						c1.a = 0;
-						m [j].color = c1;
-					}
-					c1 = m [contEmisions].color;
-					c1.a = 0.6f;
-
-					m [contEmisions].color = c1;*/
-
-
-					//writeLeyendaCo2 ();
-					//Titulos[2].text="Plataforma";
-					//string t=co2Anys[contEmisions-5];
-					//Subtitulos[1].text=t;
-
+					timeLeftEmisions -= Time.deltaTime;
 				}
-				timeLeftEmisions -= Time.deltaTime;
-
 				if (timeLeftEmisions < 0) {
 					
 					if(contEmisions%2==1){
@@ -701,29 +709,29 @@ public class SceneControl : MonoBehaviour {
 
 
 				//este no hace  falta ahora??? se quita con la capa de animacion
+				if (isEndEmisions) {
+					alphaCo2impar -= alphaCo2Speed;
+					alphaCo2par -= alphaCo2Speed;
+					if(alphaCo2impar <=0){
+						alphaCo2impar = 0;
+					}
+					if(alphaCo2par <=0){
+						alphaCo2par = 0;
+					}
+					changeAlphaMaterialMaquetaAnim (layerMACo2par,alphaCo2par);
+					changeAlphaMaterialMaquetaAnim (layerMACo2impar,alphaCo2impar);
+					Subtitulos [1].text = "";
+					//isEndEmisions = false;
+					//isEmisions = false;
+					if (alphaCo2par <= 0 && alphaCo2impar <= 0) {
+						Debug.Log ("EMISIONS A CERO");
+						isEndEmisions = false;
+						isEmisions = false;
+					}
 
+				}//end emisions
 
-			}if (isEndEmisions) {
-				alphaCo2impar -= alphaCo2Speed;
-				alphaCo2par -= alphaCo2Speed;
-				if(alphaCo2impar <=0){
-					alphaCo2impar = 0;
-				}
-				if(alphaCo2par <=0){
-					alphaCo2par = 0;
-				}
-				changeAlphaMaterialMaquetaAnim (layerMACo2par,alphaCo2par);
-				changeAlphaMaterialMaquetaAnim (layerMACo2impar,alphaCo2impar);
-				Subtitulos [1].text = "";
-				//isEndEmisions = false;
-				//isEmisions = false;
-				if (alphaCo2par <= 0 && alphaCo2impar <= 0) {
-
-					isEndEmisions = false;
-					isEmisions = false;
-				}
-
-			}//end emisions
+			}
 
 			//Poligons
 			Color c3 = new Color();
@@ -788,34 +796,77 @@ public class SceneControl : MonoBehaviour {
 			}//End poligons
 			//Fibra
 			Color c4 = new Color();
-			int numTexturaFibra = 18;
+			Color c42 = new Color();
+			int numTexturaFibra = layerMAFibra;
+			int numTexturaFibra2 = layerMAFibra2;
 			if(isFibra){
 				if (isStartFibra) {
 
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c4 = m [numTexturaFibra].color;
 						c4.a = c4.a + parcSpeed;
+						c42 = m [numTexturaFibra2].color;
+						c42.a = c42.a + parcSpeed;
 
 						m [numTexturaFibra].color = c4;
+						m [numTexturaFibra2].color = c42;
 					}
+					Debug.Log ("Fibra alfa:"+c4.a+" "+c42.a);
 					if (c4.a >=1f) {
 						c4.a = 1f;
 						isStartFibra = false;
 					}
 
+				}else if(!isEndFibra ){
+					float spd = parcFlickerSpeed;
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
+						c42 = m [numTexturaFibra2].color;
+						c42.a = c42.a + parcFlickerSpeed;
+						if (c42.a >= 1f) {
+							c42.a = 1f;
+						}
+						if (c42.a <= 0.15f) {
+							c42.a = 0.15f;
+						}
+						m [numTexturaFibra2].color = c42;
+					}
+
+					if (c42.a >=1f) {
+						c42.a =1f;
+						//isStartParcs = false;
+						parcFlickerSpeed = -parcFlickerSpeed;
+					} 
+					if(c42.a<=0.15f){
+						c42.a = 0.15f;
+						//isStartParcs = false;
+						parcFlickerSpeed = -parcFlickerSpeed;
+					}
+
+
 				}
 
 				if (isEndFibra) {
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c4 = m [numTexturaFibra].color;
 						c4.a = c4.a - parcSpeed;
+						c42 = m [numTexturaFibra2].color;
+						c42.a = c42.a - parcSpeed;
+						if (c4.a <= 0) {
+							c4.a = 0;
+						}
+						if (c42.a <= 0) {
+							c42.a = 0;
+						}
 
 						m [numTexturaFibra].color = c4;
+						m [numTexturaFibra2].color = c42;
 					}
-					if (c4.a <= 0) {
+					if (c4.a <= 0 && c42.a <= 0) {
 						c4.a = 0;
+						c42.a = 0;
 						isEndFibra = false;
 						isFibra = false;
 					}
@@ -1065,6 +1116,11 @@ public class SceneControl : MonoBehaviour {
 			Debug.Log("startEmisions");
 				StartIntro (codigosPAES[0]);
 		}
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			Debug.Log("startFibra");
+				StartIntro (codigosFibraOptica[0]);
+		}
 		if (Input.GetKeyDown(KeyCode.V))
 		{
 			Debug.Log("startParcs");
@@ -1082,16 +1138,7 @@ public class SceneControl : MonoBehaviour {
             Debug.Log("Clean");
             Clean1();
         }
-		if (Input.GetKeyDown(KeyCode.T))
-		{ 
-				changeAlphaMaterialMaqueta (8, 1);
-
-				caScript.startAnimation(1);
-				enableAnimationLayer (1);
-			
-			Debug.Log("Anim");
-			
-		}
+		
 		if (Input.GetKeyDown(KeyCode.Y))
 		{
 				cotasAnimation ca = CamaraAnimaciones.GetComponent<cotasAnimation> ();
@@ -1490,7 +1537,7 @@ public class SceneControl : MonoBehaviour {
 			oscIn.MapInt( "/tecnologia/plataforma", StartPlataforma);
 			oscIn.MapInt( "/tecnologia/infraestructures", StartInfraestructures);
 			//oscIn.Map( "/tecnologia/poligons", StartPoligons);
-			oscIn.Map( "/tecnologia/fibra", StartFibra);
+			//oscIn.Map( "/tecnologia/fibra", StartFibra);
 
 		//IDIOMAS
 			oscIn.Map( "/persones/eng", IdiomaPersoneseng );
@@ -1577,7 +1624,39 @@ public class SceneControl : MonoBehaviour {
     public void StartIntro(float state) //Comienza videos introductorios
     {
 			estadoSiguiente = state;
-			videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+
+			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+			}
+
+			if(state==codigosTeleasistencia[0]) //teleasistencia
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[1];
+			}
+
+			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] ) //governObert
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[2];
+			}
+			if(state==codigosPromocioEconomica[0] || state==codigosPromocioEconomica[1] || state==codigosPromocioEconomica[2]) //Promocion de empresas
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[3];
+			}
+			if(state==codigosParques[0] ) //Parques
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[9];
+			}
+			if(state==codigosPAES[0]) //Emsiones co2
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+			}
+			if(state==codigosFibraOptica[0]) //Fibra óptica
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+			}
+
+			//videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
 			videoPlayerMapping.clip=videosMapping[Random.Range(0,videosMapping.Length )];
 			videoPlayerMapping.Play ();
 			if (estadoActual[0]==1)//personas
@@ -1630,6 +1709,10 @@ public class SceneControl : MonoBehaviour {
 			if(state==codigosPAES[0]) //Emsiones co2
 			{
 				StartEmisions((int)state);
+			}
+			if(state==codigosFibraOptica[0]) //Emsiones co2
+			{
+				StartFibra((int)state);
 			}
 
 
@@ -2663,7 +2746,7 @@ public class SceneControl : MonoBehaviour {
 			}
 			
 	}
-		public void StartFibra(OscMessage message )
+	public void StartFibra(int value )
 		{
 			Debug.Log( "Received: Fibra ");
 			activeTablets [2] = true;
@@ -2674,8 +2757,13 @@ public class SceneControl : MonoBehaviour {
 			isFibra = true;
 			isStartFibra = true;
 			isEndFibra = false;
+
+			//Animaciones maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
+
 			if (lenguajeTablets [2] == "cat") {
-		Titulos [2].text = "Canalitzacions per a fibra optica.                                                           Nou desplegament: 252km";//"Canalitzacions per a fibra optica. Nou desplegament: 252km";
+		Titulos [2].text = "Canalitzacions per a fibra óptica.                                                           Nou desplegament: 252km";//"Canalitzacions per a fibra optica. Nou desplegament: 252km";
 		Subtitulos [2].text = "";
 			} else {
 		Titulos [2].text = "Optical fiber trough the local roads.                                                    New deployment: 252km";
@@ -2728,8 +2816,10 @@ public class SceneControl : MonoBehaviour {
         //limpiar animaciones
 		
 		enableAnimationLayer(0);
-			isEmisions = false;
+			//isEmisions = false;
 		isEndEmisions=true;
+		isEndFibra = true;
+		isEndPolig = true;
 		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
 
         
@@ -2747,6 +2837,32 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = false;
 			LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = false;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = false;
+
+			activeTablets [1] = false;
+			Titulos [1].text = "";
+			Titulos [3].text = "";
+			Titulos [4].text = "";
+			Subtitulos [1].text = "";
+			LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = false;
+			LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled = false;
+			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=false;
+			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = false;
+			LeyendaMarcadorb [4].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [5].GetComponent<SpriteRenderer> ().enabled = false;
+
+			activeTablets [2] = false;
+			Titulos [2].text = "";
+			Titulos[5].text="";
+			Titulos[6].text="";
+			Titulos[7].text="";
+			Subtitulos [2].text = "";
+			LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = false;
+			LeyendaMarcadorb [2].GetComponent<SpriteRenderer>().enabled = false;
+			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = false;
+
+			LeyendaMarcadorb [6].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = false;
 
 		changeAlphaMaterialMaqueta(layerMunicipios, 0);
 		changeAlphaMaterialMaqueta(layerVideoMapping,0);
@@ -2768,6 +2884,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled = false;
 			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=false;
 			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = false;
+
 
 	LeyendaMarcadorb [4].GetComponent<SpriteRenderer> ().enabled = false;
 	LeyendaMarcadorb [5].GetComponent<SpriteRenderer> ().enabled = false;
