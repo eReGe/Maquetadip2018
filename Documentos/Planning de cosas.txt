@@ -3,12 +3,18 @@ Cosas a hacer esta semana:
 TAREAAAAS
 - Video de fibra óptica y lanzarlo
 - Poner lo de turismo
-- Animacion de rios funcionando
+- Color de los textos al que corresponde
 - Video de fibra optica
 - Hacer el network
 - Hacer una superposicion de municipios
 - Hacer superposicion de puntos con mascara a la mitad
 
+
+
+
+- cambiar co2
+
+- hacer mascara blanca para los puntos
 
 
 - Ordenar capas de materiales

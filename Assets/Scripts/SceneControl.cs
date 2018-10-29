@@ -100,6 +100,7 @@ public class SceneControl : MonoBehaviour {
 		public int layerZonasSup;
 		public int layerMunicipios;
 		public int layerFronteras;
+		public int layerMunicipiosSolos;
 		public int layerVideoMapping;
 
 		//zonas planas
@@ -135,6 +136,9 @@ public class SceneControl : MonoBehaviour {
 		public bool	isEmisions = false;
 		public bool isStartEmisions = false;
 		public bool isEndEmisions = false;
+		public bool	isSuperposicion = false;
+		public bool isStartSuperposicion = false;
+		public bool isEndSuperposicion = false;
 		public int contEmisions=5;
 		public float timeLapseEmisions;
 		public float timeLeftEmisions;
@@ -264,6 +268,8 @@ public class SceneControl : MonoBehaviour {
 		public Texture[] texturasParquesSolos;
 		public Texture[] texturasTurismo;
 		public Texture[] texturasRutasTurismo;
+		public Texture[] texturasGovernObert;
+		public Texture[] texturasMunicipiosSolos;
 	 
 
 
@@ -873,6 +879,67 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}//End fibra
+			//Superposicion
+			Color c5 = new Color();
+			int numTexturaSup = layerZonasSup;
+			if(isSuperposicion){
+				if (isStartSuperposicion) {
+
+					for (int i = 0; i < Maquetas.Length; i++) {
+						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+						c5 = m [numTexturaSup].color;
+						c5.a = c5.a + parcSpeed;
+
+						m [numTexturaSup].color = c5;
+					}
+					if (c5.a >= 0.85f) {
+						c5.a = 0.85f;
+						isStartSuperposicion = false;
+					}
+
+				}else if(!isEndSuperposicion ){
+					float spd = poligFlickerSpeed;
+					for (int i = 0; i < Maquetas.Length; i++) {
+						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+						c5 = m [numTexturaSup].color;
+						c5.a = c5.a + poligFlickerSpeed;
+						if (c5.a >= 0.85f) {
+							c5.a = 0.85f;
+						}
+						if (c5.a <= 0.15f) {
+							c5.a = 0.15f;
+						}
+						m [numTexturaSup].color = c5;
+					}
+
+					if (c5.a >= 0.85f) {
+						c5.a = 0.85f;
+						poligFlickerSpeed = -poligFlickerSpeed;
+					} 
+					if(c5.a<=0.15f){
+						c5.a = 0.15f;
+						poligFlickerSpeed = -poligFlickerSpeed;
+					}
+
+
+				}
+
+				if (isEndSuperposicion) {
+					for (int i = 0; i < Maquetas.Length; i++) {
+						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+						c5 = m [numTexturaSup].color;
+						c5.a = c5.a - parcSpeed;
+
+						m [numTexturaSup].color = c5;
+					}
+					if (c5.a <= 0) {
+						c5.a = 0;
+						isEndSuperposicion = false;
+						isSuperposicion = false;
+					}
+				}
+
+			}//End superposicion
 				
 
 	}//END UPDATE
@@ -918,6 +985,16 @@ public class SceneControl : MonoBehaviour {
 			Material[] m = MaquetasAnimaciones[i].GetComponent<Renderer>().materials;
 			
 				m[material].SetTexture("_MainTex",t);
+		}
+
+	}
+	void changeTextureMaterialMaqueta(int material, Texture t)
+	{
+		for (int i = 0; i < Maquetas.Length; i++)
+		{
+				Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+
+			m[material].SetTexture("_MainTex",t);
 		}
 
 	}
@@ -1082,19 +1159,19 @@ public class SceneControl : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("startGovernObert");
-				StartIntro (codigosGovernObert[0]);
+            Debug.Log("startMunicipio solo");
+				StartIntro (1);
             //StartGovernObert(130);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("startXALOC");
-			StartIntro (15);
+				StartIntro (codigosPromocioEconomica[0]);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("startPoligons");
-				StartIntro (16);
+            Debug.Log("startGovernObert");
+				StartIntro (codigosGovernObert[0]);
         }
 			if (Input.GetKeyDown(KeyCode.C))
 		{
@@ -1103,13 +1180,13 @@ public class SceneControl : MonoBehaviour {
 		}
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("startKM2");
-            //StartTeleasis(2);
+				Debug.Log("startPlataforma(0)");
+				StartPlataforma (0);
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("startPatrimoni");
-            //StartGovernObert(1);
+            Debug.Log("startSuperposicion");
+				StartIntro (0);
         }
 		if (Input.GetKeyDown(KeyCode.T))
 		{
@@ -1534,7 +1611,7 @@ public class SceneControl : MonoBehaviour {
 
 		//Tecnologia
 			oscIn.MapInt( "/tecnologia/serveigestio", StartServeiGestio);
-			oscIn.MapInt( "/tecnologia/plataforma", StartPlataforma);
+			//oscIn.MapInt( "/tecnologia/plataforma", StartPlataforma);
 			oscIn.MapInt( "/tecnologia/infraestructures", StartInfraestructures);
 			//oscIn.Map( "/tecnologia/poligons", StartPoligons);
 			//oscIn.Map( "/tecnologia/fibra", StartFibra);
@@ -1651,13 +1728,13 @@ public class SceneControl : MonoBehaviour {
 			{
 				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
 			}
-			if(state==codigosFibraOptica[0]) //Fibra óptica
+			if(state==codigosFibraOptica[0]) //Fibra
 			{
 				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
 			}
 
 			//videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
-			videoPlayerMapping.clip=videosMapping[Random.Range(0,videosMapping.Length )];
+			videoPlayerMapping.clip=videosMapping[0];
 			videoPlayerMapping.Play ();
 			if (estadoActual[0]==1)//personas
 			{
@@ -1671,12 +1748,20 @@ public class SceneControl : MonoBehaviour {
 			{
 				changeColorVideoMaqueta (layerVideoMapping,colorTECNOLOGIA );
 			}
-
-			changeAlphaVideoMaqueta (layerVideoMapping, 1);
-			videoPlayerSuperficie.Play ();
-			videoPlayerSuperficie.frame = 0;
-			for(int i=0;i<superficiesVideos.Length;i++){
-				superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = true;
+			if(state==0 )//caso especial de superoposicion para demo
+			{
+				StartContent (0);
+			}
+			else if(state==1 )//caso especial de superoposicion para demo
+			{
+				StartContent (1);
+			}else{
+				changeAlphaVideoMaqueta (layerVideoMapping, 1);
+				videoPlayerSuperficie.Play ();
+				videoPlayerSuperficie.frame = 0;
+				for(int i=0;i<superficiesVideos.Length;i++){
+					superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = true;
+				}
 			}
 			isIntro = true;
 
@@ -1713,6 +1798,17 @@ public class SceneControl : MonoBehaviour {
 			if(state==codigosFibraOptica[0]) //Emsiones co2
 			{
 				StartFibra((int)state);
+			}
+			if(state==0) //caso especial superposicion demo
+			{
+				isSuperposicion = true;
+				changeTextureMaterialMaquetaAnim(layerMunicipios,texturasPatrimonios[0]);
+			}
+			if(state==1) //caso especial superposicion demo
+			{
+				//isSuperposicion = true;
+				changeTextureMaterialMaqueta(layerMunicipiosSolos,texturasMunicipiosSolos[Random.Range(0,texturasMunicipiosSolos.Length)]);
+				changeAlphaMaterialMaqueta (layerMunicipiosSolos, 1);
 			}
 
 
@@ -1790,7 +1886,7 @@ public class SceneControl : MonoBehaviour {
 			}
 
 			//Teleasistencia
-			if (estado == 120)
+			if (estado == codigosTeleasistencia[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -1810,7 +1906,7 @@ public class SceneControl : MonoBehaviour {
 			}
 
 			//GovernObert
-			if (estado == codigosTeleasistencia[0])
+			if (estado == codigosGovernObert[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -1926,6 +2022,7 @@ public class SceneControl : MonoBehaviour {
                 //activar bibliobus
 				changeAlphaMaterialMaqueta(layerVideoMapping,1);
 				changeColorVideoMaqueta (layerVideoMapping, colorBibliobuses);
+				videoPlayerMapping.clip = videosMapping[1];
                
                 //at.contenido = "Bibliobuses";
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliobuses;
@@ -1935,19 +2032,14 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 
 
-				//Encender capas de municipios
-				Debug.Log("Layer:"+layerMAzonas+" ");
 
-				changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
-				changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
-				changeTextureMaterialMaquetaAnim (layerMAzonas,texturaXaloc);
             }
 			else if (value == codigosBibliotecas[2])//bibliolabs
             {
                 estadoActual[2] = value;
                 //bibliolabs
                 //activar marcadores con color azulado brillante
-				changeAlphaMaterialMaqueta(layerMunicipios, 1);
+				//changeAlphaMaterialMaqueta(layerMunicipios, 1);
 				mc.colorToChange = colorBibliotecas;
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
 				at.contenido = "Bibliotecas";
@@ -1955,7 +2047,7 @@ public class SceneControl : MonoBehaviour {
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-				//at.isGrowing = true;
+				at.isGrowing = true;
 				 
             }
 
@@ -2039,7 +2131,10 @@ public class SceneControl : MonoBehaviour {
 
 			writeTextLanguage(0, value);
 
-
+			//Encender capas de municipios
+			changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
+			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[0]);
 			//Animaciones lineas maqueta2
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
@@ -2610,13 +2705,13 @@ public class SceneControl : MonoBehaviour {
 		//Leyendas
 			LeyendaMarcadorb [6].GetComponent<SpriteRenderer> ().enabled = true;
 			LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = true;
-			LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = true;
+			//LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = true;
 			activeTablets [2] = true;
 			if (lenguajeTablets [2] == "cat") {
 			Titulos[2].text="                                                                                                                                   Plataforma Urbana Intel·ligent";
-				Titulos [5].text = "Plataforma pròpia";
-			Titulos[6].text="Plataforma multi-tenant DIBA";
-			Titulos[7].text="Solució híbrida";
+				//Titulos [5].text = "Plataforma pròpia";
+			//Titulos[6].text="Plataforma multi-tenant DIBA";
+			//Titulos[7].text="Solució híbrida";
 				Subtitulos[2].text=" ";
 			} else {
 			Titulos [2].text = "                                                                                                                                          Smart urban platform";
@@ -2631,6 +2726,10 @@ public class SceneControl : MonoBehaviour {
 			mc.colorToChange = colorPlataforma;
 			at.contenido = "Plataforma";
 			at.isGrowing = true;
+
+		//Animaciones maqueta2
+		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+		enableAnimationLayer(1);
 
 			/*MarkerControl mc2=AnimStarters[6].GetComponent<MarkerControl>();
 			AnimationTrigger at2=AnimStarters[6].GetComponent<AnimationTrigger>();
@@ -2820,7 +2919,9 @@ public class SceneControl : MonoBehaviour {
 		isEndEmisions=true;
 		isEndFibra = true;
 		isEndPolig = true;
+			isEndSuperposicion = true;
 		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
+	changeAlphaMaterialMaqueta (layerMunicipiosSolos, 0);
 
         
 
