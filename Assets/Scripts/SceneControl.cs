@@ -33,6 +33,7 @@ public class SceneControl : MonoBehaviour {
 
         //ANIMACIONES
         public GameObject[] BiblioBusAnim;
+		public Texture[] texturesCO2;
         //VIDEO PLAYER
         public VideoPlayer videoPlayerMaqueta;
         public VideoClip[] videosMaqueta;
@@ -78,6 +79,9 @@ public class SceneControl : MonoBehaviour {
 		public int[] codigosPlataformaUrbana;
 		public int[] codigosGeografia;
 		public int[] codigosFibraOptica;
+		public float alphaCo2impar=0;
+		public float alphaCo2par = 1;
+		public float alphaCo2Speed;
 
 
         //public int layerCotas = 0;
@@ -114,7 +118,9 @@ public class SceneControl : MonoBehaviour {
 		public int layerMAturismo2=4;
 		public int layerMAturismo3=5;
 		public int layerMAvideoAnimado=6;
-		public int layerMAfronteras=7;
+		public int layerMACo2impar=7;
+		public int layerMACo2par=8;
+		public int layerMAfronteras=9;
 
 
         public bool writeJSON = false;
@@ -513,7 +519,7 @@ public class SceneControl : MonoBehaviour {
 
             timer = timer + Time.deltaTime;
 			//timer = 0;
-		//LIMPIAR SI ESTA 10 segundos sin actividad
+		//LIMPIAR SI ESTA  sin actividad
 			if (!activeTablets [0] && !activeTablets [1] && !activeTablets [2] && timer>60) {
 
 				for (int i = 0; i < AnimFinishers.Length; i++) {
@@ -566,17 +572,13 @@ public class SceneControl : MonoBehaviour {
 
 		//PARCS
 		Color c = new Color();
-			int numTexturaParcs = 16;
+			int numTexturaParcs = layerMAparques; //hacerlo solo para 
 			if(isParcs){
 				if (isStartParcs) {
-					
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
-						c = m [numTexturaParcs].color;
-						c.a = c.a + parcSpeed;
-
-						m [numTexturaParcs].color = c;
-					}
+					Material[] m =MaquetasAnimaciones [0].GetComponent<Renderer>().materials;
+					c = m [numTexturaParcs].color;
+					c.a = c.a + parcSpeed;
+					changeAlphaMaterialMaquetaAnim (numTexturaParcs, c.a);
 					if (c.a >= 0.75f) {
 						c.a = 0.75f;
 						isStartParcs = false;
@@ -585,7 +587,7 @@ public class SceneControl : MonoBehaviour {
 				}else if(!isEndParcs ){
 					float spd = parcFlickerSpeed;
 					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c = m [numTexturaParcs].color;
 						c.a = c.a + parcFlickerSpeed;
 						if (c.a >= 0.75f) {
@@ -613,7 +615,7 @@ public class SceneControl : MonoBehaviour {
 
 				if (isEndParcs) {
 					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c = m [numTexturaParcs].color;
 						c.a = c.a - parcSpeed;
 
@@ -634,7 +636,33 @@ public class SceneControl : MonoBehaviour {
 			if(isEmisions){
 				
 				for (int i = 0; i < Maquetas.Length; i++) {
-					Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+
+
+					if(contEmisions%2==1){
+						alphaCo2impar += alphaCo2Speed;
+						alphaCo2par -= alphaCo2Speed;
+					}
+					else{
+						alphaCo2impar -= alphaCo2Speed;
+						alphaCo2par += alphaCo2Speed;
+					}
+					if(alphaCo2impar <=0){
+						alphaCo2impar = 0;
+					}
+					if(alphaCo2par <=0){
+						alphaCo2par = 0;
+					}
+					if(alphaCo2impar >=1){
+						alphaCo2impar = 1;
+					}
+					if(alphaCo2par >=1){
+						alphaCo2par = 1;
+					}
+
+					changeAlphaMaterialMaquetaAnim (layerMACo2par,alphaCo2par);
+					changeAlphaMaterialMaquetaAnim (layerMACo2impar,alphaCo2impar);
+
+					/*Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 					for (int j = 5; j <=14; j++) {  //5-14
 						c1 = m [j].color;
 						c1.a = 0;
@@ -643,67 +671,68 @@ public class SceneControl : MonoBehaviour {
 					c1 = m [contEmisions].color;
 					c1.a = 0.6f;
 
-					//Titulos[2].text="Plataforma";
-					string t=co2Anys[contEmisions-5];
-					Subtitulos[1].text=t;
+					m [contEmisions].color = c1;*/
 
-					m [contEmisions].color = c1;
+
+					//writeLeyendaCo2 ();
+					//Titulos[2].text="Plataforma";
+					//string t=co2Anys[contEmisions-5];
+					//Subtitulos[1].text=t;
+
 				}
 				timeLeftEmisions -= Time.deltaTime;
 
 				if (timeLeftEmisions < 0) {
-					timeLeftEmisions = timeLapseEmisions;
-					contEmisions++;
-					if (contEmisions > 14) {
-						contEmisions = 5;
+					
+					if(contEmisions%2==1){
+						changeTextureMaterialMaquetaAnim(layerMACo2par,texturesCO2[contEmisions]);
 					}
+					else{
+						changeTextureMaterialMaquetaAnim(layerMACo2impar,texturesCO2[contEmisions]);
+					}
+					contEmisions++;
+					if (contEmisions >= texturesCO2.Length) {
+						contEmisions = 0;
+					}
+					timeLeftEmisions = timeLapseEmisions;
+
+
 				}
 
-				/*if (isStartEmisions) { //5-14
 
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
-						c1 = m [5].color;
-						c1.a = c1.a + parcSpeed;
+				//este no hace  falta ahora??? se quita con la capa de animacion
 
-						m [5].color = c1;
-					}
-					if (c1.a >= 0.55f) {
-						c1.a = 0.55f;
-						isStartEmisions = false;
-					}
 
-				}*/
+			}if (isEndEmisions) {
+				alphaCo2impar -= alphaCo2Speed;
+				alphaCo2par -= alphaCo2Speed;
+				if(alphaCo2impar <=0){
+					alphaCo2impar = 0;
+				}
+				if(alphaCo2par <=0){
+					alphaCo2par = 0;
+				}
+				changeAlphaMaterialMaquetaAnim (layerMACo2par,alphaCo2par);
+				changeAlphaMaterialMaquetaAnim (layerMACo2impar,alphaCo2impar);
+				Subtitulos [1].text = "";
+				//isEndEmisions = false;
+				//isEmisions = false;
+				if (alphaCo2par <= 0 && alphaCo2impar <= 0) {
 
-				if (isEndEmisions) {
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m = Maquetas [i].GetComponent<Renderer> ().materials;
-						for (int j = 5; j <= 14; j++) {
-							c1 = m [j].color;
-							c1.a = 0;
-							m [j].color = c1;
-							Subtitulos [1].text = "";
-						}
-					}
 					isEndEmisions = false;
 					isEmisions = false;
-				/*	if (c1.a <= 0) {
-						c1.a = 0;
-						isEndEmisions = false;
-						isEmisions = false;
-					}*/
 				}
 
 			}//end emisions
 
 			//Poligons
 			Color c3 = new Color();
-			int numTexturaPol = 15;
+			int numTexturaPol = layerMAPoligonos;
 			if(isPolig){
 				if (isStartPolig) {
 
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c3 = m [numTexturaPol].color;
 						c3.a = c3.a + parcSpeed;
 
@@ -716,8 +745,8 @@ public class SceneControl : MonoBehaviour {
 
 				}else if(!isEndPolig ){
 					float spd = poligFlickerSpeed;
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c3 = m [numTexturaPol].color;
 						c3.a = c3.a + poligFlickerSpeed;
 						if (c3.a >= 0.85f) {
@@ -742,8 +771,8 @@ public class SceneControl : MonoBehaviour {
 				}
 
 				if (isEndPolig) {
-					for (int i = 0; i < Maquetas.Length; i++) {
-						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
+						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c3 = m [numTexturaPol].color;
 						c3.a = c3.a - parcSpeed;
 
@@ -1031,6 +1060,22 @@ public class SceneControl : MonoBehaviour {
             Debug.Log("startPatrimoni");
             //StartGovernObert(1);
         }
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			Debug.Log("startEmisions");
+				StartIntro (codigosPAES[0]);
+		}
+		if (Input.GetKeyDown(KeyCode.V))
+		{
+			Debug.Log("startParcs");
+				StartIntro (codigosParques[0]);
+		}
+			if (Input.GetKeyDown(KeyCode.B))
+			{
+				Debug.Log("startPoligons");
+				StartIntro (codigosPromocioEconomica[1]);
+			}
+
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -1433,7 +1478,7 @@ public class SceneControl : MonoBehaviour {
 
 		//SOSTENIBILIDAD
 			oscIn.MapInt( "/sostenibilitat/xarxa", StartXarxa);
-			oscIn.Map( "/sostenibilitat/municipis", StartEmisions);
+			//oscIn.Map( "/sostenibilitat/municipis", StartEmisions);
 			oscIn.MapInt( "/sostenibilitat/renovables", StartRenovables);
 			oscIn.MapInt( "/sostenibilitat/mesura", StartMesura);
 
@@ -1444,7 +1489,7 @@ public class SceneControl : MonoBehaviour {
 			oscIn.MapInt( "/tecnologia/serveigestio", StartServeiGestio);
 			oscIn.MapInt( "/tecnologia/plataforma", StartPlataforma);
 			oscIn.MapInt( "/tecnologia/infraestructures", StartInfraestructures);
-			oscIn.Map( "/tecnologia/poligons", StartPoligons);
+			//oscIn.Map( "/tecnologia/poligons", StartPoligons);
 			oscIn.Map( "/tecnologia/fibra", StartFibra);
 
 		//IDIOMAS
@@ -1578,6 +1623,15 @@ public class SceneControl : MonoBehaviour {
 			{
 				StartPromocio((int)state);
 			}
+			if(state==codigosParques[0] ) //Parques
+			{
+				StartParcs((int)state);
+			}
+			if(state==codigosPAES[0]) //Emsiones co2
+			{
+				StartEmisions((int)state);
+			}
+
 
      }
 
@@ -1880,6 +1934,9 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[7];
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			}
+			//Animaciones maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
 	}
 		public void StartGovernObert(int value )
 	{
@@ -1900,6 +1957,11 @@ public class SceneControl : MonoBehaviour {
 			writeTextLanguage(0, value);
 
 
+			//Animaciones lineas maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
+
+
 	}
 		public void StartPromocio(int value) //xaloc, poligonos y serveis
 	{
@@ -1909,29 +1971,32 @@ public class SceneControl : MonoBehaviour {
 			activeTablets [0] = true;
 		Debug.Log( "Received: Xaloc ");
 
-		if(value == 15  || value==0){ //XALOC
-			MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
-			AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-			mc.colorToChange = colorXaloc;
-			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorXaloc;
-			at.contenido = "Xaloc";
-			at.isGrowing = true;
-			if (lenguajeTablets [0] == "cat") {
-				Titulos[0].text="Municipis dins de la xarxa Xaloc";
-				Subtitulos[0].text="";
-			} else {
-				Titulos [0].text = "Municipalities within the Xaloc network";
-				Subtitulos [0].text = "";
+			if(value == codigosPromocioEconomica[0]  || value==0){ //XALOC
+				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
+				AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
+				mc.colorToChange = colorXaloc;
+				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorXaloc;
+				at.contenido = "Xaloc";
+				at.isGrowing = true;
+				if (lenguajeTablets [0] == "cat") {
+					Titulos[0].text="Municipis dins de la xarxa Xaloc";
+					Subtitulos[0].text="";
+				} else {
+					Titulos [0].text = "Municipalities within the Xaloc network";
+					Subtitulos [0].text = "";
+				}
 			}
-		}
-		if(value == 16  || value==0){//poligonos
+			if(value == codigosPromocioEconomica[1] ){//poligonos
+				StartPoligons();
+			}
+			if(value == 17 ){//serveis a empreses
 
-		}
-		if(value == 17  || value==0){//serveis a empreses
-
-		}
-
+			}
 		
+
+			//Animaciones maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
 
 	}
 	public void StartKm2(OscMessage message )
@@ -1967,18 +2032,20 @@ public class SceneControl : MonoBehaviour {
 			isParcs = true;
 			isStartParcs = true;
 			isEndParcs = false;
-			//MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
-			//AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-			//mc.colorToChange = colorKm21;
-			//at.contenido = "Km2";
-			//at.isGrowing = true;
-			if (lenguajeTablets [0] == "cat") {
+
+			writeTextLanguage (0, value);
+		
+			//Animaciones maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
+
+			/*if (lenguajeTablets [0] == "cat") {
 				Titulos[0].text="Àrees dels parcs naturals";
 				Subtitulos[0].text="12 Espais naturals";
 			} else {
 				Titulos [0].text = "Natural Parcs Areas";
 				Subtitulos [0].text = "12 Natural spaces";
-			}
+			}*/
 
 		}
 
@@ -2059,7 +2126,7 @@ public class SceneControl : MonoBehaviour {
 			}
 		
 	}
-	public void StartEmisions(OscMessage message )
+		public void StartEmisions(int value )
 	{
 			//LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
 			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=true;
@@ -2068,11 +2135,17 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled =true;
 			activeTablets [1] = true;
 		Debug.Log( "Received: Emisions ");
-		isEmisions = true;
-		isStartEmisions = true;
+			isEmisions = true;
+			isStartEmisions = true;
 			isEndEmisions = false;
-			contEmisions = 5;
+			contEmisions = 0;
 			timeLeftEmisions = 1;
+
+			//Animaciones maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
+
+			//writetextfunction
 			if (lenguajeTablets [1] == "cat") {
 				Titulos[1].text="Municipis compromesos en la lluita contra el canvi climàtic. Evolució de les emissions de CO2 (2005-2014)";
 				Subtitulos[1].text=" ";
@@ -2570,7 +2643,7 @@ public class SceneControl : MonoBehaviour {
 			}
 		
 	}
-	public void StartPoligons(OscMessage message )
+	public void StartPoligons( )
 	{
 		Debug.Log( "Received: Poligons ");
 			activeTablets [2] = true;
@@ -2655,6 +2728,8 @@ public class SceneControl : MonoBehaviour {
         //limpiar animaciones
 		
 		enableAnimationLayer(0);
+			isEmisions = false;
+		isEndEmisions=true;
 		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
 
         
