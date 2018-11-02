@@ -46,6 +46,7 @@ public class SceneControl : MonoBehaviour {
         public VideoClip[] videosLiso;
         private bool isTransition = false;
         private bool isEndTransition = false;
+		private bool isChange=true;
         private bool isIntro = false;
 		private cotasAnimation caScript;
 
@@ -56,8 +57,8 @@ public class SceneControl : MonoBehaviour {
         public float estadoSuperposicion;
         public string superposicionActual;
 		public bool[] activeTablets;
-		public string[] lenguajeTablets;
-        public string[] lenguajes;
+		public float[] lenguajeTablets;
+        public float[] lenguajes;
 		private bool skipVideo=false;
 
 		public int[] codigosBibliotecas;
@@ -78,6 +79,7 @@ public class SceneControl : MonoBehaviour {
 		public int[] codigosServeisGestio;
 		public int[] codigosPlataformaUrbana;
 		public int[] codigosGeografia;
+		public int[] codigosInfraestructuras;
 		public int[] codigosFibraOptica;
 
 		public float alphaCo2impar=0;
@@ -288,15 +290,15 @@ public class SceneControl : MonoBehaviour {
 		Text text = textTr .GetComponent<Text>();*/
             //Text t=Titulos[0].GetComponent<Text>();
             //Inicializar lenguajes
-            lenguajes = new string[3];
-            lenguajes[0] = "cat";
-            lenguajes[1] = "esp";
-            lenguajes[2] = "eng";
+            lenguajes = new float[3];
+            lenguajes[0] = 0;
+            lenguajes[1] = 1;
+            lenguajes[2] = 2;
 
-            lenguajeTablets = new string[3];
+			lenguajeTablets = new float[3];
         for (int i = 0; i < 3; i++)
         {
-                lenguajeTablets[i] = "cat";
+                lenguajeTablets[i] = 0;
         }
 
 
@@ -451,13 +453,14 @@ public class SceneControl : MonoBehaviour {
 				changeAlphaMaterialMaquetaAnim(layerMAzonas,0);
 			}
             if (isTransition) {//transicion de maqueta a contenido
-                if (videoPlayerMaqueta.frame >= 20)//frame en el cual se cambia el fondo
+                if (videoPlayerMaqueta.frame >= 20 && isChange)//frame en el cual se cambia el fondo
                 {
-                    Debug.Log("enciende materialliso");
+                   // Debug.Log("enciende materialliso");
                     changeAlphaMaterialMaqueta(layerFondoLiso, 1);
                     changeAlphaMaterialPlanos(layerLisoFondo, 1);
 					changeAlphaMaterialMaqueta (layerRios, 0);
 					changeAlphaMaterialMaqueta (layerRios2, 0);
+					isChange = false;
 
                 }
                // Debug.Log("isPlaying"+ videoPlayerMaqueta.frame+" fc: "+ videoPlayerMaqueta.frameCount);
@@ -473,16 +476,17 @@ public class SceneControl : MonoBehaviour {
             }
             if (isEndTransition)
             {//transicion de maqueta a contenido
-                if (videoPlayerMaqueta.frame >= 20)//frame en el cual se cambia el fondo
+				if (videoPlayerMaqueta.frame >= 20 && isChange)//frame en el cual se cambia el fondo
                 {
                     Debug.Log("Apaga materialliso");
                     changeAlphaMaterialMaqueta(layerFondoLiso, 0);
                     changeAlphaMaterialPlanos(layerLisoFondo, 0);
 					changeAlphaMaterialMaqueta (layerRios, 1);
 					changeAlphaMaterialMaqueta (layerRios2, 1);
+					isChange = false;
 
                 }
-                Debug.Log("isPlaying" + videoPlayerMaqueta.frame + " fc: " + videoPlayerMaqueta.frameCount);
+                //Debug.Log("isPlaying" + videoPlayerMaqueta.frame + " fc: " + videoPlayerMaqueta.frameCount);
                 if (videoPlayerMaqueta.frame == (long)videoPlayerMaqueta.frameCount)
                 {
                     isEndTransition = false;
@@ -496,7 +500,7 @@ public class SceneControl : MonoBehaviour {
             if (isIntro)//video introduccion tema
             {
                 
-				Debug.Log("isPlaying" + videoPlayerSuperficie.frame + " fc: " + videoPlayerSuperficie.frameCount);
+				//Debug.Log("isPlaying" + videoPlayerSuperficie.frame + " fc: " + videoPlayerSuperficie.frameCount);
 				if (videoPlayerSuperficie.frame == (long)videoPlayerSuperficie.frameCount || skipVideo)
                 {
 					videoPlayerMapping.Stop ();
@@ -1602,7 +1606,7 @@ public class SceneControl : MonoBehaviour {
 		//PERSONAS
 		oscIn.MapInt( "/personas/bibliotecas", oscBiblio);
 			oscIn.MapInt( "/personas/teleasistencia", oscTeleasis);
-			oscIn.MapInt( "/personas/parcs", StartParcs);
+
 
 			oscIn.MapInt( "/personas/governobert", oscGovernObert);
 			oscIn.MapInt( "/personas/ocupacio", oscPromocio);
@@ -1614,21 +1618,22 @@ public class SceneControl : MonoBehaviour {
 		//SOSTENIBILIDAD
 			oscIn.MapInt( "/sostenibilidad/xarxapobles", oscXarxa);
 			//oscIn.Map( "/sostenibilidad/municipis", StartEmisions);
-			oscIn.MapInt( "/sostenibilidad/renovables", StartRenovables);
-			oscIn.MapInt( "/sostenibilidad/mesura", StartMesura);
+			oscIn.MapInt( "/sostenibilidad/energias", oscRenovables);
+			oscIn.MapInt( "/sostenibilidad/municipis", oscPaes);
 
-			oscIn.MapInt( "/sostenibilidad/otaga", StartOTAGA);
-			oscIn.Map( "/sostenibilidad/turisme", StartTurisme);
+			oscIn.MapInt( "/sostenibilidad/mesura", oscEvaluacio);
+			oscIn.MapInt( "/personas/parques", oscParques);
+			oscIn.MapInt( "/sostenibilidad/turismo", oscTurismo);
 
 		//Tecnologia
-			oscIn.MapInt( "/tecnologia/serveigestio", StartServeiGestio);
-			//oscIn.MapInt( "/tecnologia/plataforma", StartPlataforma);
-			oscIn.MapInt( "/tecnologia/infraestructures", StartInfraestructures);
+			oscIn.MapInt( "/tecnologia/serveigestio", oscServei);
+			oscIn.MapInt( "/tecnologia/plataforma", oscPlataforma);
+			oscIn.MapInt( "/tecnologia/infraestructures", oscInfraestructuras);
 			//oscIn.Map( "/tecnologia/poligons", StartPoligons);
-			//oscIn.Map( "/tecnologia/fibra", StartFibra);
+			oscIn.MapInt( "/tecnologia/fibra", oscFibra);
 
 		//IDIOMAS
-			oscIn.Map( "/persones/eng", IdiomaPersoneseng );
+			oscIn.MapInt( "/tablet1/idiomas", oscIdioma1 );
 			oscIn.Map( "/persones/cat", IdiomaPersonescat );
 			oscIn.Map( "/sostenibilitat/eng", IdiomaSostenibilitateng);
 			oscIn.Map( "/sostenibilitat/cat", IdiomaSostenibilitatcat );
@@ -1658,8 +1663,8 @@ public class SceneControl : MonoBehaviour {
 		}
 		public void oscInicio(int value)
 		{
-			if (value == 0)
-				EndTransition (1);
+			Debug.Log ("vuelva a inicio: "+value);
+			if (value == 0)EndTransition (1);
 			else if (value == 1)EndTransition (2);
 			else if (value == 2)EndTransition (3);
 		}
@@ -1672,6 +1677,7 @@ public class SceneControl : MonoBehaviour {
     {
             isTransition = true;
 			isLandscape = false;
+			isChange = true;
 			estadoActual [0] = state;
             videoPlayerMaqueta.clip = videosMaqueta[Random.Range(0, videosMaqueta.Length)];
             //videoPlayerMaqueta.frame = 0;
@@ -1703,7 +1709,9 @@ public class SceneControl : MonoBehaviour {
      }
     public void EndTransition(float state)//transicion de maqueta a tema
     {
+			Debug.Log ("End transition.");
             isEndTransition = true;
+			isChange = true;
 
             videoPlayerMaqueta.clip = videosMaqueta[1];
             //videoPlayerMaqueta.frame = 0;
@@ -1734,7 +1742,7 @@ public class SceneControl : MonoBehaviour {
     public void StartIntro(float state) //Comienza videos introductorios
     {
 			estadoSiguiente = state;
-
+			//personas
 			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
 			{
 				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
@@ -1745,7 +1753,7 @@ public class SceneControl : MonoBehaviour {
 				videoPlayerSuperficie.clip=videosSuperficie[1];
 			}
 
-			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] ) //governObert
+			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  || state==codigosGovernObert[4] || state==codigosGovernObert[5]) //governObert
 			{
 				videoPlayerSuperficie.clip=videosSuperficie[2];
 			}
@@ -1753,18 +1761,68 @@ public class SceneControl : MonoBehaviour {
 			{
 				videoPlayerSuperficie.clip=videosSuperficie[3];
 			}
-			if(state==codigosParques[0] ) //Parques
+			if(state==codigosKm2[0]  ) //km2
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[4];
+			}
+			if(state==codigosPatrimoni[0] || state==codigosPatrimoni[1] || state==codigosPatrimoni[2]|| state==codigosPatrimoni[3]|| state==codigosPatrimoni[4]|| state==codigosPatrimoni[5]) //Patrimoni
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[5];
+			}
+			if(state==codigosOficinaPatrimoni[0] ||  state==codigosOficinaPatrimoni[1] || state==codigosOficinaPatrimoni[1]) //Patrimoni
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[6];
+			}
+
+			//Sostenibilidad
+			if(state==codigosXarxaCiutats[0] || state==codigosXarxaCiutats[1] || state==codigosXarxaCiutats[2]) //xarxa
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[7];
+			}
+			if(state==codigosPAES[0] || state==codigosPAES[1]) //Emsiones co2
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[8];
+			}
+			if(state==codigosRenovables[0] || state==codigosRenovables[1] || state==codigosRenovables[2]) //renovables
 			{
 				videoPlayerSuperficie.clip=videosSuperficie[9];
 			}
-			if(state==codigosPAES[0]) //Emsiones co2
+			if(state==codigosEvaluacio[0] || state==codigosEvaluacio[1] || state==codigosEvaluacio[2]) //Evaluacio
 			{
-				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+				videoPlayerSuperficie.clip=videosSuperficie[10];
+			}
+			if(state==codigosParques[0] ) //Parques
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[11];
+			}
+			if(state==codigosTurismo[0] || state==codigosTurismo[1] || state==codigosTurismo[2]) //Turismo
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[12];
+			}
+
+
+			//Tecnologia
+			if(state==codigosServeisGestio[0] || state==codigosServeisGestio[1] ||state==codigosServeisGestio[2] || state==codigosServeisGestio[3]
+				|| state==codigosServeisGestio[4] || state==codigosServeisGestio[5] || state==codigosServeisGestio[6] || state==codigosServeisGestio[7]) //Emsiones co2
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[13];
+			}
+			if(state==codigosPlataformaUrbana[0] || state==codigosPlataformaUrbana[1]) //Plataforma
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[14];
+			}
+			if(state==codigosInfraestructuras[0] || state==codigosInfraestructuras[1]) //Infraestructures
+			{
+				videoPlayerSuperficie.clip=videosSuperficie[15];
 			}
 			if(state==codigosFibraOptica[0]) //Fibra
 			{
-				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+				videoPlayerSuperficie.clip=videosSuperficie[16];
 			}
+			//
+
+
+
 
 			//videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
 			videoPlayerMapping.clip=videosMapping[0];
@@ -1813,7 +1871,7 @@ public class SceneControl : MonoBehaviour {
 				StartTeleasis((int)state);
 			}
 
-			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] ) //governObert
+			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  || state==codigosGovernObert[4] || state==codigosGovernObert[5]) //governObert
 			{
 				StartGovernObert((int)state);
 			}
@@ -1838,14 +1896,54 @@ public class SceneControl : MonoBehaviour {
 			{
 				StartParcs((int)state);
 			}
+			if(state==codigosXarxaCiutats[0] || state==codigosXarxaCiutats[1] || state==codigosXarxaCiutats[2]) //xarxa
+			{
+				StartXarxa((int)state);
+			}
 			if(state==codigosPAES[0]) //Emsiones co2
 			{
 				StartEmisions((int)state);
 			}
+			if(state==codigosPAES[1] || state==codigosPAES[2] || state==codigosPAES[3]|| state==codigosPAES[4]|| state==codigosPAES[5]) //PAES
+			{
+				StartPAES((int)state);
+			}
+			if(state==codigosRenovables[0] || state==codigosRenovables[1] || state==codigosRenovables[2]) //renovables
+			{
+				StartRenovables((int)state);
+			}
+			if(state==codigosEvaluacio[0] || state==codigosEvaluacio[1] || state==codigosEvaluacio[2]) //Evaluacio
+			{
+				StartOTAGA((int)state);
+			}
+			if(state==codigosTurismo[0] || state==codigosTurismo[1] || state==codigosTurismo[2]) //Turismo
+			{
+				StartTurisme((int)state);
+			}
+
+			//Tecnologia
 			if(state==codigosFibraOptica[0]) //Emsiones co2
 			{
 				StartFibra((int)state);
 			}
+			if(state==codigosServeisGestio[0] || state==codigosServeisGestio[1] ||state==codigosServeisGestio[2] || state==codigosServeisGestio[3]
+				|| state==codigosServeisGestio[4] || state==codigosServeisGestio[5] || state==codigosServeisGestio[6] || state==codigosServeisGestio[7]) //Emsiones co2
+			{
+				StartServeiGestio((int)state);
+			}
+			if(state==codigosPlataformaUrbana[0] || state==codigosPlataformaUrbana[1]) //Plataforma
+			{
+				StartPlataforma((int)state);
+			}
+			if(state==codigosInfraestructuras[0] || state==codigosInfraestructuras[1]) //Infraestructures
+			{
+				StartInfraestructures((int)state);
+			}
+
+
+
+
+
 			if(state==0) //caso especial superposicion demo
 			{
 				isSuperposicion = true;
@@ -1870,17 +1968,17 @@ public class SceneControl : MonoBehaviour {
                 Debug.Log("Cambia texto leyenda bibliotecaz");
                 for (int i = 0; i < 3; i++)
                 {
-                    if (lenguajeTablets[i] == "cat")
+                    if (lenguajeTablets[i] == 0)
                     {
                         Titulos[i].text = "Biblioteques";
                         Subtitulos[i].text = "Superposicion";
                     }
-                    else if (lenguajeTablets[i] == "eng")
+                    else if (lenguajeTablets[i] == 2)
                     {
                         Titulos[i].text = "Libraries";
 						Subtitulos[i].text = "Superposition";
                     }
-                    else if (lenguajeTablets[i] == "esp")
+                    else if (lenguajeTablets[i] == 1)
                     {
                         Titulos[i].text = "Bibliotecas";
                         Subtitulos[i].text = "Superposicion";
@@ -1892,17 +1990,17 @@ public class SceneControl : MonoBehaviour {
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    if (lenguajeTablets[i] == "cat")
+                    if (lenguajeTablets[i] == 0)
                     {
                         Titulos[i].text = "Bibliobusos";
 						Subtitulos[i].text = "";
                     }
-                    else if (lenguajeTablets[i] == "eng")
+                    else if (lenguajeTablets[i] == 2)
                     {
 						Titulos[i].text = "Mobile Libraries";
 						Subtitulos[i].text = "";
                     }
-                    else if (lenguajeTablets[i] == "esp")
+                    else if (lenguajeTablets[i] == 1)
                     {
 						Titulos[i].text = "Bibliobuses";
 						Subtitulos[i].text = "";
@@ -1914,17 +2012,17 @@ public class SceneControl : MonoBehaviour {
 			{
 				for (int i = 0; i < 3; i++)
 				{
-					if (lenguajeTablets[i] == "cat")
+					if (lenguajeTablets[i] == 0)
 					{
 						Titulos[i].text = "BiblioLabs";
 						Subtitulos[i].text = "";
 					}
-					else if (lenguajeTablets[i] == "eng")
+					else if (lenguajeTablets[i] == 2)
 					{
 						Titulos[i].text = "BiblioLabs";
 						Subtitulos[i].text = "";
 					}
-					else if (lenguajeTablets[i] == "esp")
+					else if (lenguajeTablets[i] == 1)
 					{
 						Titulos[i].text = "BiblioLabs";
 						Subtitulos[i].text = "";
@@ -1937,14 +2035,14 @@ public class SceneControl : MonoBehaviour {
 			{
 				for (int i = 0; i < 3; i++)
 				{
-					if (lenguajeTablets [0] == "cat") {
+					if (lenguajeTablets [0] == 0) {
 						Titulos [i].text = "Municipis amb el servei de teleassistència ";
 						Subtitulos [i].text = "72.000 usuaris";
-					} else if (lenguajeTablets[i] == "eng") {
+					} else if (lenguajeTablets[i] == 2) {
 						Titulos [i].text = "Municipalities with Telecare Service";
 						Subtitulos [i].text = "72.000 users";
 					}
-					else if (lenguajeTablets[i] == "esp")
+					else if (lenguajeTablets[i] == 1)
 					{
 						Titulos[i].text = "Municipios con servicio de teleasistencia";
 						Subtitulos[i].text = "72.000 usuarios";
@@ -1957,17 +2055,17 @@ public class SceneControl : MonoBehaviour {
 			{
 				for (int i = 0; i < 3; i++)
 				{
-					if (lenguajeTablets[i] == "cat")
+					if (lenguajeTablets[i] == 0)
 					{
 						Titulos[i].text="Municipis amb actuacions de Govern Obert";
 						Subtitulos[i].text="";
 					}
-					else if (lenguajeTablets[i] == "eng")
+					else if (lenguajeTablets[i] == 2)
 					{
 						Titulos [i].text = "Municipalities with Open Government actions";
 						Subtitulos [i].text = "";
 					}
-					else if (lenguajeTablets[i] == "esp")
+					else if (lenguajeTablets[i] == 1)
 					{
 						Titulos[i].text = "Municipios con actuaciones del gobierno";
 						Subtitulos[i].text = "";
@@ -2145,7 +2243,7 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorHestia;
 				at.contenido = "HESTIA";
 				at.isGrowing = true;
-				if (lenguajeTablets [0] == "cat") {
+				if (lenguajeTablets [0] == 0) {
 					Titulos [0].text = "Municipis que utilitzen Hèstia ";
 					Subtitulos [0].text = "";
 				} else {
@@ -2269,7 +2367,7 @@ public class SceneControl : MonoBehaviour {
 				at.contenido = "Xaloc";
 				at.isGrowing = true;
 				writeTextLanguage(0, value);
-				if (lenguajeTablets [0] == "cat") {
+				if (lenguajeTablets [0] == 0) {
 					Titulos[0].text="Municipis dins de la xarxa Xaloc";
 					Subtitulos[0].text="";
 				} else {
@@ -2327,7 +2425,7 @@ public class SceneControl : MonoBehaviour {
 		at.contenido = "Km2";
 		at.isGrowing = true;
 		writeTextLanguage(0, value);
-			if (lenguajeTablets [0] == "cat") {
+			if (lenguajeTablets [0] == 0) {
 				Titulos[0].text="Municipis amb l'aplicació Km2 Ciutat";
 				Subtitulos[0].text="";
 			} else {
@@ -2444,6 +2542,13 @@ public class SceneControl : MonoBehaviour {
 	
 
 	//SOSTENIBILIDAD
+		public void oscParques(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("Parques");
+			if (message == 0) StartIntro (codigosParques[0]);
+			else StartContent (codigosParques[message-1]);
+		}
 	public void StartParcs(int value )
 	{
 			estadoActual[2] = value;
@@ -2546,6 +2651,13 @@ public class SceneControl : MonoBehaviour {
 			enableAnimationLayer(1);
 		
 	}
+	public void oscPaes(int message)
+	{
+		Debug.Log (message);
+		Debug.Log ("PAES");
+			if (message == 0) StartIntro (codigosPAES[1]);
+			else StartContent (codigosPAES[message-1]);
+	}
 	public void StartEmisions(int value )
 	{
 			estadoActual[2] = value;
@@ -2567,7 +2679,7 @@ public class SceneControl : MonoBehaviour {
 			enableAnimationLayer(1);
 
 			//writetextfunction
-			if (lenguajeTablets [1] == "cat") {
+			if (lenguajeTablets [1] == 0) {
 				Titulos[1].text="Municipis compromesos en la lluita contra el canvi climàtic. Evolució de les emissions de CO2 (2005-2014)";
 				Subtitulos[1].text=" ";
 			} else {
@@ -2582,22 +2694,28 @@ public class SceneControl : MonoBehaviour {
 			estadoActual[2] = value;
 
 			if(value == codigosPAES[0] || value==0){ //PAES
-				Debug.Log( "Received: OficinaPatrimoni ");
+				Debug.Log( "Received: Emisions ");
+				StartEmisions (value);
 				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[0]);
 				writeTextLanguage(0, value);
 			}
 			if(value == codigosPAES[1] ){ //calor
-				Debug.Log( "Received: OficinaPatrimoni ");
+				Debug.Log( "Received: Paes ");
 				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[1]);
 				writeTextLanguage(0, value);
 			}
 			if(value == codigosPAES[2]){ //sequeras
-				Debug.Log( "Received: OficinaPatrimoni ");
+				Debug.Log( "Received: Paes calor ");
 				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[2]);
 				writeTextLanguage(0, value);
 			}
 			if(value == codigosPAES[3]){ //bosques
-				Debug.Log( "Received: OficinaPatrimoni ");
+				Debug.Log( "Received: Paes sequeras ");
+				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[4]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPAES[4]){ //bosques
+				Debug.Log( "Received: Paes boscos ");
 				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[4]);
 				writeTextLanguage(0, value);
 			}
@@ -2619,7 +2737,13 @@ public class SceneControl : MonoBehaviour {
 			enableAnimationLayer(1);
 		}
 
-
+		public void oscRenovables(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("Renovables");
+			if (message == 0) StartIntro (codigosRenovables[0]);
+			else StartContent (codigosRenovables[message-1]);
+		}
 
 
 		public void StartRenovables(int value )
@@ -2638,7 +2762,7 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorRenovables;
 				at.contenido = "Renovables";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				if (lenguajeTablets [1] == 0) {
 					Titulos[1].text="Renovables";
 					Subtitulos[1].text=" ";
 				} else {
@@ -2647,12 +2771,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}*/
-			 if(value == 1 || value==0){
+			if(value == codigosRenovables[0] || value==0){
 				mc.colorToChange = colorRenovables;
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorRenovables;
 				at.contenido = "CalderesBiomasa";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				if (lenguajeTablets [1] == 0) {
 					Titulos [1].text = "Municipis amb actuacions  de calderes de biomassa";
 					Subtitulos [1].text = "";
 				} else {
@@ -2661,12 +2785,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 3){
+			else if(value == codigosRenovables[1]){
 				mc.colorToChange = colorRenovables;
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorRenovables;
 				at.contenido = "FotovoltaiquesAuto";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				if (lenguajeTablets [1] == 0) {
 					Titulos [1].text = "Municipis amb actuacions  de fotovoltaiques d’autoconsum";
 					Subtitulos [1].text = "";
 				} else {
@@ -2675,12 +2799,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 2){
+			else if(value == codigosRenovables[2]){
 				mc.colorToChange = colorRenovables;
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorRenovables;
 				at.contenido = "FotovoltaiquesVenta";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				if (lenguajeTablets [1] == 0) {
 					Titulos [1].text = "Municipis amb actuacions  de fotovoltaiques de venda";
 					Subtitulos [1].text = "";
 				} else {
@@ -2690,7 +2814,16 @@ public class SceneControl : MonoBehaviour {
 
 			}
 	}
-		public void StartMesura(int value )
+
+		/*public void oscMesura(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("Evaluacion y gestion mesura");
+			if (message == 0) StartIntro (codigosEvaluacio[0]);
+			else StartContent (codigosEvaluacio[message-1]);
+		}*/
+
+		public void StartMesura(int value ) //NO VA ESTE AÑO?  VA EN EVALUACIO
 	{
 		Debug.Log( "Received: Mesura ");
 		
@@ -2705,7 +2838,7 @@ public class SceneControl : MonoBehaviour {
 			//LeyendaMarcadorb [6].GetComponent<SpriteRenderer>().sprite = IconosTablet2[4];
 			//LeyendaMarcadorb [6].GetComponent<SpriteRenderer>().enabled = true;
 
-			if (lenguajeTablets [1] == "cat") {
+			if (lenguajeTablets [1] == 0) {
 				Titulos[1].text="Municipis de la xarxa de control de partícules de la contaminació de l’aire.";
 				Titulos[3].text="Suport tècnic";
 				Titulos[4].text="Equipaments en préstec";
@@ -2759,6 +2892,14 @@ public class SceneControl : MonoBehaviour {
 				Subtitulos [1].text = "";
 			}*/
 	}
+
+	public void oscEvaluacio(int message) //ANTIGUO OTAGA
+	{
+		Debug.Log (message);
+		Debug.Log ("Evaluacion y gestion mesura");
+		if (message == 0) StartIntro (codigosEvaluacio[0]);
+		else StartContent (codigosEvaluacio[message-1]);
+	}
 		public void StartOTAGA(int value )
 	{
 		Debug.Log( "Received: OTAGA ");
@@ -2782,13 +2923,13 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}*/
-		if(value == 1 || value==0){
+		if(value ==  codigosEvaluacio[0]|| value==0){
 			mc.colorToChange = colorOTAGA;
 			LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorOTAGA;
 				at.contenido = "AnalisisParticulas";
 				at.isGrowing = true;
 
-				if (lenguajeTablets [1] == "cat") {
+				if (lenguajeTablets [1] == 0) {
 					Titulos [1].text = "Municipis de la xarxa de control de partícules de la contaminació de l’aire.";
 					Subtitulos [1].text = "";
 				} else {
@@ -2797,12 +2938,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 2){
+		else if(value == codigosEvaluacio[1]){
 			mc.colorToChange = colorOTAGA;
 			LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorOTAGA;
 				at.contenido = "AguaFuentes";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				if (lenguajeTablets [1] == 0) {
 					Titulos [1].text = "Municipis amb actuacions de control de qualitat de l’aigua de les fonts";
 					Subtitulos [1].text = "";
 				} else {
@@ -2811,12 +2952,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 3){
+		else if(value == codigosEvaluacio[2]){
 			mc.colorToChange = colorOTAGA;
 			LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorOTAGA;
 				at.contenido = "MediaSonido";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				if (lenguajeTablets [1] == 0) {
 					Titulos [1].text = "Municipis amb actuacions de control de soroll";
 					Subtitulos [1].text = "";
 				} else {
@@ -2826,7 +2967,15 @@ public class SceneControl : MonoBehaviour {
 
 			}
 	}
-	public void StartTurisme(OscMessage message )
+
+	public void oscTurismo(int message)
+	{
+		Debug.Log (message);
+		Debug.Log ("TURISMo");
+		if (message == 0) StartIntro (codigosTurismo[0]);
+		else StartContent (codigosTurismo[message-1]);
+	}
+	public void StartTurisme(int value )
 	{
 		Debug.Log( "Received: Turisme ");
 		MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
@@ -2838,7 +2987,7 @@ public class SceneControl : MonoBehaviour {
 			activeTablets [1] = true;
 		mc.colorToChange = colorTurisme;
 		LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorTurisme;
-			if (lenguajeTablets [1] == "cat") {
+			if (lenguajeTablets [1] == 0) {
 				Titulos [1].text = "Municipis amb empreses que s’han adherit al Sistema de Qualitat Turística en Destinacions ";
 				Subtitulos [1].text = "";
 			} else {
@@ -2851,6 +3000,13 @@ public class SceneControl : MonoBehaviour {
 	}
 
 		//TECNOLOGIA
+	public void oscServei(int message)
+	{
+		Debug.Log (message);
+		Debug.Log ("ServeiGestio");
+		if (message == 0) StartIntro (codigosServeisGestio[0]);
+		else StartContent (codigosServeisGestio[message-1]);
+	}
 	public void StartServeiGestio(int value )
 	{
 		Debug.Log( "Received: ServeiGestio ");
@@ -2871,12 +3027,12 @@ public class SceneControl : MonoBehaviour {
 				Titulos[2].text="ServeiGestio";
 				Subtitulos[2].text=" ";
 			}*/
-		if(value == 1||value == 0){
+		if(value == codigosServeisGestio[0]||value == 0){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "AsesoramientoJuridico";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Ajuntaments amb suport d’assessorament jurídic on-line";
 					Subtitulos [2].text = "";
 				} else {
@@ -2885,12 +3041,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 2){
+		else if(value == codigosServeisGestio[1]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionInformacion";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Ajuntaments que utilitzen el Gestor d’Informació d’Activitats";
 					Subtitulos [2].text = "";
 				} else {
@@ -2899,12 +3055,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 3){
+		else if(value == codigosServeisGestio[2]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionFormacion";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Ajuntaments que utilitzen Gestforma ";
 					Subtitulos [2].text = "";
 				} else {
@@ -2913,12 +3069,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 4){
+		else if(value == codigosServeisGestio[3]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "HERMES";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Ajuntaments que utilitzen Hermes";
 					Subtitulos [2].text = "";
 				} else {
@@ -2927,12 +3083,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 5){
+		else if(value == codigosServeisGestio[4]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionContabilidad";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Ajuntaments que utilitzen el sistema de gestió de comptabilitat";
 					Subtitulos [2].text = "";
 				} else {
@@ -2940,12 +3096,12 @@ public class SceneControl : MonoBehaviour {
 					Subtitulos [2].text = "";
 				}
 			}
-			else if(value == 6){
+		else if(value == codigosServeisGestio[5]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionPadron";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Ajuntaments que utilitzen el sistema de gestió del padró d’habitants ";
 					Subtitulos [2].text = "";
 				} else {
@@ -2954,12 +3110,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 7){
+		else if(value == codigosServeisGestio[6]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionWebs";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Ajuntaments que reben el servei de presència institucional a internet (web municipals)";
 					Subtitulos [2].text = "";
 				} else {
@@ -2968,12 +3124,12 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
-			else if(value == 8){
+		else if(value == codigosServeisGestio[7]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "MuniApps";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Municipis amb aplicacions mòbils inventariades";
 					Subtitulos [2].text = " ";
 				} else {
@@ -2982,6 +3138,14 @@ public class SceneControl : MonoBehaviour {
 				}
 
 			}
+	}
+
+	public void oscPlataforma(int message)
+	{
+		Debug.Log (message);
+		Debug.Log ("ServeiGestio");
+		if (message == 0) StartIntro (codigosPlataformaUrbana[0]);
+		else StartContent (codigosPlataformaUrbana[message-1]);
 	}
 	public void StartPlataforma(int value )
 	{
@@ -2996,7 +3160,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = true;
 			//LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = true;
 			activeTablets [2] = true;
-			if (lenguajeTablets [2] == "cat") {
+			if (lenguajeTablets [2] == 0) {
 			Titulos[2].text="                                                                                                                                   Plataforma Urbana Intel·ligent";
 				//Titulos [5].text = "Plataforma pròpia";
 			//Titulos[6].text="Plataforma multi-tenant DIBA";
@@ -3054,6 +3218,14 @@ public class SceneControl : MonoBehaviour {
 				Subtitulos [2].text = "";
 			}*/
 	}
+
+	public void oscInfraestructuras(int message)
+	{
+		Debug.Log (message);
+		Debug.Log ("Infraestructuras");
+		if (message == 0) StartIntro (codigosInfraestructuras[0]);
+	else StartContent (codigosInfraestructuras[message-1]);
+	}
 		public void StartInfraestructures(int value )
 	{
 		Debug.Log( "Received: Infraestructures ");
@@ -3078,14 +3250,14 @@ public class SceneControl : MonoBehaviour {
 				
 				at.isGrowing = true;
 			}*/
-		if(value == 1 || value == 0){
+	if(value == codigosInfraestructuras[0] || value == 0){
 				LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
 				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[5];
 				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
 				mc.colorToChange = colorSitmun;
 				LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorSitmun;
 				at.contenido = "SITMUN";
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Municipis que utilitzen la plataforma SITMUN";
 					Subtitulos [2].text = "";
 				} else {
@@ -3095,14 +3267,14 @@ public class SceneControl : MonoBehaviour {
 				
 				at.isGrowing = true;
 			}
-			else if(value == 2){
+	else if(value == codigosInfraestructuras[1]){
 				LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
 				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[4];
 				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
 				mc.colorToChange = colorInfraestructures;
 		LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorInfraestructures;
 				at.contenido = "Cartografia";
-				if (lenguajeTablets [2] == "cat") {
+				if (lenguajeTablets [2] == 0) {
 					Titulos [2].text = "Municipis que reben el servei de manteniment de cartografia";
 					Subtitulos [2].text = "";
 				} else {
@@ -3125,7 +3297,7 @@ public class SceneControl : MonoBehaviour {
 			isPolig = true;
 			isStartPolig = true;
 			isEndPolig = false;
-			if (lenguajeTablets [2] == "cat") {
+			if (lenguajeTablets [2] == 0) {
 				Titulos [2].text = "Poligons Industrials";
 				Subtitulos [2].text = "";
 			} else {
@@ -3133,6 +3305,13 @@ public class SceneControl : MonoBehaviour {
 				Subtitulos [2].text = "";
 			}
 			
+	}
+	public void oscFibra(int message)
+	{
+		Debug.Log (message);
+		Debug.Log ("Fibra osc");
+		if (message == 0) StartIntro (codigosFibraOptica[0]);
+		else StartContent (codigosFibraOptica[message-1]);
 	}
 	public void StartFibra(int value )
 		{
@@ -3150,7 +3329,7 @@ public class SceneControl : MonoBehaviour {
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
 
-			if (lenguajeTablets [2] == "cat") {
+			if (lenguajeTablets [2] == 0) {
 		Titulos [2].text = "Canalitzacions per a fibra óptica.                                                           Nou desplegament: 252km";//"Canalitzacions per a fibra optica. Nou desplegament: 252km";
 		Subtitulos [2].text = "";
 			} else {
@@ -3162,34 +3341,42 @@ public class SceneControl : MonoBehaviour {
 
 
 	//Idiomas
+	public void oscIdioma1(  int idioma  )
+	{
+		lenguajeTablets [0] = idioma;
+	writeTextLanguage(0,(int)estadoActual[2]);
+		Debug.Log( "Received: Lenguaje tablet 0 "  );
+	}
+
+
 	public void IdiomaPersoneseng(  OscMessage message  )
 	{
-			lenguajeTablets [0] = "eng";
+			lenguajeTablets [0] = 2;
 		Debug.Log( "Received: Lenguaje personeseng "  );
 	}
 	public void IdiomaPersonescat(  OscMessage message  )
 	{
-		lenguajeTablets [0] = "cat";
+		lenguajeTablets [0] = 0;
 		Debug.Log( "Received: Lenguaje persones cat" );
 	}
 	public void IdiomaSostenibilitateng(  OscMessage message  )
 	{
-		lenguajeTablets [1] = "eng";
+		lenguajeTablets [1] = 2;
 		Debug.Log( "Received: Lenguaje sostenibilitat eng " );
 	}
 	public void IdiomaSostenibilitatcat(  OscMessage message  )
 	{
-		lenguajeTablets [1] = "cat";
+		lenguajeTablets [1] = 0;
 		Debug.Log( "Received: Lenguaje sostenibilitat cat"  );
 	}
 	public void IdiomaTecnologiaeng(  OscMessage message )
 	{
-		lenguajeTablets [2] = "eng";
+		lenguajeTablets [2] = 2;
 		Debug.Log( "Received: Lenguaje Tecnologia eng"  );
 	}
 	public void IdiomaTecnologiacat(  OscMessage message )
 	{
-		lenguajeTablets [2] = "cat";
+		lenguajeTablets [2] = 0;
 		Debug.Log( "Received: Lenguaje Tecnologia cat"  );
 	}
 
