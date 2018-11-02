@@ -1219,7 +1219,7 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Clean");
-            Clean1();
+            Clean1(0);
         }
 		
 		if (Input.GetKeyDown(KeyCode.Y))
@@ -1622,18 +1622,20 @@ public class SceneControl : MonoBehaviour {
 			oscIn.MapInt( "/sostenibilidad/municipis", oscPaes);
 
 			oscIn.MapInt( "/sostenibilidad/mesura", oscEvaluacio);
-			oscIn.MapInt( "/personas/parques", oscParques);
+			oscIn.MapInt( "/sostenibilidad/parques", oscParques);
 			oscIn.MapInt( "/sostenibilidad/turismo", oscTurismo);
 
 		//Tecnologia
-			oscIn.MapInt( "/tecnologia/serveigestio", oscServei);
+			oscIn.MapInt( "/tecnologia/serveisgestio", oscServei);
 			oscIn.MapInt( "/tecnologia/plataforma", oscPlataforma);
-			oscIn.MapInt( "/tecnologia/infraestructures", oscInfraestructuras);
+			oscIn.MapInt( "/tecnologia/infraestructuras", oscInfraestructuras);
 			//oscIn.Map( "/tecnologia/poligons", StartPoligons);
-			oscIn.MapInt( "/tecnologia/fibra", oscFibra);
+			oscIn.MapInt( "/tecnologia/mobilidad", oscFibra);
 
 		//IDIOMAS
-			oscIn.MapInt( "/tablet1/idiomas", oscIdioma1 );
+			oscIn.MapInt( "/tablet0/idioma", oscIdioma1 );
+			oscIn.MapInt( "/tablet1/idioma", oscIdioma2 );
+			oscIn.MapInt( "/tablet2/idioma", oscIdioma3 );
 			oscIn.Map( "/persones/cat", IdiomaPersonescat );
 			oscIn.Map( "/sostenibilitat/eng", IdiomaSostenibilitateng);
 			oscIn.Map( "/sostenibilitat/cat", IdiomaSostenibilitatcat );
@@ -1642,8 +1644,8 @@ public class SceneControl : MonoBehaviour {
 		
 			//ESPERA
 
-		//oscIn.Map( "/persones/espera", Clean1 );
-		oscIn.Map( "/sostenibilitat/espera", Clean2 );
+		oscIn.Map( "/personas/espera", Clean1osc );
+		oscIn.Map( "/sostenibilidad/espera", Clean2 );
 		oscIn.Map( "/tecnologia/espera", Clean3 );
 
 
@@ -1789,6 +1791,7 @@ public class SceneControl : MonoBehaviour {
 			}
 			if(state==codigosEvaluacio[0] || state==codigosEvaluacio[1] || state==codigosEvaluacio[2]) //Evaluacio
 			{
+				Debug.Log ("Evaluacio start intro");
 				videoPlayerSuperficie.clip=videosSuperficie[10];
 			}
 			if(state==codigosParques[0] ) //Parques
@@ -1904,7 +1907,7 @@ public class SceneControl : MonoBehaviour {
 			{
 				StartEmisions((int)state);
 			}
-			if(state==codigosPAES[1] || state==codigosPAES[2] || state==codigosPAES[3]|| state==codigosPAES[4]|| state==codigosPAES[5]) //PAES
+			if(state==codigosPAES[1] || state==codigosPAES[2] || state==codigosPAES[3]|| state==codigosPAES[4]) //PAES
 			{
 				StartPAES((int)state);
 			}
@@ -3347,6 +3350,18 @@ public class SceneControl : MonoBehaviour {
 	writeTextLanguage(0,(int)estadoActual[2]);
 		Debug.Log( "Received: Lenguaje tablet 0 "  );
 	}
+	public void oscIdioma2(  int idioma  )
+	{
+		lenguajeTablets [1] = idioma;
+		writeTextLanguage(0,(int)estadoActual[2]);
+		Debug.Log( "Received: Lenguaje tablet 1 "  );
+	}
+	public void oscIdioma3(  int idioma  )
+	{
+		lenguajeTablets [1] = idioma;
+		writeTextLanguage(0,(int)estadoActual[2]);
+		Debug.Log( "Received: Lenguaje tablet 2 "  );
+	}
 
 
 	public void IdiomaPersoneseng(  OscMessage message  )
@@ -3381,7 +3396,10 @@ public class SceneControl : MonoBehaviour {
 	}
 
 	//Limpiadores
-	public void Clean1()//OscMessage message
+public void Clean1osc(OscMessage m){
+			Clean1 (0);
+}
+public void Clean1(int value)//OscMessage message
     {
             Debug.Log("Received: Clean1 ");// + message );
         //Limpiar contornos
