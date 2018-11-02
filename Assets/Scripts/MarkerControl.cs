@@ -24,20 +24,7 @@ public class MarkerControl : MonoBehaviour {
 		} else {
 
 			if(this.gameObject.name=="Tablet1"||this.gameObject.name=="Tablet2"||this.gameObject.name=="Tablet3"){
-				//Debug.Log ("HIT: "+this.gameObject.name);
-				//Debug.Log ("HIT: "+col.gameObject.name);
-				/*if(col.gameObject.name=="MarkerLeyenda1" && this.gameObject.name=="Tablet1"){
-					col.gameObject.GetComponent<Renderer> ().material.color = colorToChange;
-					Debug.Log ("HIT: "+col.gameObject.name);
-				}
-				 if(col.gameObject.name=="MarkerLeyenda2" && this.gameObject.name=="Tablet2"){
-					col.gameObject.GetComponent<Renderer> ().material.color = colorToChange;
-					Debug.Log ("HIT: "+col.gameObject.name);
-				}
-				 if(col.gameObject.name=="MarkerLeyenda3" && this.gameObject.name=="Tablet3"){
-					col.gameObject.GetComponent<Renderer> ().material.color = colorToChange;
-					Debug.Log ("HIT: "+col.gameObject.name);
-				}*/
+				
 				if(col.gameObject.name!="MarkerLeyenda1" &&  col.gameObject.name!="MarkerLeyenda2" && col.gameObject.name!="MarkerLeyenda3"){
 					col.gameObject.GetComponent<Renderer> ().material.color = colorToChange;
 
@@ -101,6 +88,7 @@ public class MarkerControl : MonoBehaviour {
 				if (col.gameObject.name != "Tapa1") {
 					MarkerBehaviour mb = col.gameObject.GetComponent <MarkerBehaviour> ();
 					AnimationTrigger at = gameObject.GetComponent <AnimationTrigger> ();
+					//Debug.Log (col.gameObject.name);
 					//Debug.Log (mb);
 					mb.animationDecision (at.contenido, this.gameObject.name);
 					//Debug.Log ("HIT");
@@ -113,7 +101,7 @@ public class MarkerControl : MonoBehaviour {
 			if(this.gameObject.name=="ControlJSonCollider"){
 				GameObject sc = GameObject.Find ("SceneControl");
 				rmd = sc.GetComponent<ReadMunicipiData> ();
-				Debug.Log ("HITJSON");
+				//Debug.Log ("HITJSON");
 
 				int code=col.gameObject.GetComponent<MarkerBehaviour> ().codigo;
 				for (int i = 0; i < rmd.TodosMunicipios.Count; i++) {

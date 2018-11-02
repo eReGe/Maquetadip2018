@@ -179,6 +179,7 @@ public class TapaBehaviour : MonoBehaviour {
 							if (isPlataforma) {
 								line.enabled = true;
 								isNeuronal = true;
+
 							} else {
 								line.enabled = false;
 								isNeuronal = false;

@@ -1,13 +1,29 @@
 Cosas a hacer esta semana:
 
 TAREAAAAS
+Importantes
+- Lanzar todos los contenidos que coinciden con el año pasado
+- Poner todos los textos correspondientes
+- Las leyendas deben ir con el color del tema
+- Poner iconos bien
+- Cambiar leyendas para la superposicion
+- Cambiar las funciones de starcontent para que reciban el parametro de superposicion
+
+- Ver como borrar las superposiciones (funcion clean con codigos y que o bien borre la capa de zonas o lanze un collider que quite los puntos con superposicion)
+-
+
+
+Secundarias
 - Video de fibra óptica y lanzarlo
 - Poner lo de turismo
 - Color de los textos al que corresponde
-- Video de fibra optica
 - Hacer el network
 - Hacer una superposicion de municipios
-- Hacer superposicion de puntos con mascara a la mitad
+
+Tercieçarias
+- Poner nubes y rayos
+- Cambiar de noche a dia
+- Probar rendimiento
 
 
 

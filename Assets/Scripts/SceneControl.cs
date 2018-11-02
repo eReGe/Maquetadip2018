@@ -79,6 +79,7 @@ public class SceneControl : MonoBehaviour {
 		public int[] codigosPlataformaUrbana;
 		public int[] codigosGeografia;
 		public int[] codigosFibraOptica;
+
 		public float alphaCo2impar=0;
 		public float alphaCo2par = 1;
 		public float alphaCo2Speed;
@@ -263,6 +264,7 @@ public class SceneControl : MonoBehaviour {
 		public Texture texturaXaloc;
 		public Texture texturaPoligonos;
 		public Texture[] texturasPatrimonios;
+		public Texture[] texturasOficinaPatrimoni;
 		public Texture[] texturasRenovables;
 		public Texture[] texturasParques;
 		public Texture[] texturasParquesSolos;
@@ -458,7 +460,7 @@ public class SceneControl : MonoBehaviour {
 					changeAlphaMaterialMaqueta (layerRios2, 0);
 
                 }
-                Debug.Log("isPlaying"+ videoPlayerMaqueta.frame+" fc: "+ videoPlayerMaqueta.frameCount);
+               // Debug.Log("isPlaying"+ videoPlayerMaqueta.frame+" fc: "+ videoPlayerMaqueta.frameCount);
                 if (videoPlayerMaqueta.frame == (long)videoPlayerMaqueta.frameCount)
                 {
                     isTransition = false;
@@ -1590,24 +1592,33 @@ public class SceneControl : MonoBehaviour {
 
 		// 1) For messages with one argument, simply provide the address and
 		// a method with one argument. In this case, OnTest1 takes a float argument.
-		//PERSONAS
-			//oscIn.MapInt( "/persones/biblioteques", StartBiblio);
-		//oscIn.Map( "/persones/bibliobuses", StartBuses);
-			oscIn.MapInt( "/persones/teleasistencia", StartTeleasis);
-		oscIn.MapInt( "/persones/parcs", StartParcs);
+		//ENTRAR A TEMAS
+		oscIn.MapInt( "/personas", oscPersonas);
+		oscIn.MapInt( "/sostenibilidad", oscSostenibilidad);
+		oscIn.MapInt( "/tecnologia", oscTecnologia);
+			oscIn.MapInt( "/inicio", oscInicio);
+			oscIn.MapInt( "/videostop", oscVideoStop);
 
-		//oscIn.Map( "/persones/govern_obert", StartGovernObert);
+		//PERSONAS
+		oscIn.MapInt( "/personas/bibliotecas", oscBiblio);
+			oscIn.MapInt( "/personas/teleasistencia", oscTeleasis);
+			oscIn.MapInt( "/personas/parcs", StartParcs);
+
+			oscIn.MapInt( "/personas/governobert", oscGovernObert);
+			oscIn.MapInt( "/personas/ocupacio", oscPromocio);
+			oscIn.MapInt( "/personas/oficina_patrimoni", oscOficinaPatrimoni);
+			oscIn.MapInt( "/personas/patrimoni", oscPatrimoni);
+			oscIn.MapInt( "/personas/km2", oscKm2);
 		//oscIn.Map( "/persones/xaloc", StartXaloc);
-		oscIn.Map( "/persones/km2", StartKm2);
 
 		//SOSTENIBILIDAD
-			oscIn.MapInt( "/sostenibilitat/xarxa", StartXarxa);
-			//oscIn.Map( "/sostenibilitat/municipis", StartEmisions);
-			oscIn.MapInt( "/sostenibilitat/renovables", StartRenovables);
-			oscIn.MapInt( "/sostenibilitat/mesura", StartMesura);
+			oscIn.MapInt( "/sostenibilidad/xarxapobles", oscXarxa);
+			//oscIn.Map( "/sostenibilidad/municipis", StartEmisions);
+			oscIn.MapInt( "/sostenibilidad/renovables", StartRenovables);
+			oscIn.MapInt( "/sostenibilidad/mesura", StartMesura);
 
-			oscIn.MapInt( "/sostenibilitat/otaga", StartOTAGA);
-			oscIn.Map( "/sostenibilitat/turisme", StartTurisme);
+			oscIn.MapInt( "/sostenibilidad/otaga", StartOTAGA);
+			oscIn.Map( "/sostenibilidad/turisme", StartTurisme);
 
 		//Tecnologia
 			oscIn.MapInt( "/tecnologia/serveigestio", StartServeiGestio);
@@ -1632,8 +1643,30 @@ public class SceneControl : MonoBehaviour {
 
 
 	}
-
-
+		public void oscPersonas(int value)
+		{
+				StartTransition (1);
+		}
+		public void oscSostenibilidad(int value)
+		{
+				StartTransition (2);
+		}
+		public void oscTecnologia(int value)
+		{
+			
+				StartTransition (3);
+		}
+		public void oscInicio(int value)
+		{
+			if (value == 0)
+				EndTransition (1);
+			else if (value == 1)EndTransition (2);
+			else if (value == 2)EndTransition (3);
+		}
+		public void oscVideoStop(int value)
+		{
+			skipVideo = true;
+		}
     //CONTROL DE ANIMACIONES DE VIDEO
     public void StartTransition(float state)//transicion de maqueta a tema
     {
@@ -1769,6 +1802,7 @@ public class SceneControl : MonoBehaviour {
 
     public void StartContent(float state) //Lanza contenido
     {
+			//PERSONAS
 			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
 			{
 				StartBiblio2((int)state);
@@ -1787,6 +1821,19 @@ public class SceneControl : MonoBehaviour {
 			{
 				StartPromocio((int)state);
 			}
+			if(state==codigosKm2[0]  ) //km2
+			{
+				StartKm2((int)state);
+			}
+			if(state==codigosPatrimoni[0] || state==codigosPatrimoni[1] || state==codigosPatrimoni[2]|| state==codigosPatrimoni[3]|| state==codigosPatrimoni[4]|| state==codigosPatrimoni[5]) //Patrimoni
+			{
+				StartPatrimoni((int)state);
+			}
+			if(state==codigosOficinaPatrimoni[0] ||  state==codigosOficinaPatrimoni[1] || state==codigosOficinaPatrimoni[1]) //Patrimoni
+			{
+				StartOficinaPatrimoni((int)state);
+			}
+			//SOSTENIBILIDAD
 			if(state==codigosParques[0] ) //Parques
 			{
 				StartParcs((int)state);
@@ -1992,6 +2039,15 @@ public class SceneControl : MonoBehaviour {
             StartBiblio2(value);*/
 
     }
+		public void oscBiblio(int message)
+	{
+			Debug.Log (message);
+			Debug.Log ("biblio");
+			if (message == 0)StartIntro (codigosBibliotecas[0]);
+			if (message == 1 ) StartContent (codigosBibliotecas[0]);
+			if (message == 2) StartContent (codigosBibliotecas[1]);
+			if (message == 3) StartContent (codigosBibliotecas[2]);
+	}
     public void StartBiblio2(int value)    //recibe el valor del dato a mostrar y elegirá el tipo que es y como animarlo
 	{
 		Debug.Log( "Received: biblio "+value);
@@ -2012,7 +2068,7 @@ public class SceneControl : MonoBehaviour {
                 writeTextLanguage(0, value);
 
 			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
-			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+			    
                 at.isGrowing = true;
 
 				
@@ -2029,7 +2085,6 @@ public class SceneControl : MonoBehaviour {
                 writeTextLanguage(0,value);
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[1];
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 
 
 
@@ -2046,11 +2101,12 @@ public class SceneControl : MonoBehaviour {
 				writeTextLanguage(0, value);
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 				at.isGrowing = true;
 				 
             }
 
+			//Enable leyendas
+			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			//Animaciones maqueta2
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
@@ -2059,7 +2115,13 @@ public class SceneControl : MonoBehaviour {
 
 
 	}
-	
+		public void oscTeleasis(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("teleasis");
+			if ( message == 0) StartIntro (codigosTeleasistencia[0]);
+			if (message == 1 ) StartContent (codigosTeleasistencia[0]);
+		}
 	public void StartTeleasis(int value )
 	{
 		Debug.Log( "Received: teleasis ");
@@ -2067,22 +2129,7 @@ public class SceneControl : MonoBehaviour {
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			activeTablets [0] = true;
-			/*if (value == 0) {
-				mc.colorToChange = colorTeleasis;
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorTeleasis;
-				at.contenido = "Atencio";
-				at.isGrowing = true;
-				if (lenguajeTablets [0] == "cat") {
-					Titulos [0].text = "Municipis amb el servei de teleassistència ";
-					Subtitulos [0].text = "";
-				} else {
-					Titulos [0].text = "Municipalities with Telecare Service";
-					Subtitulos [0].text = "";
-				}
 
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[3];
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			}*/
 			if(value == codigosTeleasistencia[0] || value==0){
 				mc.colorToChange = colorTeleasis;
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorTeleasis;
@@ -2113,41 +2160,106 @@ public class SceneControl : MonoBehaviour {
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
 	}
+		public void oscGovernObert(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("Governobert");
+			if (message == 0) StartIntro (codigosGovernObert[0]);
+			else StartContent (codigosGovernObert[message-1]);
+		}
 		public void StartGovernObert(int value )
 	{
 			estadoActual[2] = value;
 
+			if(value == codigosGovernObert[0] || value==0){ //Responsables politcs
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[0]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[1]){ //estrategia
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[1]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[2]){ //web
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[2]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[3]){ //respostes publiques
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[3]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[4]){ //arxiu municipal
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[4]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[5]){ //portal transparencia
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[5]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[6]){ //acces informacion
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[6]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[7]){ //presupost obert
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[7]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[8]){ //procesos participatius
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[8]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosGovernObert[9]){ //dades obertes
+				Debug.Log( "Received: GovernObert ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[9]);
+				writeTextLanguage(0, value);
+			}
+
+			//MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
+			//AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
+			//mc.colorToChange = colorGovernObert;
+
+			//at.contenido = "GovernOBERT";
+			//at.isGrowing = true;
+			//Leyendas
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
+			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorGovernObert;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			activeTablets [0] = true;
-			Debug.Log( "Received: GovernObert ");
-			MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
-			AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-			mc.colorToChange = colorGovernObert;
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorGovernObert;
-			at.contenido = "GovernOBERT";
-			at.isGrowing = true;
 
-			writeTextLanguage(0, value);
+			activeTablets [0] = true;
+
 
 			//Encender capas de municipios
 			changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
 			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
-			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[0]);
+
 			//Animaciones lineas maqueta2
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
 
 
 	}
-		public void StartPromocio(int value) //xaloc, poligonos y serveis
+		public void oscPromocio(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("Promocio y ocupacio");
+			if (message == 0) StartIntro (codigosPromocioEconomica[0]);
+			else StartContent (codigosPromocioEconomica[message-1]);
+		}
+	public void StartPromocio(int value) //xaloc, poligonos y serveis
 	{
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[6];
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			activeTablets [0] = true;
-		Debug.Log( "Received: Xaloc ");
+			estadoActual[2] = value;
+
+
+		Debug.Log( "Received: Promocio Economica ");
 
 			if(value == codigosPromocioEconomica[0]  || value==0){ //XALOC
 				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
@@ -2156,6 +2268,7 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorXaloc;
 				at.contenido = "Xaloc";
 				at.isGrowing = true;
+				writeTextLanguage(0, value);
 				if (lenguajeTablets [0] == "cat") {
 					Titulos[0].text="Municipis dins de la xarxa Xaloc";
 					Subtitulos[0].text="";
@@ -2166,20 +2279,43 @@ public class SceneControl : MonoBehaviour {
 			}
 			if(value == codigosPromocioEconomica[1] ){//poligonos
 				StartPoligons();
+				writeTextLanguage(0, value);
 			}
-			if(value == 17 ){//serveis a empreses
+			if(value == codigosPromocioEconomica[2] ){//serveis a empreses
 
+				//NuevosDatos
+				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
+				AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
+				mc.colorToChange = colorXaloc;
+				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorXaloc;
+				at.contenido = "ServeisEmpresas";
+				at.isGrowing = true;
+
+				writeTextLanguage(0, value);
 			}
-		
+
+			//Leyendas
+			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
+			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[6];
+			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+			activeTablets [0] = true;
 
 			//Animaciones maqueta2
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
 
 	}
-	public void StartKm2(OscMessage message )
+		public void oscKm2(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("Km2");
+			if (message == 0) StartIntro (codigosKm2[0]);
+			else StartContent (codigosKm2[message-1]);
+		}
+	public void StartKm2(int value )
 	{
 		Debug.Log( "Received: Km2 ");
+			estadoActual[2] = value;
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[5];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
@@ -2187,9 +2323,10 @@ public class SceneControl : MonoBehaviour {
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
 		mc.colorToChange = colorKm21;
-			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorKm21;
+		LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorKm21;
 		at.contenido = "Km2";
 		at.isGrowing = true;
+		writeTextLanguage(0, value);
 			if (lenguajeTablets [0] == "cat") {
 				Titulos[0].text="Municipis amb l'aplicació Km2 Ciutat";
 				Subtitulos[0].text="";
@@ -2200,58 +2337,156 @@ public class SceneControl : MonoBehaviour {
 
 
 	}
-		public void StartParcs(int value )
+		public void oscPatrimoni(int message)
 		{
-			Debug.Log( "Received: Parcs ");
-			LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = true;
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[2];
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
-			activeTablets [0] = true;
-			isParcs = true;
-			isStartParcs = true;
-			isEndParcs = false;
+			Debug.Log (message);
+			Debug.Log ("Patrimoni");
+			if (message == 0) StartIntro (codigosPatrimoni[0]);
+			else StartContent (codigosPatrimoni[message-1]);
+		}
+	public void StartPatrimoni(int value )
+	{
+			estadoActual[2] = value;
 
-			writeTextLanguage (0, value);
-		
-			//Animaciones maqueta2
+			if(value == codigosPatrimoni[0] || value==0){ //iglesias
+				Debug.Log( "Received: Patrimoni ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPatrimonios[0]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPatrimoni[1] ){ //monasterios
+				Debug.Log( "Received: Patrimoni ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPatrimonios[1]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPatrimoni[2]){ //cstillos
+				Debug.Log( "Received: Patrimoni ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPatrimonios[2]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPatrimoni[3]){ //puentes
+				Debug.Log( "Received: Patrimoni ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPatrimonios[3]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPatrimoni[4]){ //Yacimientos
+				Debug.Log( "Received: Patrimoni ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPatrimonios[4]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPatrimoni[5]){ //Otros
+				Debug.Log( "Received: Patrimoni ");
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPatrimonios[5]);
+				writeTextLanguage(0, value);
+			}
+
+
+			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
+			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorPERSONAS;
+			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
+			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+
+			activeTablets [0] = true;
+
+			//Encender capas de municipios
+			changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
+			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+
+			//Animaciones lineas maqueta2
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
+	}
 
-			/*if (lenguajeTablets [0] == "cat") {
-				Titulos[0].text="Àrees dels parcs naturals";
-				Subtitulos[0].text="12 Espais naturals";
-			} else {
-				Titulos [0].text = "Natural Parcs Areas";
-				Subtitulos [0].text = "12 Natural spaces";
-			}*/
+	public void oscOficinaPatrimoni(int message)
+	{
+		Debug.Log (message);
+		Debug.Log ("Patrimoni");
+			if (message == 0) StartIntro (codigosOficinaPatrimoni[0]);
+			else StartContent (codigosOficinaPatrimoni[message-1]);
+	}
+	public void StartOficinaPatrimoni(int value )
+	{
+		estadoActual[2] = value;
 
+		if(value == codigosOficinaPatrimoni[0] || value==0){ //mapas
+			Debug.Log( "Received: OficinaPatrimoni ");
+			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[0]);
+			writeTextLanguage(0, value);
+		}
+		if(value == codigosOficinaPatrimoni[1] ){ //xarxa archius
+			Debug.Log( "Received: OficinaPatrimoni ");
+			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[1]);
+			writeTextLanguage(0, value);
+		}
+		if(value == codigosOficinaPatrimoni[2]){ //xarxa museus
+			Debug.Log( "Received: OficinaPatrimoni ");
+			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[2]);
+			writeTextLanguage(0, value);
 		}
 
+
+		LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
+		LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorPERSONAS;
+		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
+		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+
+		activeTablets [0] = true;
+
+		//Encender capas de municipios
+		changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
+		changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+
+		//Animaciones lineas maqueta2
+		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+		enableAnimationLayer(1);
+	}
+
+
+	
+
 	//SOSTENIBILIDAD
-		public void StartXarxa(int value )
+	public void StartParcs(int value )
 	{
+			estadoActual[2] = value;
+		Debug.Log( "Received: Parcs ");
+		LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = true;
+		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[2];
+		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+		activeTablets [0] = true;
+		isParcs = true;
+		isStartParcs = true;
+		isEndParcs = false;
+
+		writeTextLanguage (0, value);
+
+		//Animaciones maqueta2
+		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+		enableAnimationLayer(1);
+
+		/*if (lenguajeTablets [0] == "cat") {
+		Titulos[0].text="Àrees dels parcs naturals";
+		Subtitulos[0].text="12 Espais naturals";
+	} else {
+		Titulos [0].text = "Natural Parcs Areas";
+		Subtitulos [0].text = "12 Natural spaces";
+	}*/
+
+	}
+		public void oscXarxa(int message)
+		{
+			Debug.Log (message);
+			Debug.Log ("Xarxa sotenibilidad");
+			if (message == 0) StartIntro (codigosXarxaCiutats[0]);
+			else StartContent (codigosXarxaCiutats[message-1]);
+		}
+	public void StartXarxa(int value )
+	{
+			estadoActual[2] = value;
 		Debug.Log( "Received: Xarxa ");
 		MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
 			activeTablets [1] = true;
-			/*if (value == 0) {
-				LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[3];
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
-				mc.colorToChange = colorXarxa;
-				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorXarxa;
-				if (lenguajeTablets [1] == "cat") {
-					Titulos[1].text="Xarxa";
-					Subtitulos[1].text=" ";
-				} else {
-					Titulos [1].text = "Network";
-					Subtitulos [1].text = "";
-				}
-				at.contenido = "Xarxa";
-				at.isGrowing = true;
 
-			}*/
-			 if(value == 1 ||value == 0){
+			if(value == codigosXarxaCiutats[0] ||value == 0){
 				LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
 				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[6];
 				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
@@ -2259,16 +2494,17 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorXarxa1;
 				at.contenido = "CambioClimatico";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				writeTextLanguage (0, value);
+				/*if (lenguajeTablets [1] == "cat") {
 					Titulos [1].text = "Municipis dins del grup de treball del canvi climàtic i qualitat ambiental ";
 					Subtitulos [1].text = "";
 				} else {
 					Titulos [1].text = "Municipalities within the working group on climate change and environmental quality";
 					Subtitulos [1].text = "";
-				}
+				}*/
 
 			}
-			else if(value == 2){
+			else if(value == codigosXarxaCiutats[1]){
 				LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
 				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[7];
 				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
@@ -2276,16 +2512,17 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorXarxa2;
 				at.contenido = "Sostenibilitat";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
+				writeTextLanguage (0, value);
+				/*if (lenguajeTablets [1] == "cat") {
 					Titulos [1].text = "Municipis dins dels grup de treball de sostenibilitat per les persones";
 					Subtitulos [1].text = "";
 				} else {
 					Titulos [1].text = "Municipalities within the working group on sustainability for people";
 					Subtitulos [1].text = "";
-				}
+				}*/
 
 			}
-			else if(value == 3){
+			else if(value == codigosXarxaCiutats[2]){
 				LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
 				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[9];
 				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
@@ -2293,19 +2530,25 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorXarxa3;
 				at.contenido = "EconomiaCircular";
 				at.isGrowing = true;
+				writeTextLanguage (0, value);
+				/*
 				if (lenguajeTablets [1] == "cat") {
 					Titulos [1].text = "Municipis dins del grup de treball d’economia circular i verda ";
 					Subtitulos [1].text = "";
 				} else {
 					Titulos [1].text = "Municipalities within the working group of circular and green economy";
 					Subtitulos [1].text = "";
-				}
+				}*/
 
 			}
+			//Animaciones lineas maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
 		
 	}
-		public void StartEmisions(int value )
+	public void StartEmisions(int value )
 	{
+			estadoActual[2] = value;
 			//LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
 			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=true;
 			LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled=true;
@@ -2333,6 +2576,52 @@ public class SceneControl : MonoBehaviour {
 			}
 
 	}
+
+		public void StartPAES(int value )
+		{
+			estadoActual[2] = value;
+
+			if(value == codigosPAES[0] || value==0){ //PAES
+				Debug.Log( "Received: OficinaPatrimoni ");
+				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[0]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPAES[1] ){ //calor
+				Debug.Log( "Received: OficinaPatrimoni ");
+				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[1]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPAES[2]){ //sequeras
+				Debug.Log( "Received: OficinaPatrimoni ");
+				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[2]);
+				writeTextLanguage(0, value);
+			}
+			if(value == codigosPAES[3]){ //bosques
+				Debug.Log( "Received: OficinaPatrimoni ");
+				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[4]);
+				writeTextLanguage(0, value);
+			}
+
+
+			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
+			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorPERSONAS;
+			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
+			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+
+			activeTablets [0] = true;
+
+			//Encender capas de municipios
+			changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
+			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+
+			//Animaciones lineas maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
+		}
+
+
+
+
 		public void StartRenovables(int value )
 	{
 			

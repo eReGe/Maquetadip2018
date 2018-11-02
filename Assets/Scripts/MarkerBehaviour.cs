@@ -14,6 +14,7 @@ public class MarkerBehaviour : MonoBehaviour {
 	public bool EndState=false;
 	public bool ColorState=false;
 	public bool isAlarm=false;
+	public bool isWifi=false;
 	public bool isNeuronal=false;
 	public GameObject sceneControl;
 	public Transform sceneControl1;
@@ -38,13 +39,19 @@ public class MarkerBehaviour : MonoBehaviour {
 	public float yPos;
 	//CIRCULO
 	public int segments;
-	public float xradius;
-	public float yradius;
+	public float xradius,xradius1,xradius2;
+	public float yradius,yradius1,yradius2;
 	LineRenderer line;
+	LineRenderer line1;
+	LineRenderer line2;
+	public GameObject auxLine1,auxLine2;
 	public float speedAlarm;
+	public float speedWifi;
 	public float maxRadius;
 	public bool isDrawAlarm=false;
+	public bool isDrawWifi=false;
 	public float probabilidadRadar;
+	public float probabilidadWifi;
 
 	private List<int> m1;
 	private List<int> m2;
@@ -58,6 +65,18 @@ public class MarkerBehaviour : MonoBehaviour {
 		sceneControl = GameObject.Find ("SceneControl");
 		timeLapseNeuronal = timeLapseNeuronalset + Random.Range (-1,1);
         speedAlarm = speedAlarm + Random.Range(-8,8);
+
+
+		xradius = maxRadius;
+		xradius1 = maxRadius/3*2;
+		xradius2 = maxRadius/3;
+		yradius = maxRadius;
+		yradius1 = maxRadius/3*2;
+		yradius2 = maxRadius/3;
+
+		line1=auxLine1.GetComponent<LineRenderer>();
+
+		line2=auxLine2.GetComponent<LineRenderer>();
 	}
 	public void setYpos(float _y){
 		yPos = _y;
@@ -74,7 +93,16 @@ public class MarkerBehaviour : MonoBehaviour {
 		if (isAlarm) {
 			line = gameObject.GetComponent<LineRenderer>();
 			line.enabled = true;
-			alarma ();
+
+
+			alarma();
+			//wifi();
+		}
+		if (isWifi) {
+			line = gameObject.GetComponent<LineRenderer>();
+			line.enabled = true;
+
+			wifi();
 		}
 		if (isNeuronal) {
 			line = gameObject.GetComponent<LineRenderer>();
@@ -93,6 +121,7 @@ public class MarkerBehaviour : MonoBehaviour {
 		isAlarm = false;
 		isNeuronal = false;
 		isPlataforma = false;
+		isWifi = false;
 		destinos = sceneControl.GetComponent<SceneControl> ().PlataformaUrbanaV;
 		//m2 = new List<int>();
 		switch (tipo) {
@@ -456,7 +485,7 @@ public class MarkerBehaviour : MonoBehaviour {
 					}
 				}*/
 			}
-			//Debug.Log ("Activated markers:"+m1.Count);
+			//g ("Activated markers:"+m1.Count);
 			//this.StartState = true;
 		} else if (state == 1) { //Activo
 			if (tabletName == "Tablet1" || tabletName == "Tablet2" || tabletName == "Tablet3"||tabletName =="Tablet2Mesura1"||tabletName =="Tablet2Mesura2") {
@@ -464,9 +493,11 @@ public class MarkerBehaviour : MonoBehaviour {
 				if (isPlataforma) {
 					line.enabled = true;
 					isNeuronal = true;
+					isWifi = true;
 				} else {
 					line.enabled = false;
 					isNeuronal = false;
+					isWifi = false;
 				}
 				check = false;
 				for (int i = 0; i < m1.Count; i++) {
@@ -569,7 +600,7 @@ public class MarkerBehaviour : MonoBehaviour {
 	}
 	public void alarma(){
 		int prob=0;
-		if (xradius == 0) {
+		if (xradius == 0 || xradius>=maxRadius) {
 			prob = Random.Range (0,100);
 			if (prob < probabilidadRadar) {
 				isDrawAlarm = true;
@@ -580,12 +611,17 @@ public class MarkerBehaviour : MonoBehaviour {
 		}
 		xradius = xradius + speedAlarm;
 		xradius = xradius % maxRadius;
+		xradius1 = xradius1 + speedAlarm;
+		xradius1 = xradius1 % maxRadius;
+		xradius2 = xradius2 + speedAlarm;
+		xradius2 = xradius2 % maxRadius;
 		yradius = yradius + speedAlarm;
 		yradius = yradius % maxRadius;
 		float alphaMap = xradius;
 		line = gameObject.GetComponent<LineRenderer>();
 		if(isDrawAlarm){
 			line.enabled=true;
+			line1.enabled=true;
 			alphaMap = RemapVal (alphaMap,0,maxRadius,1,0);
 			Color c = line.material.color;
 			c.a = alphaMap;
@@ -596,31 +632,133 @@ public class MarkerBehaviour : MonoBehaviour {
 			line.useWorldSpace = false;
 			line.startWidth = 4;
 			line.endWidth = 4;
+
+			line1.material.color=c;
+			line1.SetVertexCount (segments + 1);
+			line1.useWorldSpace = false;
+			line1.startWidth = 4;
+			line1.endWidth = 4;
 			CreatePoints ();
 		}
 		else{
 			line.enabled=false;
+			line1.enabled=false;
 		}
 
 	}
 
 	void CreatePoints ()
 	{
-		float x;
-		float y;
-		float z = 0f;
+		float x,x1;
+		float y,y1;
+		float z,z1 = 0f;
 
 		float angle = 20f;
+		float angle2 = 200f;
 
 		for (int i = 0; i < (segments + 1); i++)
 		{
 			x = Mathf.Sin (Mathf.Deg2Rad * angle) * xradius;
 			z = Mathf.Cos (Mathf.Deg2Rad * angle) * yradius;
 			y = -400;
+			x1 = Mathf.Sin (Mathf.Deg2Rad * angle2) * xradius;
+			z1 = Mathf.Cos (Mathf.Deg2Rad * angle2) * yradius;
+			y1 = -400;
 
 			line.SetPosition (i,new Vector3(x,y,z) );
+			line1.SetPosition (i,new Vector3(x1,y,z1) );
 
-			angle += (360f / segments);
+			angle += (60f / segments);
+			angle2 += (60f / segments);
+		}
+	}
+	public void wifi(){
+		int prob=0;
+		if (xradius == 0 || xradius>=maxRadius) {
+			prob = Random.Range (0,100);
+			if (prob < probabilidadWifi) {
+				isDrawWifi = true;
+			}
+			else{
+				isDrawWifi=false;
+			}
+		}
+		xradius = xradius + speedWifi;
+		xradius = xradius % maxRadius;
+		xradius1 = xradius1 + speedWifi;
+		xradius1 = xradius1 % maxRadius;
+		xradius2 = xradius2 + speedWifi;
+		xradius2 = xradius2 % maxRadius;
+		yradius = yradius + speedWifi;
+		yradius = yradius % maxRadius;
+		yradius1 = yradius1 + speedWifi;
+		yradius1 = yradius1 % maxRadius;
+		yradius2 = yradius2 + speedWifi;
+		yradius2 = yradius2 % maxRadius;
+		float alphaMap = xradius;
+		line = gameObject.GetComponent<LineRenderer>();
+		if(isDrawWifi){
+			line.enabled=true;
+			line1.enabled=true;
+			line2.enabled=true;
+			//alphaMap = RemapVal (alphaMap,0,maxRadius,1,0);
+			Color c = line.material.color;
+			//c.a = alphaMap;
+			//Debug.Log ("Alpharadar: " + alphaMap);
+			line.material.color=c;
+
+			line.SetVertexCount (segments + 1);
+			line.useWorldSpace = false;
+			line.startWidth = 4;
+			line.endWidth = 4;
+
+			line1.material.color=c;
+			line1.SetVertexCount (segments + 1);
+			line1.useWorldSpace = false;
+			line1.startWidth = 4;
+			line1.endWidth = 4;
+
+			line2.material.color=c;
+			line2.SetVertexCount (segments + 1);
+			line2.useWorldSpace = false;
+			line2.startWidth = 4;
+			line2.endWidth = 4;
+			CreatePoints2();
+		}
+		else{
+			line.enabled=false;
+			line1.enabled=false;
+			line2.enabled=false;
+		}
+
+	}
+	void CreatePoints2 ()
+	{
+		float x,x1,x2;
+		float y,y1,y2;
+		float z,z1,z2 = 0f;
+
+		float angle = 20f;
+		float angle2 = 200f;
+
+		for (int i = 0; i < (segments + 1); i++)
+		{
+			x = Mathf.Sin (Mathf.Deg2Rad * angle) * xradius;
+			z = Mathf.Cos (Mathf.Deg2Rad * angle) * yradius;
+			y = -400;
+			x1 = Mathf.Sin (Mathf.Deg2Rad * angle) * xradius1;
+			z1 = Mathf.Cos (Mathf.Deg2Rad * angle) * yradius1;
+			y1 = -400;
+			x2 = Mathf.Sin (Mathf.Deg2Rad * angle) * xradius2;
+			z2 = Mathf.Cos (Mathf.Deg2Rad * angle) * yradius2;
+			y2 = -400;
+
+			line.SetPosition (i,new Vector3(x,y,z) );
+			line1.SetPosition (i,new Vector3(x1,y,z1) );
+			line2.SetPosition (i,new Vector3(x2,y,z2) );
+
+			angle += (90f / segments);
+
 		}
 	}
 

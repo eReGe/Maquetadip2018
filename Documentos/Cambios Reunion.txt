@@ -1,0 +1,11 @@
+CAMBIOS
+
+- Onda de teleasistencia dos arcos horizontales
+- Leyendas de puntos  puntos debajo de cada texto
+- Poligonos que no haya tanta intensidad en la luz
+- AAnimacion de rios mas lenta
+- Fibra optica carreteras negra sobre fondo claro y fibra optica del color de tecnologia
+- Cambio climatico  cambiar texto, solo icono de mas a menos y el año
+- Network:
+		Ondas wifi para arriba
+		Linea fina sin luz y con lapsos de tiempo proglongados, intentar punto que viaja
