@@ -1974,17 +1974,17 @@ public class SceneControl : MonoBehaviour {
                     if (lenguajeTablets[i] == 0)
                     {
                         Titulos[i].text = "Biblioteques";
-                        Subtitulos[i].text = "Superposicion";
+                        Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == 2)
                     {
                         Titulos[i].text = "Libraries";
-						Subtitulos[i].text = "Superposition";
+						Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == 1)
                     {
                         Titulos[i].text = "Bibliotecas";
-                        Subtitulos[i].text = "Superposicion";
+                        Subtitulos[i].text = "";
                     }
                 }
             }
@@ -2000,7 +2000,7 @@ public class SceneControl : MonoBehaviour {
                     }
                     else if (lenguajeTablets[i] == 2)
                     {
-						Titulos[i].text = "Mobile Libraries";
+						Titulos[i].text = "Mobile library buses";
 						Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == 1)
@@ -2017,17 +2017,17 @@ public class SceneControl : MonoBehaviour {
 				{
 					if (lenguajeTablets[i] == 0)
 					{
-						Titulos[i].text = "BiblioLabs";
+						Titulos[i].text = "BiblioLab";
 						Subtitulos[i].text = "";
 					}
 					else if (lenguajeTablets[i] == 2)
 					{
-						Titulos[i].text = "BiblioLabs";
+						Titulos[i].text = "BiblioLab";
 						Subtitulos[i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "BiblioLabs";
+						Titulos[i].text = "BiblioLab";
 						Subtitulos[i].text = "";
 					}
 				}
@@ -2038,17 +2038,17 @@ public class SceneControl : MonoBehaviour {
 			{
 				for (int i = 0; i < 3; i++)
 				{
-					if (lenguajeTablets [0] == 0) {
-						Titulos [i].text = "Municipis amb el servei de teleassistència ";
-						Subtitulos [i].text = "72.000 usuaris";
+					if (lenguajeTablets [i] == 0) {
+						Titulos [i].text = "Servei Local de Teleassistència ";
+						Subtitulos [i].text = "";
 					} else if (lenguajeTablets[i] == 2) {
-						Titulos [i].text = "Municipalities with Telecare Service";
-						Subtitulos [i].text = "72.000 users";
+						Titulos [i].text = "Municipalities with telecare Service";
+						Subtitulos [i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "Municipios con servicio de teleasistencia";
-						Subtitulos[i].text = "72.000 usuarios";
+						Titulos[i].text = "Servicio Local de Teleasistencia";
+						Subtitulos[i].text = "";
 					}
 				}
 			}
@@ -2060,17 +2060,307 @@ public class SceneControl : MonoBehaviour {
 				{
 					if (lenguajeTablets[i] == 0)
 					{
-						Titulos[i].text="Municipis amb actuacions de Govern Obert";
+						Titulos[i].text="Govern Obert";
 						Subtitulos[i].text="";
 					}
 					else if (lenguajeTablets[i] == 2)
 					{
-						Titulos [i].text = "Municipalities with Open Government actions";
+						Titulos [i].text = "Open Government";
 						Subtitulos [i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "Municipios con actuaciones del gobierno";
+						Titulos[i].text = "Gobierno Abierto";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//ocupacio y promocio
+			if (estado == codigosPromocioEconomica[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Promoció econòmica i ocupació";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Economic development and employment.";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Promoción económica y empleo";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Km2
+			if (estado == codigosKm2[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Km2 Ciutat";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Km2 City";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Km2 Ciudad";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Patrimoni
+			if (estado == codigosPatrimoni[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Patrimoni";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Heritage";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Patrimonio";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Oficina Patrimoni
+			if (estado == codigosOficinaPatrimoni[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Oficina de Patrimoni Cultural";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Cultural Heritage Office";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Oficina de Patrimonio Cultural";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+
+			//SOSTENIBILIDAD
+			//xarxa pobles
+			if (estado == codigosXarxaCiutats[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Xarxa de Ciutats i Pobles cap a la Sostenibilitat";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Network of Cities and Towns working towards Sustainability";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Red de Ciudades y Pueblos hacia la Sostenibilidad";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Municipis cambio
+			if (estado == codigosEvaluacio[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Municipis compromesos amb el canvi climàtic";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Municipalities committed to Climate Change";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Municipios comprometidos con el cambio climático";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Renovables
+			if (estado == codigosRenovables[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Energies renovables";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Renewable Energy";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Energías renovables";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Parques
+			if (estado == codigosRenovables[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Parcs naturals";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Natural Parks";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Parques Naturales";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Turismo
+			if (estado == codigosRenovables[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Turisme";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Tourism";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Turismo";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+
+			//TECNOLOGIA
+			//Serveis gestio
+			if (estado == codigosRenovables[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Serveis de gestió i informació";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Management and Information Services";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Servicios de gestión e información";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Plataforma urbana
+			if (estado == codigosRenovables[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Plataforma urbana intel·ligent";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Smart urban platform";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Plataforma urbana inteligente";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Infraestructuras
+			if (estado == codigosRenovables[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Infraestructures d’informació geogràfica";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Geographic Information Infrastructure";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Infraestructuras de información geográfica";
+						Subtitulos[i].text = "";
+					}
+				}
+			}
+			//Fibra optica
+			if (estado == codigosRenovables[0])
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						Titulos[i].text="Xarxa de fibra òptica";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						Titulos [i].text = "Fiber optic network";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						Titulos[i].text = "Red de fibra óptica";
 						Subtitulos[i].text = "";
 					}
 				}
@@ -2370,13 +2660,6 @@ public class SceneControl : MonoBehaviour {
 				at.contenido = "Xaloc";
 				at.isGrowing = true;
 				writeTextLanguage(0, value);
-				if (lenguajeTablets [0] == 0) {
-					Titulos[0].text="Municipis dins de la xarxa Xaloc";
-					Subtitulos[0].text="";
-				} else {
-					Titulos [0].text = "Municipalities within the Xaloc network";
-					Subtitulos [0].text = "";
-				}
 			}
 			if(value == codigosPromocioEconomica[1] ){//poligonos
 				StartPoligons();
@@ -2428,14 +2711,6 @@ public class SceneControl : MonoBehaviour {
 		at.contenido = "Km2";
 		at.isGrowing = true;
 		writeTextLanguage(0, value);
-			if (lenguajeTablets [0] == 0) {
-				Titulos[0].text="Municipis amb l'aplicació Km2 Ciutat";
-				Subtitulos[0].text="";
-			} else {
-				Titulos [0].text = "Municipalities with the Km2 City application";
-				Subtitulos [0].text = "";
-			}
-
 
 	}
 		public void oscPatrimoni(int message)
@@ -2682,13 +2957,8 @@ public class SceneControl : MonoBehaviour {
 			enableAnimationLayer(1);
 
 			//writetextfunction
-			if (lenguajeTablets [1] == 0) {
-				Titulos[1].text="Municipis compromesos en la lluita contra el canvi climàtic. Evolució de les emissions de CO2 (2005-2014)";
-				Subtitulos[1].text=" ";
-			} else {
-				Titulos [1].text = "Committed municipalities in the fight against climate change. Evolution of CO2 emissions(2005-2014)";
-				Subtitulos [1].text = "";
-			}
+			writeTextLanguage(0, value);
+
 
 	}
 
@@ -2779,13 +3049,8 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorRenovables;
 				at.contenido = "CalderesBiomasa";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == 0) {
-					Titulos [1].text = "Municipis amb actuacions  de calderes de biomassa";
-					Subtitulos [1].text = "";
-				} else {
-					Titulos [1].text = "Municipalities with actuations of biomass boilers";
-					Subtitulos [1].text = "";
-				}
+				writeTextLanguage(0, value);
+
 
 			}
 			else if(value == codigosRenovables[1]){
@@ -2793,13 +3058,8 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorRenovables;
 				at.contenido = "FotovoltaiquesAuto";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == 0) {
-					Titulos [1].text = "Municipis amb actuacions  de fotovoltaiques d’autoconsum";
-					Subtitulos [1].text = "";
-				} else {
-					Titulos [1].text = "Municipalities with photovoltaic self-consumption activities";
-					Subtitulos [1].text = "";
-				}
+				writeTextLanguage(0, value);
+
 
 			}
 			else if(value == codigosRenovables[2]){
@@ -2807,13 +3067,7 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorRenovables;
 				at.contenido = "FotovoltaiquesVenta";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == 0) {
-					Titulos [1].text = "Municipis amb actuacions  de fotovoltaiques de venda";
-					Subtitulos [1].text = "";
-				} else {
-					Titulos [1].text = "Municipalities with photovoltaic actions for sale";
-					Subtitulos [1].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 	}
@@ -2840,7 +3094,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcadorb [5].GetComponent<SpriteRenderer> ().enabled = true;
 			//LeyendaMarcadorb [6].GetComponent<SpriteRenderer>().sprite = IconosTablet2[4];
 			//LeyendaMarcadorb [6].GetComponent<SpriteRenderer>().enabled = true;
-
+			writeTextLanguage(0, value);
 			if (lenguajeTablets [1] == 0) {
 				Titulos[1].text="Municipis de la xarxa de control de partícules de la contaminació de l’aire.";
 				Titulos[3].text="Suport tècnic";
@@ -2912,47 +3166,20 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[2];
 			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
 			activeTablets [1] = true;
-			/*if (value == 0) {
-				mc.colorToChange = colorOTAGA;
-			LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorOTAGA;
-				at.contenido = "OTAGA";
-				at.isGrowing = true;
-				if (lenguajeTablets [1] == "cat") {
-					Titulos[1].text="OTAGA";
-					Subtitulos[1].text=" ";
-				} else {
-					Titulos [1].text = "OTAGA";
-					Subtitulos [1].text = "";
-				}
-
-			}*/
+			
 		if(value ==  codigosEvaluacio[0]|| value==0){
 			mc.colorToChange = colorOTAGA;
 			LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorOTAGA;
 				at.contenido = "AnalisisParticulas";
 				at.isGrowing = true;
-
-				if (lenguajeTablets [1] == 0) {
-					Titulos [1].text = "Municipis de la xarxa de control de partícules de la contaminació de l’aire.";
-					Subtitulos [1].text = "";
-				} else {
-					Titulos [1].text = "Municipalities of the particle control network of air pollution.";
-					Subtitulos [1].text = "";
-				}
-
+				writeTextLanguage(0, value);
 			}
 		else if(value == codigosEvaluacio[1]){
 			mc.colorToChange = colorOTAGA;
 			LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorOTAGA;
 				at.contenido = "AguaFuentes";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == 0) {
-					Titulos [1].text = "Municipis amb actuacions de control de qualitat de l’aigua de les fonts";
-					Subtitulos [1].text = "";
-				} else {
-					Titulos [1].text = "Municipalities with actions to control the quality of water from the sources";
-					Subtitulos [1].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 		else if(value == codigosEvaluacio[2]){
@@ -2960,13 +3187,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorOTAGA;
 				at.contenido = "MediaSonido";
 				at.isGrowing = true;
-				if (lenguajeTablets [1] == 0) {
-					Titulos [1].text = "Municipis amb actuacions de control de soroll";
-					Subtitulos [1].text = "";
-				} else {
-					Titulos [1].text = "Municipalities with noise control action";
-					Subtitulos [1].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 	}
@@ -2990,13 +3211,7 @@ public class SceneControl : MonoBehaviour {
 			activeTablets [1] = true;
 		mc.colorToChange = colorTurisme;
 		LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorTurisme;
-			if (lenguajeTablets [1] == 0) {
-				Titulos [1].text = "Municipis amb empreses que s’han adherit al Sistema de Qualitat Turística en Destinacions ";
-				Subtitulos [1].text = "";
-			} else {
-				Titulos [1].text = "Municipalities with companies that have adhered to the Tourist Quality System in Destinations";
-				Subtitulos [1].text = "";
-			}
+		writeTextLanguage(0, value);
 
 		at.contenido = "Turisme";
 		at.isGrowing = true;
@@ -3035,13 +3250,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "AsesoramientoJuridico";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Ajuntaments amb suport d’assessorament jurídic on-line";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "City councils with online legal advice support";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 		else if(value == codigosServeisGestio[1]){
@@ -3049,13 +3258,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionInformacion";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Ajuntaments que utilitzen el Gestor d’Informació d’Activitats";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "City councils that use the Activity Information Manager.";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 		else if(value == codigosServeisGestio[2]){
@@ -3063,13 +3266,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionFormacion";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Ajuntaments que utilitzen Gestforma ";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "City councils using Gestforma";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 		else if(value == codigosServeisGestio[3]){
@@ -3077,13 +3274,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "HERMES";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Ajuntaments que utilitzen Hermes";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "City councils using Hermes";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 		else if(value == codigosServeisGestio[4]){
@@ -3091,26 +3282,14 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionContabilidad";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Ajuntaments que utilitzen el sistema de gestió de comptabilitat";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "City councils that use the accounting management system";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 			}
 		else if(value == codigosServeisGestio[5]){
 				mc.colorToChange = colorServeiGestio;
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionPadron";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Ajuntaments que utilitzen el sistema de gestió del padró d’habitants ";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "City councils that use the census management system";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 		else if(value == codigosServeisGestio[6]){
@@ -3118,13 +3297,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "GestionWebs";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Ajuntaments que reben el servei de presència institucional a internet (web municipals)";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "City councils that receive the service of institutional presence on the Internet (municipal web)";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 		else if(value == codigosServeisGestio[7]){
@@ -3132,13 +3305,7 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorServeiGestio;
 				at.contenido = "MuniApps";
 				at.isGrowing = true;
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Municipis amb aplicacions mòbils inventariades";
-					Subtitulos [2].text = " ";
-				} else {
-					Titulos [2].text = "Municipalities with inventoried mobile applications";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 
 			}
 	}
@@ -3236,23 +3403,7 @@ public class SceneControl : MonoBehaviour {
 		AnimationTrigger at=AnimStarters[2].GetComponent<AnimationTrigger>();
 			activeTablets [2] = true;
 
-			/*if (value == 0) {
-				LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
-				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[2];
-				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
-				mc.colorToChange = colorInfraestructures;
-		LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorInfraestructures;
-				at.contenido = "Infraestructures";
-				if (lenguajeTablets [2] == "cat") {
-					Titulos [2].text = "Infraestructures";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "Platforms";
-					Subtitulos [2].text = "";
-				}
-				
-				at.isGrowing = true;
-			}*/
+			
 	if(value == codigosInfraestructuras[0] || value == 0){
 				LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
 				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[5];
@@ -3260,13 +3411,7 @@ public class SceneControl : MonoBehaviour {
 				mc.colorToChange = colorSitmun;
 				LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorSitmun;
 				at.contenido = "SITMUN";
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Municipis que utilitzen la plataforma SITMUN";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "Municipalities that use the SITMUN platform";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 				
 				at.isGrowing = true;
 			}
@@ -3275,15 +3420,9 @@ public class SceneControl : MonoBehaviour {
 				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[4];
 				LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
 				mc.colorToChange = colorInfraestructures;
-		LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorInfraestructures;
+				LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorInfraestructures;
 				at.contenido = "Cartografia";
-				if (lenguajeTablets [2] == 0) {
-					Titulos [2].text = "Municipis que reben el servei de manteniment de cartografia";
-					Subtitulos [2].text = "";
-				} else {
-					Titulos [2].text = "Municipalities that receive the cartography maintenance service";
-					Subtitulos [2].text = "";
-				}
+				writeTextLanguage(0, value);
 				
 				at.isGrowing = true;
 			}
@@ -3300,13 +3439,13 @@ public class SceneControl : MonoBehaviour {
 			isPolig = true;
 			isStartPolig = true;
 			isEndPolig = false;
-			if (lenguajeTablets [2] == 0) {
+			/*if (lenguajeTablets [2] == 0) {
 				Titulos [2].text = "Poligons Industrials";
 				Subtitulos [2].text = "";
 			} else {
 				Titulos [2].text = "Industrial parks";
 				Subtitulos [2].text = "";
-			}
+			}*/
 			
 	}
 	public void oscFibra(int message)
@@ -3332,13 +3471,7 @@ public class SceneControl : MonoBehaviour {
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 			enableAnimationLayer(1);
 
-			if (lenguajeTablets [2] == 0) {
-		Titulos [2].text = "Canalitzacions per a fibra óptica.                                                           Nou desplegament: 252km";//"Canalitzacions per a fibra optica. Nou desplegament: 252km";
-		Subtitulos [2].text = "";
-			} else {
-		Titulos [2].text = "Optical fiber trough the local roads.                                                    New deployment: 252km";
-				Subtitulos [2].text = "";
-			}
+			writeTextLanguage(0, value);
 			
 		}
 
@@ -3358,7 +3491,7 @@ public class SceneControl : MonoBehaviour {
 	}
 	public void oscIdioma3(  int idioma  )
 	{
-		lenguajeTablets [1] = idioma;
+		lenguajeTablets [2] = idioma;
 		writeTextLanguage(0,(int)estadoActual[2]);
 		Debug.Log( "Received: Lenguaje tablet 2 "  );
 	}
