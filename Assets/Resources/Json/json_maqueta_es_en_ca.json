@@ -1,0 +1,2357 @@
+﻿[
+  {
+    "id": 1,
+    "oscaddr": "/personas 0",
+    "idiomas": {
+      "es": {
+        "titulo": "Personas",
+        "texto": "",
+        "leyenda": ""
+      },
+      "en": {
+        "titulo": "People",
+        "texto": "",
+        "leyenda": ""
+      },
+      "ca": {
+        "titulo": "Persones",
+        "texto": "",
+        "leyenda": ""
+      }
+    },
+    "codigos_superposicion": [],
+    "contenidos": [
+      {
+        "id": 11,
+        "oscaddr": "/personas/bibliotecas 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Bibliotecas",
+            "texto": "La Red de Bibliotecas Municipales está formada por 226 bibliotecas y diez bibliobuses, que ofrecen una gran variedad de servicios para todos los públicos, centrados en el préstamo, la información, el acceso a las nuevas tecnologías, el aprendizaje y el entretenimiento. Con la incorporación del programa BiblioLab, las bibliotecas pasan a ser, cada vez más, centros de creación de conocimiento a través de la experimentación en entornos colaborativos abiertos a la ciudadanía.",
+            "+ info": "El BiblioLab quiere fomentar la creación y la creatividad de la ciudadanía, habilidades de gran valor en el desarrollo de las personas en campos como la educación, la cultura y el emprendimiento. Actualmente, ya hay proyectos BiblioLab en varias bibliotecas y bibliobuses de todo el territorio que impulsan la generación de conocimiento y la innovación social desde ámbitos como la tecnología, la ciencia, el arte o la literatura.\nAdemás del tradicional préstamo de libros, música y películas, las bibliotecas y los bibliobuses ofrecen otros tipos de propuestas y servicios: encuentros con escritores, aulas de cine, información turística, recursos multimedia, servicios a personas con dificultades auditivas, visuales o de movilidad, acogida a personas recién llegadas, formación en nuevas tecnologías, cesión de espacios, entre muchos más.\nAparte, se cuenta con una gran biblioteca virtual que ofrece a los usuarios recomendaciones, guías de lectura, recorridos temáticos, curiosidades, agenda de actividades y otras propuestas.",
+            "leyenda": "Bibliotecas"
+          },
+          "en": {
+            "titulo": "Libraries",
+            "texto": "The Network of Municipal Libraries is made up of 226 libraries and 10 mobile libraries which offer a world of services for all types of users focused on traditional borrowing services, information, access to new technologies, learning and entertainment. With the addition of the BiblioLab programme, libraries are becoming more and more like knowledge creation centres through experimentation in collaborative environments open to the general public.",
+            "+ info": "The BiblioLab aims to promote creation and creativity for the public, highly-valued skills in personal development for people in fields such as education, culture and entrepreneurship. Currently there are BiblioLab projects underway in several libraries and mobile library buses throughout the region which promote the generation of knowledge and social innovation from areas such as technology, science, art and literature.\nIn addition to the traditional borrowing of books, music and films, the libraries and mobile libraries offer other types of events and services: discussions with writers, film screenings, tourist information, multimedia resources, services for people with auditory, visual or mobility difficulties, new resident welcoming, training in new technologies, making spaces available and many more.\nIn addition, there is a large virtual library that offers recommendations, reading guides, themed tours, trivia, an events calendar and other activities for users.",
+            "leyenda": "Libraries"
+          },
+          "ca": {
+            "titulo": "Biblioteques",
+            "texto": "La Xarxa de Biblioteques Municipals està formada per 226 biblioteques i 10 bibliobusos que ofereixen un univers de serveis per a tots els públics centrats en el préstec, la informació, l’accés a les noves tecnologies, l’aprenentatge i l’entreteniment. Amb la incorporació del programa BiblioLab, les biblioteques passen a ser, cada vegada més, centres de creació de coneixement a través de l’experimentació en entorns col·laboratius oberts a la ciutadania.",
+            "+ info": "El BiblioLab vol fomentar la creació i la creativitat de la ciutadania, habilitats de gran valor en el desenvolupament de les persones en terrenys com el de l’educació, la cultura i l’emprenedoria. Actualment ja hi ha projectes BiblioLab a diverses biblioteques i bibliobusos d’arreu del territori que impulsen la generació de coneixement i la innovació social des d’àmbits com la tecnologia, la ciència, l’art o la literatura. \n A  més del tradicional préstec de llibres, música i pel·lícules, les biblioteques i bibliobusos ofereixen  altres tipus de propostes i serveis: trobades amb escriptors, aules de cinema, servei d’informació turística, recursos multimèdia, serveis a persones amb dificultats auditives, visuals o de mobilitat, acollida a persones nouvingudes, formació en noves tecnologies, cessió d’espais i molts més.\n A més d’això, hi ha una gran biblioteca virtual que ofereix recomanacions, guies de lectura, recorreguts temàtics, curiositats, agenda d’activitats i altres propostes per als usuaris.",
+            "leyenda": "Biblioteques"
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 110,
+            "oscaddr": "/personas/bibliotecas 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Bibliotecas",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Bibliotecas"
+              },
+              "en": {
+                "titulo": "Libraries",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Libraries"
+              },
+              "ca": {
+                "titulo": "Biblioteques",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Biblioteques"
+              }
+            },
+            "codigos_superposicion": [
+              111,
+              112
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 111,
+            "oscaddr": "/personas/bibliotecas 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Bibliobuses",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Bibliobuses"
+              },
+              "en": {
+                "titulo": "Mobile library buses",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Mobile library buses"
+              },
+              "ca": {
+                "titulo": "Bibliobusos",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Bibliobusos"
+              }
+            },
+            "codigos_superposicion": [
+              110,
+              112
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 112,
+            "idiomas": {
+              "es": {
+                "titulo": "BiblioLab",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "BiblioLab"
+              },
+              "en": {
+                "titulo": "BiblioLab",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "BiblioLab"
+              },
+              "ca": {
+                "titulo": "BiblioLab",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "BiblioLab"
+              }
+            },
+            "oscaddr": "/personas/bibliotecas 3",
+            "codigos_superposicion": [
+              110,
+              111
+            ],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "oscaddr": "/personas/teleasistencia 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Servicio Local de Teleasistencia",
+            "texto": "Más de 85.000 usuarios se benefician del Servicio Local de Teleasistencia de la Diputación de Barcelona. Más de 3 millones y medio de llamadas y 110.000 visitas domiciliarias cada año. El servicio dispone de 29 unidades móviles. El servicio de teleasistencia es un servicio preventivo y de proximidad que ofrece apoyo personal a las personas dependientes para poder seguir viviendo en el entorno habitual con seguridad. Las personas usuarias pueden ser atendidas de manera inmediata ante situaciones de crisis, caídas o emergencias.",
+            "+ info": "El Servicio Local de Teleasistencia de la Diputación de Barcelona y de los ayuntamientos de la demarcación forma parte de la Cartera de Servicios Sociales de Cataluña desde la perspectiva de la promoción de la autonomía personal. Asimismo, es uno de los programas sociales de mayor implantación territorial, con una elevada satisfacción por parte de los usuarios.",
+            "leyenda": "Servicio Local de Teleasistencia"
+          },
+          "en": {
+            "titulo": "Local Telecare Service",
+            "texto": "More than 85,000 users benefit from the Local Teleassistance Service of the Diputació de Barcelona. More than 3 and a half million calls and 110,000 home visits every year. The service has 29 mobile units.\nTelecare service is a preventive, local service that offers personal support to dependent people, so they can continue safely living in their usual setting. Users can be attended to immediately in crisis situations, falls or emergencies.\n",
+            "+ info": "The Local Telecare Service of the Barcelona Provincial Council and local councils in the province is part of the portfolio of social services in Catalonia with regard to promoting personal autonomy and social programmes with a more regional presence, with high satisfaction shown by the users.",
+            "leyenda": "Municipalities with telecare service"
+          },
+          "ca": {
+            "titulo": "Servei Local de Teleassistència",
+            "texto": "Més de 85.000 usuaris es beneficien del Servei Local de Teleassistència de la Diputació de Barcelona. Més de 3 milions i mig de trucades i 110.000 visites domiciliàries cada any. El servei disposa de 29 unitats mòbils. El Servei de Teleassistència és un servei preventiu i de proximitat que ofereix suport personal a les persones dependents per poder continuar vivint en l’entorn habitual amb seguretat. Les persones usuàries poden ser ateses de manera immediata davant de situacions de crisi, caigudes o emergències.",
+            "+ info": "El Servei Local de Teleassistència de la Diputació de Barcelona i dels ajuntaments de la demarcació forma part de la Cartera de serveis socials de Catalunya des del vessant de la promoció de l’autonomia personal i és un dels programes socials amb més implantació territorial, amb elevada satisfacció per part de les persones usuàries.",
+            "leyenda": "Servei Local de Teleassistència"
+          }
+        },
+        "codigos_superposicion": [ 211,
+          310],
+        "Subcontenidos": []
+      },
+      {
+        "id": 13,
+        "oscaddr": "/personas/governobert 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Gobierno Abierto",
+            "texto": "DibaOberta es un proyecto de la Diputación de Barcelona que encierra un doble objetivo: por un lado, desarrollar internamente el Gobierno Abierto en la Diputación y, por otro, ayudar y asesorar a los 311 municipios de la demarcación para que lleven a cabo su propio proyecto de Gobierno Abierto.",
+            "+ info": "Para alcanzar estos objetivos, se han desarrollado una serie de programas que incluyen la formación (tanto interna como externa), la constitución de una comisión de Gobierno Abierto, la realización de encuestas y el seguimiento del estado del Gobierno Abierto de cada municipio a través de indicadores. También engloba el espacio DibaOberta en la web corporativa, el presupuesto abierto, concursos de aplicaciones, la puesta en marcha de una comunidad virtual, así como varios programas de apoyo en materia de datos abiertos, transparencia y participación ciudadana.",
+            "leyenda": "Gobierno Abierto"
+          },
+          "en": {
+            "titulo": "Open Government",
+            "texto": "DibaOberta is a Barcelona Provincial Council project, which has a twofold purpose: firstly, the implementation of Open Government in the Council, and secondly, to provide assistance and advice to the 311 local councils in the province to be able to carry out their own project.",
+            "+ info": "To achieve these objectives, a range of programmes have been implemented including training (both internal and external), the creation of an Open Government Commission, surveys and monitoring through indicators of the state of Open Government in each local council, the DibaOberta website, open budgets, app competitions, the launch of a virtual community and various support programmes in the field of open data, transparency and citizen engagement. ",
+            "leyenda": "Open Government"
+          },
+          "ca": {
+            "titulo": "Govern Obert",
+            "texto": "DibaOberta és un projecte de la Diputació de Barcelona amb un doble objectiu: d’una banda, el desplegament intern del Govern Obert a la Diputació, i de l’altra, l’ajut i assessorament als 311 municipis de la demarcació perquè portin a terme el seu propi projecte de Govern Obert.",
+            "+ info": "Per tal d’assolir aquests objectius s’han desplegat una sèrie de programes que inclouen formació (tant interna com externa), la constitució d’una comissió de Govern Obert, enquesta i seguiment a través d’indicadors de l’estat del Govern Obert a cada municipi, espai DibaOberta al web corporatiu, pressupost obert, concursos d’apps, posada en marxa d’una comunitat virtual i diversos programes de suport en matèria de dades obertes, transparència i participació ciutadana.\n\n Ajuntaments amb:",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 130,
+            "oscaddr": "/personas/governobert 1",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": ""
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": ""
+              },
+              "ca": {
+                "titulo": "responsables polítics de Govern Obert. ",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb responsables polítics de Govern Obert."
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 131,
+            "oscaddr": "/personas/governobert 2",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Estratègia",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb Estratègia"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 132,
+            "oscaddr": "/personas/governobert 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Web",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Web"
+              },
+              "en": {
+                "titulo": "Web",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Web"
+              },
+              "ca": {
+                "titulo": "Web",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb web"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 133,
+            "oscaddr": "/personas/governobert 4",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Respostes públiques",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb respostes públiques"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 134,
+            "oscaddr": "/personas/governobert 5",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Arxiu municipal",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb arxiu municipal"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 135,
+            "oscaddr": "/personas/governobert 6",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Portal de transparència",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb portal de transparència"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 136,
+            "oscaddr": "/personas/governobert 7",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Accés a la informació pública",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb accés a la informació pública"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 137,
+            "oscaddr": "/personas/governobert 8",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Pressupost obert",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb pressupost obert"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 138,
+            "oscaddr": "/personas/governobert 9",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Processos participatius",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb processos participatius"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 139,
+            "oscaddr": "/personas/governobert 10",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con Gobierno Abierto"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Local councils with an Open Government"
+              },
+              "ca": {
+                "titulo": "Dades obertes",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Ajuntaments amb dades obertes"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "oscaddr": "/personas/ocupacio 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Promoción económica y empleo",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Economic development and employment.",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Promoció econòmica i ocupació",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 140,
+            "oscaddr": "/personas/ocupacio 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Red de Servicios Locales de Empleo",
+                "texto": "La Red de Servicios Locales de Empleo (Xaloc, por sus siglas en catalán) permite a la Diputación de Barcelona, y a las entidades locales que la integran, impulsar y dinamizar el sistema público local de empleo de la demarcación de Barcelona. Da cobertura a 280 municipios, al 90 % del territorio y al 96 % de la población potencialmente activa (excluyendo Barcelona ciudad). La red se ha dotado de una plataforma digital para buscar empleo.",
+                "+ info": "La plataforma digital para buscar empleo es un sistema de información integrado por una aplicación de uso restringido para los profesionales de los servicios locales de empleo, una web de ofertas de trabajo de acceso universal y una herramienta de business intelligence (Qlick View) que permite extraer estadísticas a medida para tomar decisiones estratégicas.\nTodas las entidades locales están conectadas en red y comparten información. El objetivo es lograr una mayor eficacia de las acciones locales en materia de empleo, prestar un servicio de mayor calidad, evitar duplicidades y sumar esfuerzos mediante la concertación, la mejora de las competencias profesionales, el intercambio de experiencias, la optimización de los recursos, la capacidad de respuesta, la flexibilidad y la transversalidad.",
+                "leyenda": "Municipios dentro de la red Xaloc"
+              },
+              "en": {
+                "titulo": "Local Employment Services Network",
+                "texto": "The local employment services network (Xaloc, by its Catalan acronym) allows the Barcelona Provincial Council, and the local entities that are members, to promote and strengthen the local public employment system in the province of Barcelona. It provides coverage to 280 municipalities, 90% of the territory and 96% of the potential labour force (excluding the city of Barcelona). The network has been equipped with a digital job search platform.",
+                "+ info": "The digital job search platform is an integrated information system with a restricted use application for professionals of the local employment services, an open-access website with job offers and a business intelligence tool (Qlick View) that allows extracting statistics for strategic decision-making.\nAll local entities are connected on the network and share information. The aim is to contribute to achieving greater effectiveness for local actions in terms of employment, provide higher quality service, prevent duplication and make a joint effort through coordination, the improvement of the professional skills, the exchange of experiences, the optimisation of resources, responsiveness, flexibility and mainstreaming.",
+                "leyenda": "Municipalities within the Xaloc network"
+              },
+              "ca": {
+                "titulo": "Xarxa de Serveis Locals d’Ocupació ",
+                "texto": "La Xarxa de Serveis Locals d’Ocupació (Xaloc) permet a la Diputació de Barcelona, i a les entitats locals que la integren, impulsar i dinamitzar el sistema públic local d’ocupació de la demarcació de Barcelona. Dona cobertura a 280 municipis, el 90% del territori i al 96% de la població potencialment activa (excloent Barcelona ciutat). La xarxa s’ha dotat d’una plataforma digital per a la recerca d’ocupació.",
+                "+ info": "La plataforma digital per a la recerca d’ocupació és un sistema d’informació integrat per una aplicació d’ús restringit als professionals dels serveis locals d’ocupació, una web d’ofertes de feina d’accés universal i una eina de business intelligence (Qlick View) que permet extreure estadístiques a mida per a la presa de decisions estratègiques.\nTotes les entitats locals estan connectades en xarxa i comparteixen informació. L’objectiu és contribuir a aconseguir una major eficàcia de les accions locals en matèria d’ocupació, prestar un servei de més qualitat, evitar duplicitats i sumar esforços mitjançant la concertació, la millora de les competències professionals, l’intercanvi d’experiències, l’optimització dels recursos, la capacitat de resposta, la flexibilitat i la transversalitat.",
+                "leyenda": "Municipis dins de la xarxa Xaloc"
+              }
+            },
+            "codigos_superposicion": [
+              141,
+              211,
+              212
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 141,
+            "oscaddr": "/personas/ocupacio 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Polígonos de actividad económica",
+                "texto": "La Diputación de Barcelona pone a disposición de los ayuntamientos de la demarcación 30M € para mejorar la calidad de los polígonos de actividad económica, a través de inversiones de alto impacto dirigidas a incrementar la competitividad de las empresas que están implantadas.",
+                "+ info": "El objetivo de mejorar los polígonos de actividad económica es favorecer el crecimiento empresarial, atraer nuevas oportunidades de negocio y generar empleo de calidad. Por este motivo, se pretende completar y mejorar las infraestructuras y los servicios para adaptarlos a las necesidades y a los retos de la industria, e incrementar la dimensión media de los polígonos favoreciendo su agrupación o reconversión para que cobren sentido. También se persigue optimizar los espacios inactivos para ampliar las instalaciones de las empresas, reconvertir los polígonos, atraer nuevas actividades y generar nuevos usos.",
+                "leyenda": "Polígonos de actividad económica"
+              },
+              "en": {
+                "titulo": "Economic activity zones",
+                "texto": "The Barcelona Provincial Council has contributed €30 million to local councils in the area to improve the quality of economic activity zones through high-impact investments aimed at increasing competitiveness for companies established in them.",
+                "+ info": "The improvement objectives for economic activity zones are to encourage business growth, attract new business opportunities and generate quality employment. For this reason, the aim is to complete and improve infrastructures and services to adapt them to industry’s needs and challenges, increase the average size of the zones encouraging them to be grouped together or logically restructured, as well optimising spaces without activities to allow companies to expand their facilities, restructure the zones, attract new activities and generate new uses.",
+                "leyenda": "Economic activity zones"
+              },
+              "ca": {
+                "titulo": "Polígons d’activitat econòmica",
+                "texto": "La Diputació de Barcelona posa a disposició dels ajuntaments de la demarcació 30M € per millorar la qualitat dels polígons d’activitat econòmica a través d’inversions d’alt impacte adreçades a incrementar la competitivitat de les empreses que hi estan implantades.",
+                "+ info": "Els objectius de la millora dels polígons d’activitat econòmica són afavorir el creixement empresarial, atreure noves oportunitats de negoci i generar ocupació de qualitat. Per aquest motiu es pretén completar i millorar les infraestructures i els serveis per adaptar-los a les necessitats i reptes de la indústria, incrementar la dimensió mitjana dels polígons afavorint la seva agrupació o reconversió per tal que tinguin sentit, així com optimitzar els espais sense activitat de manera que permetin ampliar instal·lacions de les empreses, reconvertir els polígons, atreure noves activitats i generar nous usos.",
+                "leyenda": "Polígons d’activitat econòmica"
+              }
+            },
+            "codigos_superposicion": [
+              140,
+              210,
+              212
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 142,
+            "oscaddr": "/personas/ocupacio 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Centros Locales de Servicios a las Empresas",
+                "texto": "Los 102 Centros Locales de Servicios a las Empresas de la demarcación de Barcelona son los departamentos de los ayuntamientos que trabajan para desarrollar el tejido empresarial de su territorio ayudando a la creación de nuevas empresas o la consolidación y crecimiento de las ya existentes, mejorando su competitividad. Dan cobertura al 98 % de la población de la demarcación y al 91 % de sus municipios.",
+                "+ info": "Los Centros Locales de Servicios a las Empresas, que cuentan con 556 profesionales, ofrecen asistencia técnica a emprendedores para analizar la viabilidad de su proyecto empresarial, apoyan a las empresas de reciente creación para que se consoliden en el mercado, y ayudan a las empresas a elaborar y a poner en marcha planes de crecimiento. También ofrecen servicios de alojamiento empresarial y proporcionan otros servicios de valor como formación en el ámbito empresarial, e información o apoyo para elaborar trámites o contactos.\nEn 2017, los Centros Locales de Servicios a las Empresas atendieron a más de 64.000 emprendedores y a casi 34.000 empresas.",
+                "leyenda": "Centros Locales de Servicios a las Empresas"
+              },
+              "en": {
+                "titulo": "Local Business Services Centres",
+                "texto": "The 102 Local Business Services Centres in the Barcelona province are the departments within local councils that work with the aim of developing the area’s business sector, contributing to the creation of new businesses or the consolidation and growth of existing companies while enhancing their competitiveness. They cover 98% of the province’s population and 91% of its municipalities.",
+                "+ info": "The Local Business Services Centres, which have 556 professionals, offer technical assistance to entrepreneurs to analyse the viability of their business plans, support business startups by consolidating them in the market, help companies to develop and implement growth plans, offer business hosting services and provide other valuable services such as business training, information, support in handling formalities and contacts.\nIn 2017 the Local Business Services Centres assisted more than 64,000 entrepreneurs and nearly 34,000 businesses.",
+                "leyenda": "Local Business Services Centres"
+              },
+              "ca": {
+                "titulo": "Centres Locals de Serveis a les Empreses",
+                "texto": "Els 102 Centres Locals de Serveis a les Empreses de la demarcació de Barcelona són els departaments dels ajuntaments que treballen amb l’objectiu de desenvolupar el teixit empresarial del seu territori contribuint a la creació de noves empreses o la consolidació i creixement de les ja existents tot millorant-ne la competitivitat. Donen cobertura al 98% de la població de la demarcació i al 91% dels seus municipis.",
+                "+ info": "Els Centres Locals de Serveis a les Empreses, que compten amb 556 professionals, ofereixen assistència tècnica a emprenedors per analitzar la viabilitat del seu projecte empresarial, donen suport a les empreses acabades de crear per consolidar-se en el mercat, ajuden a empreses a elaborar i implementar plans de creixement, ofereixen serveis d’allotjament empresarial i proporcionen altres serveis de valor com formació d’àmbit empresarial, informació, suport en l’elaboració de tràmits o contactes.El 2017 els Centres Locals de Serveis a les Empreses van atendre més de 64.000 emprenedors i gairebé 34.000 empreses.",
+                "leyenda": "Centres Locals de Serveis a les Empreses"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "oscaddr": "/personas/km2 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Km2 Ciutat",
+            "texto": "Información de nuestro entorno geolocalizada a través de una herramienta comunitaria y al alcance de todos: Km2 Ciutat es una guía viva y un mapa de activos.\nKm2 Ciudad es un proyecto comunitario que emplea tecnologías de geolocalización para crear contenidos informativos sobre el territorio. A través de su aplicación y gracias a los mapas, facilita el descubrimiento de lugares de interés, incluye elementos lúdicos, da a conocer la agenda de actividades, facilita el acceso a la red de comercios y permite profundizar en el conocimiento del patrimonio histórico y natural de la población.",
+            "+ info": "El proyecto está abierto a la participación de la administración local, a los centros de enseñanza, empresas y emprendedores, así como a comercios y cualquier otra organización que desee formar parte de una red comunitaria orientada a aflorar el potencial cultural, asociativo, educativo, comercial y turístico de una zona determinada de la ciudad, y a fomentar la acción social para mejorar la calidad de vida de sus habitantes.",
+            "leyenda": "Km2 Ciutat"
+          },
+          "en": {
+            "titulo": "Km2 Ciutat",
+            "texto": "Km2 Ciutat is a community project which uses geolocation technology to create informative content about the area. Through its application and maps, it enables users to discover places of interest, include recreational items, advertise the events calendar, facilitate access to the network of shops and deepen knowledge of their town’s historical and natural heritage.",
+            "+ info": "The project is open to participation by local administrations, educational institutions, businesses and entrepreneurs, shops and any other organisation that wants to be part of a community network striving to make the potential of a city’s cultural, association, educational, commercial and tourist areas flourish and to promote social action to improve the quality of life for its inhabitants.",
+            "leyenda": "Km2 Ciutat"
+          },
+          "ca": {
+            "titulo": "Km2 Ciutat",
+            "texto": "Km2 Ciutat és un projecte comunitari d’utilització de tecnologies de geolocalització per a la creació de continguts informatius sobre el territori. A través de la seva aplicació i mapes, ha de facilitar la descoberta de llocs d’interès, incloure elements lúdics, donar a conèixer l’agenda d’actes, facilitar l’accés a la xarxa de comerços i aprofundir en el coneixement del patrimoni històric i natural de la població.",
+            "+ info": "El projecte està obert a la participació de l’administració local, centres d’ensenyament, empreses i emprenedors, comerços i qualsevol altra organització que vulgui formar part d’una xarxa comunitària orientada a fer aflorar el potencial cultural, associatiu, educatiu, comercial i turístic d’una zona de la ciutat i a fomentar l’acció social per millorar la qualitat de vida dels seus habitants.",
+            "leyenda": "Km2 Ciutat"
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": []
+      },
+      {
+        "id": 16,
+        "oscaddr": "/personas/patrimoni 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Patrimonio",
+            "texto": "El Servicio de Catalogación y Conservación de Monumentos (SCCM), actual Servicio de Patrimonio Arquitectónico Local (SPAL), nació el 9 de junio de 1914. En sus más de 104 años de historia, ha actuado de manera directa en 336 monumentos o edificios con valores patrimoniales, algunos más allá de la demarcación de Barcelona.",
+            "+ info": "El SPAL es un equipo multidisciplinar de arquitectos, arquitectos técnicos, restauradores, arqueólogos, historiadores, historiadores del arte, archiveros, infógrafos y fotógrafos que, desde 1914, apoyan a los ayuntamientos en la labor de conservación y puesta en valor de su patrimonio arquitectónico. Sus actuaciones se basan en utilizar un método de trabajo pionero e internacionalmente contrastado.",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Heritage",
+            "texto": "The Monument Cataloguing and Conservation Service (SCCM in its Catalan initials), now the Local Architectural Heritage Service (SPAL in its Catalan initials) was founded on 9 June 1914. In its 104 years plus of history it has worked directly on 336 monuments and buildings with valuable cultural heritage, some beyond the province of Barcelona.",
+            "+ info": "The Local Architectural Heritage Service includes a multidisciplinary team of architects, technical architects, restorers, archaeologists, historians, art historians, archivists, graphic designers and photographers who have supported municipalities in conserving and placing value on their architectural heritage since 1914. Their work is based on the use of a pioneering and internationally renowned work method.",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Patrimoni",
+            "texto": "El Servei de Catalogació i Conservació de Monuments (SCCM), actual Servei de Patrimoni Arquitectònic Local (SPAL), va néixer el 9 de juny del 1914. En els seus més de 104 anys d’història ha actuat de manera directa en 336 monuments i edificis amb valors patrimonials, alguns més enllà de la demarcació de Barcelona.",
+            "+ info": "El Servei de Patrimoni Arquitectònic Local és un equip multidisciplinari d’arquitectes, arquitectes tècnics, restauradors, arqueòlegs, historiadors, historiadors de l’art, arxivers, infògrafs i fotògrafs que donen suport als ajuntaments en la conservació i posada en valor del seu patrimoni arquitectònic des del 1914. Les seves actuacions es basen en la utilització d’un mètode de treball pioner i contrastat internacionalment.",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 160,
+            "oscaddr": "/personas/patrimoni 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Iglesias",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuaciones: Iglesias"
+              },
+              "en": {
+                "titulo": "Churches",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actions: Churches"
+              },
+              "ca": {
+                "titulo": "Esglèsies",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuacions: Esglèsies"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 161,
+            "oscaddr": "/personas/patrimoni 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Monasterios",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuaciones: Monasterios"
+              },
+              "en": {
+                "titulo": "Monasteries",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actions: Monasteries"
+              },
+              "ca": {
+                "titulo": "Monastirs",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuacions: Monastirs"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 162,
+            "oscaddr": "/personas/patrimoni 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Castillos",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuaciones: Castillos"
+              },
+              "en": {
+                "titulo": "Castles",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actions: Castles"
+              },
+              "ca": {
+                "titulo": "Castells",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuacions: Castells"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 163,
+            "oscaddr": "/personas/patrimoni 4",
+            "idiomas": {
+              "es": {
+                "titulo": "Puentes",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuaciones: Puentes"
+              },
+              "en": {
+                "titulo": "Bridges",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actions: Bridges"
+              },
+              "ca": {
+                "titulo": "Ponts",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuacions: Ponts"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 164,
+            "oscaddr": "/personas/patrimoni 5",
+            "idiomas": {
+              "es": {
+                "titulo": "Yacimientos arqueológicos",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuaciones: Yacimientos arqueológicos"
+              },
+              "en": {
+                "titulo": "Archaeological deposits",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actions: Archaeological deposits"
+              },
+              "ca": {
+                "titulo": "Jaciments Arqueològics",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuacions: jaciments arqueològics"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 165,
+            "oscaddr": "/personas/patrimoni 6",
+            "idiomas": {
+              "es": {
+                "titulo": "Otros: Masías, Museos.",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuaciones: masías, museos"
+              },
+              "en": {
+                "titulo": "Others: Farms, Museums.",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actions: farms, museums."
+              },
+              "ca": {
+                "titulo": "Altres: masies, museus.",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Actuacions: masies, museus."
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "oscaddr": "/personas/oficina_patrimoni 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Oficina de Patrimonio Cultural",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Cultural Heritage Office",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Oficina de Patrimoni Cultural",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 170,
+            "oscaddr": "/personas/oficina_patrimoni 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Mapas de patrimonio cultural en línea",
+                "texto": "Los mapas de patrimonio cultural son una herramienta para consultar los datos sobre el patrimonio inmueble, mueble, documental, inmaterial y natural, con el fin de establecer medidas para protegerlos, conservarlos y difundirlos. Actualmente, 162 municipios disponen de un mapa de patrimonio cultural en línea, con más de 36.000 elementos inventariados.",
+                "+ info": "La Diputación de Barcelona apoya las políticas y estrategias de los ayuntamientos en relación con la conservación, la investigación, la difusión y la dinamización de los bienes patrimoniales de su territorio.",
+                "leyenda": "Mapas de patrimonio cultural en línea"
+              },
+              "en": {
+                "titulo": "Online cultural heritage maps",
+                "texto": "The cultural heritage maps are a consultation tool on the data held regarding real estate, property, documentary, intangible and natural heritage, created to establish measures for their protection, conservation and dissemination. Currently, 162 municipalities have an online cultural heritage map with more than 36,000 inventoried items.",
+                "+ info": "The Barcelona Provincial Council provides support to local council policies and strategies regarding conservation, research, dissemination and restoration of valuable heritage assets in its territory.",
+                "leyenda": "Online Cultural Heritage Maps"
+              },
+              "ca": {
+                "titulo": "Mapes de patrimoni cultural en línia",
+                "texto": "Els mapes de patrimoni cultural són una eina de consulta de les dades sobre el patrimoni immoble, moble, documental, immaterial i natural, pensada per establir mesures per a la seva protecció, conservació i difusió. Actualment 162 municipis disposen de mapa de patrimoni cultural en línia, i ja hi ha més de 36.000 elements inventariats.",
+                "+ info": "La Diputació de Barcelona dona suport a les polítiques i estratègies dels ajuntaments en relació amb la conservació, la recerca, la difusió i la dinamització dels béns patrimonials del seu territori. ",
+                "leyenda": "Mapes de patrimoni cultural en línia"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 171,
+            "oscaddr": "/personas/oficina_patrimoni 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Red de Archivos Municipales",
+                "texto": "La Red de Archivos Municipales (XAM, por sus siglas en catalán), constituida en 2003, es el instrumento de colaboración para garantizar la correcta gestión del patrimonio documental local de los ayuntamientos mayores de 10 000 habitantes con obligación legal. Lo integran 226 municipios de la provincia de Barcelona.",
+                "+ info": "La Diputación de Barcelona apoya el tratamiento archivístico, la implementación de la administración electrónica (e-administración) en todos los municipios de la provincia, la restauración y conservación de documentos, y la digitalización. Aparte, difunde el patrimonio documental mediante la consulta en línea de los fondos documentales y las exposiciones virtuales, y promueve la constante formación y reciclaje del personal técnico de los archivos municipales.",
+                "leyenda": "Red de Archivos Municipales"
+              },
+              "en": {
+                "titulo": "Municipal Archive Network",
+                "texto": "The Municipal Archive Network (XAM in its Catalan initials), founded in 2003, is a collaboration tool designed to ensure the proper management of the local documentary heritage of towns with over 10,000 inhabitants which are legally required to do so.  226 municipalities of the province of Barcelona form part of this network.",
+                "+ info": "The Barcelona Provincial Council provides support in archival processing, implementing electronic administration for all local councils in the province and the restoration, conservation and digitalisation of their documents.  Furthermore, it disseminates the documentary heritage by making an online consultation of documentary archives available, including virtual exhibitions, and promotes constant training and keeping the technical staff of the municipal archives up to date.",
+                "leyenda": "Municipal Archive Network"
+              },
+              "ca": {
+                "titulo": "Xarxa d’Arxius Municipals",
+                "texto": "La Xarxa d’Arxius Municipals (XAM), constituïda l’any 2003, és un instrument de col·laboració per garantir la correcta gestió del patrimoni documental local dels ajuntaments majors de 10.000 habitants, que en tenen l’obligació legal. L’integren 226 municipis de la província de Barcelona.",
+                "+ info": "La Diputació de Barcelona dona suport al tractament arxivístic, a la implementació de l’administració electrònica a tots els municipis de la província, i a la restauració, conservació i digitalització de documents. A més, difon el patrimoni documental mitjançant la consulta en línia dels fons documentals i mitjançant les exposicions virtuals, i promou la constant formació i reciclatge del personal tècnic dels arxius municipals.",
+                "leyenda": "Xarxa d’Arxius Municipals"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 172,
+            "oscaddr": "/personas/oficina_patrimoni 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Red de Museos Locales",
+                "texto": "La Red de Museos Locales (XML, por sus siglas en catalán) de la Diputación de Barcelona, constituida en 2001, es una herramienta de apoyo y colaboración entre los museos locales. Lo integran 67 equipamientos de 52 municipios de la demarcación de Barcelona.",
+                "+ info": "La Diputación de Barcelona apoya la documentación de las colecciones, la restauración y conservación de piezas singulares, produciendo e itinerando exposiciones temporales para mejorar las programaciones de los museos. Asimismo, difunde y comunica las actividades (el museo más grande), forma al personal técnico de los museos y promueve su reciclaje, y fomenta la accesibilidad a los museos para todos los públicos (mirada táctil).",
+                "leyenda": "Red de Museos Locales"
+              },
+              "en": {
+                "titulo": "Network of Local Museums",
+                "texto": "The Network of Local Museums (XML in its Catalan initials) of the Barcelona Provincial Council, established in 2001, is a support and collaboration tool for local museums. It is formed by 67 facilities in 52 municipalities in the province of Barcelona",
+                "+ info": "Barcelona Provincial Council provides support in documenting the collections, for their restoration and the conservation of unique pieces, producing and arranging exhibitions to enhance the programmes provided by museums. At the same time, it disseminates and communicates the activities (the largest museum), and trains and keeps the technical staff of the museums up to date, promoting accessibility in museums for all types of visitors (touch display).",
+                "leyenda": "Network of Local Museums"
+              },
+              "ca": {
+                "titulo": "Xarxa de Museus Locals",
+                "texto": "La Xarxa de Museus Locals (XML) de la Diputació de Barcelona, constituïda el 2001, és una eina de suport i col·laboració dels museus locals. L’integren 67 equipaments de 52 municipis de la demarcació de Barcelona.",
+                "+ info": "La Diputació de Barcelona dona suport a la documentació de les col·leccions, a la restauració i conservació de peces singulars, produint i itinerant exposicions temporals per millorar les programacions dels museus. Alhora, difon i comunica les activitats (el museu més gran), forma i recicla el personal tècnic dels museus, i fomenta l’accessibilitat als museus per a tots els públics (mirada tàctil).",
+                "leyenda": "Xarxa de Museus Locals"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "oscaddr": "/sostenibilidad 0",
+    "idiomas": {
+      "es": {
+        "titulo": "Sostenibilidad",
+        "texto": "",
+        "leyenda": ""
+      },
+      "en": {
+        "titulo": "Sustainability",
+        "texto": "",
+        "leyenda": ""
+      },
+      "ca": {
+        "titulo": "Sostenibilitat",
+        "texto": "",
+        "leyenda": ""
+      }
+    },
+    "codigos_superposicion": [],
+    "contenidos": [
+      {
+        "id": 21,
+        "oscaddr": "/sostenibilidad/xarxapobles 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Red de Ciudades y Pueblos hacia la Sostenibilidad",
+            "texto": "La Red de Ciudades y Pueblos hacia la Sostenibilidad es una asociación de municipios con aproximadamente 280 miembros, que incluye entidades locales y supralocales, así como varios observadores de gobiernos regionales y municipios de otras regiones. Se creó en 1997 para avanzar hacia el desarrollo sostenible local y contribuir a la sostenibilidad global.",
+            "+ info": "Los objetivos de la Red son:\nPromover políticas de desarrollo sostenible local basadas en la economía verde y la gobernanza participativa.\nDar apoyo a los municipios para mejorar los servicios públicos y generar eficiencia y oportunidades de ahorro económico en la gestión ambiental.\nConvertirse en una plataforma de debate e intercambio municipal, y promover la cooperación entre los niveles gubernamentales, especialmente entre los gobiernos locales y el gobierno de Cataluña.\nFomentar la cooperación público-privada y la participación de los sectores sociales.",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Network of Cities and Towns working towards Sustainability",
+            "texto": "The Network of Cities and Towns working towards Sustainability is an association of municipalities with about 280 members including local and supralocal authorities and various observers from the Government of Catalonia and municipalities from other Catalan provinces. It was created in 1997 to work towards local sustainable development and contribute to global sustainability.",
+            "+ info": "The Network’s objectives are:\nTo promote local sustainable development policies based on the green economy and participatory governance.\nTo support municipalities to improve public services and create efficiency and cost saving opportunities in environmental management.\nTo become a platform for municipal discussion and exchange and promote cooperation between the different levels of government, especially between local governments and the Government of Catalonia.\nTo encourage public-private cooperation and participation by social actors.",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Xarxa de Ciutats i Pobles cap a la Sostenibilitat",
+            "texto": "La Xarxa de Ciutats i Pobles cap a la Sostenibilitat és una associació de municipis amb prop de 280 membres, incloent-hi entitats locals i supralocals i diversos observadors de governs regionals i municipis d’altres regions. Es va crear el 1997 per avançar cap al desenvolupament sostenible local i contribuir a la sostenibilitat global.",
+            "+ info": "Els objectius de la Xarxa són:\nPromoure polítiques de desenvolupament sostenible local basades en l’economia verda i la governança participativa.\nDonar suport als municipis per millorar els serveis públics i generar eficiència i oportunitats d’estalvi econòmic en la gestió ambiental.",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 210,
+            "oscaddr": "/sostenibilidad/xarxapobles 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Cambio climático y calidad ambiental",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Cambio climático y calidad ambiental"
+              },
+              "en": {
+                "titulo": "Climate change and environmental quality",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Climate change and environmental quality"
+              },
+              "ca": {
+                "titulo": "Canvi climàtic i qualitat ambiental",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Canvi climàtic i qualitat ambiental"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 211,
+            "oscaddr": "/sostenibilidad/xarxapobles 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Sostenibilidad para las personas",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Sostenibilidad para las personas"
+              },
+              "en": {
+                "titulo": "Sustainability for the people",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Sustainability for the people"
+              },
+              "ca": {
+                "titulo": "Sostenibilitat per a les persones",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Sostenibilitat per a les persones"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 212,
+            "oscaddr": "/sostenibilidad/xarxapobles 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Economía circular y verde",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Economía circular y verde"
+              },
+              "en": {
+                "titulo": "Circular and green economy",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Circular and green economy"
+              },
+              "ca": {
+                "titulo": "Economia circular i verda",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Economia circular i verda"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "oscaddr": "/sostenibilidad/municipis 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Municipios comprometidos con el cambio climático",
+            "texto": "Los municipios y la Diputación de Barcelona luchan contra el cambio climático, de ahí que se hayan adherido al Pacto de los Alcaldes.",
+            "+ info": "Luchar contra el cambio climático es actuar contra sus causas (mitigación) y contra sus impactos (adaptación).\nMitigar el cambio climático: son aspectos clave reducir las emisiones de gases de efecto invernadero, reducir los consumos energéticos y promover las energías renovables, así como rebajar la generación de residuos y aumentar el reciclaje.\nAdaptación al cambio climático: evaluar la vulnerabilidad a los impactos del cambio climático ─aumento de la temperatura, menor disponibilidad de agua, incremento de las tormentas, etc.─ y actuar para estar más preparados para afrontarlos.\nLos municipios firmantes del Pacto de los Alcaldes deben redactar un Plan de Acción para la Energía Sostenible y el Clima (PAESC), donde se establecen las medidas de mitigación y adaptación que hay que llevar a cabo. La Diputación de Barcelona da apoyo a los municipios en todas las fases del proceso: redacción del plan de acción, ejecución de las medidas, seguimiento del plan, comunicación y formación.",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Municipalities committed to Climate Change",
+            "texto": "The Barcelona Provincial Council and the municipalities pledge action against climate change, for this reason, they have joined forces through the Covenant of Mayors.",
+            "+ info": "Fighting against climate change involves acting against the causes (mitigation) and their impacts (adaptation).\nMitigating climate change: reducing greenhouse gas emissions, reducing energy consumption and promoting renewable energies are key aspects, as well as reducing the generation of waste and increasing recycling.\nAdaptation to climate change: assessing vulnerability to the impacts of climate change — increasing temperature, reduced water availability, severe storms, etc. — and acting to be better prepared to deal with these impacts.\nThe Covenant of Mayors for Climate and Energy signatories are required to develop a Sustainable Energy and Climate Action Plan (SECAP) which establishes the mitigation and adaptation measures to be carried out. Barcelona Provincial Council provides support to the municipalities in all phases of the process: drafting the action plan, implementing measures, monitoring the plan, communication and training.",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Municipis compromesos amb el canvi climàtic",
+            "texto": "Els municipis i Diputació de Barcelona volen lluitar contra el canvi climàtic, per això estan adherits al Pacte dels Alcaldes i Alcaldesses.",
+            "+ info": "Lluitar contra el canvi climàtic és actuar contra les seves causes (mitigació) i contra els seus impactes (adaptació).\nMitigar el canvi climàtic: reduir les emissions de gasos amb efecte d’hivernacle, disminuir el consum energètic i promoure les energies renovables són aspectes clau, així com reduir la generació de residus i augmentar el reciclatge.\nAdaptació al canvi climàtic: avaluar la vulnerabilitat als impactes del canvi climàtic —augment de la temperatura, menor disponibilitat d’aigua, tempestes fortes, etc.— i actuar per estar més preparats per fer-hi front.\nEls municipis signataris del Pacte dels Alcaldes han de redactar un Pla d’Acció per  l’Energia Sostenible i el Clima (PAESC), que estableix les mesures de mitigació i adaptació que cal portar a terme. La Diputació de Barcelona dona suport als municipis en totes les fases del procés: redacció del pla d’acció, execució de mesures, seguiment del pla, comunicació i formació.",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 220,
+            "oscaddr": "/sostenibilidad/municipis 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Emisiones de CO2",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Evolución de las emisiones de CO2 desde 2005 hasta 2016"
+              },
+              "en": {
+                "titulo": "CO2 emissions",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Evolution of CO2 emissions from 2005 to 2016"
+              },
+              "ca": {
+                "titulo": "Emissions de CO2",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Evolució de les emissions de CO2 del 2005 al 2016"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 221,
+            "oscaddr": "/sostenibilidad/municipis 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Municipios adheridos al Pacto de los Alcaldes",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios adheridos al Pacto de los Alcaldes"
+              },
+              "en": {
+                "titulo": "Covenant of Mayors signatories",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Covenant of Mayors signatories"
+              },
+              "ca": {
+                "titulo": "Municipis adherits al Pacte dels Alcaldes",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipis adherits al Pacte dels Alcaldes"
+              }
+            },
+            "codigos_superposicion": [
+              230,
+              232,
+              240,
+              242,
+              250,
+              260,
+              261,
+              262
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 222,
+            "oscaddr": "/sostenibilidad/municipis 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Vulnerabilidad a las olas de calor",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Vulnerabilidad preliminar a las olas de calor y a la subida de las temperaturas"
+              },
+              "en": {
+                "titulo": "Vulnerability assessment to heat waves",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Preliminary vulnerability assessment to heat waves and rising temperature"
+              },
+              "ca": {
+                "titulo": "Vulnerabilitat a les onades de calor",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Vulnerabilitat preliminar a les onades de calor i pujada de temperatura"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 223,
+            "oscaddr": "/sostenibilidad/municipis 4",
+            "idiomas": {
+              "es": {
+                "titulo": "Vulnerabilidad a la sequía",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Vulnerabilidad a la sequía y a la menor disponibilidad de agua"
+              },
+              "en": {
+                "titulo": "Vulnerability to drought",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Preliminary vulnerability assessment to drought and reduced water availability "
+              },
+              "ca": {
+                "titulo": "Vulnerabilitat a la sequera",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Vulnerabilitat a la sequera i a menys disponibilitat d’aigua"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          },
+          {
+            "id": 224,
+            "oscaddr": "/sostenibilidad/municipis 5",
+            "idiomas": {
+              "es": {
+                "titulo": "Vulnerabilidad de los bosques al cambio climático",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Vulnerabilidad de los bosques al cambio climático"
+              },
+              "en": {
+                "titulo": "Vulnerability of forests to climate change",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Preliminary vulnerability assessment of forests to climate change"
+              },
+              "ca": {
+                "titulo": "Vulnerabilitat dels boscos al canvi climàtic",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Vulnerabilitat dels boscos al canvi climàtic"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "oscaddr": "/sostenibilidad/energias 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Energías renovables",
+            "texto": "Los equipamientos públicos utilizan energías renovables con el objetivo de reducir las emisiones de gases de efecto invernadero. La Diputación de Barcelona promueve las energías renovables en los municipios: biomasa y fotovoltaica.",
+            "+ info": "Las energías renovables contribuyen a conseguir edificios municipales NZEB; es decir, de consumo prácticamente nulo o incluso que puedan generar más energía de la que utilizan.\nLa mayoría de las instalaciones de energías renovables que hay en los equipamientos públicos son de energía solar fotovoltaica, para el suministro eléctrico y de biomasa, y en forma de pélets o de astilla forestal, para el suministro de calor.\nCon la instalación de calderas de biomasa y redes de calor en los edificios municipales, los municipios contribuyen a prevenir incendios, a activar la economía local, a generar puestos de trabajo y a reducir la dependencia energética, a la vez que se consiguen importantes ahorros económicos y una gran disminución de las emisiones de gases de efecto invernadero.\nLa instalación de placas fotovoltaicas permite generar energía eléctrica a partir de la radiación solar. Esta energía puede autoconsumirse en el mismo edificio o bien puede inyectarse en la red. Luego, en función de la normativa vigente, o bien será comprada por el sistema eléctrico, o bien se transformará en una bonificación, o bien podrá ser compensada con consumos posteriores mediante un sistema de balance neto.",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Renewable Energy",
+            "texto": "Public facilities use renewable energy with the objective of reducing greenhouse gas emissions. The Barcelona Provincial Council promotes renewable energy in municipalities: biomass and solar energy.",
+            "+ info": "Renewable energy sources contribute to the goal of creating net-zero energy buildings (NZEB) in municipalities.  In other words, buildings with practically zero consumption or that may even generate more energy than they use.\nMost of the renewable energy sources installed in public facilities are solar panels for electricity and biomass in the form of pellets or wood chips to supply heat.\nWith the installation of biomass boilers and heating networks in municipal buildings, municipalities contribute to the prevention of fires, to the local economy, creating jobs and reducing energy dependence whilst making large economic savings and significantly reducing their greenhouse gas emissions.\nThe installation of solar panels enables electricity to be generated using solar radiation. This energy can be used to sustain the building itself or could be transferred to the power grid and, depending on the regulations in force, be purchased by electrical suppliers be given a credit or be compensated for subsequent consumption through a net balance system.",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Energies renovables",
+            "texto": "Els equipaments públics utilitzen energies renovables amb l’objectiu de reduir les emissions de gasos amb efecte d’hivernacle. La Diputació de Barcelona promou les energies renovables als municipis: biomassa i fotovoltaica.",
+            "+ info": "Les energies renovables contribueixen a aconseguir l’objectiu dels edificis municipals NZEB, és a dir, edificis de consum pràcticament zero o que fins i tot poden generar més energia de la que utilitzen.\nLa majoria d’instal·lacions d’energies renovables que hi ha en els equipaments públics són d’energia solar fotovoltaica per al subministrament elèctric i de biomassa, en forma de pèl·lets o d’estella forestal per al subministrament de calor.\nAmb la instal·lació de calderes de biomassa i xarxes de calor en els edificis municipals, els municipis contribueixen a la prevenció d’incendis, l’economia local, la generació de llocs de treball i a la reducció de la dependència energètica, alhora que aconsegueixen estalvis econòmics importants i una disminució important de les emissions de gasos amb efecte d’hivernacle.\nLa instal·lació de plaques fotovoltaiques permet generar energia elèctrica a partir de la radiació solar. Aquesta energia pot ser autoconsumida al mateix edifici o bé pot ser abocada a la xarxa i, en funció de la normativa vigent, serà comprada pel sistema elèctric, rebrà una bonificació o bé podrà ser compensada amb consums posteriors mitjançant un sistema de balanç net.",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 230,
+            "oscaddr": "/sostenibilidad/energias 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Calderas de biomasa",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Calderas de biomasa"
+              },
+              "en": {
+                "titulo": "Biomass boilers",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Biomass boilers"
+              },
+              "ca": {
+                "titulo": "Calderes de biomassa",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Calderes de biomassa"
+              }
+            },
+            "codigos_superposicion": [
+              221,
+              240,
+              262,
+              250,
+              260,
+              261
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 231,
+            "oscaddr": "/sostenibilidad/energias 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Instalaciones fotovoltaicas de autoconsumo",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Instalaciones fotovoltaicas de autoconsumo"
+              },
+              "en": {
+                "titulo": "Self-sustaining solar panels",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Self-sustaining solar panels"
+              },
+              "ca": {
+                "titulo": "Instal·lacions fotovoltaiques d’autoconsum",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Instal·lacions fotovoltaiques d’autoconsum"
+              }
+            },
+            "codigos_superposicion": [
+              221,
+              232
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 232,
+            "oscaddr": "/sostenibilidad/energias 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Instalaciones fotovoltaicas de venta",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Instalaciones fotovoltaicas de venta"
+              },
+              "en": {
+                "titulo": "The sale of solar panels",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "The sale of solar panels"
+              },
+              "ca": {
+                "titulo": "Instal·lacions fotovoltaiques de venda",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Instal·lacions fotovoltaiques de venda"
+              }
+            },
+            "codigos_superposicion": [
+              231,
+              221
+            ],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "oscaddr": "/sostenibilidad/mesura 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Evaluación y gestión ambiental",
+            "texto": "Control eficiente para un medioambiente de mayor calidad: la Diputación de Barcelona da apoyo a los municipios y mide la calidad del aire, del ambiente acústico y de las aguas de las fuentes.",
+            "+ info": "Red de control de partículas del aire\nLa red manual de partículas (PM10 y PM2,5) de la Diputación de Barcelona está constituida por 14 municipios y tiene como objetivo conocer la calidad del aire con respecto a la concentración de partículas. Cada ayuntamiento es responsable del cambio de filtros.\nAnálisis del agua de las fuentes:\nAyuda técnica de la Diputación de Barcelona a los municipios para analizar la calidad del agua de las fuentes naturales. Este servicio se presta a 57 municipios. En general, se analizan los siguientes parámetros dos veces al año: pH, turbidez, conductividad, nitrato, amonio, Escherichia coli, bacterias coliformes, enterococos, Clostridium, además de la temperatura, que se mide in situ. Con los resultados obtenidos, se elabora un informe que se envía a cada ayuntamiento.\nMedición del nivel de ruido:\nDurante períodos de varios meses, los municipios participantes disponen de diversos sensores de ruido, conectados a la plataforma Sentilo, que permite conocer el nivel de ruido en tiempo real. Del análisis de los datos pueden extraerse, entre otros, los niveles de ruido diurnos, vespertinos y nocturnos, de acuerdo con los requerimientos de la normativa europea.",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Evaluation and Environmental Management",
+            "texto": "Efficient control for a better environment: The Barcelona Provincial Council offers support to municipalities, monitoring air quality, the acoustic environment and water sources.",
+            "+ info": "Air quality monitoring network: particle pollution.\nThe manual network to monitor air particles (PM 10 and PM 2.5) of the Barcelona Provincial Council, is formed by 14 local councils and aims to study air quality with respect to the concentration of particles in their municipalities. Each council is responsible for changing their filters.\nAnalysis of water sources\nTechnical support is provided by the Barcelona Provincial Council to the local councils to analyse the quality of water from natural sources. This service is provided to 57 municipalities. In general, the following parameters are analysed twice a year: pH, turbidity, conductivity, nitrate, ammonium, Escherichia coli, coliform bacteria, enterococci, Clostridium and temperature, which is measured \"in situ\". A report produced from the results is sent to each council.\nNoise Monitoring\nThe participating municipalities have various noise sensors set up during periods of a few months, which are connected to the Sentilo platform which enables noise levels to be viewed online. The analysis of the data that can be extracted includes, among other information, noise levels during the day, in the evening and at night in accordance with European regulations.",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Avaluació i gestió ambiental",
+            "texto": "Control eficient per a un medi ambient millor: la Diputació de Barcelona dona suport als municipis i mesura la qualitat de l’aire, de l’ambient acústic i de les aigües de les fonts.",
+            "+ info": "Xarxa de control de partícules de la contaminació de l’aire:\nLa xarxa manual de partícules (PM10 i PM2,5) de la Diputació de Barcelona està constituïda per 14 municipis i té per objectiu conèixer la qualitat de l’aire respecte de la concentració de partícules en els seus municipis. Cada ajuntament és responsable del canvi de filtres.\nAnàlisi d’aigua de fonts:\nSuport tècnic de la Diputació de Barcelona als municipis per analitzar la qualitat de l’aigua de les fonts naturals. Aquest servei es presta a 57 municipis. En general, s’analitzen els paràmetres següents dos cops a l’any: pH, terbolesa, conductivitat, nitrat, amoni, Escherichia coli, bacteris coliformes, enterococs, Clostridium, a més de la temperatura, que es mesura in situ. Amb els resultats obtinguts s’elabora un informe que s’envia a cada ajuntament.\nMesurament del soroll:\nEls municipis participants disposen durant uns quants mesos de diversos sensors de soroll que estan connectats a la plataforma Sentilo i permeten conèixer el nivell de soroll en línia. De l’anàlisi de les dades es poden extreure, entre altres informacions, els nivells de soroll diürns, vespertins i nocturns, d’acord amb la normativa europea.",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 240,
+            "oscaddr": "/sostenibilidad/mesura 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Contaminación del aire",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Contaminación del aire"
+              },
+              "en": {
+                "titulo": "Air Pollution",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Air Pollution"
+              },
+              "ca": {
+                "titulo": "Contaminació de l’aire",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Contaminació de l’aire"
+              }
+            },
+            "codigos_superposicion": [
+              221,
+              230,
+              241,
+              250,
+              260,
+              261,
+              262,
+              340
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 241,
+            "oscaddr": "/sostenibilidad/mesura 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Análisis del agua de las fuentes",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Análisis del agua de las fuentes"
+              },
+              "en": {
+                "titulo": "Analysis of Water Sources",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Analysis of Water Sources"
+              },
+              "ca": {
+                "titulo": "Anàlisi d’aigua de fonts",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Anàlisi d’aigua de fonts"
+              }
+            },
+            "codigos_superposicion": [
+              240,
+              250,
+              260,
+              261,
+              262
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 242,
+            "oscaddr": "/sostenibilidad/mesura 3",
+            "idiomas": {
+              "es": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Medición del nivel de ruido"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Noise Monitoring"
+              },
+              "ca": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Mesurament del soroll"
+              }
+            },
+            "codigos_superposicion": [
+              141,
+              221,
+              340
+            ],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "oscaddr": "/sostenibilidad/parques 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Parques Naturales",
+            "texto": "102.587 hectáreas de espacios naturales protegidos garantizan el equilibrio ambiental a cien municipios del ámbito geográfico de la Diputación de Barcelona.\nLa Red de Parques Naturales, de un gran valor ecológico, paisajístico, forestal y cultural, con rincones de una singularidad biológica y cultural única, está formada por doce espacios naturales, gestionados directamente por la Diputación de Barcelona o en consorcio con ella.\nLas tres aplicaciones para móviles, Parques Naturales, Itinerarios Parques y Parque Agrario, ofrecen información sobre los parques para visitarlos, conocerlos y disfrutarlos.",
+            "+ info": "La Red de Parques Naturales de la Diputación de Barcelona garantiza un equilibrio territorial y ambiental a los cien municipios de su ámbito geográfico, protege los valores naturales, agrícolas, forestales, culturales y paisajísticos de cada parque, y fomenta el uso público y la educación ambiental del patrimonio cultural y natural en las 102.587 hectáreas que abarca.\nDispone de tres aplicaciones móviles:\nLa aplicación Parques Naturales ofrece toda la información y la oferta de servicios de once parques: el Parque Natural de El Montseny - Reserva de la Biosfera, el Parque del Castell de Montesquiu, el Espacio Natural de Les Guilleries-Savassona, el Parque Natural de Sant Llorenç del Munt i l'Obac, el Parque de El Montnegre i el Corredor, el Parque de la Serralada Litoral, el Parque de la Serralada de Marina, el Parque de El Garraf, el Parque de Olèrdola, el Parque de El Foix y el Parque Fluvial de El Besòs.\nLa aplicación Itinerarios Parques permite descubrir los parques con más de 200 itinerarios señalizados y 680 puntos de interés.\nLa aplicación Parque Agrario facilita el descubrimiento del Parque Agrario de El Baix Llobregat a través de los cultivos de frutas y hortalizas, y la compra al agricultor.\n Descárgate las aplicaciones:",
+            "leyenda": "Parques Naturales"
+          },
+          "en": {
+            "titulo": "Natural Parks",
+            "texto": "102,587 hectares of protected natural areas guarantee environmental balance in 100 municipalities in the geographical area of the Barcelona Provincial Council.\nThe Natural Parks Network, managed directly or in consortium with Barcelona Provincial Council, is made up of twelve natural areas of great ecological, landscape, forestry and cultural value with parts containing unique flora and fauna.\nThree mobile apps: Parcs Naturals (Natural Parks), Itineraris Parcs (Park Trails) and Parc Agrari (Agricultural Park) offer information on the parks so the user can visit, find out more and enjoy them for themselves.",
+            "+ info": "The Barcelona Provincial Council Network of Natural Parks guarantees territorial and environmental balance for the 100 municipalities in their geographical area, protects the natural, agricultural, forestry, landscape and cultural value of each park and encourages public use and environmental education of this cultural and natural heritage across the 102,587 hectares which they cover.\nThere are three mobile applications:\nThe “Parcs Naturals” app, containing all the information and services offered by the eleven parks: the Montseny Natural Park - Biosphere Reserve, El Castell de Montesquiu Park, Les Guilleries-Savassona Natural Area, Sant Llorenç del Munt i l’Obac Natural Park, El Montnegre i el Corredor Park, La Serralada Litoral Park, La Serralada de Marina Park, El Garraf Park, Olèrdola Park, El Foix Park and El Fluvial del Besòs Park.\nThe “Itineraris Parcs” app enables users to explore the parks with over 200 signposted routes and 680 points of interest.\nThe “Parc Agrari” app is designed to enable users to discover the Baix Llobregat Agricultural Park through fruit and vegetable crops and direct purchases from farmers.\nDownload the apps:",
+            "leyenda": "Natural Parks"
+          },
+          "ca": {
+            "titulo": "Parcs naturals",
+            "texto": "102.587 hectàrees d’espais naturals protegits garanteixen l’equilibri ambiental en 100 municipis de l’àmbit geogràfic de la Diputació de Barcelona.\nLa Xarxa de Parcs Naturals està formada per dotze espais naturals, gestionats directament o en consorci per la Diputació de Barcelona, que tenen un gran valor ecològic, paisatgístic, forestal i cultural, amb racons d’una singularitat biològica i cultural únics.\nLes tres aplicacions per a mòbils, Parcs Naturals, Itineraris Parcs i Parc Agrari, ofereixen informació dels parcs per visitar-los, conèixer-los i gaudir-los.",
+            "+ info": "La Xarxa de Parcs Naturals de la Diputació de Barcelona garanteix un equilibri territorial i ambiental als 100 municipis del seu àmbit geogràfic; protegeix els valors naturals, agrícoles, forestals, culturals i paisatgístics de cada parc, i fomenta l’ús públic i l’educació ambiental del patrimoni cultural i natural en les 102.587 hectàrees que comprèn.\nDisposa de tres aplicacions mòbils:\nL’app Parcs Naturals, amb tota la informació i oferta de serveis d’onze parcs: el Parc Natural del Montseny - Reserva de la Biosfera, el Parc del Castell de Montesquiu, l’Espai Natural de les Guilleries-Savassona, el Parc Natural de Sant Llorenç del Munt i l’Obac, el Parc del Montnegre i el Corredor, el Parc de la Serralada Litoral, el Parc de la Serralada de Marina, el Parc del Garraf, el Parc d’Olèrdola, el Parc del Foix i el Parc Fluvial del Besòs.\nL’app Itineraris Parcs, per descobrir els parcs amb més de 200 itineraris senyalitzats i 680 punts d’interès.\nL’app Parc Agrari, per descobrir el Parc Agrari del Baix Llobregat a través dels conreus de fruites i hortalisses i la compra a pagès.\nDescarrega’t les apps: codi QR.",
+            "leyenda": "Parcs naturals"
+          }
+        },
+        "codigos_superposicion": [
+          221,
+          230,
+          240,
+          241,
+          260,
+          261,
+          262,
+          340
+        ],
+        "Subcontenidos": [
+          {
+            "id": 2501,
+            "oscaddr": "/sostenibilidad/parques 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque del Castell de Montesquiu",
+                "texto": "Bosques y paisajes prepirenaicos atravesados por el río Ter.\n546 hectáreas\n4 municipios\nAño de constitución: 1986\n7 equipamientos públicos culturales, de información y de educación ambiental\n7 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque del Castell de Montesquiu"
+              },
+              "en": {
+                "titulo": "El Castell de Montesquiu Park",
+                "texto": "Pre-Pyrenean forests and landscapes crossed by the river Ter.\n546 hectares\n4 municipalities\nYear founded: 1986\n7 public information, cultural and environmental educational points\n7 signposted routes",
+                "+ info": "",
+                "leyenda": "El Castell de Montesquiu Park"
+              },
+              "ca": {
+                "titulo": "Parc del Castell de Montesquiu",
+                "texto": "Boscos i paisatges prepirinencs travessats pel riu Ter.\n546 hectàrees\n4 municipis\nAny de constitució: 1986\n7 equipaments públics d’informació, culturals i d’educació ambiental\n7 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc del Castell de Montesquiu"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2502,
+            "oscaddr": "/sostenibilidad/parques 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Espacio Natural de Les Guilleries-Savassona",
+                "texto": "Bosques centroeuropeos con acantilados sobre el pantano de Sau.\n8.376 hectáreas\n5 municipios\nAño de constitución: 1998\n7 equipamientos públicos culturales, de información y de educación ambiental\n31 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Espacio Natural de Les Guilleries-Savassona"
+              },
+              "en": {
+                "titulo": "Les Guilleries-Savassona Natural Area",
+                "texto": "Central European forests with cliffs descending into the Sau reservoir.\n8,376 hectares\n5 municipalities\nYear founded: 1998\n7 public information, cultural and environmental educational teams\n31 signposted routes",
+                "+ info": "",
+                "leyenda": "Les Guilleries-Savassona Natural Area"
+              },
+              "ca": {
+                "titulo": "Espai Natural de les Guilleries-Savassona",
+                "texto": "Boscos centreeuropeus amb cingleres abocades al pantà de Sau.\n8.376 hectàrees\n5 municipis\nAny de constitució: 1998\n7 equipaments públics d’informació, culturals i d’educació ambiental\n31 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Espai Natural de les Guilleries-Savassona"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2503,
+            "oscaddr": "/sostenibilidad/parques 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque Natural de El Montseny - Reserva de la Biosfera",
+                "texto": "Paisajes centroeuropeos y mediterráneos con un patrimonio cultural y natural único\n31.064 hectáreas\n18 municipios\nAño de constitución: 1977\n36 equipamientos públicos culturales, de información y de educación ambiental\n31 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque Natural de El Montseny - Reserva de la Biosfera"
+              },
+              "en": {
+                "titulo": "Montseny Natural Park - Biosphere Reserve",
+                "texto": "Central European and Mediterranean landscapes with a unique cultural and natural heritage.\n31,064 hectares\n18 municipalities\nYear founded: 1977\n36 public information, cultural and environmental educational points\n31 signposted routes",
+                "+ info": "",
+                "leyenda": "Montseny Natural Park - Biosphere Reserve"
+              },
+              "ca": {
+                "titulo": "Parc Natural del Montseny - Reserva de la Biosfera",
+                "texto": "Paisatges centreeuropeus i mediterranis amb un patrimoni cultural i natural únic.\n31.064 hectàrees\n18 municipis\nAny de constitució: 1977\n36 equipaments públics d’informació, culturals i d’educació ambiental\n31 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc Natural del Montseny - Reserva de la Biosfera"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2504,
+            "oscaddr": "/sostenibilidad/parques 4",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque Natural de Sant Llorenç del Munt i l'Obac",
+                "texto": "Acantilados y canales de conglomerado, con encinares y robledales al pie del monasterio románico\n13.691 hectáreas\n12 municipios\nAño de constitución: 1972\n17 equipamientos públicos culturales, de información y de educación ambiental\n15 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque Natural de Sant Llorenç del Munt i l'Obac"
+              },
+              "en": {
+                "titulo": "Sant Loren del Munt i l'Obac Natural Park",
+                "texto": "Cliffs and rock channels with holm oak and oak at the foot of the Romanesque monastery.\n13,691 hectares\n12 municipalities\nYear founded: 1972\n17 public information, cultural and environmental educational points\n15 signposted routes",
+                "+ info": "",
+                "leyenda": "Sant Loren del Munt i l'Obac Natural Park"
+              },
+              "ca": {
+                "titulo": "Parc Natural de Sant Llorenç del Munt i l’Obac",
+                "texto": "Cingleres i canals de conglomerat amb alzinars i rouredes al peu del monestir romànic.\n13.691 hectàrees\n12 municipis\nAny de constitució: 1972\n17 equipaments públics d’informació, culturals i educació ambiental\n15 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc Natural de Sant Llorenç del Munt i l’Obac"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2505,
+            "oscaddr": "/sostenibilidad/parques 5",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque de El Montnegre i el Corredor",
+                "texto": "Espléndidos bosques de pino piñonero y encinas junto al mar.\n15.010 hectáreas\n13 municipios\nAño de constitución: 1989\n14 equipamientos públicos culturales, de información y de educación ambiental\n19 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque de El Montnegre i el Corredor"
+              },
+              "en": {
+                "titulo": "El Montnegre i el Corredor Park",
+                "texto": "Forests bursting with stone pine and holm oak trees on the coastline.\n15,010 hectares\n13 municipalities\nYear founded: 1989\n14 public information, cultural and environmental educational teams\n19 signposted routes\n",
+                "+ info": "",
+                "leyenda": "El Montnegre i el Corredor Park"
+              },
+              "ca": {
+                "titulo": "Parc del Montnegre i el Corredor\n",
+                "texto": "Boscos atapeïts de pi pinyer i alzines vora el mar.\n15.010 hectàrees\n13 municipis\nAny de constitució: 1989\n14 equipaments públics d’informació, culturals i d’educació ambiental\n19 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc del Montnegre i el Corredor"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2506,
+            "oscaddr": "/sostenibilidad/parques 6",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque de la Serralada Litoral",
+                "texto": "Colinas llenas de historia entre la llanura y el mar\n7.048,24 hectáreas\n15 municipios\nAño de constitución: 1992\n4 equipamientos públicos culturales, de información y de educación ambiental\n13 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque de la Serralada Litoral"
+              },
+              "en": {
+                "titulo": "La Serralada Litoral Park",
+                "texto": "Hills full of history, between the plains and the sea.\n7,048.24 hectares\n15 municipalities\nYear founded: 1992\n4 public information, cultural and environmental educational points\n13 signposted routes",
+                "+ info": "",
+                "leyenda": "La Serralada Litoral Park"
+              },
+              "ca": {
+                "titulo": "Parc de la Serralada Litoral",
+                "texto": "Turons plens d’història entre la plana i el mar.\n7.048,24 hectàrees\n15 municipis\nAny de constitució: 1992\n4 equipaments públics d’informació, culturals i d’educació ambiental\n13 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc de la Serralada Litoral"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2507,
+            "oscaddr": "/sostenibilidad/parques 7",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque de la Serralada de Marina",
+                "texto": "Una tierra antigua y viva en medio de la metrópoli\n3.157 hectáreas\n5 municipios\nAño de constitución: 1996\n7 equipamientos públicos culturales, de información y de educación ambiental\n14 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque de la Serralada de Marina"
+              },
+              "en": {
+                "titulo": "La Serralada de Marina Park",
+                "texto": "An ancient and lively land in the middle of the metropolis.\n3,157 hectares\n5 municipalities\nYear founded: 1996\n7 public information, cultural and environmental educational points\n14 signposted routes",
+                "+ info": "",
+                "leyenda": "La Serralada de Marina Park"
+              },
+              "ca": {
+                "titulo": "Parc de la Serralada de Marina",
+                "texto": "Una terra antiga i viva enmig la metròpoli.\n3.157 hectàrees\n5 municipis\nAny de constitució: 1996\n7 equipaments públics d’informació, culturals i educació ambiental\n14 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc de la Serralada de Marina"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2508,
+            "oscaddr": "/sostenibilidad/parques 8",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque Natural de la Serra de Collserola",
+                "texto": "Escuela de naturaleza y espacio de ocio metropolitano\n8.295 hectáreas\nAño de constitución: 1986\n9 municipios\n9 equipamientos públicos culturales, de información y de educación ambiental\n55 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque Natural de la Serra de Collserola"
+              },
+              "en": {
+                "titulo": "La Serra de Collserola Natural Park",
+                "texto": "Nature school and metropolitan leisure area.\n8,295 hectares\nYear founded: 1986\n9 municipalities\n9 public information, cultural and environmental educational points\n55 signposted routes",
+                "+ info": "",
+                "leyenda": "La Serra de Collserola Natural Park"
+              },
+              "ca": {
+                "titulo": "Parc Natural de la Serra de Collserola",
+                "texto": "Escola de natura i espai de lleure metropolità.\n8.295 hectàrees\nAny de constitució: 1986\n9 municipis\n9 equipaments públics d’informació, culturals i d’educació ambiental\n55 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc Natural de la Serra de Collserola"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2509,
+            "oscaddr": "/sostenibilidad/parques 9",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque Agrario de El Baix Llobregat",
+                "texto": "Un patrimonio agrícola singular, vivo y con futuro\n3.348 hectáreas\n14 municipios\nAño de constitución: 1998\n2 equipamientos públicos culturales, de información y de educación ambiental\n1 itinerario señalizado",
+                "+ info": "",
+                "leyenda": "Parque Agrario de El Baix Llobregat"
+              },
+              "en": {
+                "titulo": "El Baix Llobregat Agricultural Park",
+                "texto": "Unique agricultural and living heritage with a future.\n3,348 hectares\n14 municipalities\nYear founded: 1998\n2 public information, cultural and environmental educational points\n1 signposted route",
+                "+ info": "",
+                "leyenda": "El Baix Llobregat Agricultural Park"
+              },
+              "ca": {
+                "titulo": "Parc Agrari del Baix Llobregat",
+                "texto": "Un patrimoni agrícola singular i viu, i amb futur.\n3.348 hectàrees\n14 municipis\nAny de constitució: 1998\n2 equipaments públics d’informació, culturals i d’educació ambiental\n1 itinerari senyalitzat",
+                "+ info": "",
+                "leyenda": "Parc Agrari del Baix Llobregat"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2510,
+            "oscaddr": "/sostenibilidad/parques 10",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque de El Garraf",
+                "texto": "Simas y palmitos en un macizo kárstico junto al mar\n12.377 hectáreas\n9 municipios\nAño de constitución: 1986\n19 equipamientos públicos de información y de educación ambiental\n11 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque de El Garraf"
+              },
+              "en": {
+                "titulo": "El Garraf Park",
+                "texto": "Deep ravines and palmettos on a Karst massif by the sea.\n12,377 hectares\n9 municipalities\nYear founded: 1986\n19 public information, cultural and environmental educational points\n11 signposted routes",
+                "+ info": "",
+                "leyenda": "El Garraf Park"
+              },
+              "ca": {
+                "titulo": "Parc del Garraf",
+                "texto": "Avencs i margallons en un massís càrstic vora el mar.\n12.377 hectàrees\n9 municipis\nAny de constitució: 1986\n19 equipaments públics d’informació i d’educació ambiental\n11 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc del Garraf"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2511,
+            "oscaddr": "/sostenibilidad/parques 11",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque de Olèrdola",
+                "texto": "Atalaya de naturaleza y de historia en la llanura de El Penedès\n608 hectáreas\n2 municipios\nAño de constitución: 1992\n5 equipamientos públicos culturales, de información y de educación ambiental\n1 itinerario señalizado",
+                "+ info": "",
+                "leyenda": "Parque de Olèrdola"
+              },
+              "en": {
+                "titulo": "Olèrdola Park",
+                "texto": "A vantage point of nature and history in the Penedès plain.\n608 hectares\n2 municipalities\nYear founded: 1992\n5 public information, cultural and environmental educational teams\n1 signposted route",
+                "+ info": "",
+                "leyenda": "Olèrdola Park"
+              },
+              "ca": {
+                "titulo": "Parc d’Olèrdola",
+                "texto": "Talaia de natura i d’història a la plana penedesenca.\n608 hectàrees\n2 municipis\nAny de constitució: 1992\n5 equipaments públics d’informació, culturals i d’educació ambiental\n1 itinerari senyalitzat",
+                "+ info": "",
+                "leyenda": "Parc d’Olèrdola"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2512,
+            "oscaddr": "/sostenibilidad/parques 12",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque de El Foix",
+                "texto": "Agua entre viñedos y castillos\n3.157 hectáreas\n2 municipios\n5 equipamientos públicos culturales, de información y de educación ambiental\n3 itinerarios señalizados",
+                "+ info": "",
+                "leyenda": "Parque de El Foix"
+              },
+              "en": {
+                "titulo": "El Foix Park",
+                "texto": "Water among vineyards and castles..\n3,157 hectares\n2 municipalities\n5 public information, cultural and environmental educational points\n3 signposted routes",
+                "+ info": "",
+                "leyenda": "El Foix Park"
+              },
+              "ca": {
+                "titulo": "Parc del Foix",
+                "texto": "Aigua entre vinyes i castells.\n3.157 hectàrees\n2 municipis\n5 equipaments públics d’informació, culturals i d’educació ambiental\n3 itineraris senyalitzats",
+                "+ info": "",
+                "leyenda": "Parc del Foix"
+              }
+            },
+            "codigos_superposicion": []
+          },
+          {
+            "id": 2513,
+            "oscaddr": "/sostenibilidad/parques 13",
+            "idiomas": {
+              "es": {
+                "titulo": "Parque Fluvial de El Besòs",
+                "texto": "Río, ocio y naturaleza para miles de ciudadanos de la metrópoli\n22 hectáreas\n4 municipios\n1 equipamiento público de información y educación ambiental\n1 itinerario señalizado",
+                "+ info": "",
+                "leyenda": "Parque Fluvial de El Besòs"
+              },
+              "en": {
+                "titulo": "El Fluvial del Besòs Park",
+                "texto": "The River, leisure and nature for thousands of citizens of the metropolis.\n22 hectares\n4 municipalities\n1 public information, cultural and environmental educational points\n1 signposted route",
+                "+ info": "",
+                "leyenda": "El Fluvial del Besòs Park"
+              },
+              "ca": {
+                "titulo": "Parc Fluvial del Besòs",
+                "texto": "Riu, lleure i natura per a milers de ciutadans de la metròpoli.\n22 hectàrees\n4 municipis\n1 equipament públic d’informació i educació ambiental\n1 itinerari senyalitzat",
+                "+ info": "",
+                "leyenda": "Parc Fluvial del Besòs"
+              }
+            },
+            "codigos_superposicion": []
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "oscaddr": "/sostenibilidad/turismo 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Turismo",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Tourism",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Turisme",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 260,
+            "oscaddr": "/sostenibilidad/turismo 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Turismo sostenible",
+                "texto": "La Diputación de Barcelona ha puesto en marcha diversas estrategias para mejorar la competitividad turística, centrándose en un desarrollo sostenible, y se ha certificado a través de las marcas turísticas Costa Barcelona, Paisajes Barcelona y Pirineos Barcelona, como destino turístico sostenible con el Sello Biosphere Destination, promovida por el Instituto de Turismo Responsable.",
+                "+ info": "Los responsables de los destinos turísticos cada vez afrontan más retos y exigencias. Uno de estos retos es trabajar alineados con los 17 objetivos de desarrollo sostenible, también en turismo.\nEn 2017, se inició un trabajo para mejorar las condiciones turísticas de las comarcas de Barcelona que incorporaba a la calidad el compromiso por la sostenibilidad turística. Este nuevo proyecto, a pesar de disponer de unas herramientas metodológicas cuya base es el compromiso con la calidad, mejoran y actualizan el turismo, alineándose con las actuales tendencias de los consumidores, más interesados en la sostenibilidad turística.\nLa Diputación de Barcelona, en colaboración con la Cámara de Comercio de Barcelona, ha implantado una serie de estrategias para mejorar la competitividad turística de los destinos y las empresas a través del Sistema de Calidad Turística en Destinos, entre otros. Además, este 2018, ya se han reconocido 245 empresas con el distintivo de «Compromiso por la Sostenibilidad Biosphere», y se está trabajando con un total de 330.",
+                "leyenda": "Turismo sostenible"
+              },
+              "en": {
+                "titulo": "Sustainable tourism",
+                "texto": "The Barcelona Provincial Council has implemented several strategies to improve the competitiveness of tourism focusing on sustainable development and has been certified through tourism brands such as Costa Barcelona, Paisatges Barcelona and Pirineus Barcelona as being a sustainable tourist destination with the Biosphere Destination Seal, promoted by the Responsible Tourism Institute.",
+                "+ info": "Challenges are ever-increasing for those responsible for tourist destinations. One challenge is working in alignment with the 17 Sustainable Development Goals, including in the tourism industry.\nThe task of improving the Barcelona province’s tourism conditions began in 2017, incorporating quality and commitment to sustainable tourism. Using methodological tools based on the commitment to quality, this new project improves on tourism quality and keeps it up to date, in alignment with the current trends of consumers who are increasingly interested in sustainable tourism.\nThe Barcelona Provincial Council, together with the collaboration of the Barcelona Chamber of Commerce, has implemented strategies to improve tourism competitiveness for destinations and businesses through, among others, the Tourist Destinations Quality System which has been acknowledged in 2018 by 245 companies with the \"Commitment to the Biosphere Sustainability\" and in which a total of 330 entities now work.",
+                "leyenda": "Sustainable tourism"
+              },
+              "ca": {
+                "titulo": "Turisme sostenible",
+                "texto": "La Diputació de Barcelona ha implementat estratègies diverses per millorar la competitivitat turística centrant-se en un desenvolupament sostenible i s’ha certificat a través de les marques turístiques Costa Barcelona, Paisatges Barcelona i Pirineus Barcelona com a destinació turística sostenible amb el segell Biosphere Destination, promoguda per l’Instituto de Turismo Responsable.",
+                "+ info": "Cada cop són més els reptes que tenen davant els responsables de les destinacions turístiques. Un d’aquests és treballar alineats amb els 17 objectius de desenvolupament sostenible, també en turisme.\nEl 2017 es va iniciar un treball de millora de les condicions turístiques de les comarques de Barcelona que incorporava a la qualitat el compromís per la sostenibilitat turística. Aquest nou projecte, tot i disposar d’unes eines metodològiques que tenen la base en el compromís de qualitat, milloren i actualitzen el turisme tot alineant-se amb les actuals tendències dels consumidors, més interessats en la sostenibilitat turística.\nLa Diputació de Barcelona, amb la col·laboració de la Cambra de Comerç de Barcelona, ha implementat estratègies per millorar la competitivitat turística de destinacions i empreses a través, entre altres mesures, del Sistema de Qualitat Turística en Destinacions. Aquest 2018 ja es reconeixen 245 empreses amb el distintiu Compromís per la Sostenibilitat Biosphere i hi estan treballant un total de 330.",
+                "leyenda": "Turisme sostenible"
+              }
+            },
+            "codigos_superposicion": [
+              221,
+              230,
+              240,
+              241,
+              250,
+              340
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 261,
+            "oscaddr": "/sostenibilidad/turismo 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Red de rutas turísticas",
+                "texto": "La Diputación de Barcelona ofrece una serie de propuestas de rutas para disfrutar de todas las posibilidades turísticas del territorio, con un catálogo de itinerarios en línea según los intereses y con varias publicaciones gratuitas (guías, catálogos y mapas) que permiten al usuario organizar sus viajes con antelación.",
+                "+ info": "Estas rutas e itinerarios forman parte de la red de movilidad turística sostenible de la provincia de Barcelona, formada por grandes ejes estructurales, como la propuesta de las Vías Azules Barcelona, vías no motorizadas de tres metros de ancho, que garantizan un desnivel adecuado para la mayor parte de los usuarios y que siguen los cursos fluviales del Llobregat, el Cardener y el Anoia. Estos ejes se ramifican en redes comarcales a través de las cuales puede accederse a pie y en bicicleta a los principales pueblos y recursos de la provincia.",
+                "leyenda": "Red de rutas turísticas"
+              },
+              "en": {
+                "titulo": "Network of tourist routes",
+                "texto": "The Barcelona Provincial Council offers a series of suggested routes to fully enjoy all tourism possibilities in the area, with a catalogue of online routes based on user interests and with several free publications including guides, catalogues and maps that allow users to plan their trips in advance.",
+                "+ info": "These routes and itineraries are part of the sustainable tourism mobility network in the province of Barcelona, made up of large structural axes, such as the proposal of the “Vies Blaves” (Blue Routes) in Barcelona, 3 metre-wide, non-motorised paths which ensure a suitable gradient for most users and which follow the Llobregat, Cardener and Anoia river courses. These areas will branch out into the regional networks, through which the province’s main towns and the resources can be accessed on foot and by bicycle.",
+                "leyenda": "Network of tourist routes"
+              },
+              "ca": {
+                "titulo": "Xarxa de rutes turístiques",
+                "texto": "La Diputació de Barcelona ofereix un seguit de propostes de rutes per gaudir de totes les possibilitats turístiques del territori, amb un catàleg de rutes online segons interessos i amb diverses publicacions gratuïtes de guies, catàlegs i mapes que permeten a l’usuari preparar viatges de manera anticipada.",
+                "+ info": "Aquestes rutes i itineraris formen part de la xarxa de mobilitat turística sostenible de la província de Barcelona, formada per grans eixos estructurals, com la proposta de les Vies Blaves Barcelona, vies no motoritzades de tres metres d’amplada que garanteixen un desnivell adequat per a la major part dels usuaris i que segueixen els cursos fluvials del Llobregat, el Cardener i l’Anoia. Aquests eixos es ramifiquen en xarxes comarcals a través de les quals es pot accedir a peu i en bicicleta als principals pobles i recursos de la província.",
+                "leyenda": "Xarxa de rutes turístiques"
+              }
+            },
+            "codigos_superposicion": [
+              221,
+              230,
+              240,
+              241,
+              250,
+              340
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 262,
+            "oscaddr": "/sostenibilidad/turismo 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Índice de valoración turística en línea",
+                "texto": "El estudio de la reputación turística en línea en las comarcas de Barcelona es un trabajo que se ha desarrollado desde la unidad de análisis y conocimiento LABturisme. Esta información, extraída de las puntuaciones publicadas por los usuarios en las principales plataformas de turismo en línea, permite determinar cuál es la valoración agregada a los alojamientos, restaurantes y atractivos turísticos del destino.",
+                "+ info": "En este trabajo puede verse el resultado del Índice de Reputación Online, calculado como función ponderada de los valores agregados de cada ficha por el volumen de opiniones disponibles en un solo portal, ya sea para facilitar comparativas o por falta de información homogénea disponible en los portales (escala unificada 0-10), en los que se valora el grado de satisfacción de los clientes y la reputación de nuestros destinos turísticos a escala comarcal.",
+                "leyenda": "Índice de valoración turística en línea"
+              },
+              "en": {
+                "titulo": "Online tourism rating index",
+                "texto": "Studying the Barcelona region’s online tourism reputation is a task that has been carried out at the LABturisme analysis and knowledge unit. This information makes it possible to quantify the aggregate evaluation of the destination’s accommodations, restaurants and tourist attractions based on scores posted by users on the primary online tourism platforms.",
+                "+ info": "Results from the Online Reputation Index can be seen through this work, calculated as a weighted function of the aggregate values of each data sheet by the volume of opinions available on a single site, either to facilitate comparisons or for a lack of consistent information available on websites (unified 0-10 scale) and it evaluates the degree of satisfaction and reputation of our tourist destinations on a regional level.",
+                "leyenda": "Online tourism rating index"
+              },
+              "ca": {
+                "titulo": "Índex de valoració turística online",
+                "texto": "L’estudi de la reputació turística online a les comarques de Barcelona és un treball que s’ha desenvolupat des de la unitat d’anàlisi i coneixement LABturisme. Aquesta informació ens permet quantificar quina és la valoració agregada dels allotjaments, restaurants i atractius turístics de la destinació a partir de les puntuacions publicades pels usuaris dins de les principals plataformes de turisme online.",
+                "+ info": "En aquest treball es pot veure el resultat de l’Índex de Reputació Online, calculat com a funció ponderada dels valors agregats de cada fitxa pel volum d’opinions disponibles en un sol portal, sigui per facilitar comparatives o per manca d’informació homogènia disponible en els portals (escala unificada 0-10) on es valora el grau de satisfacció i reputació de les nostres destinacions turístiques a escala comarcal.",
+                "leyenda": "Índex de valoració turística online"
+              }
+            },
+            "codigos_superposicion": [
+              221,
+              230,
+              240,
+              241,
+              250,
+              340
+            ],
+            "hijos": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "oscaddr": "/tecnologia 0",
+    "idiomas": {
+      "es": {
+        "titulo": "Tecnología",
+        "texto": "",
+        "leyenda": ""
+      },
+      "en": {
+        "titulo": "Technology",
+        "texto": "",
+        "leyenda": ""
+      },
+      "ca": {
+        "titulo": "Tecnologia",
+        "texto": "",
+        "leyenda": ""
+      }
+    },
+    "codigos_superposicion": [],
+    "contenidos": [
+      {
+        "id": 31,
+        "oscaddr": "/tecnologia/serveisgestio 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Servicios de gestión e información",
+            "texto": "La Diputación de Barcelona ofrece diversos servicios de gestión, información y asesoramiento en línea a los municipios de la demarcación de Barcelona, como asesoramiento jurídico, sistema de información de servicios sociales, padrón municipal...\nAlgunos de los servicios que la Diputación de Barcelona ofrece a los diversos ayuntamientos son servicio jurídico, aplicaciones informáticas de gestión municipal, ofertas de formación en línea, gestión y acceso a datos estadísticos, padrón municipal informatizado, servicios de webs y aplicaciones móviles municipales.",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Management and Information Services",
+            "texto": "The Barcelona Provincial Council offers various online management, information and advice services to local councils in the Barcelona Province such as legal advice, municipal registrations of inhabitants etc.\nA social services information system, legal service, IT applications in municipal management, online training offers, management and access to statistical data, computerised municipal registration of inhabitants, website and mobile application services are some of the services offered by the Barcelona Provincial Services to city councils.",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Serveis de gestió i informació",
+            "texto": "La Diputació de Barcelona ofereix diversos serveis de gestió, informació i assessorament en línia als municipis de la demarcació de Barcelona, com ara assessorament jurídic, el padró municipal...\nSistema d’informació de serveis socials, servei jurídic, aplicacions informàtiques de gestió municipal, ofertes de formació online, gestió i accés a dades estadístiques, padró municipal informatitzat, serveis de webs i apps mòbils municipals són alguns dels serveis que la Diputació de Barcelona ofereix als ajuntaments.",
+            "+ info": "",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 310,
+            "oscaddr": "/tecnologia/serveisgestio 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Sistema de información de servicios sociales (Hèstia)",
+                "texto": "Desde 1996, la Diputación de Barcelona apoya a los municipios para garantizar un sistema de información y gestión de los servicios sociales, potente, fiable y funcional. El objetivo de la aplicación Hèstia es gestionar de forma global la información de los servicios sociales básicos. Todo ello se logra incorporando herramientas de apoyo en la organización del trabajo, facilitando la tramitación de expedientes y permitiendo la explotación de la información recogida.",
+                "+ info": "La plataforma Hèstia pretende facilitar el trabajo en red, aportando el conocimiento de la situación social para mejorar los sistemas de planificación y de evaluación. La aplicación está alojada en los servidores de la Diputación de Barcelona, que se encarga del mantenimiento y del control de los accesos.",
+                "leyenda": "Sistema de información de servicios sociales (Hèstia)"
+              },
+              "en": {
+                "titulo": "Social Services Information System (Hèstia)",
+                "texto": "Since 1996, Barcelona Provincial Council has given support to municipalities to ensure a powerful, reliable and functional social services information and management system. The Hèstia application aims to provide global management of basic social services information, incorporating tools to support the organisation of the work which makes it easier to process requests and use the information that has been gathered.",
+                "+ info": "The Hèstia platform aims to facilitate networking, providing knowledge of the social situation to improve planning and evaluation systems. The application is hosted on servers held by the Barcelona Provincial Council, which is responsible for maintenance and access control.",
+                "leyenda": "Social Services Information System (Hèstia)"
+              },
+              "ca": {
+                "titulo": "Sistema d’informació de serveis socials (Hèstia)",
+                "texto": "Des del 1996, la Diputació de Barcelona dona suport als municipis per garantir un sistema d’informació i gestió dels serveis socials potent, fiable i funcional. L’aplicació Hèstia té com a objectiu la gestió global de la informació dels serveis socials bàsics, mitjançant la incorporació d’eines de suport a l’organització del treball que fan més fàcil la tramitació d’expedients i permeten l’explotació de la informació recollida.",
+                "+ info": "La plataforma Hèstia pretén facilitar el treball en xarxa, aportant el coneixement de la situació social per millorar els sistemes de planificació i d’avaluació. L’aplicació està hostatjada en els servidors de la Diputació de Barcelona, que s’encarrega del manteniment i control d’accessos.",
+                "leyenda": "Sistema d’informació de serveis socials (Hèstia)"
+              }
+            },
+            "codigos_superposicion": [
+              120
+            ],
+            "hijos": {}
+          },
+          {
+            "id": 311,
+            "oscaddr": "/tecnologia/serveisgestio 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Hermes",
+                "texto": "Hermes ofrece informes, indicadores y datos estadísticos a los municipios sobre la situación socioeconómica para favorecer el desarrollo económico. Este programa tiene como objetivo aportar información estadística socioeconómica y asistencia técnica en la materia a las instituciones, entidades y organismos de gestión municipal, para apoyar la toma de decisiones estratégicas y operativas en el campo del desarrollo económico.",
+                "+ info": "Hermes es un programa impulsado por el Área de Desarrollo Económico Local de la Diputación de Barcelona, la Gerencia de Servicios de Promoción Económica i Ocupación con el fin de ofrecer a los 311 municipios de la provincia la información socioeconómica disponible a escala municipal. La información de estos productos se obtiene mediante un proceso de concertación con diferentes instituciones y entidades públicas y privadas, titulares de estas bases.\nHermes InfoGràfics  es una aplicación implantada mediante la plataforma QlikView, el estándar en la Diputación en software Business Intelligence. Es el primer proyecto de estas características en la Diputación que sale en abierto en la red. Esta nueva tecnología representa una mejora en la visualización e interactividad del acceso a la información estadística de los municipios de la demarcación de Barcelona, y de acuerdo con los actuales sistemas de representación de la información en internet. Incluye nueve informes interactivos con una gran diversidad de información gráfica sobre las estadísticas de los municipios de la demarcación y con una multiselección territorial, temporal, por sexo, y con capacidad para imprimir en PDF y/o copiar las figuras gráficas en cualquier documento.",
+                "leyenda": "Hermes"
+              },
+              "en": {
+                "titulo": "Hermes",
+                "texto": "Hermes offers reports, indicators and statistical data to municipalities on the current socio-economic situation to promote economic development. This program aims to provide information on socio-economic statistics and technical assistance in the field to institutions, entities and municipal management agencies to support strategic and operational decision-making in the field of economic development.",
+                "+ info": "Hermes is a program promoted by the Local Economic Development Department of the Barcelona Provincial Council and the Management of the Promotion of Economic and Employment Services to offer the 311 municipalities available socio-economic information. Information on these products is obtained through a consultation process with various institutions and public and private entities who hold these databases.\nHermes Infographics has completely different technology from previous website versions. It is implemented through the Qlik View platform, the standard for the Council in Business Intelligence (BI) Software. It is the first project of its kind placed openly on the network by the Council. This new technology represents an improvement in the visualisation and interactive access to statistical information of the municipalities in the province of Barcelona and aligns with current information representation systems online. It includes new interactive reports with a wide range of graphic statistics about the municipalities in the province and allows territorial, time or gender multi-selection as well as printing as a PDF and copy the graphic figures into any document.",
+                "leyenda": "Hermes"
+              },
+              "ca": {
+                "titulo": "Hermes",
+                "texto": "Hermes ofereix informes, indicadors i dades estadístiques als municipis sobre la situació socioeconòmica per afavorir el desenvolupament econòmic. Aquest programa té com a objectiu aportar informació d’estadística, socioeconòmica i assistència tècnica en la matèria a les institucions, entitats i organismes de gestió municipal per tal de donar suport a la presa de decisions estratègiques i operatives en el camp del desenvolupament econòmic.",
+                "+ info": "Hermes és un programa impulsat per l’Àrea de Desenvolupament Econòmic Local de la Diputació de Barcelona i la Gerència de Serveis de Promoció Econòmica i Ocupació per tal d’oferir als 311 municipis de la província la informació socioeconòmica disponible a escala municipal. La informació d’aquests productes s’obté mitjançant un procés de concertació amb diferents institucions i entitats públiques i privades, titulars d’aquestes bases de dades.\nHermes InfoGràfics és una aplicació implementada mitjançant la plataforma Qlik View, l’estàndard a la Diputació en programari Business Intelligence (BI). És el primer projecte d’aquestes característiques a la Diputació que surt en obert a la xarxa. Aquesta nova tecnologia representa una millora en la visualització i interactivitat d’accés a la informació estadística dels municipis de la demarcació de Barcelona, d’acord amb els actuals sistemes de representació de la informació a la xarxa. Inclou nou informes interactius amb una gran diversitat d’informació gràfica de les estadístiques dels municipis de la demarcació i permet la multiselecció territorial, temporal i per sexe, així com imprimir en PDF i copiar les figures gràfiques en qualsevol document.",
+                "leyenda": "Hermes"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 312,
+            "oscaddr": "/tecnologia/serveisgestio 3",
+            "idiomas": {
+              "es": {
+                "titulo": "Asesoramiento jurídico en línea",
+                "texto": "267 municipios de menos de 20 000 habitantes y cuatro entidades menores descentralizadas gozan del asesoramiento jurídico en línea de la Diputación de Barcelona. El asesoramiento jurídico en línea permite a los asesores jurídicos municipales acceder de forma rápida y eficaz a las principales novedades legislativas y jurisprudenciales, así como a otros contenidos jurídicos que les permitan desarrollar sus tareas con la información necesaria actualizada.",
+                "+ info": "Los destinatarios de esta prestación son los municipios y otros entes locales de la demarcación de Barcelona (comarcas, entidades locales de ámbito territorial inferior al municipal, entidades asociativas locales, mancomunidades, agrupaciones municipales, consorcios y otros órganos con personalidad jurídica propia dependientes de una entidad local o de la propia Diputación). El servicio ofrece asesoramiento general en materia de gestión jurídica y administrativa, apoyo jurídico personalizado y defensa judicial.",
+                "leyenda": "Asesoramiento jurídico en línea"
+              },
+              "en": {
+                "titulo": "Online legal advice",
+                "texto": "267 municipalities with 20,000 or fewer inhabitants and 4 smaller decentralised organisations receive online legal advice from the Barcelona Provincial Council. Online legal advice allows fast and efficient access to municipal legal advisers regarding important new legislation, case law and other legal matters that allow them to carry out their duties with necessary up-to-date information.",
+                "+ info": "Recipients of this service include the councils and other local entities of the province of Barcelona (regions, local territorial entities smaller than the municipal level; local associations; municipal associations; local municipal groups; consortia and other legal entities dependent on a local entity or the Provincial Council itself). The service offers general advice on matters of legal and administrative management, legal support and legal defence.",
+                "leyenda": "Online legal advice"
+              },
+              "ca": {
+                "titulo": "Assessorament jurídic online",
+                "texto": "267 municipis de menys de 20.000 habitants i 4 entitats menors descentralitzades gaudeixen de l’assessorament jurídic en línia de la Diputació de Barcelona. L’assessorament jurídic online permet als assessors jurídics municipals accedir de forma ràpida i eficaç a les principals novetats legislatives, jurisprudencials i a altres continguts jurídics que els permeten desenvolupar les seves tasques amb la informació actualitzada necessària.",
+                "+ info": "\n+INFO\nEls destinataris d’aquesta prestació són els municipis i altres ens locals de la demarcació de Barcelona (comarques, entitats locals d’àmbit territorial inferior al municipal, entitats locals de caràcter associatiu, mancomunitats, agrupacions municipals, consorcis i altres òrgans amb personalitat jurídica pròpia dependents d’un ens local o de la mateixa Diputació). El servei ofereix assessorament general en matèria de gestió jurídica i administrativa, suport jurídic personalitzat i defensa judicial.",
+                "leyenda": "Assessorament jurídic online"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 313,
+            "oscaddr": "/tecnologia/serveisgestio 4",
+            "idiomas": {
+              "es": {
+                "titulo": "Gestforma",
+                "texto": "Gestforma es una herramienta de gestión integral de todas las acciones formativas que se promueven desde la Diputación de Barcelona. 334 entidades del ámbito local se benefician de este servicio.",
+                "+ info": "El Gestforma está integrado dentro del plan de la Dirección de Servicios de Formación para facilitar la transición del papel al documento electrónico. Realizar una preinscripción, consultar la evaluación o descargar documentos de las acciones formativas son algunas de las funcionalidades que permiten ofrecer una respuesta más ágil y en línea a los diferentes agentes implicados en la oferta de formación de la Diputación de Barcelona.",
+                "leyenda": "Gestforma"
+              },
+              "en": {
+                "titulo": "Gestforma",
+                "texto": "Gestforma is a tool for the integrated management of all the training activities that are promoted by the Barcelona Provincial Council. 334 local entities benefit from this service.",
+                "+ info": "Gestforma is included within the Training Services Management Plan to facilitate the transition from paper to electronic documents. Some of its features include preregistering, consulting an evaluation or downloading training activity documents to respond to give an agile, online response to agents involved in the training offered by the Barcelona Provincial Council.",
+                "leyenda": "Gestforma"
+              },
+              "ca": {
+                "titulo": "Gestforma",
+                "texto": "Gestforma és una eina de gestió integral de totes les accions formatives que es promouen des de la Diputació de Barcelona. 334 entitats de l’àmbit local es beneficien d’aquest servei.",
+                "+ info": "El Gestforma s’inclou dins del pla de la Direcció de Serveis de Formació per facilitar la transició del paper al document electrònic. Fer una preinscripció, consultar una avaluació o descarregar documents de les accions formatives són algunes de les seves funcions per donar una resposta més àgil i en línia als agents implicats en l’oferta de formació de la Diputació de Barcelona.",
+                "leyenda": "Gestforma"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 314,
+            "oscaddr": "/tecnologia/serveisgestio 5",
+            "idiomas": {
+              "es": {
+                "titulo": "Padrón municipal",
+                "texto": "El servicio del padrón municipal informatizado conlleva el mantenimiento de la infraestructura informática y de comunicaciones, así como la aplicación de gestión del padrón para que se adapte al marco normativo y a la asunción de la gestión de las transacciones de datos con el INE en nombre del ayuntamiento, de acuerdo con la normativa vigente sobre el padrón de habitantes y el censo electoral.",
+                "+ info": "",
+                "leyenda": "Padrón municipal"
+              },
+              "en": {
+                "titulo": "Municipal registry of inhabitants",
+                "texto": "The digital municipal registry inhabitants service includes the maintenance of IT and communications infrastructure as well as the application of the management of the registry to comply with legislation and undertake the management of data transactions with the INE on behalf of the Council; in accordance with regulations in force on the registration of inhabitants and the electoral census.",
+                "+ info": "",
+                "leyenda": ""
+              },
+              "ca": {
+                "titulo": "Padró municipal",
+                "texto": "El servei del padró municipal informatitzat comporta el manteniment de la infraestructura informàtica i de comunicacions així com l’aplicació de gestió del padró per tal que s’adapti al marc normatiu i l’assumpció de la gestió de les transaccions de dades amb l’INE en nom de l’ajuntament, d’acord amb la normativa vigent sobre padró d’habitants i cens electoral.",
+                "+ info": "",
+                "leyenda": "Padró municipal"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 315,
+            "oscaddr": "/tecnologia/serveisgestio 6",
+            "idiomas": {
+              "es": {
+                "titulo": "GIA",
+                "texto": "Más de 200 ayuntamientos utilizan el Gestor de Información de Actividades (GIA), una aplicación informática para gestionar los permisos de actividades y establecimientos municipales de forma fácil y eficiente.\nEl GIA es una base de datos diseñada y creada por la Diputación de Barcelona para facilitar a los ayuntamientos la gestión y los trámites sobre actividades en su municipio. Es una herramienta visualmente muy clara e intuitiva, y se actualiza cuando hay cambios legislativos que afectan a las actividades.",
+                "+ info": "Las actividades del GIA están georeferenciadas y, por tanto, pueden publicarse en el SITMUN y cualquier herramienta SIG municipal. La aplicación, creada hace ya más de 15 años, permite unificar la información sobre las actividades del municipio, además de realizar un seguimiento, un control o una planificación de estas, extraer datos, controlar plazos a través de avisos automáticos, almacenar documentos, entre otros recursos.",
+                "leyenda": "GIA"
+              },
+              "en": {
+                "titulo": "Activity Information Manager (GIA in its Catalan initials)",
+                "texto": "More than 200 local councils use the GIA: a computer application to easily and efficiently manage licensing activities and municipal establishments.\nThe Activity Information Manager (GIA) is a database designed and created by the Barcelona Provincial Council to facilitate management and processes regarding activities in their municipality. It is a clear, user-friendly tool that is updated when there are changes in legislation which may affect activities.",
+                "+ info": "The GIA’s activities are georeferenced and can, therefore, be published on the Municipal Territorial Information System (SITMUN in its Catalan initials) and on any municipal IMS tool. The application, created over 15 years ago, allows councils to unify information on municipal activities in addition to tracking, controlling and planning them, extracting data, monitoring deadlines through automatic alerts and storing documents.",
+                "leyenda": "GIA"
+              },
+              "ca": {
+                "titulo": "GIA",
+                "texto": "Més de 200 ajuntaments utilitzen el GIA: una aplicació informàtica per gestionar els permisos d’activitats i establiments municipals de forma fàcil i eficient.\nEl Gestor d’Informació d’Activitats (GIA) és una base de dades dissenyada i creada per la Diputació de Barcelona per facilitar als ajuntaments la gestió i els tràmits sobre activitats al seu municipi. És una eina visualment molt clara i intuïtiva i s’actualitza quan hi ha canvis legislatius que afecten les activitats.",
+                "+ info": "Les activitats del GIA estan georeferenciades i, per tant, es poden publicar al SITMUN i a qualsevol eina SIG municipal. L’aplicació, que va ser creada ja fa més de 15 anys, permet unificar la informació sobre les activitats del municipi, a més de fer-ne un seguiment, control o planificació, d’extreure dades, controlar terminis a través d’avisos automàtics i emmagatzemar documents.",
+                "leyenda": "GIA"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 316,
+            "oscaddr": "/tecnologia/serveisgestio 7",
+            "idiomas": {
+              "es": {
+                "titulo": "Contabilidad municipal",
+                "texto": "Cerca de 400 entidades locales acceden al software de contabilidad que les permite tramitar sus operativas a través de la red de la Diputación de Barcelona. Este servicio de contabilidad municipal de la Diputación de Barcelona ofrece, además del software para las gestiones contables municipales, una ayuda especializada para asegurar la máxima corrección y un diagnóstico preciso sobre la situación económica y financiera, de acuerdo con la liquidación de cada entidad.",
+                "+ info": "",
+                "leyenda": "Contabilidad municipal"
+              },
+              "en": {
+                "titulo": "Municipal Accounting",
+                "texto": "Nearly 400 local entities access accounting software that allows them to process their operations through the Barcelona Provincial Council’s network. Besides the software for municipal account management, this accounting service from the Barcelona Provincial Council offers specialised support to ensure maximum accuracy and an accurate diagnosis of the economic and financial situation based on each entity’s liquidity.",
+                "+ info": "",
+                "leyenda": "Municipal Accounting"
+              },
+              "ca": {
+                "titulo": "Comptabilitat municipal",
+                "texto": "Prop de 400 entitats locals accedeixen al programari comptable que els permet tramitar les seves operacions a través de la xarxa de la Diputació de Barcelona. Aquest servei de comptabilitat municipal de la Diputació de Barcelona ofereix, a més del programari per a les gestions comptables municipals, un suport especialitzat per assegurar la màxima correcció i una diagnosi acurada de la situació econòmica i financera d’acord amb la liquidació de cada entitat.",
+                "+ info": "",
+                "leyenda": "Comptabilitat municipal"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 317,
+            "oscaddr": "/tecnologia/serveisgestio 8",
+            "idiomas": {
+              "es": {
+                "titulo": "Webs municipales",
+                "texto": "Desde 2016, la Diputación de Barcelona asesora, implanta y gestiona el mantenimiento de portales web corporativos de los municipios con menos de 50 000 habitantes. Este servicio de webs municipales tiene el objetivo de prestar servicios a la ciudadanía de forma más eficiente, accesible y transparente, garantizando la presencia en internet de todos los municipios de la Diputación de Barcelona.",
+                "+ info": "La creación de los portales institucionales comprende el análisis de contenidos, la identificación de módulos necesarios de publicación y tramitación (sede electrónica, perfil de contratante, tablero, etc.), la puesta en marcha del portal y su mantenimiento. La presencia institucional en internet es una de las líneas de apoyo a los municipios del Catálogo de servicios de la Diputación, y se enmarca dentro del capítulo de sistemas de información municipales.",
+                "leyenda": "Webs municipales"
+              },
+              "en": {
+                "titulo": "Municipal websites",
+                "texto": "Since 2016, the Barcelona Provincial Council has advised, implemented and managed the maintenance of websites for municipalities with fewer than 50,000 inhabitants. This municipal website service aims to provide more efficient, transparent and accessible, guaranteeing the online presence of all municipalities in the Province of Barcelona.",
+                "+ info": "The creation of these institutional portals involves content analysis, the identification of modules needed for publication and processing (website, contractor profile, noticeboard, etc.), the launch of the portal and its maintenance. Institutional presence online is one of the support services provided to municipalities in the council's catalogue and is part of the capital of the municipal information systems.",
+                "leyenda": "Municipal websites"
+              },
+              "ca": {
+                "titulo": "Webs municipals",
+                "texto": "Des del 2016 la Diputació de Barcelona assessora, implanta i gestiona el manteniment de portals web corporatius als municipis menors de 50.000 habitants. Aquest servei de webs municipals té l’objectiu de prestar serveis a la ciutadania de forma més eficient, accessible i transparent i garantir la presència a Internet de tots els municipis de la Diputació de Barcelona.",
+                "+ info": "La creació dels portals institucionals comprèn l’anàlisi de continguts, la identificació de mòduls necessaris de publicació i tramitació (seu electrònica, perfil de contractant, tauler, etc.), la posada en funcionament del portal i el seu manteniment. La presència institucional a Internet és una de les línies de suport als municipis del Catàleg de serveis de la Diputació, i s’emmarca dins del capítol de sistemes d’informació municipals.",
+                "leyenda": "Webs municipals"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "oscaddr": "/tecnologia/plataforma 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Plataforma urbana inteligente",
+            "texto": "Más de veinte municipios utilizan la plataforma urbana inteligente, que recoge, almacena y difunde la información que las ciudades generan a través de sensores, actuadores y los diferentes sistemas de información verticales de las ciudades: movilidad, eficiencia energética, parques y jardines, limpieza... De este modo, se consiguen unos servicios municipales más eficientes y sostenibles, y, a la vez, innovar en nuevas utilidades y aplicaciones para los ciudadanos.",
+            "+ info": "La plataforma urbana inteligente está diseñada para trabajar de manera transversal con todas las áreas de una organización, con el objetivo de compartir información entre sistemas diversos: es multiciudad, abierta e interoperable, y permite conectar diferentes dispositivos y sistemas municipales de gestión urbana. Con esta plataforma, aparte de hacer un uso propio dentro de su término municipal, los municipios pueden compartir datos para trabajar y colaborar en proyectos de territorio, como, por ejemplo, los proyectos de movilidad. La plataforma, basada en código abierto, se construye colaborativamente por parte de una comunidad activa y diversa de ciudades y empresas. Si todos los municipios utilizan la misma tecnología, se consigue compartir conocimiento y se facilita la adopción de soluciones tecnológicas comunes que permiten, a su vez, reutilizar proyectos entre municipios. La Diputación de Barcelona, mediante la participación en comunidades de trabajo, realiza la tarea de coordinar proyectos Smart e impulsar la colaboración entre municipios.\nLa plataforma urbana inteligente tiene como plataforma base IoT (Internet of Things) el software Sentilo, una plataforma de sensores y actuadores, que fue desarrollada por el Ayuntamiento de Barcelona en 2013.\nEl Ayuntamiento de Barcelona distribuyó esta plataforma como código abierto con el objetivo de que cualquier ciudad u organización pudiera utilizarla. La Diputación de Barcelona, cuyo objetivo principal es brindar apoyo a los municipios de la demarcación de Barcelona, transformó esta plataforma de ciudad en una plataforma de región multiciudad para dar servicio a los municipios que quisieran utilizarla. La plataforma se ofrece a los ayuntamientos en modalidad SaaS (Software as a Service). Gracias a este desarrollo de la Diputación de Barcelona, otras administraciones regionales ya están proveyendo de estos servicios a sus respectivos municipios.",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Smart urban platform",
+            "texto": "More than 20 municipalities use the smart urban platform which collects, stores, and disseminates information that cities generate through sensors, actuators and the various vertical information systems of the cities: mobility, efficient energy, parks and gardens, cleaning and so on. In this way, more efficient and sustainable municipal services are achieved while creating tools and applications for the general public.",
+            "+ info": "The smart urban platform is designed to work with all departments of an organisation with the aim of sharing information between various systems: it is multi-city, open and interoperable and enables users to connect different devices and urban management systems. Apart from making use of it within their own municipality, local councils can use this platform to share information, work and collaborate on projects in the area, such as mobility projects. It is an open source platform, built collaboratively by an active and diverse community of cities and businesses. As all the municipalities use the same technology, it is possible to share knowledge and facilitate the adoption of technological solutions that allow common projects to be reproduced between councils. Through participation in community work, the Barcelona Provincial Council coordinates Smart projects and promotes collaboration between the local councils.\nThe smart urban platform is an IoT (Internet of Things) based platform using Sentilo software, a platform of sensors and actuators which was developed by the Barcelona City Council in 2013.\nThe Barcelona City Council distributed it as an open source platform with the aim of any city or organisation being able to use it. The Barcelona Provincial Council, whose main objective is giving support to municipalities in the province of Barcelona, transformed the city’s platform into a multi-city regional platform to provide service to any of the municipalities wishing to use it. The platform is offered in SaaS mode (Software as a Service) to the local councils. Thanks to this development by the Barcelona Provincial Council, other regional administrations are already providing these services to their respective municipalities.",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Plataforma urbana intel·ligent",
+            "texto": "Més de 20 municipis utilitzen la plataforma urbana intel·ligent, que recull, emmagatzema i difon la informació que les ciutats generen a través de sensors, actuadors i els diferents sistemes d’informació verticals de les ciutats: mobilitat, eficiència energètica, parcs i jardins, neteja... D’aquesta manera s’aconsegueix fer més eficients i sostenibles els serveis municipals i alhora innovar en utilitats i aplicacions per als ciutadans.",
+            "+ info": "La plataforma urbana intel·ligent està dissenyada per treballar de manera transversal amb totes les àrees d’una organització amb l’objectiu de compartir informació entre sistemes diversos: és multiciutat, oberta i interoperable i permet connectar diferents dispositius i sistemes municipals de gestió urbana. Amb aquesta plataforma els municipis poden, a part de fer-ne un ús propi dins el seu terme municipal, compartir dades entre ells per treballar i col·laborar en projectes de territori, com són els projectes de mobilitat. La plataforma, feta amb codi obert, es construeix col·laborativament mitjançant una comunitat activa i diversa de ciutats i empreses. Utilitzant una mateixa tecnologia, els municipis possibiliten que es comparteixi el coneixement i es facilita l’adopció de solucions tecnològiques comunes que permeten la reproductibilitat de projectes. La Diputació de Barcelona, mitjançant la participació en comunitats de treball, coordina projectes Smart i impulsa la col·laboració entre municipis.\nLa plataforma urbana intel·ligent té com a plataforma base IoT (Internet of Things) el software Sentilo, una plataforma de sensors i actuadors que va ser desenvolupada per l’Ajuntament de Barcelona el 2013.\nL’Ajuntament de Barcelona va distribuir aquesta plataforma com a codi obert amb l’objectiu que qualsevol ciutat o organització la pogués utilitzar. La Diputació de Barcelona, que té com a objectiu principal donar suport als municipis de la demarcació de Barcelona, va transformar aquesta plataforma de ciutat en una plataforma de regió multiciutat per donar servei als municipis que la volguessin utilitzar. La plataforma s’ofereix en modalitat SaaS (Software as a Service) als ajuntaments. Gràcies a aquest desenvolupament de la Diputació de Barcelona, altres administracions regionals ja estan proveint aquests serveis als seus respectius municipis.\n",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 320,
+            "oscaddr": "/tecnologia/plataforma 1",
+            "idiomas": {
+              "es": {
+                "titulo": "Municipios con plataforma multitenencia",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con plataforma multitenencia"
+              },
+              "en": {
+                "titulo": "Multi-tenant municipal platform",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Multi-tenant municipal platform"
+              },
+              "ca": {
+                "titulo": "Municipis plataforma “multi-tenant”",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipis plataforma “multi-tenant”"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 321,
+            "oscaddr": "/tecnologia/plataforma 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Municipios con plataforma propia",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipios con plataforma propia"
+              },
+              "en": {
+                "titulo": "",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "ndividualised municipal platform"
+              },
+              "ca": {
+                "titulo": "Municipis plataforma pròpia",
+                "texto": "",
+                "+ info": "",
+                "leyenda": "Municipis plataforma pròpia"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "oscaddr": "/tecnologia/infraestructuras 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Infraestructuras de información geográfica",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "en": {
+            "titulo": "Geographic Information Infrastructure",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          },
+          "ca": {
+            "titulo": "Infraestructures d’informació geogràfica",
+            "texto": "",
+            "+ info": "",
+            "leyenda": ""
+          }
+        },
+        "codigos_superposicion": [],
+        "Subcontenidos": [
+          {
+            "id": 330,
+            "oscaddr": "/tecnologia/infraestructuras 1",
+            "idiomas": {
+              "es": {
+                "titulo": "SITMUN",
+                "texto": "El Sistema d’Informació Territorial Municipal (SITMUN) és una plataforma que permet gestionar, compartir i publicar informació geogràfica generada pels mateixos serveis de la Diputació de Barcelona, els ens locals de la demarcació i altres organismes públics. Integra cartografia i bases de dades topogràfiques, urbanístiques, cadastrals, mediambientals, socioeconòmiques i culturals, entre d’altres. S’utilitza tecnologia servidor de mapes via web i es millora la quantitat i qualitat de la informació territorial municipal. (Mentre duri aquest text es posaran indicadors estàtics als espais buits de la maqueta que queden al voltant del perfil de la demarcació.)",
+                "+ info": "A través del SITMUN, tant el ciutadà com els usuaris municipals, poden consultar i analitzar diverses capes d’informació geogràfica oficials, obertes i en continu, integrades en un únic mapa. En el cas dels ajuntaments, disposen també de diversos mòduls per actualitzar dades de la seva competència. Aquesta eina apropa el territori, en facilita la planificació i gestió, i serveix de base per al desenvolupament de l’Smart Region.",
+                "leyenda": "SITMUN"
+              },
+              "en": {
+                "titulo": "Sitmun",
+                "texto": "The Municipal Territorial Information System (SITMUN in its Catalan initials) is a platform that allows municipalities to manage, share, and publish geographic information generated by Barcelona Provincial Council’s services, local provincial authorities and other public bodies. It includes mapping and topographical, urban, property registration, environmental, socio-economic and cultural databases, among others. It uses map server technology and improves the quantity and quality of the municipal territorial information",
+                "+ info": "Through SITMUN, both citizens and municipal users can openly and continuously view and analyse several layers of official geographic information integrated into a single map. Regarding the councils, they also have several modules available to update data regarding their area of authority. This tool makes the area more accessible, facilitates planning and management and serves as a basis for the development of the Smart Region.",
+                "leyenda": "Sitmun"
+              },
+              "ca": {
+                "titulo": "Sitmun",
+                "texto": "El Sistema d’Informació Territorial Municipal (SITMUN) és una plataforma que permet gestionar, compartir i publicar informació geogràfica generada pels mateixos serveis de la Diputació de Barcelona, els ens locals de la demarcació i altres organismes públics. Integra cartografia i bases de dades topogràfiques, urbanístiques, cadastrals, mediambientals, socioeconòmiques i culturals, entre d’altres. S’utilitza tecnologia servidor de mapes via web i es millora la quantitat i qualitat de la informació territorial municipal. (Mentre duri aquest text es posaran indicadors estàtics als espais buits de la maqueta que queden al voltant del perfil de la demarcació.)",
+                "+ info": "A través del SITMUN, tant el ciutadà com els usuaris municipals, poden consultar i analitzar diverses capes d’informació geogràfica oficials, obertes i en continu, integrades en un únic mapa. En el cas dels ajuntaments, disposen també de diversos mòduls per actualitzar dades de la seva competència. Aquesta eina apropa el territori, en facilita la planificació i gestió, i serveix de base per al desenvolupament de l’Smart Region.",
+                "leyenda": "Sitmun"
+              }
+            },
+            "codigos_superposicion": [],
+            "hijos": {}
+          },
+          {
+            "id": 331,
+            "oscaddr": "/tecnologia/infraestructuras 2",
+            "idiomas": {
+              "es": {
+                "titulo": "Cartografía",
+                "texto": "La Diputación de Barcelona actualiza de forma periódica la cartografía topográfica urbana 3D escala 1 :1000 de los municipios de la demarcación de Barcelona hasta 20 000 habitantes. Esta actualización se elabora según el pliego de prescripciones técnicas aprobado por la Comisión de Coordinación Cartográfica de Cataluña.",
+                "+ info": "La cartografía digital dota de los instrumentos básicos para la planificación integrada del territorio a los municipios y a los entes locales de la demarcación. La Diputación de Barcelona diagnostica, planifica, elabora y gestiona la cartografía, herramienta esencial para desarrollar las competencias municipales vinculadas al planeamiento urbanístico, catastro, redes de servicios y equipamientos municipales, entre otros.\nLa actualización cartográfica se realiza a partir de las fotografías aéreas que se recogen con técnicas fotogramétricas y el posterior trabajo de campo. Se estructura en seis archivos que incluyen los datos de altimetría, planimetría, toponimia, modelo digital de elevaciones y callejero.",
+                "leyenda": "Cartografía"
+              },
+              "en": {
+                "titulo": "Cartography",
+                "texto": "The Barcelona Provincial Council regularly updates urban 3D topographic mapping on a scale o: 1:1000 for the municipalities in the province of Barcelona with up to 20,000 inhabitants. These updates are carried out according to the technical specifications approved by the Cartographic Coordination Commission of Catalonia.",
+                "+ info": "Digital mapping provides the local municipalities and the province basic tools for integrated planning of the area. The Barcelona Provincial Council diagnoses, plans, develops and manages maps, an essential tool for the development of municipal responsibilities related to urban planning, property registration and municipal services and networks, among others.\nMapping updates are made with aerial photographs collected through photogrammetric techniques and subsequent fieldwork. It is structured into six information sheets that include data on the altimetry, planimetry, toponymy, digital elevation models and roadways.",
+                "leyenda": "Cartography"
+              },
+              "ca": {
+                "titulo": "Cartografia",
+                "texto": "La Diputació de Barcelona actualitza periòdicament la cartografia topogràfica urbana 3D a escala 1:1000 dels municipis de la demarcació de Barcelona fins a 20.000 habitants. Aquesta actualització es duu a terme segons el plec de prescripcions tècniques aprovat per la Comissió de Coordinació Cartogràfica de Catalunya. (Mentre duri aquest text es posaran indicadors estàtics als espais buits de la maqueta que queden al voltant del perfil de la demarcació.",
+                "+ info": "La cartografia digital dota els municipis i ens locals de la demarcació dels instruments bàsics per a la planificació integrada del territori. La Diputació de Barcelona diagnostica, planifica, elabora i gestiona la cartografia, una eina essencial per al desenvolupament de les competències municipals vinculades al planejament urbanístic, al cadastre i a les xarxes de serveis i equipaments municipals entre d’altres.\nL’actualització cartogràfica es fa a partir de les fotografies aèries que es recullen amb tècniques fotogramètriques i un posterior treball de camp. Està estructurada en sis fitxers que inclouen les dades d’altimetria, planimetria, toponímia, model digital d’elevacions i vialer.",
+                "leyenda": "Cartografia"
+              }
+            },
+            "codigos_superposicion": {},
+            "hijos": {}
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "oscaddr": "/tecnologia/mobilidad 0",
+        "idiomas": {
+          "es": {
+            "titulo": "Servicios de infraestructuras viarias y movilidad",
+            "texto": "La Diputación de Barcelona, mediante la canalización de las carreteras, facilitará el acceso a la red de fibra óptica a 59 municipios, que se incorporarán a los 106 que ya disponen de accesibilidad a las redes de nueva generación.\nLa Diputación de Barcelona está desplegando infraestructuras de canalización en las carreteras de su titularidad para facilitar la accesibilidad a la fibra óptica de todos los municipios de la demarcación de Barcelona.",
+            "+ info": "El proyecto, con un presupuesto de 18.899.161,33 €, íntegramente financiado por la Diputación de Barcelona, beneficiará en una primera fase a 55 municipios y a más de 178.000 habitantes. Los trabajos de ensanchamiento y mejora de los arcenes, donde se incorporará la infraestructura para la fibra óptica, tendrán un impacto sobre 252 kilómetros de la red de carreteras de la Diputación de Barcelona.\nEl despliegue de la fibra óptica es uno de los proyectos estratégicos del Plan de Acción de Mandato de la Diputación de Barcelona, con el objetivo de promover que toda la ciudadanía tenga acceso a los servicios de banda ancha. Para que sea posible, se aprovechan los proyectos ya planificados como obra ordinaria de conservación y mejora de la seguridad en las carreteras para incorporar la infraestructura de la fibra óptica dentro del arcén de hormigón.\nLa gestión de esta nueva red irá a cargo del Centro de Telecomunicaciones y Tecnologías de la Información de la Generalitat (CTTI), según el acuerdo entre esta entidad y la Diputación de Barcelona.",
+            "leyenda": "Red de fibra óptica"
+          },
+          "en": {
+            "titulo": "Various road infrastructures and mobility services",
+            "texto": "The Barcelona Provincial Council is deploying cabling infrastructure through its roads to facilitate fibre optic accessibility for all the municipalities in the province of Barcelona.",
+            "+ info": "The project, with a budget of 18,899,161.33 euros fully financed by the Barcelona Provincial Council, will benefit 55 municipalities and over 178,000 people in the first phase. The work of widening and improving roadsides, in which the fibre optic infrastructure will be incorporated, will impact on 252 km of roadways belonging to the Barcelona Provincial Council.\nThe deployment of fibre-optic cables is one of the strategic projects of the Barcelona Provincial Council's Action Plan Mandate, the objective of which is for all citizens to have access to broadband service. To make this possible, the Council takes advantage of any previously planned projects as part of the usual maintenance and improvement work for road safety to incorporate the fibre-optic infrastructure within concrete roadsides.\nThe Centre for Telecommunications and Information Technology of the Government of Catalonia (CTTI in its Catalan initials) will manage this new network based on the agreement established between this entity and the Barcelona Provincial Council.",
+            "leyenda": "Fiber optic network"
+          },
+          "ca": {
+            "titulo": "Serveis d’infraestructures viàries i mobilitat",
+            "texto": "La Diputació de Barcelona, mitjançant la canalització de les carreteres, facilitarà l’accés a la xarxa de fibra òptica a 59 municipis, que s’incorporaran als 106 que ja disposen d’accés a les xarxes de nova generació.\nLa Diputació de Barcelona està desplegant infraestructures de canalització a les carreteres de la seva titularitat per tal de facilitar l’accés a la fibra òptica a tots els municipis de la demarcació de Barcelona.",
+            "+ info": "El projecte, amb un pressupost de 18.899.161,33 euros, íntegrament finançat per la Diputació de Barcelona, beneficiarà en una primera fase 55 municipis i més de 178.000 habitants. Les obres d’eixamplament i millora dels vorals, on s’incorporarà la infraestructura per a la fibra òptica, afectaran 252 quilòmetres de la xarxa de carreteres de la Diputació de Barcelona.\nEl desplegament de la fibra òptica és un dels projectes estratègics del Pla d’acció de mandat de la Diputació de Barcelona, que té per objectiu promoure que tota la ciutadania tingui accés als serveis de banda ampla. Per fer-ho possible, s’aprofiten els projectes ja planificats com a obra ordinària de conservació i millora de la seguretat a les carreteres per incorporar la infraestructura per a la fibra òptica dins del voral de formigó.\nLa gestió d’aquesta nova xarxa anirà a càrrec del Centre de Telecomunicacions i Tecnologies de la Informació de la Generalitat (CTTI), segons l’acord entre aquesta entitat i la Diputació de Barcelona.",
+            "leyenda": "Xarxa de fibra òptica"
+          }
+        },
+        "codigos_superposicion": [
+          240,
+          242,
+          250,
+          260,
+          261,
+          262
+        ],
+        "Subcontenidos": []
+      }
+    ]
+  }
+]

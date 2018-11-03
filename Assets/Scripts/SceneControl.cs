@@ -62,25 +62,62 @@ public class SceneControl : MonoBehaviour {
 		private bool skipVideo=false;
 
 		public int[] codigosBibliotecas;
+		public int contBibliotecas;
+		public Leyenda[] leyendaBibliotecas= new Leyenda[3];
 		public int[] codigosTeleasistencia;
+		public int contTeleasistencia;
+		public Leyenda[] leyendaTeleasistencia= new Leyenda[1];
 		public int[] codigosGovernObert;
+		public int contGovernObert;
+		public Leyenda[] leyendaGovernObert= new Leyenda[10];
 		public int[] codigosPromocioEconomica;
+		public int contPromocioEconomica;
+		public Leyenda[] leyendaPromocioEconomica= new Leyenda[3];
 		public int[] codigosKm2;
+		public int contKm2;
+		public Leyenda[] leyendaKm2= new Leyenda[1];
 		public int[] codigosPatrimoni;
+		public int contPatrimoni;
+		public Leyenda[] leyendaPatrimoni= new Leyenda[6];
 		public int[] codigosOficinaPatrimoni;
+		public int contOficinaPatrimoni;
+		public Leyenda[] leyendaOficinaPatrimoni= new Leyenda[3];
 
 		public int[] codigosXarxaCiutats;
+		public int contXarxaCiutats;
+		public Leyenda[] leyendaXarxaCiutats= new Leyenda[3];
 		public int[] codigosPAES;
+		public int contPAES;
+		public Leyenda[] leyendaPAES= new Leyenda[5];
 		public int[] codigosRenovables;
+		public int contRenovables;
+		public Leyenda[] leyendaRenovables = new Leyenda[3];
 		public int[] codigosEvaluacio;
+		public int contEvaluacio;
+		public Leyenda[] leyendaEvaluacio= new Leyenda[3];
 		public int[] codigosParques;
+		public int contParques;
+		public Leyenda[] leyendaParques= new Leyenda[1];
 		public int[] codigosTurismo;
+		public int contTurismo;
+		public Leyenda[] leyendaTurismo= new Leyenda[3];
 
 		public int[] codigosServeisGestio;
+		public int contServeisGestio;
+		public Leyenda[] leyendaServeisGestio= new Leyenda[8];
 		public int[] codigosPlataformaUrbana;
+		public int contPlataformaUrbana;
+		public Leyenda[] leyendaPlataformaUrbana= new Leyenda[2];
 		public int[] codigosGeografia;
+		public int contGeografia;
+		public Leyenda[] leyendaGeografia= new Leyenda[2];
 		public int[] codigosInfraestructuras;
+		public int contInfraestructuras;
+		public Leyenda[] leyendaInfraestructuras= new Leyenda[2];
 		public int[] codigosFibraOptica;
+		public int contFibraOptica;
+		public Leyenda[] leyendaFibraOptica= new Leyenda[1];
+		public List<Leyenda> Leyendas;
 
 		public float alphaCo2impar=0;
 		public float alphaCo2par = 1;
@@ -285,10 +322,7 @@ public class SceneControl : MonoBehaviour {
             // Start receiving from unicast and broadcast sources on port 7000.
             //oscIn.Open( 8015 );
 
-            /*GameObject canvasObject = GameObject.FindGameObjectWithTag("CanvasTablet1");
-		Transform textTr = canvasObject.transform.Find("Titulo");
-		Text text = textTr .GetComponent<Text>();*/
-            //Text t=Titulos[0].GetComponent<Text>();
+           
             //Inicializar lenguajes
             lenguajes = new float[3];
             lenguajes[0] = 0;
@@ -440,6 +474,8 @@ public class SceneControl : MonoBehaviour {
 		bibliotecasM = new List<int> ();
 		bibliobusesM= new List<int> ();
 		fillArrays ();
+			//Rellenar codigos y leyendas
+			fillCodigos();
 
 
 
@@ -1308,7 +1344,168 @@ public class SceneControl : MonoBehaviour {
 
 		}
    }
+	void fillCodigos(){
+		rmd=GetComponent<ReadMunicipiData>();
+		for(int i=0;i<rmd.TodasLeyendas.Count;i++){
+				if(rmd.TodasLeyendas[i].codigoPadre == 11){ //Bibliotecas
+					codigosBibliotecas[contBibliotecas]=rmd.TodasLeyendas[i].codigo;
+					leyendaBibliotecas [contBibliotecas].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaBibliotecas [contBibliotecas].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaBibliotecas [contBibliotecas].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaBibliotecas [contBibliotecas].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contBibliotecas++;
+				}
+				//teleasistencia
+				if(rmd.TodasLeyendas[i].codigoPadre == 12){ 
+					codigosTeleasistencia[contTeleasistencia]=rmd.TodasLeyendas[i].codigo;
+					leyendaTeleasistencia [contTeleasistencia].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaTeleasistencia [contTeleasistencia].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaTeleasistencia [contTeleasistencia].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaTeleasistencia [contTeleasistencia].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contTeleasistencia++;
+				}
+				//governobert
+				if(rmd.TodasLeyendas[i].codigoPadre == 13){ 
+					codigosGovernObert[contGovernObert]=rmd.TodasLeyendas[i].codigo;
+					Debug.Log("codigos governobert"+rmd.TodasLeyendas[i].codigo + "  "+codigosGovernObert[contGovernObert]+ " "+contGovernObert);
+					leyendaGovernObert [contGovernObert].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaGovernObert [contGovernObert].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaGovernObert [contGovernObert].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaGovernObert [contGovernObert].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contGovernObert++;
+				}
+				//Pormocio
+				if(rmd.TodasLeyendas[i].codigoPadre == 14){ 
+					codigosPromocioEconomica[contPromocioEconomica]=rmd.TodasLeyendas[i].codigo;
+					leyendaPromocioEconomica [contPromocioEconomica].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaPromocioEconomica [contPromocioEconomica].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaPromocioEconomica [contPromocioEconomica].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaPromocioEconomica [contPromocioEconomica].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contPromocioEconomica++;
+				}
+				//km2
+				if(rmd.TodasLeyendas[i].codigoPadre == 15){ 
+					codigosKm2[contKm2]=rmd.TodasLeyendas[i].codigo;
+					leyendaKm2 [contKm2].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaKm2 [contKm2].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaKm2 [contKm2].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaKm2 [contKm2].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contKm2++;
+				}
+				//patrimoni
+				if(rmd.TodasLeyendas[i].codigoPadre == 16){ 
+					codigosPatrimoni[contPatrimoni]=rmd.TodasLeyendas[i].codigo;
+					leyendaPatrimoni [contPatrimoni].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaPatrimoni [contPatrimoni].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaPatrimoni [contPatrimoni].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaPatrimoni [contPatrimoni].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contPatrimoni++;
+				}
+				//oficina patrimoni
+				if(rmd.TodasLeyendas[i].codigoPadre == 17){ 
+					codigosOficinaPatrimoni[contOficinaPatrimoni]=rmd.TodasLeyendas[i].codigo;
+					leyendaOficinaPatrimoni [contOficinaPatrimoni].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaOficinaPatrimoni [contOficinaPatrimoni].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaOficinaPatrimoni [contOficinaPatrimoni].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaOficinaPatrimoni [contOficinaPatrimoni].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contOficinaPatrimoni++;
+				}
 
+				//SOSTENIBILIDAD
+				//xarxa
+				if(rmd.TodasLeyendas[i].codigoPadre == 21){ 
+					codigosXarxaCiutats[contXarxaCiutats]=rmd.TodasLeyendas[i].codigo;
+					leyendaXarxaCiutats [contXarxaCiutats].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaXarxaCiutats [contXarxaCiutats].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaXarxaCiutats [contXarxaCiutats].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaXarxaCiutats [contXarxaCiutats].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contXarxaCiutats++;
+				}
+				//PAES
+				if(rmd.TodasLeyendas[i].codigoPadre == 22){ 
+					codigosPAES[contPAES]=rmd.TodasLeyendas[i].codigo;
+					leyendaPAES [contPAES].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaPAES [contPAES].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaPAES [contPAES].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaPAES [contPAES].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contPAES++;
+				}
+				//Renovables
+				if(rmd.TodasLeyendas[i].codigoPadre == 23){ 
+					codigosRenovables[contRenovables]=rmd.TodasLeyendas[i].codigo;
+					leyendaRenovables [contRenovables].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaRenovables [contRenovables].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaRenovables [contRenovables].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaRenovables [contRenovables].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contRenovables++;
+				}
+				//Evaluacio
+				if(rmd.TodasLeyendas[i].codigoPadre == 24){ 
+					codigosEvaluacio[contEvaluacio]=rmd.TodasLeyendas[i].codigo;
+					leyendaEvaluacio [contEvaluacio].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaEvaluacio [contEvaluacio].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaEvaluacio [contEvaluacio].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaEvaluacio [contEvaluacio].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contEvaluacio++;
+				}
+				//Parques
+				if(rmd.TodasLeyendas[i].codigoPadre == 25){ 
+					codigosParques[contParques]=rmd.TodasLeyendas[i].codigo;
+					leyendaParques [contParques].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaParques [contParques].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaParques [contParques].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaParques [contParques].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contParques++;
+				}
+				//Turismo
+				if(rmd.TodasLeyendas[i].codigoPadre == 26){ 
+					codigosTurismo[contTurismo]=rmd.TodasLeyendas[i].codigo;
+					leyendaTurismo [contTurismo].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaTurismo [contTurismo].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaTurismo [contTurismo].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaTurismo [contTurismo].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contTurismo++;
+				}
+				//TECNOLOGIA
+				//serveisgestio
+				if(rmd.TodasLeyendas[i].codigoPadre == 31){ 
+					codigosServeisGestio[contServeisGestio]=rmd.TodasLeyendas[i].codigo;
+					leyendaServeisGestio [contServeisGestio].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaServeisGestio [contServeisGestio].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaServeisGestio [contServeisGestio].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaServeisGestio [contServeisGestio].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contServeisGestio++;
+				}
+				//plataforma urbana
+				if(rmd.TodasLeyendas[i].codigoPadre == 32){ 
+					codigosPlataformaUrbana[contPlataformaUrbana]=rmd.TodasLeyendas[i].codigo;
+					leyendaPlataformaUrbana [contPlataformaUrbana].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaPlataformaUrbana [contPlataformaUrbana].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaPlataformaUrbana [contPlataformaUrbana].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaPlataformaUrbana [contPlataformaUrbana].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contPlataformaUrbana++;
+				}
+				//infraestructuras
+				if(rmd.TodasLeyendas[i].codigoPadre == 33){ 
+					codigosInfraestructuras[contInfraestructuras]=rmd.TodasLeyendas[i].codigo;
+					leyendaInfraestructuras [contInfraestructuras].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaInfraestructuras [contInfraestructuras].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaInfraestructuras [contInfraestructuras].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaInfraestructuras [contInfraestructuras].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contInfraestructuras++;
+				}
+				//fibra optica
+				if(rmd.TodasLeyendas[i].codigoPadre == 34){ 
+					codigosFibraOptica[contFibraOptica]=rmd.TodasLeyendas[i].codigo;
+					leyendaFibraOptica [contFibraOptica].codigo=rmd.TodasLeyendas[i].codigo;
+					leyendaFibraOptica [contFibraOptica].leyenda_esp = rmd.TodasLeyendas [i].leyenda_esp;
+					leyendaFibraOptica [contFibraOptica].leyenda_cat = rmd.TodasLeyendas [i].leyenda_cat;
+					leyendaFibraOptica [contFibraOptica].leyenda_ing = rmd.TodasLeyendas [i].leyenda_ing;
+					contFibraOptica++;
+				}
+		}
+
+	}
 	void fillArrays(){
 		rmd=GetComponent<ReadMunicipiData>();
 		for(int i=0;i<rmd.TodosMunicipios.Count;i++){
@@ -1863,6 +2060,8 @@ public class SceneControl : MonoBehaviour {
 
     public void StartContent(float state) //Lanza contenido
     {
+			Debug.Log ("Start State:"+state);
+			Debug.Log ("Codigo teleasis:"+codigosTeleasistencia[0]);
 			//PERSONAS
 			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
 			{
@@ -1963,120 +2162,126 @@ public class SceneControl : MonoBehaviour {
      }
 
     //Elige el texto a poner en la zona de cada tablet
-    public void writeTextLanguage(int tablet,int estado) {
+    public void writeTextLanguage(int tablet,int state ) {
 
             //Bibliotecas
-			if (estado == codigosBibliotecas[0])
+			if (state == codigosBibliotecas[0])
             {
                 Debug.Log("Cambia texto leyenda bibliotecaz");
                 for (int i = 0; i < 3; i++)
                 {
                     if (lenguajeTablets[i] == 0)
                     {
-                        Titulos[i].text = "Biblioteques";
+						Titulos[i].text = leyendaBibliotecas [0].leyenda_cat;
                         Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == 2)
                     {
-                        Titulos[i].text = "Libraries";
+						Titulos[i].text = leyendaBibliotecas [0].leyenda_ing;
 						Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == 1)
                     {
-                        Titulos[i].text = "Bibliotecas";
+						Titulos[i].text = leyendaBibliotecas [0].leyenda_esp;
                         Subtitulos[i].text = "";
                     }
                 }
             }
             //Bibliobuses
-			if (estado == codigosBibliotecas[1])
+			if (state == codigosBibliotecas[1])
             {
                 for (int i = 0; i < 3; i++)
                 {
                     if (lenguajeTablets[i] == 0)
                     {
-                        Titulos[i].text = "Bibliobusos";
+						Titulos[i].text = leyendaBibliotecas [1].leyenda_cat;
 						Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == 2)
                     {
-						Titulos[i].text = "Mobile library buses";
+						Titulos[i].text = leyendaBibliotecas [1].leyenda_ing;
 						Subtitulos[i].text = "";
                     }
                     else if (lenguajeTablets[i] == 1)
                     {
-						Titulos[i].text = "Bibliobuses";
+						Titulos[i].text = leyendaBibliotecas [1].leyenda_esp;
 						Subtitulos[i].text = "";
                     }
                 }
             }
 			//Bibliolabs
-			if (estado == codigosBibliotecas[2])
+			if (state == codigosBibliotecas[2])
 			{
 				for (int i = 0; i < 3; i++)
 				{
 					if (lenguajeTablets[i] == 0)
 					{
-						Titulos[i].text = "BiblioLab";
+						Titulos[i].text = leyendaBibliotecas [2].leyenda_cat;
 						Subtitulos[i].text = "";
 					}
 					else if (lenguajeTablets[i] == 2)
 					{
-						Titulos[i].text = "BiblioLab";
+						Titulos[i].text = leyendaBibliotecas [2].leyenda_ing;
 						Subtitulos[i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "BiblioLab";
+						Titulos[i].text = leyendaBibliotecas [2].leyenda_esp;
 						Subtitulos[i].text = "";
 					}
 				}
 			}
 
 			//Teleasistencia
-			if (estado == codigosTeleasistencia[0])
+			if (state == codigosTeleasistencia[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
 					if (lenguajeTablets [i] == 0) {
-						Titulos [i].text = "Servei Local de Teleassistència ";
+						Titulos [i].text = leyendaTeleasistencia [0].leyenda_cat;
 						Subtitulos [i].text = "";
 					} else if (lenguajeTablets[i] == 2) {
-						Titulos [i].text = "Municipalities with telecare Service";
+						Titulos [i].text = leyendaTeleasistencia [0].leyenda_ing;
 						Subtitulos [i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "Servicio Local de Teleasistencia";
+						Titulos[i].text = leyendaTeleasistencia [0].leyenda_esp;
 						Subtitulos[i].text = "";
 					}
 				}
 			}
 
 			//GovernObert
-			if (estado == codigosGovernObert[0])
+			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  || state==codigosGovernObert[4] || state==codigosGovernObert[5]) //governObert
 			{
-				for (int i = 0; i < 3; i++)
-				{
-					if (lenguajeTablets[i] == 0)
-					{
-						Titulos[i].text="Govern Obert";
-						Subtitulos[i].text="";
-					}
-					else if (lenguajeTablets[i] == 2)
-					{
-						Titulos [i].text = "Open Government";
-						Subtitulos [i].text = "";
-					}
-					else if (lenguajeTablets[i] == 1)
-					{
-						Titulos[i].text = "Gobierno Abierto";
-						Subtitulos[i].text = "";
+				Debug.Log ("TextoGO: "+leyendaGovernObert [0].leyenda_cat+ "Codigo"+leyendaGovernObert[1].codigo+" Length "+leyendaGovernObert.Length);
+				for(int j = 0; j < leyendaGovernObert.Length; j++){
+					if(leyendaGovernObert[j].codigo==state){
+						Debug.Log ("entra a state:"+leyendaGovernObert[j].codigo);
+						for (int i = 0; i < 3; i++)
+						{
+							if (lenguajeTablets[i] == 0)
+							{
+								Titulos [i].text = leyendaGovernObert [j].leyenda_cat;
+								Subtitulos[i].text="";
+							}
+							else if (lenguajeTablets[i] == 2)
+							{
+								Titulos [i].text = leyendaGovernObert [j].leyenda_ing;
+								Subtitulos [i].text = "";
+							}
+							else if (lenguajeTablets[i] == 1)
+							{
+								Titulos[i].text = leyendaGovernObert [j].leyenda_esp;
+								Subtitulos[i].text = "";
+							}
+						}
 					}
 				}
 			}
 			//ocupacio y promocio
-			if (estado == codigosPromocioEconomica[0])
+			if (state == codigosPromocioEconomica[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2098,29 +2303,30 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Km2
-			if (estado == codigosKm2[0])
+			if (state == codigosKm2[0])
 			{
+				Debug.Log ("TextoKm2"+leyendaKm2 [0].leyenda_cat);
 				for (int i = 0; i < 3; i++)
 				{
 					if (lenguajeTablets[i] == 0)
 					{
-						Titulos[i].text="Km2 Ciutat";
+						Titulos[i].text=leyendaKm2 [0].leyenda_cat;
 						Subtitulos[i].text="";
 					}
 					else if (lenguajeTablets[i] == 2)
 					{
-						Titulos [i].text = "Km2 City";
+						Titulos [i].text = leyendaKm2 [0].leyenda_ing;
 						Subtitulos [i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "Km2 Ciudad";
+						Titulos[i].text = leyendaKm2 [0].leyenda_esp;
 						Subtitulos[i].text = "";
 					}
 				}
 			}
 			//Patrimoni
-			if (estado == codigosPatrimoni[0])
+			if (state == codigosPatrimoni[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2142,7 +2348,7 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Oficina Patrimoni
-			if (estado == codigosOficinaPatrimoni[0])
+			if (state == codigosOficinaPatrimoni[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2166,7 +2372,7 @@ public class SceneControl : MonoBehaviour {
 
 			//SOSTENIBILIDAD
 			//xarxa pobles
-			if (estado == codigosXarxaCiutats[0])
+			if (state == codigosXarxaCiutats[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2188,7 +2394,7 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Municipis cambio
-			if (estado == codigosEvaluacio[0])
+			if (state == codigosEvaluacio[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2210,7 +2416,7 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Renovables
-			if (estado == codigosRenovables[0])
+			if (state == codigosRenovables[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2232,29 +2438,29 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Parques
-			if (estado == codigosRenovables[0])
+			if (state == codigosRenovables[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
 					if (lenguajeTablets[i] == 0)
 					{
-						Titulos[i].text="Parcs naturals";
+						Titulos[i].text=leyendaParques [0].leyenda_cat;
 						Subtitulos[i].text="";
 					}
 					else if (lenguajeTablets[i] == 2)
 					{
-						Titulos [i].text = "Natural Parks";
+						Titulos [i].text = leyendaParques [0].leyenda_ing;
 						Subtitulos [i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "Parques Naturales";
+						Titulos[i].text = leyendaParques [0].leyenda_esp;
 						Subtitulos[i].text = "";
 					}
 				}
 			}
 			//Turismo
-			if (estado == codigosRenovables[0])
+			if (state == codigosRenovables[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2278,7 +2484,7 @@ public class SceneControl : MonoBehaviour {
 
 			//TECNOLOGIA
 			//Serveis gestio
-			if (estado == codigosRenovables[0])
+			if (state == codigosRenovables[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2300,7 +2506,7 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Plataforma urbana
-			if (estado == codigosRenovables[0])
+			if (state == codigosRenovables[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2322,7 +2528,7 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Infraestructuras
-			if (estado == codigosRenovables[0])
+			if (state == codigosRenovables[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
@@ -2344,23 +2550,23 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Fibra optica
-			if (estado == codigosRenovables[0])
+			if (state == codigosRenovables[0])
 			{
 				for (int i = 0; i < 3; i++)
 				{
 					if (lenguajeTablets[i] == 0)
 					{
-						Titulos[i].text="Xarxa de fibra òptica";
+						Titulos[i].text=leyendaFibraOptica [0].leyenda_cat;
 						Subtitulos[i].text="";
 					}
 					else if (lenguajeTablets[i] == 2)
 					{
-						Titulos [i].text = "Fiber optic network";
+						Titulos [i].text = leyendaFibraOptica [0].leyenda_ing;
 						Subtitulos [i].text = "";
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = "Red de fibra óptica";
+						Titulos[i].text = leyendaFibraOptica [0].leyenda_esp;
 						Subtitulos[i].text = "";
 					}
 				}
@@ -3656,6 +3862,14 @@ public void Clean1(int value)//OscMessage message
 		//public List<Escena> escenas;
 
 	}
+
+public struct Leyenda {
+	public int codigo;
+	public int codigoPadre;
+	public string leyenda_esp;
+	public string leyenda_ing;
+	public string leyenda_cat;
+}
 
 }
 }//END NAMESPACE

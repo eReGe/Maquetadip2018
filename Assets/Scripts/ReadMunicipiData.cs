@@ -14,6 +14,7 @@ public class ReadMunicipiData : MonoBehaviour {
 	private bool isLoaded;
 	private bool isFinsihWriting = false;
 	public List<UnMunicipio> TodosMunicipios;
+	public List<Leyenda> TodasLeyendas;
 
 	public int codigo;
 	public string nombre;
@@ -23,6 +24,7 @@ public class ReadMunicipiData : MonoBehaviour {
 	public float posZ;
 
 	private UnMunicipio um;
+	private Leyenda ly;
 	// Use this for initialization
 	void Start () {
 		//DontDestroyOnLoad (this);
@@ -123,6 +125,58 @@ public class ReadMunicipiData : MonoBehaviour {
 			//}
 
 		}
+
+		//LEYENDAS
+		Debug.Log ("Fill Config leyendas");
+		jsonString = File.ReadAllText (Application.dataPath + "/Resources/Json/json_maqueta_es_en_ca.Json");
+		if(jsonString==null){
+			Debug.Log ("Error json");
+			return false;
+		}
+		TodasLeyendas = new List<Leyenda> ();
+		var J = JSON.Parse(jsonString);
+		int conta = 0;
+		Debug.Log ("Temas:"+J.Count);
+		for(int i=0;i<J.Count;i++){
+			Debug.Log ("Temas:"+i);
+
+			Debug.Log ("Contenidos tema:"+J[i]["contenidos"].Count);
+			for(int j=0;j<J[i]["contenidos"].Count;j++){
+				
+				Debug.Log (" Subcontenidos:"+J [i] ["contenidos"] [j] ["Subcontenidos"].Count);
+				if(J [i] ["contenidos"] [j] ["Subcontenidos"].Count>0){
+					ly = new Leyenda ();
+					Debug.Log (" Rellena subcontenido");
+					for(int k=0;k<J[i]["contenidos"][j]["Subcontenidos"].Count;k++){
+						ly.codigo = J [i] ["contenidos"] [j] ["Subcontenidos"] [k] ["id"];
+						ly.codigoPadre = J [i] ["contenidos"] [j] ["id"];
+						ly.leyenda_esp = J [i] ["contenidos"] [j] ["Subcontenidos"] [k] ["idiomas"][0]["leyenda"];
+						ly.leyenda_ing = J [i] ["contenidos"] [j] ["Subcontenidos"] [k] ["idiomas"][1]["leyenda"];
+						ly.leyenda_cat = J [i] ["contenidos"] [j] ["Subcontenidos"] [k] ["idiomas"][2]["leyenda"];	
+						Debug.Log ("Codigo:"+ly.codigo +" leyenda"+ly.leyenda_esp);
+						TodasLeyendas.Add (ly);
+					}
+				}else{
+					ly = new Leyenda ();
+					Debug.Log (" Rellena contenido");
+					ly.codigo = J [i] ["contenidos"] [j] ["id"];
+					ly.codigoPadre = J [i] ["contenidos"] [j] ["id"];
+					ly.leyenda_esp = J [i] ["contenidos"] [j] ["idiomas"] [0] ["leyenda"];
+					ly.leyenda_ing = J [i] ["contenidos"] [j] ["idiomas"] [1] ["leyenda"];
+					ly.leyenda_cat = J [i] ["contenidos"] [j] ["idiomas"] [2] ["leyenda"];
+					Debug.Log ("Codigo:"+ly.codigo +" leyenda"+ly.leyenda_esp);
+					TodasLeyendas.Add (ly);
+				}
+
+
+			
+			}
+			Debug.Log ("End for");
+
+		}
+		//FIN LEYENDAS
+
+
 		Debug.Log ("Datos recuperados. ");
 		Debug.Log ("Pintados: "+cont);
 		//Instantiate(marcador,new Vector3(TodosMunicipios[0].posX,TodosMunicipios[0].posY,TodosMunicipios[0].posZ),Quaternion.identity);
@@ -242,5 +296,12 @@ public class ReadMunicipiData : MonoBehaviour {
 		public float posZ;
 		//public List<Escena> escenas;
 
+	}
+	public struct Leyenda {
+		public int codigo;
+		public int codigoPadre;
+		public string leyenda_esp;
+		public string leyenda_ing;
+		public string leyenda_cat;
 	}
 }
