@@ -315,7 +315,7 @@ public class SceneControl : MonoBehaviour {
 
 
 	// START
-	void Start () {
+	void Start() {
             // Ensure that we have a OscIn component.
             //if( !oscIn ) oscIn = gameObject.AddComponent<OscIn>();
 
@@ -452,13 +452,16 @@ public class SceneControl : MonoBehaviour {
 				superficiesVideos [i].GetComponent<MeshRenderer> ().enabled = false;
 		}
         
-
-		for(int i=0;i<LeyendaMarcador.Length;i++){
+		//APAGAR ICONOS
+			enableIconosLeyenda(IconosTablet1[0],colorPERSONAS,0);
+			enableIconosLeyendaSup (IconosTablet1 [0], 0);
+		/*for(int i=0;i<LeyendaMarcador.Length;i++){
 			LeyendaMarcador [i].GetComponent<MeshRenderer> ().enabled = false;
 			//LeyendaMarcadorb [i].GetComponent<SpriteRenderer> ().enabled = false;
 			//LeyendaMarcadorc [i].GetComponent<SpriteRenderer> ().enabled = false;
-		}
+		}*/
 			for(int i=0;i<LeyendaMarcadorb.Length;i++){
+				Debug.Log ("APAGA ICONOS EXTRA");
 				LeyendaMarcadorb [i].GetComponent<SpriteRenderer> ().enabled = false;
 			}
 			for(int i=0;i<LeyendaMarcadorc.Length;i++){
@@ -1107,7 +1110,7 @@ public class SceneControl : MonoBehaviour {
 				}*/
 			}
 			if(onoff==1){
-				caScript.startAnimation (Random.Range(1,3));
+				caScript.startAnimation (1);
 					/*for (int i = 0; i < Maquetas.Length; i++)
 				{
 					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
@@ -1847,30 +1850,30 @@ public class SceneControl : MonoBehaviour {
 
 
 	}
-		public void oscPersonas(int value)
-		{
-				StartTransition (1);
-		}
-		public void oscSostenibilidad(int value)
-		{
-				StartTransition (2);
-		}
-		public void oscTecnologia(int value)
-		{
-			
-				StartTransition (3);
-		}
-		public void oscInicio(int value)
-		{
-			Debug.Log ("vuelva a inicio: "+value);
-			if (value == 0)EndTransition (1);
-			else if (value == 1)EndTransition (2);
-			else if (value == 2)EndTransition (3);
-		}
-		public void oscVideoStop(int value)
-		{
-			skipVideo = true;
-		}
+	public void oscPersonas(int value)
+	{
+			StartTransition (1);
+	}
+	public void oscSostenibilidad(int value)
+	{
+			StartTransition (2);
+	}
+	public void oscTecnologia(int value)
+	{
+		
+			StartTransition (3);
+	}
+	public void oscInicio(int value)
+	{
+		Debug.Log ("vuelva a inicio: "+value);
+		if (value == 0)EndTransition (1);
+		else if (value == 1)EndTransition (2);
+		else if (value == 2)EndTransition (3);
+	}
+	public void oscVideoStop(int value)
+	{
+		skipVideo = true;
+	}
     //CONTROL DE ANIMACIONES DE VIDEO
     public void StartTransition(float state)//transicion de maqueta a tema
     {
@@ -1947,7 +1950,7 @@ public class SceneControl : MonoBehaviour {
 			//personas
 			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
 			{
-				videoPlayerSuperficie.clip=videosSuperficie[Random.Range(0,videosSuperficie.Length )];
+				videoPlayerSuperficie.clip=videosSuperficie[0];
 			}
 
 			if(state==codigosTeleasistencia[0]) //teleasistencia
@@ -2076,7 +2079,9 @@ public class SceneControl : MonoBehaviour {
 				StartTeleasis((int)state);
 			}
 
-			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  || state==codigosGovernObert[4] || state==codigosGovernObert[5]) //governObert
+			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  
+				|| state==codigosGovernObert[4] || state==codigosGovernObert[5] || state==codigosGovernObert[6]|| state==codigosGovernObert[7]
+				|| state==codigosGovernObert[8] || state==codigosGovernObert[9]) //governObert
 			{
 				StartGovernObert((int)state);
 			}
@@ -2088,11 +2093,12 @@ public class SceneControl : MonoBehaviour {
 			{
 				StartKm2((int)state);
 			}
-			if(state==codigosPatrimoni[0] || state==codigosPatrimoni[1] || state==codigosPatrimoni[2]|| state==codigosPatrimoni[3]|| state==codigosPatrimoni[4]|| state==codigosPatrimoni[5]) //Patrimoni
+			if(state==codigosPatrimoni[0] || state==codigosPatrimoni[1] || state==codigosPatrimoni[2]|| state==codigosPatrimoni[3]
+				|| state==codigosPatrimoni[4]|| state==codigosPatrimoni[5]) //Patrimoni
 			{
 				StartPatrimoni((int)state);
 			}
-			if(state==codigosOficinaPatrimoni[0] ||  state==codigosOficinaPatrimoni[1] || state==codigosOficinaPatrimoni[1]) //Patrimoni
+			if(state==codigosOficinaPatrimoni[0] ||  state==codigosOficinaPatrimoni[1] || state==codigosOficinaPatrimoni[2]) //Patrimoni
 			{
 				StartOficinaPatrimoni((int)state);
 			}
@@ -2266,7 +2272,9 @@ public class SceneControl : MonoBehaviour {
 			}
 
 			//GovernObert
-			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  || state==codigosGovernObert[4] || state==codigosGovernObert[5]) //governObert
+			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  
+				|| state==codigosGovernObert[4] || state==codigosGovernObert[5] || state==codigosGovernObert[6]|| state==codigosGovernObert[7]
+				|| state==codigosGovernObert[8] || state==codigosGovernObert[9])  //governObert
 			{
 				Debug.Log ("TextoGO: "+leyendaGovernObert [0].leyenda_cat+ "Codigo"+leyendaGovernObert[1].codigo+" Length "+leyendaGovernObert.Length);
 				for(int j = 0; j < leyendaGovernObert.Length; j++){
@@ -2294,24 +2302,29 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//ocupacio y promocio
-			if (state == codigosPromocioEconomica[0])
+			if (state == codigosPromocioEconomica[0] || state == codigosPromocioEconomica[1] || state == codigosPromocioEconomica[2])
 			{
-				for (int i = 0; i < 3; i++)
-				{
-					if (lenguajeTablets[i] == 0)
-					{
-						Titulos[i].text="Promoció econòmica i ocupació";
-						Subtitulos[i].text="";
-					}
-					else if (lenguajeTablets[i] == 2)
-					{
-						Titulos [i].text = "Economic development and employment.";
-						Subtitulos [i].text = "";
-					}
-					else if (lenguajeTablets[i] == 1)
-					{
-						Titulos[i].text = "Promoción económica y empleo";
-						Subtitulos[i].text = "";
+				for(int j = 0; j < leyendaPromocioEconomica.Length; j++){
+					if(leyendaPromocioEconomica[j].codigo==state){
+						Debug.Log ("entra a state:"+leyendaPromocioEconomica[j].codigo);
+						for (int i = 0; i < 3; i++)
+						{
+							if (lenguajeTablets[i] == 0)
+							{
+								Titulos[i].text=leyendaPromocioEconomica[j].leyenda_cat;
+								Subtitulos[i].text="";
+							}
+							else if (lenguajeTablets[i] == 2)
+							{
+								Titulos [i].text =leyendaPromocioEconomica[j].leyenda_ing;
+								Subtitulos [i].text = "";
+							}
+							else if (lenguajeTablets[i] == 1)
+							{
+								Titulos[i].text = leyendaPromocioEconomica[j].leyenda_esp;
+								Subtitulos[i].text = "";
+							}
+						}
 					}
 				}
 			}
@@ -2339,46 +2352,57 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 			//Patrimoni
-			if (state == codigosPatrimoni[0])
+			if(state==codigosPatrimoni[0] || state==codigosPatrimoni[1] || state==codigosPatrimoni[2]|| state==codigosPatrimoni[3]
+				|| state==codigosPatrimoni[4]|| state==codigosPatrimoni[5]) //Patrimoni
 			{
-				for (int i = 0; i < 3; i++)
-				{
-					if (lenguajeTablets[i] == 0)
-					{
-						Titulos[i].text="Patrimoni";
-						Subtitulos[i].text="";
-					}
-					else if (lenguajeTablets[i] == 2)
-					{
-						Titulos [i].text = "Heritage";
-						Subtitulos [i].text = "";
-					}
-					else if (lenguajeTablets[i] == 1)
-					{
-						Titulos[i].text = "Patrimonio";
-						Subtitulos[i].text = "";
+				for(int j = 0; j < leyendaPatrimoni.Length; j++){
+					if(leyendaPatrimoni[j].codigo==state){
+						Debug.Log ("entra a state:"+leyendaPatrimoni[j].codigo);
+						for (int i = 0; i < 3; i++)
+						{
+							if (lenguajeTablets[i] == 0)
+							{
+								Titulos[i].text=leyendaPatrimoni[j].leyenda_cat;
+								Subtitulos[i].text="";
+							}
+							else if (lenguajeTablets[i] == 2)
+							{
+								Titulos [i].text = leyendaPatrimoni[j].leyenda_ing;
+								Subtitulos [i].text = "";
+							}
+							else if (lenguajeTablets[i] == 1)
+							{
+								Titulos[i].text = leyendaPatrimoni[j].leyenda_esp;
+								Subtitulos[i].text = "";
+							}
+						}
 					}
 				}
 			}
 			//Oficina Patrimoni
-			if (state == codigosOficinaPatrimoni[0])
+			if (state == codigosOficinaPatrimoni[0] || state == codigosOficinaPatrimoni[1]|| state == codigosOficinaPatrimoni[2])
 			{
-				for (int i = 0; i < 3; i++)
-				{
-					if (lenguajeTablets[i] == 0)
-					{
-						Titulos[i].text="Oficina de Patrimoni Cultural";
-						Subtitulos[i].text="";
-					}
-					else if (lenguajeTablets[i] == 2)
-					{
-						Titulos [i].text = "Cultural Heritage Office";
-						Subtitulos [i].text = "";
-					}
-					else if (lenguajeTablets[i] == 1)
-					{
-						Titulos[i].text = "Oficina de Patrimonio Cultural";
-						Subtitulos[i].text = "";
+				for(int j = 0; j < leyendaOficinaPatrimoni.Length; j++){
+					if(leyendaOficinaPatrimoni[j].codigo==state){
+						Debug.Log ("entra a state:"+leyendaOficinaPatrimoni[j].codigo);
+						for (int i = 0; i < 3; i++)
+						{
+							if (lenguajeTablets[i] == 0)
+							{
+								Titulos[i].text=leyendaOficinaPatrimoni[j].leyenda_cat;
+								Subtitulos[i].text="";
+							}
+							else if (lenguajeTablets[i] == 2)
+							{
+								Titulos [i].text = leyendaOficinaPatrimoni[j].leyenda_ing;
+								Subtitulos [i].text = "";
+							}
+							else if (lenguajeTablets[i] == 1)
+							{
+								Titulos[i].text = leyendaOficinaPatrimoni[j].leyenda_esp;
+								Subtitulos[i].text = "";
+							}
+						}
 					}
 				}
 			}
@@ -2655,19 +2679,39 @@ public class SceneControl : MonoBehaviour {
 			if(fade==0){
 				for (int i = 0; i < 3; i++)
 				{
-				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
+				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
 				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
-				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = false;
+				LeyendaMarcador [i].GetComponent<SpriteRenderer>().enabled = false;
 				}
 			}
 			else{
 				for (int i = 0; i < 3; i++)
 				{
-					LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
-					LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
-					LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = true;
+					LeyendaMarcador [i].GetComponent<SpriteRenderer>().sprite = s;
+					LeyendaMarcador [i].GetComponent<SpriteRenderer>().color = c;
+					LeyendaMarcador [i].GetComponent<SpriteRenderer>().enabled = true;
 				}
 			}
+	}
+	public void enableIconosLeyendaSup(Sprite s,int fade)
+	{
+		Debug.Log ("Enable iconos:"+fade);
+		if(fade==0){
+			for (int i = 0; i < 3; i++)
+			{
+				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
+				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
+				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = false;
+			}
+		}
+		else{
+			for (int i = 0; i < 3; i++)
+			{
+				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
+				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
+				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = true;
+			}
+		}
 	}
 		public void oscBiblio(int message)
 	{
@@ -2700,10 +2744,12 @@ public class SceneControl : MonoBehaviour {
 			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 			    
                 at.isGrowing = true;
+				if(!isSuperposicion)CleanVideoMapping (); //limpia si no es superposicion
 
 				
             }
 			else if (value == codigosBibliotecas[1]) { //bibliobuses
+				if(!isSuperposicion) CleanPuntos(); //limpia si no es superposicion
                 estadoActual[2] = value;
                 //activar bibliobus
 				changeAlphaMaterialMaqueta(layerVideoMapping,1);
@@ -2732,7 +2778,7 @@ public class SceneControl : MonoBehaviour {
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
 				at.isGrowing = true;
-				 
+				if(!isSuperposicion)CleanVideoMapping ();//limpia si no es superposicion
             }
 
 			//Enable leyendas
@@ -2757,13 +2803,12 @@ public class SceneControl : MonoBehaviour {
 		Debug.Log( "Received: teleasis ");
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
+			//LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			activeTablets [0] = true;
 			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 
 			if(value == codigosTeleasistencia[0] || value==0){
-				mc.colorToChange = colorTeleasis;
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorTeleasis;
+				mc.colorToChange = colorPERSONAS;
 				at.contenido = "Teleasistencia";
 				at.isGrowing = true;
 				writeTextLanguage (0, value);
@@ -2860,10 +2905,10 @@ public class SceneControl : MonoBehaviour {
 			//at.contenido = "GovernOBERT";
 			//at.isGrowing = true;
 			//Leyendas
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
-			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorGovernObert;
+			/*
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+			*/
 
 			activeTablets [0] = true;
 
@@ -2893,25 +2938,29 @@ public class SceneControl : MonoBehaviour {
 		Debug.Log( "Received: Promocio Economica ");
 
 			if(value == codigosPromocioEconomica[0]  || value==0){ //XALOC
+				if(!isSuperposicion) CleanPoligonos();
+				enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 				AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-				mc.colorToChange = colorXaloc;
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorXaloc;
+				mc.colorToChange = colorPERSONAS;
 				at.contenido = "Xaloc";
 				at.isGrowing = true;
 				writeTextLanguage(0, value);
 			}
 			if(value == codigosPromocioEconomica[1] ){//poligonos
+				enableIconosLeyenda (IconosTablet1[4], colorPERSONAS,1);
+				if(!isSuperposicion) CleanPuntos(); //limpia puntos si no es superposicion
 				StartPoligons();
 				writeTextLanguage(0, value);
 			}
 			if(value == codigosPromocioEconomica[2] ){//serveis a empreses
 
 				//NuevosDatos
+				if(!isSuperposicion) CleanPoligonos();
+				enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 				AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-				mc.colorToChange = colorXaloc;
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorXaloc;
+				mc.colorToChange = colorPERSONAS;
 				at.contenido = "ServeisEmpresas";
 				at.isGrowing = true;
 
@@ -2919,9 +2968,7 @@ public class SceneControl : MonoBehaviour {
 			}
 
 			//Leyendas
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[6];
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+			//LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			activeTablets [0] = true;
 
 			//Animaciones maqueta2
@@ -2940,13 +2987,11 @@ public class SceneControl : MonoBehaviour {
 	{
 		Debug.Log( "Received: Km2 ");
 			estadoActual[2] = value;
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 			activeTablets [0] = true;
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
 		mc.colorToChange = colorKm21;
-		LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorKm21;
 		at.contenido = "Km2";
 		at.isGrowing = true;
 		writeTextLanguage(0, value);
@@ -2995,8 +3040,6 @@ public class SceneControl : MonoBehaviour {
 			}
 
 
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
-			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorPERSONAS;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 
@@ -3039,8 +3082,6 @@ public class SceneControl : MonoBehaviour {
 		}
 
 
-		LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
-		LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorPERSONAS;
 		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[4];
 		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 
@@ -3671,21 +3712,10 @@ public class SceneControl : MonoBehaviour {
 	{
 		Debug.Log( "Received: Poligons ");
 			activeTablets [2] = true;
-			LeyendaMarcadorb [2].GetComponent<SpriteRenderer>().enabled = true;
-			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[0];
-			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled =true;
-
+			
 			isPolig = true;
 			isStartPolig = true;
 			isEndPolig = false;
-			/*if (lenguajeTablets [2] == 0) {
-				Titulos [2].text = "Poligons Industrials";
-				Subtitulos [2].text = "";
-			} else {
-				Titulos [2].text = "Industrial parks";
-				Subtitulos [2].text = "";
-			}*/
-			
 	}
 	public void oscFibra(int message)
 	{
@@ -3771,6 +3801,49 @@ public class SceneControl : MonoBehaviour {
 public void Clean1osc(OscMessage m){
 			Clean1 (0);
 }
+public void CleanPuntos()//OscMessage message
+{
+	MarkerControl mc=AnimFinishers[0].GetComponent<MarkerControl>();
+	AnimationTrigger at=AnimFinishers[0].GetComponent<AnimationTrigger>();
+	mc.colorToChange = Color.white;
+	at.isGrowing = true;
+
+	MarkerControl mc1=AnimFinishers[1].GetComponent<MarkerControl>();
+	AnimationTrigger at1=AnimFinishers[1].GetComponent<AnimationTrigger>();
+	mc1.colorToChange = Color.white;
+	at1.isGrowing = true;
+
+	MarkerControl mc2=AnimFinishers[2].GetComponent<MarkerControl>();
+	AnimationTrigger at2=AnimFinishers[2].GetComponent<AnimationTrigger>();
+	mc2.colorToChange = Color.white;
+	at2.isGrowing = true;
+}
+public void CleanVideoMapping()//OscMessage message
+{
+	changeAlphaVideoMaqueta(layerVideoMapping,0);
+	videoPlayerMapping.Stop();//video de mapping extra (bibliobuses, fibra optica,etc)
+}
+public void CleanTitulos()//OscMessage message
+{
+	for (int i = 0; i < Titulos.Length; i++)
+	{
+		Titulos [i].text = "";
+	}
+}
+
+public void CleanSubtitulos()//OscMessage message
+{
+	for (int i = 0; i < Subtitulos.Length; i++)
+	{
+		Subtitulos [i].text = "";
+	}
+}
+
+public void CleanPoligonos()//OscMessage message
+{
+	isEndPolig = true;
+}
+
 public void Clean1(int value)//OscMessage message
     {
             Debug.Log("Received: Clean1 ");// + message );
@@ -3779,7 +3852,8 @@ public void Clean1(int value)//OscMessage message
 		
         
         //limpiar animaciones
-		
+	changeAlphaVideoMaqueta(layerVideoMapping,0);
+	videoPlayerMapping.Stop();//video de mapping extra (bibliobuses, fibra optica,etc)
 		enableAnimationLayer(0);
 			//isEmisions = false;
 		isEndEmisions=true;
@@ -3790,6 +3864,8 @@ public void Clean1(int value)//OscMessage message
 	changeAlphaMaterialMaqueta (layerMunicipiosSolos, 0);
 	//limpiar iconos
 	enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,0); 
+	//Limpiar leyendas
+	CleanTitulos();
 
         
 
@@ -3798,12 +3874,21 @@ public void Clean1(int value)//OscMessage message
 			mc.colorToChange = Color.white;
 		at.isGrowing = true;
 
+	MarkerControl mc1=AnimFinishers[1].GetComponent<MarkerControl>();
+	AnimationTrigger at1=AnimFinishers[1].GetComponent<AnimationTrigger>();
+	mc1.colorToChange = Color.white;
+	at1.isGrowing = true;
+
+	MarkerControl mc2=AnimFinishers[2].GetComponent<MarkerControl>();
+	AnimationTrigger at2=AnimFinishers[2].GetComponent<AnimationTrigger>();
+	mc2.colorToChange = Color.white;
+	at2.isGrowing = true;
+
 		//Control parques SIEMPRE???
 			isEndParcs=true;
 			activeTablets [0] = false;
-			Titulos [0].text = "";
-			Subtitulos [0].text = "";
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = false;
+			
+			//LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = false;
 			LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = false;
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = false;
 
@@ -3812,10 +3897,10 @@ public void Clean1(int value)//OscMessage message
 			Titulos [3].text = "";
 			Titulos [4].text = "";
 			Subtitulos [1].text = "";
-			LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = false;
-			LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled = false;
-			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=false;
-			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = false;
+			//LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = false;
+			//LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled = false;
+			//LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=false;
+			//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = false;
 			LeyendaMarcadorb [4].GetComponent<SpriteRenderer> ().enabled = false;
 			LeyendaMarcadorb [5].GetComponent<SpriteRenderer> ().enabled = false;
 
@@ -3825,7 +3910,7 @@ public void Clean1(int value)//OscMessage message
 			Titulos[6].text="";
 			Titulos[7].text="";
 			Subtitulos [2].text = "";
-			LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = false;
+			//LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = false;
 			LeyendaMarcadorb [2].GetComponent<SpriteRenderer>().enabled = false;
 			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = false;
 

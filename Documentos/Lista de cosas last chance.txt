@@ -1,0 +1,34 @@
+COSAS PARA CAMBIAR TABLET
+
+- Osc de superposicion debe de ser:  /superposicion (codigo del contenido)
+- Serveis de teleasistencia no manda osc, y va al contenido de bibliotecas
+- Km2 despues del video En la tablet va a contenido de promocio economica y ocupacio, o a libraries
+- En oficina de patrimoni cultural, arxius municipals y museus locals tienen el parametro de envio osc cambiado (el 2 es el 3 y viceversa)
+
+
+
+COSAS PARA CAMBIAR JSON
+- En gobern obert faltan las leyendas de subcontenidos en ingles y español
+- En km2 no hay leyenda en ingles y espaól, es la misma que en catalán
+
+
+
+
+COSAS PARA CAMBIAR UNITY
+
+		
+	
+-oficina de patrimoni cultural
+	Archius y museos estan cambiados?
+	
+	
+ANIMACIONES
+- Video de bibliobuses
+- video de fibra
+-lineas de plataforma
+- parpadeos de bibliolabs
+- imagen de bibliobuses
+- Flicker a puntos de leyenda cuando muestren puntos con flicker
+	
+
+	

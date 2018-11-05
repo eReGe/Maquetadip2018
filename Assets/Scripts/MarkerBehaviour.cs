@@ -653,8 +653,8 @@ public class MarkerBehaviour : MonoBehaviour {
 		float y,y1;
 		float z,z1 = 0f;
 
-		float angle = 20f;
-		float angle2 = 200f;
+		float angle = 90f-30f;
+		float angle2 = 270f-30f;
 
 		for (int i = 0; i < (segments + 1); i++)
 		{
