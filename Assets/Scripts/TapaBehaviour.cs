@@ -334,8 +334,8 @@ public class TapaBehaviour : MonoBehaviour {
 		line = gameObject.GetComponent<LineRenderer>();
 		line.SetVertexCount (2);
 		line.useWorldSpace = true;
-		line.startWidth = 3;
-		line.endWidth = 3;
+		line.startWidth = 2;
+		line.endWidth = 2;
 		float xini =transform.parent.position.x;
 		float zini =transform.parent.position.z;
 		float yini=150;

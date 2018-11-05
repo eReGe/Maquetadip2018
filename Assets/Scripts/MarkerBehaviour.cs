@@ -294,14 +294,17 @@ public class MarkerBehaviour : MonoBehaviour {
 		case "Plataforma1":
 			m1 = sceneControl.GetComponent<SceneControl>().PlataformaUrbana1M;  //NOCOMPLETO
 			tablet = 3;
+			isPlataforma = true;
 			break;
 		case "Plataforma2":
 			m1 = sceneControl.GetComponent<SceneControl>().PlataformaUrbana2M;  //NOCOMPLETO
 			tablet = 3;
+			isPlataforma = true;
 			break;
 		case "Plataforma3":
 			m1 = sceneControl.GetComponent<SceneControl>().HibridM;  //NOCOMPLETO
 			tablet = 3;
+			isPlataforma = true;
 			break;
 
 		case "Infraestructures":
@@ -351,9 +354,9 @@ public class MarkerBehaviour : MonoBehaviour {
 							line.enabled = false;
 							isNeuronal = false;
 						}
-					} else if (tipo == "Plataforma") {
+					} else if (tipo == "Plataforma1" || tipo == "Plataforma2" || tipo == "Plataforma3" || tipo == "Plataforma") {
 						if (codigo == m1 [i]) {
-							Debug.Log ("Tipo OPlataforma mb");
+							Debug.Log ("Tipo Plataforma mb");
 							this.StartState = true;
 							Color c = gameObject.GetComponent<Renderer> ().material.color;
 							c = colorMesura1;
@@ -408,7 +411,7 @@ public class MarkerBehaviour : MonoBehaviour {
 							Debug.Log ("Tipo Mesura2 mb");
 							this.StartState = true;
 							Color c = gameObject.GetComponent<Renderer> ().material.color;
-							c= colorPlataforma2;
+							c= colorMesura1;
 							gameObject.GetComponent<Renderer> ().material.color = c;
 							line = gameObject.GetComponent<LineRenderer> ();
 							/*if (isPlataforma) {
@@ -430,7 +433,7 @@ public class MarkerBehaviour : MonoBehaviour {
 							Debug.Log ("Tipo Plataforma2 mb");
 							this.StartState = true;
 							Color c = gameObject.GetComponent<Renderer> ().material.color;
-							c= colorPlataforma2;
+							c= colorMesura1;
 							gameObject.GetComponent<Renderer> ().material.color = c;
 							line = gameObject.GetComponent<LineRenderer> ();
 							/*if (isPlataforma) {
@@ -738,7 +741,7 @@ public class MarkerBehaviour : MonoBehaviour {
 		float y,y1,y2;
 		float z,z1,z2 = 0f;
 
-		float angle = 20f;
+		float angle = 135f;
 		float angle2 = 200f;
 
 		for (int i = 0; i < (segments + 1); i++)
@@ -766,8 +769,8 @@ public class MarkerBehaviour : MonoBehaviour {
 		line = gameObject.GetComponent<LineRenderer>();
 		line.SetVertexCount (2);
 		line.useWorldSpace = true;
-		line.startWidth = 3;
-		line.endWidth = 3;
+		line.startWidth = 1;
+		line.endWidth = 1;
 		float xini =transform.parent.position.x;
 		float zini =transform.parent.position.z;
 		float yini=150;

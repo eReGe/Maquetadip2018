@@ -15,7 +15,11 @@ COSAS PARA CAMBIAR JSON
 
 
 COSAS PARA CAMBIAR UNITY
-
+- Fibra optica
+	-Lanzar video de fibra y apagarlo en clean
+	- Cambiar color fondo liso anim y cambiarlo en clean
+- Plataforma Urbana
+	- Lanzar lineas y puta wifi (se lanza pero no se ve
 		
 	
 -oficina de patrimoni cultural

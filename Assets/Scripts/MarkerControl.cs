@@ -30,6 +30,7 @@ public class MarkerControl : MonoBehaviour {
 
 					AnimationTrigger at = gameObject.GetComponent <AnimationTrigger>();
 					if (at.contenido != "Mesura" && at.contenido != "Plataforma") {
+					//if (at.contenido != "Mesura") {
 						MarkerFlicker mf = col.gameObject.GetComponent <MarkerFlicker> ();
 						mf.c = colorToChange;
 					}
@@ -44,6 +45,7 @@ public class MarkerControl : MonoBehaviour {
 				if(col.gameObject.name=="Tapa1"){
 					AnimationTrigger at = gameObject.GetComponent <AnimationTrigger>();
 					if (at.contenido != "Mesura" && at.contenido !="Plataforma") {
+					//if (at.contenido != "Mesura") {
 						col.gameObject.GetComponent<Renderer> ().material.color = colorToChange;
 						MarkerFlicker mf = col.gameObject.GetComponent <MarkerFlicker> ();
 						mf.c = colorToChange;
@@ -54,7 +56,8 @@ public class MarkerControl : MonoBehaviour {
 						tb.isPlataforma = false;
 						//cont++;
 						//Debug.Log ("HIT:NOT MESURA ");
-					} else if(at.contenido == "Mesura" || at.contenido =="Plataforma") { //Mesura y Plataforma
+					} else if(at.contenido == "Mesura" || at.contenido =="Plataforma")  //Mesura y Plataforma
+					{
 						TapaBehaviour tb=col.gameObject.GetComponent <TapaBehaviour> ();
 						LineRenderer line = col.gameObject.GetComponent<LineRenderer> ();
 						line.enabled = false;
