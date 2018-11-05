@@ -20,6 +20,12 @@ COSAS PARA CAMBIAR UNITY
 	- Cambiar color fondo liso anim y cambiarlo en clean
 - Plataforma Urbana
 	- Lanzar lineas y puta wifi (se lanza pero no se ve
+- Municipis compromesos
+	- No se ven leyendas, ver porque es
+	
+- Emisiones
+	- Poner subtitulos de fechas en todos
+	- cambiar color liso a negro
 		
 	
 -oficina de patrimoni cultural
