@@ -1889,16 +1889,19 @@ public class SceneControl : MonoBehaviour {
             {
                 changeColorVideoMaqueta(layerVideoMaqueta, colorPERSONAS);
                 changeColorVideoLiso(layerLisoVideoTransicion, colorPERSONAS);
+				changeColorText (colorPERSONAS);
             }
             if (state == 2)//sostenibilidad
             {
                 changeColorVideoMaqueta(layerVideoMaqueta, colorSOSTENIBILIDAD);
                 changeColorVideoLiso(layerLisoVideoTransicion, colorSOSTENIBILIDAD);
+				changeColorText (colorSOSTENIBILIDAD);
             }
             if (state == 3)//tecnologia
             {
                 changeColorVideoMaqueta(layerVideoMaqueta, colorTECNOLOGIA);
                 changeColorVideoLiso(layerLisoVideoTransicion, colorTECNOLOGIA);
+				changeColorText (colorTECNOLOGIA);
             }
 
             //videos ON
@@ -2160,7 +2163,17 @@ public class SceneControl : MonoBehaviour {
 
 
      }
-
+	public void changeColorText(Color c)
+	{
+		Debug.Log ("Change color text");
+		for (int i = 0; i < 3; i++)
+		{
+				Titulos[i].color = c;
+				//Subtitulos[i].text = "";
+			
+		}
+		
+	}
     //Elige el texto a poner en la zona de cada tablet
     public void writeTextLanguage(int tablet,int state ) {
 
@@ -2636,6 +2649,26 @@ public class SceneControl : MonoBehaviour {
             StartBiblio2(value);*/
 
     }
+		public void enableIconosLeyenda(Sprite s,Color c,int fade)
+	{
+		Debug.Log ("Enable iconos:"+fade);
+			if(fade==0){
+				for (int i = 0; i < 3; i++)
+				{
+				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
+				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
+				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = false;
+				}
+			}
+			else{
+				for (int i = 0; i < 3; i++)
+				{
+					LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
+					LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
+					LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = true;
+				}
+			}
+	}
 		public void oscBiblio(int message)
 	{
 			Debug.Log (message);
@@ -2652,10 +2685,10 @@ public class SceneControl : MonoBehaviour {
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
 			activeTablets [0] = true;
 		    mc.colorToChange = colorBibliotecas;
-			LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
-			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+			/*LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
+			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;*/
+			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
+
 			
 			if (value == codigosBibliotecas[0]) { //bibliotecas
                 estadoActual[2] = value;
@@ -2726,6 +2759,7 @@ public class SceneControl : MonoBehaviour {
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			activeTablets [0] = true;
+			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 
 			if(value == codigosTeleasistencia[0] || value==0){
 				mc.colorToChange = colorTeleasis;
@@ -2767,7 +2801,7 @@ public class SceneControl : MonoBehaviour {
 		public void StartGovernObert(int value )
 	{
 			estadoActual[2] = value;
-
+			enableIconosLeyenda (IconosTablet1[2], colorPERSONAS,1);
 			if(value == codigosGovernObert[0] || value==0){ //Responsables politcs
 				Debug.Log( "Received: GovernObert ");
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasGovernObert[0]);
@@ -2855,7 +2889,7 @@ public class SceneControl : MonoBehaviour {
 	{
 			estadoActual[2] = value;
 
-
+			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 		Debug.Log( "Received: Promocio Economica ");
 
 			if(value == codigosPromocioEconomica[0]  || value==0){ //XALOC
@@ -2907,8 +2941,7 @@ public class SceneControl : MonoBehaviour {
 		Debug.Log( "Received: Km2 ");
 			estadoActual[2] = value;
 			LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[5];
-			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 			activeTablets [0] = true;
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 		AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
@@ -2929,7 +2962,7 @@ public class SceneControl : MonoBehaviour {
 	public void StartPatrimoni(int value )
 	{
 			estadoActual[2] = value;
-
+			enableIconosLeyenda (IconosTablet1[2], colorPERSONAS,1);
 			if(value == codigosPatrimoni[0] || value==0){ //iglesias
 				Debug.Log( "Received: Patrimoni ");
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPatrimonios[0]);
@@ -2988,7 +3021,7 @@ public class SceneControl : MonoBehaviour {
 	public void StartOficinaPatrimoni(int value )
 	{
 		estadoActual[2] = value;
-
+			enableIconosLeyenda (IconosTablet1[2], colorPERSONAS,1);
 		if(value == codigosOficinaPatrimoni[0] || value==0){ //mapas
 			Debug.Log( "Received: OficinaPatrimoni ");
 			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[0]);
@@ -3755,6 +3788,8 @@ public void Clean1(int value)//OscMessage message
 			isEndSuperposicion = true;
 		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
 	changeAlphaMaterialMaqueta (layerMunicipiosSolos, 0);
+	//limpiar iconos
+	enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,0); 
 
         
 
