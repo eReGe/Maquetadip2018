@@ -310,9 +310,12 @@ public class SceneControl : MonoBehaviour {
 		public Texture[] texturasRenovables;
 		public Texture[] texturasParques;
 		public Texture[] texturasParquesSolos;
-		public Texture[] texturasTurismo;
+		public Texture[] texturasTurismoSostenible;
+		public Texture[] texturasTurismoReputacion;
 		public Texture[] texturasRutasTurismo;
+		public Texture[] texturasPAES;
 		public Texture[] texturasGovernObert;
+		public Texture[] texturasInfraestructuras;
 		public Texture[] texturasMunicipiosSolos;
 	 
 
@@ -1113,7 +1116,7 @@ public class SceneControl : MonoBehaviour {
 				}*/
 			}
 			if(onoff==1){
-				caScript.startAnimation (1);
+				caScript.startAnimation (2);
 					/*for (int i = 0; i < Maquetas.Length; i++)
 				{
 					Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
@@ -3234,6 +3237,9 @@ public class SceneControl : MonoBehaviour {
 		at.contenido = "Km2";
 		at.isGrowing = true;
 		writeTextLanguage(0, value);
+			//Animaciones maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			enableAnimationLayer(1);
 
 	}
 		public void oscPatrimoni(int message)
@@ -3498,25 +3504,44 @@ public class SceneControl : MonoBehaviour {
 				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[0]);
 				writeTextLanguage(0, value);
 			}
-			if(value == codigosPAES[1] ){ //calor
+			if(value == codigosPAES[1] ){ //paes
 				Debug.Log( "Received: Paes ");
-				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[1]);
+				MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
+				AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
+				mc.colorToChange = colorSOSTENIBILIDAD;
+				at.contenido = "GestionContabilidad";
+				at.isGrowing = true;
 				writeTextLanguage(0, value);
 			}
-			if(value == codigosPAES[2]){ //sequeras
+			if(value == codigosPAES[2]){ //calor
+				CleanPuntos();
 				Debug.Log( "Received: Paes calor ");
-				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[2]);
+				//activar leyenda
+				//enableIconosPaes();
+				//changeTexturaIconosPaes ();
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[0]);
 				writeTextLanguage(0, value);
+				//Encender capas de municipios
+				changeColorMaterialMaquetaAnim (layerMAzonas,Color.white);
+				changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
 			}
-			if(value == codigosPAES[3]){ //bosques
+			if(value == codigosPAES[3]){ //sequeras
+				CleanPuntos();
 				Debug.Log( "Received: Paes sequeras ");
-				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[4]);
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[1]);
 				writeTextLanguage(0, value);
+				//Encender capas de municipios
+				changeColorMaterialMaquetaAnim (layerMAzonas,Color.white);
+				changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
 			}
 			if(value == codigosPAES[4]){ //bosques
+				CleanPuntos();
 				Debug.Log( "Received: Paes boscos ");
-				//changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[4]);
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[1]);
 				writeTextLanguage(0, value);
+				//Encender capas de municipios
+				changeColorMaterialMaquetaAnim (layerMAzonas,Color.white);
+				changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
 			}
 
 
@@ -3525,9 +3550,7 @@ public class SceneControl : MonoBehaviour {
 
 			activeTablets [0] = true;
 
-			//Encender capas de municipios
-			changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
-			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+
 
 			//Animaciones lineas maqueta2
 			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
@@ -3548,14 +3571,14 @@ public class SceneControl : MonoBehaviour {
 			
 		Debug.Log( "Received: Renovables ");
 			estadoActual[2] = value;
-			enableIconosLeyenda (IconosTablet1[0], colorSOSTENIBILIDAD,1);
+			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 			//apagar emisiones
 			isEndEmisions=true;
-		MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
-		AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
+		//MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
+		//AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
 		
-			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[1];
-			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
+			//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[1];
+			//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
 			activeTablets [1] = true;
 			/*if (value == 0) {
 				mc.colorToChange = colorRenovables;
@@ -3742,19 +3765,49 @@ public class SceneControl : MonoBehaviour {
 	{
 		Debug.Log( "Received: Turisme ");
 		estadoActual[2] = value;
-		enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
+
 		//apagar emisiones
 		isEndEmisions=true;
-		MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
-		AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
+			
 
-		activeTablets [1] = true;
-		mc.colorToChange = colorTurisme;
-		//LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorTurisme;
-		writeTextLanguage(0, value);
+		if(value ==  codigosTurismo[0]|| value==0){
+			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
+			MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
+			AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
 
-		at.contenido = "Turisme";
-		at.isGrowing = true;
+			activeTablets [1] = true;
+			mc.colorToChange = colorSOSTENIBILIDAD;
+			//LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorTurisme;
+			writeTextLanguage(0, value);
+
+			at.contenido = "Turisme";
+			at.isGrowing = true;
+			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasTurismoSostenible[0]);
+			//Encender capas de municipios
+			changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
+			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+		}
+		else if(value == codigosTurismo[1]){
+			enableIconosLeyenda (IconosTablet1[5], colorSOSTENIBILIDAD,1);
+			CleanPuntos ();
+			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasRutasTurismo[0]);
+			//Encender capas de municipios
+			changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
+			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+			writeTextLanguage(0, value);
+
+		}
+		else if(value == codigosTurismo[2]){
+			CleanPuntos ();
+			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
+			writeTextLanguage(0, value);
+				//isTurismo = true;
+
+		}
+
+		//Animaciones lineas maqueta2
+		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+		enableAnimationLayer(1);
 	}
 
 		//TECNOLOGIA
@@ -3959,13 +4012,14 @@ public class SceneControl : MonoBehaviour {
 	{
 		Debug.Log( "Received: Infraestructures ");
 		estadoActual[2] = value;
-		enableIconosLeyenda (IconosTablet1[0], colorTECNOLOGIA,1);
+		
 			MarkerControl mc=AnimStarters[2].GetComponent<MarkerControl>();
 			AnimationTrigger at=AnimStarters[2].GetComponent<AnimationTrigger>();
 				activeTablets [2] = true;
 
 				
 		if(value == codigosInfraestructuras[0] || value == 0){
+			enableIconosLeyenda (IconosTablet1[0], colorTECNOLOGIA,1);
 					//LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
 					LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[5];
 					LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
@@ -3978,15 +4032,22 @@ public class SceneControl : MonoBehaviour {
 				}
 		else if(value == codigosInfraestructuras[1]){
 					//LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
-					LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[4];
+					/*LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[4];
 					LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
 			mc.colorToChange = colorTECNOLOGIA;
 					//LeyendaMarcador [2].GetComponent<Renderer> ().material.color = colorInfraestructures;
 					at.contenido = "Cartografia";
-					writeTextLanguage(0, value);
+					at.isGrowing = true;*/
+				enableIconosLeyenda (IconosTablet1[5], colorTECNOLOGIA,1);
+				CleanPuntos ();
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasInfraestructuras[0]);
+				//Encender capas de municipios
+				changeColorMaterialMaquetaAnim (layerMAzonas,colorTECNOLOGIA);
+				changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+				writeTextLanguage(0, value);
 					
-					at.isGrowing = true;
-				}
+					
+		}
 		//Animaciones maqueta2
 		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 		enableAnimationLayer(1);

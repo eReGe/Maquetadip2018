@@ -15,6 +15,19 @@ COSAS PARA CAMBIAR JSON
 
 
 COSAS PARA CAMBIAR UNITY
+CONTENIDOS
+Emisions poner texto de letras en todos, e iconos de medida
+Parcs naturals no pone texto ni cambia color del punto
+Turismo reputacion hacer animacion
+plataforma enseñar todos con dos colores
+
+
+DISEÑO
+Colocar puntos de iconos bien
+colocar puntos de iconos superposicion bien
+poner textos al mismo tamaño de fuente
+
+
 - Fibra optica
 	-Lanzar video de fibra y apagarlo en clean
 	- Cambiar color fondo liso anim y cambiarlo en clean
