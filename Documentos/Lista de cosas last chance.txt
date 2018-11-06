@@ -26,6 +26,8 @@ COSAS PARA CAMBIAR UNITY
 - Emisiones
 	- Poner subtitulos de fechas en todos
 	- cambiar color liso a negro
+	
+- Hacer superposiciones
 		
 	
 -oficina de patrimoni cultural
