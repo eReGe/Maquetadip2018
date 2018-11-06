@@ -59,6 +59,15 @@ public class MarkerBehaviour : MonoBehaviour {
 	private List<int> m1;
 	private List<int> m2;
 	private List<int> m3;
+
+	//PATH RENDER
+	private Transform startMarker, endMarker;
+	public Transform[] waypoint;
+	public float speed = 20f;
+	private float startTime = 0f;
+	private float journeyLength = 1f;
+	private int currentStartPoint = 0;
+
 	// Use this for initialization
 	void Start () {
 		//yPos = transform.parent.position.y;
@@ -495,6 +504,7 @@ public class MarkerBehaviour : MonoBehaviour {
 				if (isPlataforma) {
 					line.enabled = true;
 					isNeuronal = true;
+					currentStartPoint = 0;
 					isWifi = true;
 				} else {
 					line.enabled = false;
@@ -808,13 +818,19 @@ public class MarkerBehaviour : MonoBehaviour {
 
 		}
 	}
-
+	void SetPoints()
+	{
+		startMarker = waypoint[currentStartPoint];
+		//endMarker.position = waypoint[currentStartPoint + 1];
+		startTime = Time.time;
+		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+	}
 	public void neuronalGrid(){
 		line = gameObject.GetComponent<LineRenderer>();
 		line.SetVertexCount (2);
 		line.useWorldSpace = true;
-		line.startWidth = 1;
-		line.endWidth = 1;
+		line.startWidth = 0.5f;
+		line.endWidth = 0.5f;
 		float xini =transform.parent.position.x;
 		float zini =transform.parent.position.z;
 		float yini=150;
@@ -833,8 +849,30 @@ public class MarkerBehaviour : MonoBehaviour {
 		float zend =destinos[r].z;
 		Debug.Log ("x:"+xend);
 		float yend=150;
-		line.SetPosition (0,new Vector3(xini,yini,zini) );
-		line.SetPosition (1,new Vector3(xend,yend,zend) );
+		//line.SetPosition (0,new Vector3(xini,yini,zini) );
+		//line.SetPosition (1,new Vector3(xend,yend,zend) );
+		endMarker.position=new Vector3(xend,yend,zend);
+		//PATH RENDER
+		float distCovered = (Time.time - startTime) * 50; //50=speed
+		float fracJourney = distCovered / journeyLength;
+		Vector3 startPosition = new Vector3 (xini, yini, zini);//startMarker.position;
+		Vector3 endPosition = Vector3.Lerp(startMarker.position, endMarker.position, fracJourney);
+		line.SetPosition(0, startPosition);
+		line.SetPosition(1, endPosition);
+		if (fracJourney >= 1f)
+		{
+			if (currentStartPoint + 2 < waypoint.Length)
+			{
+				currentStartPoint++;
+				SetPoints();
+			}
+			else
+			{
+				//if finished, disable lineRenderer and this script
+				line.enabled = false;
+				//this.enabled = false;
+			}
+		}
 
 	}
 

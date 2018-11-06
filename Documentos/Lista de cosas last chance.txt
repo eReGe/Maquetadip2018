@@ -16,10 +16,11 @@ COSAS PARA CAMBIAR JSON
 
 COSAS PARA CAMBIAR UNITY
 CONTENIDOS
-Emisions poner texto de letras en todos, e iconos de medida
 Parcs naturals no pone texto ni cambia color del punto
-Turismo reputacion hacer animacion
+Parcs naturals poner plano con lo que sale del parque
 plataforma enseñar todos con dos colores
+La superposicion de poligonos no inicia a la primera, hay que pulsar dos veces
+Videos que faltan
 
 
 DISEÑO
