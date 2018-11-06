@@ -18,6 +18,7 @@ COSAS PARA CAMBIAR UNITY
 - Fibra optica
 	-Lanzar video de fibra y apagarlo en clean
 	- Cambiar color fondo liso anim y cambiarlo en clean
+	- Cambiar imagen de carreteras a color gris claro
 - Plataforma Urbana
 	- Lanzar lineas y puta wifi (se lanza pero no se ve
 - Municipis compromesos
@@ -28,10 +29,16 @@ COSAS PARA CAMBIAR UNITY
 	- cambiar color liso a negro
 	
 - Hacer superposiciones
+
+- PAES
+	- Poner puntos pareecidos temporalmente usar los Gestió de la comptabilitat municipal
 		
 	
 -oficina de patrimoni cultural
 	Archius y museos estan cambiados?
+	
+- Clear superposicion	
+	- Que hacer cuando son puntos ¿mandar clear puntos?
 	
 	
 ANIMACIONES

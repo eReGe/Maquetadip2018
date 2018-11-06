@@ -10,6 +10,7 @@ public class SceneControl : MonoBehaviour {
 		public float timer=0;
 	public GameObject[] AnimStarters; //1 personas  //2 sostenibilidad   //3 infraestructuras
 	public GameObject[] AnimFinishers;
+		public GameObject AnimEndSuper;
 	public Camera CamaraCotas;
 	public Camera CamaraAnimaciones;
 	public GameObject[] Maquetas;
@@ -172,11 +173,13 @@ public class SceneControl : MonoBehaviour {
 		public bool isEndParcs = false;
 		public float parcFlickerSpeed;
 		public float parcSpeed;
+		public float fibraFlickerSpeed;
 
 		public bool	isEmisions = false;
 		public bool isStartEmisions = false;
 		public bool isEndEmisions = false;
 		public bool	isSuperposicion = false;
+		public bool isSuperposicionPuntos=false;
 		public bool isStartSuperposicion = false;
 		public bool isEndSuperposicion = false;
 		public int contEmisions=5;
@@ -454,7 +457,7 @@ public class SceneControl : MonoBehaviour {
         
 		//APAGAR ICONOS
 			enableIconosLeyenda(IconosTablet1[0],colorPERSONAS,0);
-			enableIconosLeyendaSup (IconosTablet1 [0], 0);
+			enableIconosLeyendaSup (IconosTablet1 [0], Color.white, 0);
 		/*for(int i=0;i<LeyendaMarcador.Length;i++){
 			LeyendaMarcador [i].GetComponent<MeshRenderer> ().enabled = false;
 			//LeyendaMarcadorb [i].GetComponent<SpriteRenderer> ().enabled = false;
@@ -870,11 +873,11 @@ public class SceneControl : MonoBehaviour {
 					}
 
 				}else if(!isEndFibra ){
-					float spd = parcFlickerSpeed;
+					float spd = fibraFlickerSpeed;
 					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
 						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c42 = m [numTexturaFibra2].color;
-						c42.a = c42.a + parcFlickerSpeed;
+						c42.a = c42.a + fibraFlickerSpeed;
 						if (c42.a >= 1f) {
 							c42.a = 1f;
 						}
@@ -887,12 +890,12 @@ public class SceneControl : MonoBehaviour {
 					if (c42.a >=1f) {
 						c42.a =1f;
 						//isStartParcs = false;
-						parcFlickerSpeed = -parcFlickerSpeed;
+						fibraFlickerSpeed = -fibraFlickerSpeed;
 					} 
 					if(c42.a<=0.15f){
 						c42.a = 0.15f;
 						//isStartParcs = false;
-						parcFlickerSpeed = -parcFlickerSpeed;
+						fibraFlickerSpeed = -fibraFlickerSpeed;
 					}
 
 
@@ -1200,7 +1203,7 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("startHestia");
-            StartTeleasis(2);
+            StartTeleasis(2,0);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -1231,7 +1234,7 @@ public class SceneControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("startSuperposicion");
-				StartIntro (0);
+				StartSuperposition (codigosPromocioEconomica[0]);
         }
 		if (Input.GetKeyDown(KeyCode.T))
 		{
@@ -1240,21 +1243,40 @@ public class SceneControl : MonoBehaviour {
 		}
 		if (Input.GetKeyDown(KeyCode.G))
 		{
-			Debug.Log("startFibra");
-				StartIntro (codigosFibraOptica[0]);
+				Debug.Log("startSuperposicion");
+				StartSuperposition (codigosPromocioEconomica[1]);
 		}
+			if (Input.GetKeyDown(KeyCode.H))
+			{
+				Debug.Log("End Superposition");
+				EndSuperposition (1);
+			}
 		if (Input.GetKeyDown(KeyCode.V))
 		{
 			Debug.Log("startParcs");
 				StartIntro (codigosParques[0]);
 		}
-			if (Input.GetKeyDown(KeyCode.B))
+			if (Input.GetKeyDown(KeyCode.K))
 			{
-				Debug.Log("startPoligons");
-				StartIntro (codigosPromocioEconomica[1]);
+				Debug.Log("startfibra");
+				StartContent (codigosFibraOptica[0]);
 			}
-
-
+			if (Input.GetKeyDown(KeyCode.L))
+			{
+				Debug.Log("startfibrasup");
+				StartSuperposition (codigosFibraOptica[0]);
+			}
+		if (Input.GetKeyDown(KeyCode.B))
+		{
+			Debug.Log("startPoligons");
+			StartIntro (codigosPromocioEconomica[1]);
+		}
+				
+		if (Input.GetKeyDown(KeyCode.N))
+		{
+			Debug.Log("Superposition");
+				StartSuperposition (codigosBibliotecas [0]);
+		}
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Clean");
@@ -1844,6 +1866,9 @@ public class SceneControl : MonoBehaviour {
 			oscIn.Map( "/tecnologia/eng", IdiomaTecnologiaeng );
 			oscIn.Map( "/tecnologia/cat", IdiomaTecnologiacat );
 		
+			//SUPERPOSICIONES
+			oscIn.MapInt( "/superposicion", StartSuperposition );
+			oscIn.MapInt( "/superposicion/out", EndSuperposition );
 			//ESPERA
 
 		oscIn.Map( "/personas/espera", Clean1osc );
@@ -2067,6 +2092,103 @@ public class SceneControl : MonoBehaviour {
 			isIntro = true;
 
     }
+		public void EndSuperposition(int state) //Lanza contenido
+		{
+			isEndSuperposicion = true;
+			MarkerControl mc=AnimEndSuper.GetComponent<MarkerControl>();
+			AnimationTrigger at=AnimEndSuper.GetComponent<AnimationTrigger>();
+			activeTablets [0] = true;
+			at.isGrowing = true;
+		}
+
+
+	
+	public void StartSuperposition(int state) //Lanza contenido
+	{
+		Debug.Log ("Start State:"+state);
+			isSuperposicionPuntos = false;
+		//PERSONAS
+		if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
+		{
+			isSuperposicionPuntos = true;
+			StartBiblio2((int)state,1);
+		}
+
+		if(state==codigosTeleasistencia[0]) //teleasistencia
+		{
+			StartTeleasis((int)state,1);
+		}
+
+		
+		if(state==codigosPromocioEconomica[0] || state==codigosPromocioEconomica[1] || state==codigosPromocioEconomica[2]) //Promocion de empresas
+		{
+			StartPromocio((int)state,1);
+		}
+		
+		//SOSTENIBILIDAD
+		if(state==codigosParques[0] || state==codigosParques[1] || state==codigosParques[2] || state==codigosParques[3]
+			|| state==codigosParques[4] || state==codigosParques[5] || state==codigosParques[6]  || state==codigosParques[7]
+			|| state==codigosParques[8] || state==codigosParques[9] || state==codigosParques[10] || state==codigosParques[11]
+			|| state==codigosParques[12]) //Parques
+		{
+			StartParcs((int)state);
+		}
+		if(state==codigosXarxaCiutats[0] || state==codigosXarxaCiutats[1] || state==codigosXarxaCiutats[2]) //xarxa
+		{
+			StartXarxa((int)state);
+		}
+		if(state==codigosPAES[0]) //Emsiones co2
+		{
+			StartEmisions((int)state);
+		}
+		if(state==codigosPAES[1] || state==codigosPAES[2] || state==codigosPAES[3]|| state==codigosPAES[4]) //PAES
+		{
+			StartPAES((int)state);
+		}
+		if(state==codigosRenovables[0] || state==codigosRenovables[1] || state==codigosRenovables[2]) //renovables
+		{
+			StartRenovables((int)state);
+		}
+		if(state==codigosEvaluacio[0] || state==codigosEvaluacio[1] || state==codigosEvaluacio[2]) //Evaluacio
+		{
+			StartOTAGA((int)state);
+		}
+		if(state==codigosTurismo[0] || state==codigosTurismo[1] || state==codigosTurismo[2]) //Turismo
+		{
+			StartTurisme((int)state);
+		}
+
+		//Tecnologia
+		if(state==codigosFibraOptica[0]) //Emsiones co2
+		{
+			StartFibra((int)state,1);
+		}
+		if(state==codigosServeisGestio[0] || state==codigosServeisGestio[1] ||state==codigosServeisGestio[2] || state==codigosServeisGestio[3]
+			|| state==codigosServeisGestio[4] || state==codigosServeisGestio[5] || state==codigosServeisGestio[6] || state==codigosServeisGestio[7]) //Emsiones co2
+		{
+			StartServeiGestio((int)state);
+		}
+		
+		
+
+
+
+
+
+		if(state==0) //caso especial superposicion demo
+		{
+			isSuperposicion = true;
+			changeTextureMaterialMaquetaAnim(layerMunicipios,texturasPatrimonios[0]);
+		}
+		if(state==1) //caso especial superposicion demo
+		{
+			//isSuperposicion = true;
+			changeTextureMaterialMaqueta(layerMunicipiosSolos,texturasMunicipiosSolos[Random.Range(0,texturasMunicipiosSolos.Length)]);
+			changeAlphaMaterialMaqueta (layerMunicipiosSolos, 1);
+		}
+
+
+	}//end start superposicion
 
     public void StartContent(float state) //Lanza contenido
     {
@@ -2075,12 +2197,12 @@ public class SceneControl : MonoBehaviour {
 			//PERSONAS
 			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
 			{
-				StartBiblio2((int)state);
+				StartBiblio2((int)state,0);
 			}
 
 			if(state==codigosTeleasistencia[0]) //teleasistencia
 			{
-				StartTeleasis((int)state);
+				StartTeleasis((int)state,0);
 			}
 
 			if(state==codigosGovernObert[0] || state==codigosGovernObert[1]  || state==codigosGovernObert[2] || state==codigosGovernObert[3]  
@@ -2091,7 +2213,7 @@ public class SceneControl : MonoBehaviour {
 			}
 			if(state==codigosPromocioEconomica[0] || state==codigosPromocioEconomica[1] || state==codigosPromocioEconomica[2]) //Promocion de empresas
 			{
-				StartPromocio((int)state);
+				StartPromocio((int)state,0);
 			}
 			if(state==codigosKm2[0]  ) //km2
 			{
@@ -2142,7 +2264,7 @@ public class SceneControl : MonoBehaviour {
 			//Tecnologia
 			if(state==codigosFibraOptica[0]) //Emsiones co2
 			{
-				StartFibra((int)state);
+				StartFibra((int)state,0);
 			}
 			if(state==codigosServeisGestio[0] || state==codigosServeisGestio[1] ||state==codigosServeisGestio[2] || state==codigosServeisGestio[3]
 				|| state==codigosServeisGestio[4] || state==codigosServeisGestio[5] || state==codigosServeisGestio[6] || state==codigosServeisGestio[7]) //Emsiones co2
@@ -2188,7 +2310,7 @@ public class SceneControl : MonoBehaviour {
 		
 	}
     //Elige el texto a poner en la zona de cada tablet
-    public void writeTextLanguage(int tablet,int state ) {
+    public void writeTextLanguage(int sup,int state ) {
 
             //Bibliotecas
 			if (state == codigosBibliotecas[0])
@@ -2264,16 +2386,16 @@ public class SceneControl : MonoBehaviour {
 				for (int i = 0; i < 3; i++)
 				{
 					if (lenguajeTablets [i] == 0) {
-						Titulos [i].text = leyendaTeleasistencia [0].leyenda_cat;
-						Subtitulos [i].text = "";
+						if (sup == 0)Titulos [i].text = leyendaTeleasistencia [0].leyenda_cat;
+						else Subtitulos [i].text = leyendaTeleasistencia [0].leyenda_cat;
 					} else if (lenguajeTablets[i] == 2) {
-						Titulos [i].text = leyendaTeleasistencia [0].leyenda_ing;
-						Subtitulos [i].text = "";
+						if (sup == 0)Titulos [i].text = leyendaTeleasistencia [0].leyenda_ing;
+						else Subtitulos [i].text = leyendaTeleasistencia [0].leyenda_ing;
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = leyendaTeleasistencia [0].leyenda_esp;
-						Subtitulos[i].text = "";
+						if (sup == 0)Titulos[i].text = leyendaTeleasistencia [0].leyenda_esp;
+						else Subtitulos[i].text = leyendaTeleasistencia [0].leyenda_esp;
 					}
 				}
 			}
@@ -2311,29 +2433,32 @@ public class SceneControl : MonoBehaviour {
 			//ocupacio y promocio
 			if (state == codigosPromocioEconomica[0] || state == codigosPromocioEconomica[1] || state == codigosPromocioEconomica[2])
 			{
-				for(int j = 0; j < leyendaPromocioEconomica.Length; j++){
-					if(leyendaPromocioEconomica[j].codigo==state){
-						Debug.Log ("entra a state:"+leyendaPromocioEconomica[j].codigo);
-						for (int i = 0; i < 3; i++)
-						{
-							if (lenguajeTablets[i] == 0)
+				
+					for(int j = 0; j < leyendaPromocioEconomica.Length; j++){
+						if(leyendaPromocioEconomica[j].codigo==state){
+							Debug.Log ("entra a state:"+leyendaPromocioEconomica[j].codigo);
+							for (int i = 0; i < 3; i++)
 							{
-								Titulos[i].text=leyendaPromocioEconomica[j].leyenda_cat;
-								Subtitulos[i].text="";
-							}
-							else if (lenguajeTablets[i] == 2)
-							{
-								Titulos [i].text =leyendaPromocioEconomica[j].leyenda_ing;
-								Subtitulos [i].text = "";
-							}
-							else if (lenguajeTablets[i] == 1)
-							{
-								Titulos[i].text = leyendaPromocioEconomica[j].leyenda_esp;
-								Subtitulos[i].text = "";
+								if (lenguajeTablets[i] == 0)
+								{
+								if(sup==0)Titulos[i].text=leyendaPromocioEconomica[j].leyenda_cat;
+								else	Subtitulos[i].text=leyendaPromocioEconomica[j].leyenda_cat;
+								}
+								else if (lenguajeTablets[i] == 2)
+								{
+								if (sup == 0)Titulos [i].text = leyendaPromocioEconomica [j].leyenda_ing;
+								else Subtitulos [i].text = leyendaPromocioEconomica [j].leyenda_ing;
+								}
+								else if (lenguajeTablets[i] == 1)
+								{
+								if(sup==0)Titulos[i].text = leyendaPromocioEconomica[j].leyenda_esp;
+								else	Subtitulos[i].text =leyendaPromocioEconomica[j].leyenda_ing;
+								}
 							}
 						}
 					}
-				}
+				
+
 			}
 			//Km2
 			if (state == codigosKm2[0])
@@ -2644,18 +2769,18 @@ public class SceneControl : MonoBehaviour {
 				{
 					if (lenguajeTablets[i] == 0)
 					{
-						Titulos[i].text=leyendaFibraOptica [0].leyenda_cat;
-						Subtitulos[i].text="";
+						if(sup==0)Titulos[i].text=leyendaFibraOptica [0].leyenda_cat;
+						else Subtitulos[i].text=leyendaFibraOptica [0].leyenda_cat;
 					}
 					else if (lenguajeTablets[i] == 2)
 					{
-						Titulos [i].text = leyendaFibraOptica [0].leyenda_ing;
-						Subtitulos [i].text = "";
+						if(sup==0)Titulos [i].text = leyendaFibraOptica [0].leyenda_ing;
+						else Subtitulos [i].text = leyendaFibraOptica [0].leyenda_ing;
 					}
 					else if (lenguajeTablets[i] == 1)
 					{
-						Titulos[i].text = leyendaFibraOptica [0].leyenda_esp;
-						Subtitulos[i].text = "";
+						if(sup==0)Titulos[i].text = leyendaFibraOptica [0].leyenda_esp;
+						else Subtitulos[i].text =  leyendaFibraOptica [0].leyenda_esp;
 					}
 				}
 			}
@@ -2763,14 +2888,14 @@ public class SceneControl : MonoBehaviour {
 				}
 			}
 	}
-	public void enableIconosLeyendaSup(Sprite s,int fade)
+	public void enableIconosLeyendaSup(Sprite s,Color c,int fade)
 	{
 		Debug.Log ("Enable iconos:"+fade);
 		if(fade==0){
 			for (int i = 0; i < 3; i++)
 			{
 				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
-				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
+				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
 				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = false;
 			}
 		}
@@ -2778,7 +2903,7 @@ public class SceneControl : MonoBehaviour {
 			for (int i = 0; i < 3; i++)
 			{
 				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().sprite = s;
-				//LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
+				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().color = c;
 				LeyendaMarcadorb [i].GetComponent<SpriteRenderer>().enabled = true;
 			}
 		}
@@ -2792,7 +2917,7 @@ public class SceneControl : MonoBehaviour {
 			if (message == 2) StartContent (codigosBibliotecas[1]);
 			if (message == 3) StartContent (codigosBibliotecas[2]);
 	}
-    public void StartBiblio2(int value)    //recibe el valor del dato a mostrar y elegirá el tipo que es y como animarlo
+		public void StartBiblio2(int value,int super)    //recibe el valor del dato a mostrar y elegirá el tipo que es y como animarlo
 	{
 		Debug.Log( "Received: biblio "+value);
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
@@ -2805,17 +2930,26 @@ public class SceneControl : MonoBehaviour {
 
 			
 			if (value == codigosBibliotecas[0]) { //bibliotecas
-                estadoActual[2] = value;
-			    mc.colorToChange = colorBibliotecas;
-			    LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliotecas;
-			    at.contenido = "Bibliotecas";
-                writeTextLanguage(0, value);
+				estadoActual[2] = value;
+				if(super==0){
+	               
+				    mc.colorToChange = colorBibliotecas;
+				    at.contenido = "Bibliotecas";
+	                writeTextLanguage(0, value);
 
-			    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
-			    
-                at.isGrowing = true;
-				if(!isSuperposicion)CleanVideoMapping (); //limpia si no es superposicion
-
+				    LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[0];
+				    
+	                at.isGrowing = true;
+					CleanVideoMapping (); //limpia si no es superposicion
+				}
+				else //SUPERPOSICION
+				{
+					mc.isSuperposition = true;
+					mc.colorToChange = Color.white;
+					at.contenido = "Bibliotecas";
+					writeTextLanguage(1, value);
+					at.isGrowing = true;
+				}
 				
             }
 			else if (value == codigosBibliotecas[1]) { //bibliobuses
@@ -2854,9 +2988,10 @@ public class SceneControl : MonoBehaviour {
 			//Enable leyendas
 			LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
 			//Animaciones maqueta2
-			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
-			enableAnimationLayer(1);
-           
+			if(super==0){
+				changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+				enableAnimationLayer(1);
+			}
 
 
 
@@ -2868,7 +3003,7 @@ public class SceneControl : MonoBehaviour {
 			if ( message == 0) StartIntro (codigosTeleasistencia[0]);
 			if (message == 1 ) StartContent (codigosTeleasistencia[0]);
 		}
-	public void StartTeleasis(int value )
+		public void StartTeleasis(int value, int super )
 	{
 		Debug.Log( "Received: teleasis ");
 		MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
@@ -2878,13 +3013,25 @@ public class SceneControl : MonoBehaviour {
 			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 
 			if(value == codigosTeleasistencia[0] || value==0){
-				mc.colorToChange = colorPERSONAS;
-				at.contenido = "Teleasistencia";
-				at.isGrowing = true;
-				writeTextLanguage (0, value);
+				if(super==0){
+					mc.colorToChange = colorPERSONAS;
+					at.contenido = "Teleasistencia";
+					at.isGrowing = true;
+					writeTextLanguage (0, value);
+					LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[3];
+					LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+				}
+				else //SUPERPOSICION
+				{
+					mc.isSuperposition = true;
+					mc.colorToChange = Color.white;
+					at.contenido = "Teleasistencia";
+					writeTextLanguage(1, value);
+					at.isGrowing = true;
+				}
 
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[3];
-				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+
+
 			}
 			else if(value == 2){
 				mc.colorToChange = colorHestia;
@@ -3000,28 +3147,49 @@ public class SceneControl : MonoBehaviour {
 			if (message == 0) StartIntro (codigosPromocioEconomica[0]);
 			else StartContent (codigosPromocioEconomica[message-1]);
 		}
-	public void StartPromocio(int value) //xaloc, poligonos y serveis
+		public void StartPromocio(int value, int super) //xaloc, poligonos y serveis
 	{
-			estadoActual[2] = value;
-
-			enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
-		Debug.Log( "Received: Promocio Economica ");
+			
+			if(super==0) {
+				estadoActual[2] = value;
+				enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
+			}
+			else{
+				enableIconosLeyendaSup (IconosTablet1[0],Color.white,1);
+			}
+			Debug.Log( "Received: Promocio Economica ");
 
 			if(value == codigosPromocioEconomica[0]  || value==0){ //XALOC
-				if(!isSuperposicion) CleanPoligonos();
-				enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
-				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
-				AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
-				mc.colorToChange = colorPERSONAS;
-				at.contenido = "Xaloc";
-				at.isGrowing = true;
-				writeTextLanguage(0, value);
+				if(super==0) {
+					CleanPoligonos();
+					enableIconosLeyenda (IconosTablet1[2], colorPERSONAS,1);
+					changeTextureMaterialMaquetaAnim (layerMAzonas,texturaXaloc);
+					//Encender capas de municipios
+					changeColorMaterialMaquetaAnim (layerMAzonas,colorPERSONAS);
+					changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+					writeTextLanguage(0, value);
+				}
+				else{
+					enableIconosLeyendaSup (IconosTablet1[2],Color.white,1);
+					changeTextureMaterialMaqueta (layerZonasSup,texturaXaloc);
+					isSuperposicion = true;
+					writeTextLanguage(1, value);
+				}
+
 			}
 			if(value == codigosPromocioEconomica[1] ){//poligonos
-				enableIconosLeyenda (IconosTablet1[4], colorPERSONAS,1);
-				if(!isSuperposicion) CleanPuntos(); //limpia puntos si no es superposicion
-				StartPoligons();
-				writeTextLanguage(0, value);
+				if(super==0) {
+					enableIconosLeyenda (IconosTablet1[4], colorPERSONAS,1);
+					CleanPuntos(); //limpia puntos si no es superposicion
+					StartPoligons();
+					writeTextLanguage(0, value);
+				}
+				else{
+					enableIconosLeyendaSup (IconosTablet1[4],Color.white,1);
+					changeTextureMaterialMaqueta (layerZonasSup,texturaPoligonos);
+					isSuperposicion = true;
+					writeTextLanguage(1, value);
+				}
 			}
 			if(value == codigosPromocioEconomica[2] ){//serveis a empreses
 
@@ -3040,10 +3208,11 @@ public class SceneControl : MonoBehaviour {
 			//Leyendas
 			//LeyendaMarcador [0].GetComponent<MeshRenderer> ().enabled = true;
 			activeTablets [0] = true;
-
-			//Animaciones maqueta2
-			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
-			enableAnimationLayer(1);
+			if(super==0){
+				//Animaciones maqueta2
+				changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+				enableAnimationLayer(1);
+			}
 
 	}
 		public void oscKm2(int message)
@@ -3839,8 +4008,9 @@ public class SceneControl : MonoBehaviour {
 		if (message == 0) StartIntro (codigosFibraOptica[0]);
 		else StartContent (codigosFibraOptica[message-1]);
 	}
-	public void StartFibra(int value )
-		{
+public void StartFibra(int value , int sup)
+{
+	if(sup==0){
 			estadoActual[2] = value;
 			enableIconosLeyenda (IconosTablet1[5], colorTECNOLOGIA,1);
 			//changeColorMaterialMaquetaAnim ();
@@ -3859,8 +4029,20 @@ public class SceneControl : MonoBehaviour {
 			enableAnimationLayer(1);
 
 			writeTextLanguage(0, value);
-			
-		}
+	}
+	else{
+		enableIconosLeyendaSup (IconosTablet1[5], Color.white,1);
+		//changeColorMaterialMaquetaAnim ();
+		Debug.Log( "Received: Fibra sup ");
+		activeTablets [2] = true;
+
+		isFibra = true;
+		isStartFibra = true;
+		isEndFibra = false;
+
+		writeTextLanguage(1, value);
+	}
+}
 
 
 	//Idiomas

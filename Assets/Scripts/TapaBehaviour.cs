@@ -28,6 +28,7 @@ public class TapaBehaviour : MonoBehaviour {
 	public float timeLapseNeuronalset;
 	private float timeLapseNeuronal;
 	int r=0;
+	public bool isSuperposition=false;
 
 	//Lineas neuronales
 	public GameObject lineEndobj;
@@ -79,7 +80,9 @@ public class TapaBehaviour : MonoBehaviour {
 			line.enabled = false;
 		}
 	}
+	public void animationDecision2(){
 
+	}
 	public void animationDecision(string tipo,string tabletName){
 		SceneControl sc2 = sceneControl.GetComponent<SceneControl> ();
 		isAlarm = false;

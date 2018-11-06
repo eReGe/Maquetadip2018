@@ -5,6 +5,7 @@ using Control;
 
 public class MarkerBehaviour : MonoBehaviour {
 	public float translationSpeed=1.8f;
+	public GameObject tapa;
 	public Color colorMesura1;
 	public Color colorMesura2;
 	public Color colorPlataforma1;
@@ -52,6 +53,8 @@ public class MarkerBehaviour : MonoBehaviour {
 	public bool isDrawWifi=false;
 	public float probabilidadRadar;
 	public float probabilidadWifi;
+	public bool isSuperposition = false;
+	public bool superposed=false;
 
 	private List<int> m1;
 	private List<int> m2;
@@ -116,7 +119,7 @@ public class MarkerBehaviour : MonoBehaviour {
 		}
 	}
 
-	public void animationDecision(string tipo,string tabletName){
+	public void animationDecision(string tipo,string tabletName,Color colorToChange){
 		SceneControl sc2 = sceneControl.GetComponent<SceneControl> ();
 		isAlarm = false;
 		isNeuronal = false;
@@ -386,15 +389,11 @@ public class MarkerBehaviour : MonoBehaviour {
 						if (codigo == m1 [i]) {
 						
 							this.StartState = true;
-
+							GetComponent<Renderer> ().material.color = colorToChange;
 							line = gameObject.GetComponent<LineRenderer> ();
-							/*if (isPlataforma) {
-								line.enabled = true;
-								isNeuronal = true;
-							} else {
-								line.enabled = false;
-								isNeuronal = false;
-							}*/
+							MarkerFlicker mf = tapa.gameObject.GetComponent <MarkerFlicker> ();
+							mf.c = colorToChange;
+
 							break;
 						} else {
 							line = gameObject.GetComponent<LineRenderer> ();
@@ -505,13 +504,24 @@ public class MarkerBehaviour : MonoBehaviour {
 				check = false;
 				for (int i = 0; i < m1.Count; i++) {
 					if (codigo == m1 [i]) {
-						check = true;
+						if(isSuperposition){
+							superposed = true;
+							Material[] m = tapa.gameObject.GetComponent<Renderer>().materials;
+							Color c = m [1].color;
+							c.a = 1;
+							m [1].color = c;
+							//mf.c = colorToChange;
+						}
+						else{
+							check = true;
+						}
 						//this.EndState = true;
 						break;
 					}
 				}
 				if (!check) {//No esta en el nuevo contenido
-					this.EndState = true;
+					if(isSuperposition)this.EndState = false;
+					else this.EndState = true;
 				}
 			} else {
 				for (int i = 0; i < m1.Count; i++) {
@@ -529,9 +539,43 @@ public class MarkerBehaviour : MonoBehaviour {
 							this.EndState = true;
 							break;
 						}
+						if (tabletName == "ApagaSuperpos") {
+							if(isSuperposition){
+								if(superposed)
+								{ 
+									superposed = false;
+									Material[] m = tapa.gameObject.GetComponent<Renderer>().materials;
+									Color c = m [1].color;
+									c.a = 0;
+									m [1].color = c;
+									isSuperposition = false;
+								}
+								else{
+									this.EndState = true;
+									superposed = false;
+								}
+							}
+							else{
+								this.EndState = true;
+							}
+
+							break;
+						}
 
 
 
+					}
+					else {
+						if (tabletName == "Tablet1Apagado" && tablet==1) {
+							this.EndState = true;
+							superposed = false;
+							Material[] m = tapa.gameObject.GetComponent<Renderer>().materials;
+							Color c = m [1].color;
+							c.a = 0;
+							m [1].color = c;
+							isSuperposition = false;
+							break;
+						}
 					}
 
 				}
