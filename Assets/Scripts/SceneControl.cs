@@ -308,6 +308,7 @@ public class SceneControl : MonoBehaviour {
 		public Color	colorPlataforma3;
 	public Color	colorInfraestructures;
 		public Color	colorSitmun;
+		public Color[]	coloresTurismo;
 
 		//IMAGENES
 		public Texture texturaXaloc;
@@ -659,7 +660,7 @@ public class SceneControl : MonoBehaviour {
 					}
 
 				}else if(!isEndParcs ){
-					float spd = parcFlickerSpeed;
+					/*float spd = parcFlickerSpeed;
 					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
 						Material[] m =MaquetasAnimaciones [i].GetComponent<Renderer>().materials;
 						c = m [numTexturaParcs].color;
@@ -683,6 +684,7 @@ public class SceneControl : MonoBehaviour {
 						//isStartParcs = false;
 						parcFlickerSpeed = -parcFlickerSpeed;
 					}
+					*/
 
 
 				}
@@ -804,6 +806,10 @@ public class SceneControl : MonoBehaviour {
 			//TURISMO
 			Color ct = new Color();
 			if(isTurismo){
+				if(isStartTurismo){
+					contTurismo = 0;
+					isStartTurismo = false;
+				}
 				if(!isEndTurismo){
 					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
 
@@ -848,22 +854,42 @@ public class SceneControl : MonoBehaviour {
 						//Titulos[2].text="Plataforma";
 						string t=stringsTurismo[contTurismo];
 						Subtitulos[i].text=t;
+						Subtitulos [i].color = coloresTurismo[contTurismo%3];
 
 					}
 					timeLeftEmisions -= Time.deltaTime;
 				}
 				if (timeLeftEmisions < 0) {
-
-					if(contTurismo%2==1){
-						changeTextureMaterialMaquetaAnim(layerMATurismo1,texturasTurismoReputacion[contTurismo]);
-					}
-					else{
-						changeTextureMaterialMaquetaAnim(layerMATurismo2,texturasTurismoReputacion[contTurismo]);
-					}
 					contTurismo++;
 					if (contTurismo >= texturesTurismo.Length) {
 						contTurismo = 0;
 					}
+
+					if(contTurismo%3==0 && contTurismo%2==0){
+						changeTextureMaterialMaquetaAnim(layerMATurismo1,texturasTurismoReputacion[contTurismo%3]);
+					}
+
+					if(contTurismo%3==1 && contTurismo%2==0){
+						changeTextureMaterialMaquetaAnim(layerMATurismo1,texturasTurismoReputacion[contTurismo%3]);
+					}
+
+					if(contTurismo%3==2 && contTurismo%2==0){
+						changeTextureMaterialMaquetaAnim(layerMATurismo1,texturasTurismoReputacion[contTurismo%3]);
+					}
+
+					if(contTurismo%3==0 && contTurismo%2==1){
+						changeTextureMaterialMaquetaAnim(layerMATurismo2,texturasTurismoReputacion[contTurismo%3]);
+					}
+
+					if(contTurismo%3==1 && contTurismo%2==1){
+						changeTextureMaterialMaquetaAnim(layerMATurismo2,texturasTurismoReputacion[contTurismo%3]);
+					}
+
+					if(contTurismo%3==2 && contTurismo%2==1){
+						changeTextureMaterialMaquetaAnim(layerMATurismo2,texturasTurismoReputacion[contTurismo%3]);
+					}
+
+
 					timeLeftEmisions = timeLapseEmisions;
 
 
@@ -885,6 +911,7 @@ public class SceneControl : MonoBehaviour {
 					changeAlphaMaterialMaquetaAnim (layerMATurismo2,alphaCo2impar);
 					for (int i = 0; i < MaquetasAnimaciones.Length; i++) {
 						Subtitulos [i].text = "";
+						Subtitulos [i].color = Color.white;
 					}
 					//isEndEmisions = false;
 					//isEmisions = false;
@@ -1978,8 +2005,8 @@ public class SceneControl : MonoBehaviour {
 			oscIn.Map( "/tecnologia/cat", IdiomaTecnologiacat );
 		
 			//SUPERPOSICIONES
-			oscIn.MapInt( "/superposicion", StartSuperposition );
-			oscIn.MapInt( "/superposicion/out", EndSuperposition );
+			//oscIn.MapInt( "/superposicion", StartSuperposition );
+			//oscIn.Map( "/superposicion/out", oscEndSuperposition );
 			//ESPERA
 
 		oscIn.Map( "/personas/espera", Clean1osc );
@@ -2203,9 +2230,18 @@ public class SceneControl : MonoBehaviour {
 			isIntro = true;
 
     }
+		public void oscEndSuperposition(OscMessage message) //Lanza contenido
+		{
+			Debug.Log ("End superposition osc");
+			EndSuperposition(0);
+
+		}
 		public void EndSuperposition(int state) //Lanza contenido
 		{
+			Debug.Log ("End superposition");
 			isEndSuperposicion = true;
+			//disableIconosLeyenda
+			enableIconosLeyendaSup (IconosTablet1[0],Color.white,0);
 			MarkerControl mc=AnimEndSuper.GetComponent<MarkerControl>();
 			AnimationTrigger at=AnimEndSuper.GetComponent<AnimationTrigger>();
 			activeTablets [0] = true;
@@ -2765,9 +2801,9 @@ public class SceneControl : MonoBehaviour {
 				|| state==codigosParques[8] || state==codigosParques[9] || state==codigosParques[10] || state==codigosParques[11]
 				|| state==codigosParques[12]) //Parques
 			{
-				for(int j = 0; j < leyendaTurismo.Length; j++){
-					if(leyendaTurismo[j].codigo==state){
-						Debug.Log ("entra a state:"+leyendaTurismo[j].codigo);
+				for(int j = 0; j < leyendaParques.Length; j++){
+					if(leyendaParques[j].codigo==state){
+						Debug.Log ("entra a state:"+leyendaParques[j].codigo);
 						for (int i = 0; i < 3; i++)
 						{
 							if (lenguajeTablets[i] == 0)
@@ -3025,6 +3061,7 @@ public class SceneControl : MonoBehaviour {
 		}
 		public void disableIconosExplicativos()
 		{
+			Debug.Log ("disable iconosleyenda");
 			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=false;
 			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().sprite=IconosTablet2[0];
 			LeyendaMarcadorb [4].GetComponent<SpriteRenderer>().enabled=false;
@@ -3126,7 +3163,7 @@ public class SceneControl : MonoBehaviour {
                 //activar bibliobus
 				changeAlphaMaterialMaqueta(layerVideoMapping,1);
 				changeColorVideoMaqueta (layerVideoMapping, colorBibliobuses);
-				videoPlayerMapping.clip = videosMapping[1];
+				videoPlayerMapping.clip = videosMapping[2];
                
                 //at.contenido = "Bibliobuses";
 				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliobuses;
@@ -3330,6 +3367,7 @@ public class SceneControl : MonoBehaviour {
 			if(value == codigosPromocioEconomica[0]  || value==0){ //XALOC
 				if(super==0) {
 					CleanPoligonos();
+					CleanPuntos();
 					enableIconosLeyenda (IconosTablet1[2], colorPERSONAS,1);
 					changeTextureMaterialMaquetaAnim (layerMAzonas,texturaXaloc);
 					//Encender capas de municipios
@@ -3350,6 +3388,7 @@ public class SceneControl : MonoBehaviour {
 				if(super==0) {
 					enableIconosLeyenda (IconosTablet1[4], colorPERSONAS,1);
 					CleanPuntos(); //limpia puntos si no es superposicion
+					CleanZonas();
 					StartPoligons();
 					writeTextLanguage(0, value);
 				}
@@ -3364,7 +3403,11 @@ public class SceneControl : MonoBehaviour {
 			if(value == codigosPromocioEconomica[2] ){//serveis a empreses
 
 				//NuevosDatos
-				if(!isSuperposicion) CleanPoligonos();
+				if(super==0){
+					CleanPoligonos();
+					CleanZonas ();
+				}
+				Debug.Log ("Entra a serveis");
 				enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,1);
 				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 				AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
@@ -3522,7 +3565,7 @@ public class SceneControl : MonoBehaviour {
 	public void StartParcs(int value )
 	{
 			estadoActual[2] = value;
-			enableIconosLeyenda (IconosTablet1[2], colorPERSONAS,1);
+			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 		Debug.Log( "Received: Parcs ");
 		LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = true;
 		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[2];
@@ -3632,12 +3675,13 @@ public class SceneControl : MonoBehaviour {
 	{
 			estadoActual[2] = value;
 			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
+			CleanPuntos ();
 			//LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
 			enableIconosCo2();
 			//LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=true;
 			//LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().sprite=IconosTablet2[0];
 
-			LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled=true; //para fechas
+			//LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled=true; //para fechas
 			/*LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[0];
 			LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled =true;*/
 			activeTablets [1] = true;
@@ -3674,6 +3718,7 @@ public class SceneControl : MonoBehaviour {
 			}
 			if(value == codigosPAES[1] ){ //paes
 				Debug.Log( "Received: Paes ");
+				CleanZonas ();
 				enableIconosLeyenda (IconosTablet1[0], colorSOSTENIBILIDAD,1);
 				disableIconosExplicativos();
 				MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
@@ -3712,7 +3757,7 @@ public class SceneControl : MonoBehaviour {
 				CleanPuntos();
 				Debug.Log( "Received: Paes boscos ");
 				enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
-				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[1]);
+				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[2]);
 				enableIconosExplicativos(IconosTablet2[3]);
 				writeTextLanguage(0, value);
 				//Encender capas de municipios
@@ -3946,11 +3991,11 @@ public class SceneControl : MonoBehaviour {
 		isEndEmisions=true;
 			
 
-		if(value ==  codigosTurismo[0]|| value==0){
+		if(value ==  codigosTurismo[0]|| value==0){ //turismo sostenible
 			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 			MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
 			AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
-
+			isEndTurismo = true;
 			activeTablets [1] = true;
 			mc.colorToChange = colorSOSTENIBILIDAD;
 			//LeyendaMarcador [1].GetComponent<Renderer> ().material.color = colorTurisme;
@@ -3960,15 +4005,16 @@ public class SceneControl : MonoBehaviour {
 			at.isGrowing = true;
 			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasTurismoSostenible[0]);
 			//Encender capas de municipios
-			changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
+			//changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
 			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
 		}
 		else if(value == codigosTurismo[1]){
+			isEndTurismo = true;
 			enableIconosLeyenda (IconosTablet1[5], colorSOSTENIBILIDAD,1);
 			CleanPuntos ();
 			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasRutasTurismo[0]);
 			//Encender capas de municipios
-			changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
+			//changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
 			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
 			writeTextLanguage(0, value);
 
@@ -3982,7 +4028,7 @@ public class SceneControl : MonoBehaviour {
 			timeLeftEmisions = 1;
 			enableIconosExplicativos(texturesTurismo[0]);
 
-			LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled=true; //para fechas
+			//LeyendaMarcadorb [1].GetComponent<SpriteRenderer>().enabled=true; //para fechas
 			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 			writeTextLanguage(0, value);
 				//isTurismo = true;
@@ -3990,7 +4036,7 @@ public class SceneControl : MonoBehaviour {
 		}
 
 		//Animaciones lineas maqueta2
-		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.58f);
 		enableAnimationLayer(1);
 	}
 
@@ -4107,9 +4153,9 @@ public class SceneControl : MonoBehaviour {
 			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
 
 		//Leyendas
-			//LeyendaMarcadorb [6].GetComponent<SpriteRenderer> ().enabled = true;
-			//LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = true;
-			//LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [6].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = true;
 			activeTablets [2] = true;
 		if(value == codigosPlataformaUrbana[0]||value == 0){
 			MarkerControl mc=AnimStarters[2].GetComponent<MarkerControl>();
@@ -4130,19 +4176,19 @@ public class SceneControl : MonoBehaviour {
 			}
 			writeTextLanguage(0, value);
 			
-			/*if (lenguajeTablets [2] == 0) {
-			Titulos[2].text="                                                                                                                                   Plataforma Urbana Intel·ligent";
-				//Titulos [5].text = "Plataforma pròpia";
-			//Titulos[6].text="Plataforma multi-tenant DIBA";
+			//if (lenguajeTablets [2] == 0) {
+			Titulos[2].text="Plataforma Urbana Intel·ligent";
+				Titulos [5].text = "Plataforma pròpia";
+			Titulos[6].text="Plataforma multi-tenant DIBA";
 			//Titulos[7].text="Solució híbrida";
 				Subtitulos[2].text=" ";
-			} else {
-			Titulos [2].text = "                                                                                                                                          Smart urban platform";
-			Titulos[5].text="Own platform";
-			Titulos[6].text="DIBA multi-tenant platform";
-			Titulos[7].text="Hybrid solution";
+			//} else {
+			//Titulos [2].text = "                                                                                                                                          Smart urban platform";
+			//Titulos[5].text="Own platform";
+			//Titulos[6].text="DIBA multi-tenant platform";
+			//Titulos[7].text="Hybrid solution";
 				Subtitulos [2].text = "";
-			}*/
+			//}*/
 
 			
 
@@ -4203,6 +4249,7 @@ public class SceneControl : MonoBehaviour {
 
 				
 		if(value == codigosInfraestructuras[0] || value == 0){
+				CleanZonas ();
 			enableIconosLeyenda (IconosTablet1[0], colorTECNOLOGIA,1);
 					//LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
 					LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[5];
@@ -4241,7 +4288,7 @@ public class SceneControl : MonoBehaviour {
 	{
 		Debug.Log( "Received: Poligons ");
 			activeTablets [2] = true;
-			
+		CleanZonas ();
 			isPolig = true;
 			isStartPolig = true;
 			isEndPolig = false;
@@ -4270,7 +4317,7 @@ public void StartFibra(int value , int sup)
 			isEndFibra = false;
 
 			//Animaciones maqueta2
-			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.19f);
 			enableAnimationLayer(1);
 
 			writeTextLanguage(0, value);
@@ -4388,6 +4435,10 @@ public void CleanPoligonos()//OscMessage message
 {
 	isEndPolig = true;
 }
+public void CleanZonas()//OscMessage message
+{
+	changeAlphaMaterialMaquetaAnim(layerMAzonas,0);
+}
 
 public void Clean1(int value)//OscMessage message
     {
@@ -4412,6 +4463,7 @@ public void Clean1(int value)//OscMessage message
 	enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,0); 
 	//Limpiar leyendas
 	CleanTitulos();
+			disableIconosExplicativos ();
 
         
 

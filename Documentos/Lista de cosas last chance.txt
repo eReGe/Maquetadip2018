@@ -5,22 +5,56 @@ COSAS PARA CAMBIAR TABLET
 - Km2 despues del video En la tablet va a contenido de promocio economica y ocupacio, o a libraries
 - En oficina de patrimoni cultural, arxius municipals y museus locals tienen el parametro de envio osc cambiado (el 2 es el 3 y viceversa)
 
-
+- Enrera doble
+Repetir titulo dentro del popup
 
 COSAS PARA CAMBIAR JSON
 - En gobern obert faltan las leyendas de subcontenidos en ingles y español
 - En km2 no hay leyenda en ingles y espaól, es la misma que en catalán
+
+- Titulo de bibliotecas tiene que ser Xarxa de bibliotecas
+- +info que repita el texto
 
 
 
 
 COSAS PARA CAMBIAR UNITY
 CONTENIDOS
-Parcs naturals no pone texto ni cambia color del punto
+
+Promocio
+----------
+Servei empresas no lanza puntos (no tiene los datos - poner otros parecidos? o revisar si estan del año pasado)
+
+Municipis
+-----------
+Iconos descriptivos - a la izquierda + a la derecha
+Mapear bien los mapas de co2
+Revisar que las fechas del co2 vayan bien con las imagenes (no una desplazada)
+
+Parques
+-----------
 Parcs naturals poner plano con lo que sale del parque
+Poner rios con los parques
+
+Plataforma
+----------
 plataforma enseñar todos con dos colores
+
+
+Borrar bien las lineas de las animaciones.
+Volver al standby
+Fibra optica alpha de la lineas de municipios a a 49
+cuando vuelva al inicio que haga clean general...
+
+SUPERPOSICIONES (APARCADO)
+Economia circular y verde no borra polligonos ni xaloc
+Xaloc superposicion no sale en blanco (pulsar dos veces?) 
 La superposicion de poligonos no inicia a la primera, hay que pulsar dos veces
-Videos que faltan
+
+
+
+
+
 
 
 DISEÑO
@@ -35,12 +69,7 @@ poner textos al mismo tamaño de fuente
 	- Cambiar imagen de carreteras a color gris claro
 - Plataforma Urbana
 	- Lanzar lineas y puta wifi (se lanza pero no se ve
-- Municipis compromesos
-	- No se ven leyendas, ver porque es
 	
-- Emisiones
-	- Poner subtitulos de fechas en todos
-	- cambiar color liso a negro
 	
 - Hacer superposiciones
 
@@ -63,5 +92,11 @@ ANIMACIONES
 - imagen de bibliobuses
 - Flicker a puntos de leyenda cuando muestren puntos con flicker
 	
+REUNION
 
-	
+Hacer texto que ponga sólo visualizacion, master
+Visor multiIdiomas
+
+
+
+	radius   35.49

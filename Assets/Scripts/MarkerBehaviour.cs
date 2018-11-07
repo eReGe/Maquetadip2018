@@ -101,6 +101,12 @@ public class MarkerBehaviour : MonoBehaviour {
 		}
 		if (this.EndState) {
 			endAnimation ();
+			line = gameObject.GetComponent<LineRenderer>();
+			line.enabled = false;
+			line1=auxLine1.GetComponent<LineRenderer>();
+			line1.enabled = false;
+			line2=auxLine2.GetComponent<LineRenderer>();
+			line2.enabled = false;
 		}
 		if (isAlarm) {
 			line = gameObject.GetComponent<LineRenderer>();

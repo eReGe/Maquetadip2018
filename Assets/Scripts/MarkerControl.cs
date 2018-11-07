@@ -39,9 +39,9 @@ public class MarkerControl : MonoBehaviour {
 					//Debug.Log (mb);
 					if (col.gameObject.name != "Tapa1") {
 						MarkerBehaviour mb = col.gameObject.GetComponent <MarkerBehaviour>();
-						if(isSuperposition){
+						/*if(isSuperposition){
 							mb.isSuperposition=true;
-						}
+						}*/
 						mb.animationDecision (at.contenido, this.gameObject.name,colorToChange);
 					}
 					//mb.StartState = true;
