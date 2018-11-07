@@ -13,6 +13,7 @@ public class LightRotation : MonoBehaviour {
 	public bool isChanging=false;
 	public GameObject[] Maquetas;
 	public GameObject Mar;
+	public int layerLuces;
 
 	private float durationDawn;
 	private float speedXrot2;
