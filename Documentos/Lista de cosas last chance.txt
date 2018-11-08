@@ -25,6 +25,10 @@ Promocio
 ----------
 Servei empresas no lanza puntos (no tiene los datos - poner otros parecidos? o revisar si estan del año pasado)
 
+Xarxa
+----------
+Punto de tablet 1 no se pone al color sostenibilidad
+
 Municipis
 -----------
 Iconos descriptivos - a la izquierda + a la derecha
@@ -40,10 +44,16 @@ Plataforma
 ----------
 plataforma enseñar todos con dos colores
 
+Turismo
+----------
+Revisar en sostenibilidad donde se tinta la capa de municipios, o tintarla de blanco al entrar en turismo
+
+Fibra optica
+-------------
+Mapear bien las imagenes
 
 Borrar bien las lineas de las animaciones.
 Volver al standby
-Fibra optica alpha de la lineas de municipios a a 49
 cuando vuelva al inicio que haga clean general...
 
 SUPERPOSICIONES (APARCADO)

@@ -471,6 +471,7 @@ public class SceneControl : MonoBehaviour {
 		//APAGAR ICONOS
 			enableIconosLeyenda(IconosTablet1[0],colorPERSONAS,0);
 			enableIconosLeyendaSup (IconosTablet1 [0], Color.white, 0);
+			disableIconosPlataforma ();
 		/*for(int i=0;i<LeyendaMarcador.Length;i++){
 			LeyendaMarcador [i].GetComponent<MeshRenderer> ().enabled = false;
 			//LeyendaMarcadorb [i].GetComponent<SpriteRenderer> ().enabled = false;
@@ -3023,6 +3024,24 @@ public class SceneControl : MonoBehaviour {
             StartBiblio2(value);*/
 
     }
+		public void enableIconosPlataforma()
+		{
+			LeyendaMarcadorb [6].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [9].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [10].GetComponent<SpriteRenderer> ().enabled = true;
+			LeyendaMarcadorb [11].GetComponent<SpriteRenderer> ().enabled = true;
+		}
+		public void disableIconosPlataforma()
+		{
+			LeyendaMarcadorb [6].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [9].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [10].GetComponent<SpriteRenderer> ().enabled = false;
+			LeyendaMarcadorb [11].GetComponent<SpriteRenderer> ().enabled = false;
+		}
 		public void enableIconosCo2()
 		{
 			LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=true;
@@ -4148,38 +4167,38 @@ public class SceneControl : MonoBehaviour {
 		Debug.Log( "Received: Plataforma ");
 		estadoActual[2] = value;
 		enableIconosLeyenda (IconosTablet1[0], colorTECNOLOGIA,1);
-			//LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = true;
-			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().sprite = IconosTablet3[1];
-			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = true;
+			
 
 		//Leyendas
-			LeyendaMarcadorb [6].GetComponent<SpriteRenderer> ().enabled = true;
-			LeyendaMarcadorb [7].GetComponent<SpriteRenderer> ().enabled = true;
-			LeyendaMarcadorb [8].GetComponent<SpriteRenderer> ().enabled = true;
-			activeTablets [2] = true;
+		enableIconosPlataforma ();
+		activeTablets [2] = true;
 		if(value == codigosPlataformaUrbana[0]||value == 0){
 			MarkerControl mc=AnimStarters[2].GetComponent<MarkerControl>();
 			AnimationTrigger at=AnimStarters[2].GetComponent<AnimationTrigger>();
 			mc.colorToChange = colorTECNOLOGIA;
 			at.contenido = "Plataforma";
 			at.isGrowing = true;
-				
-
-			}
-		else if(value == codigosPlataformaUrbana[1]){
+		}
+		/*else if(value == codigosPlataformaUrbana[1]){
 			MarkerControl mc=AnimStarters[2].GetComponent<MarkerControl>();
 			AnimationTrigger at=AnimStarters[2].GetComponent<AnimationTrigger>();
 			mc.colorToChange = colorTECNOLOGIA;
 			at.contenido = "Plataforma";
 			at.isGrowing = true;
 
-			}
+			}*/
 			writeTextLanguage(0, value);
 			
 			//if (lenguajeTablets [2] == 0) {
-			Titulos[2].text="Plataforma Urbana Intel·ligent";
-				Titulos [5].text = "Plataforma pròpia";
-			Titulos[6].text="Plataforma multi-tenant DIBA";
+			//Titulos[2].text="Plataforma Urbana Intel·ligent";
+		string tpropia="Plataforma pròpia";
+		string tmulti="Plataforma multi-tenant DIBA";
+		Titulos [5].text =tpropia;
+		Titulos[6].text=tmulti;
+		Titulos [7].text = tpropia;
+		Titulos[8].text=tmulti;
+		Titulos [9].text = tpropia;
+		Titulos[10].text=tmulti;
 			//Titulos[7].text="Solució híbrida";
 				Subtitulos[2].text=" ";
 			//} else {
@@ -4464,6 +4483,7 @@ public void Clean1(int value)//OscMessage message
 	//Limpiar leyendas
 	CleanTitulos();
 			disableIconosExplicativos ();
+			disableIconosPlataforma ();
 
         
 
@@ -4506,7 +4526,10 @@ public void Clean1(int value)//OscMessage message
 			Titulos[5].text="";
 			Titulos[6].text="";
 			Titulos[7].text="";
-			
+			Titulos[8].text="";
+			Titulos [9].text = "";
+			Titulos[10].text="";
+					
 			//LeyendaMarcador [2].GetComponent<MeshRenderer> ().enabled = false;
 			LeyendaMarcadorb [2].GetComponent<SpriteRenderer>().enabled = false;
 			LeyendaMarcadorc [2].GetComponent<SpriteRenderer>().enabled = false;
