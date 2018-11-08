@@ -27,6 +27,9 @@ public class SceneControl : MonoBehaviour {
 		public Sprite[] IconosTablet2;
 		public Sprite[] IconosTablet3;
 		public Text[] Titulos;
+		public Text[]TitulosPlataformaT1;
+		public Text[] TitulosPlataformaT2;
+		public Text[] TitulosPlataformaT3;
 		public Text[] Subtitulos;
 	private ReadMunicipiData rmd;
 	public OscIn oscIn;
@@ -2886,6 +2889,70 @@ public class SceneControl : MonoBehaviour {
 			//Plataforma urbana
 			if (state == codigosPlataformaUrbana[0]|| state == codigosPlataformaUrbana[1])
 			{
+				string tpropia;
+				string tmulti;
+			
+				for (int i = 0; i < 3; i++)
+				{
+					if (lenguajeTablets[i] == 0)
+					{
+						 tpropia="Plataforma pròpia";
+						 tmulti="Plataforma multi-tenant DIBA";
+						if(i==0){
+							TitulosPlataformaT1 [0].text =tpropia;
+							TitulosPlataformaT1[1].text=tmulti;
+						}
+						if(i==1){
+							TitulosPlataformaT2 [0].text =tpropia;
+							TitulosPlataformaT2[1].text=tmulti;
+						}
+						if(i==2){
+							TitulosPlataformaT2 [0].text =tpropia;
+							TitulosPlataformaT2[1].text=tmulti;
+						}
+						Titulos[i].text="Plataforma urbana intelligent";
+						Subtitulos[i].text="";
+					}
+					else if (lenguajeTablets[i] == 2)
+					{
+						 tpropia="Own Platform";
+						 tmulti="Multi-tenant DIBA platform";
+						if(i==0){
+							TitulosPlataformaT1 [0].text =tpropia;
+							TitulosPlataformaT1[1].text=tmulti;
+						}
+						if(i==1){
+							TitulosPlataformaT2 [0].text =tpropia;
+							TitulosPlataformaT2[1].text=tmulti;
+						}
+						if(i==2){
+							TitulosPlataformaT2 [0].text =tpropia;
+							TitulosPlataformaT2[1].text=tmulti;
+						}
+						Titulos [i].text = "Smart urban platform";
+						Subtitulos [i].text = "";
+					}
+					else if (lenguajeTablets[i] == 1)
+					{
+						 tpropia="Plataforma propia";
+						 tmulti="Plataforma multi-tenant DIBA";
+						if(i==0){
+							TitulosPlataformaT1 [0].text =tpropia;
+							TitulosPlataformaT1[1].text=tmulti;
+						}
+						if(i==1){
+							TitulosPlataformaT2 [0].text =tpropia;
+							TitulosPlataformaT2[1].text=tmulti;
+						}
+						if(i==2){
+							TitulosPlataformaT2 [0].text =tpropia;
+							TitulosPlataformaT2[1].text=tmulti;
+						}
+						Titulos[i].text = "Plataforma urbana inteligente";
+						Subtitulos[i].text = "";
+					}
+				}
+				/*
 				for(int j = 0; j < leyendaPlataformaUrbana.Length; j++){
 					if(leyendaPlataformaUrbana[j].codigo==state){
 						Debug.Log ("entra a state:"+leyendaPlataformaUrbana[j].codigo);
@@ -2908,7 +2975,7 @@ public class SceneControl : MonoBehaviour {
 							}
 						}
 					}
-				}
+				}*/
 			}
 			//Infraestructuras
 			if (state == codigosInfraestructuras[0] || state == codigosInfraestructuras[1])
@@ -4166,7 +4233,7 @@ public class SceneControl : MonoBehaviour {
 	{
 		Debug.Log( "Received: Plataforma ");
 		estadoActual[2] = value;
-		enableIconosLeyenda (IconosTablet1[0], colorTECNOLOGIA,1);
+		//enableIconosLeyenda (IconosTablet1[0], colorTECNOLOGIA,1);
 			
 
 		//Leyendas
@@ -4187,7 +4254,7 @@ public class SceneControl : MonoBehaviour {
 			at.isGrowing = true;
 
 			}*/
-			writeTextLanguage(0, value);
+
 			
 			//if (lenguajeTablets [2] == 0) {
 			//Titulos[2].text="Plataforma Urbana Intel·ligent";
@@ -4208,6 +4275,8 @@ public class SceneControl : MonoBehaviour {
 			//Titulos[7].text="Hybrid solution";
 				Subtitulos [2].text = "";
 			//}*/
+
+		writeTextLanguage(0, value);
 
 			
 

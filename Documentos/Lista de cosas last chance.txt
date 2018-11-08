@@ -23,7 +23,7 @@ CONTENIDOS
 
 Promocio
 ----------
-Servei empresas no lanza puntos (no tiene los datos - poner otros parecidos? o revisar si estan del año pasado)
+Servei empresas no lanza puntos (no tiene los datos - poner otros ? o revisar  del año pasado)
 
 Xarxa
 ----------
@@ -34,15 +34,13 @@ Municipis
 Iconos descriptivos - a la izquierda + a la derecha
 Mapear bien los mapas de co2
 Revisar que las fechas del co2 vayan bien con las imagenes (no una desplazada)
+Temperatura no pone iconos
 
 Parques
 -----------
 Parcs naturals poner plano con lo que sale del parque
 Poner rios con los parques
 
-Plataforma
-----------
-plataforma enseñar todos con dos colores
 
 Turismo
 ----------

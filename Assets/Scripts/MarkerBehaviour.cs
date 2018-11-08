@@ -45,7 +45,8 @@ public class MarkerBehaviour : MonoBehaviour {
 	LineRenderer line;
 	LineRenderer line1;
 	LineRenderer line2;
-	public GameObject auxLine1,auxLine2;
+	LineRenderer line3;
+	public GameObject auxLine1,auxLine2,auxLine3;
 	public float speedAlarm;
 	public float speedWifi;
 	public float maxRadius;
@@ -89,6 +90,7 @@ public class MarkerBehaviour : MonoBehaviour {
 		line1=auxLine1.GetComponent<LineRenderer>();
 
 		line2=auxLine2.GetComponent<LineRenderer>();
+		line3=auxLine3.GetComponent<LineRenderer>();
 	}
 	public void setYpos(float _y){
 		yPos = _y;
@@ -100,13 +102,16 @@ public class MarkerBehaviour : MonoBehaviour {
 			startAnimation ();
 		}
 		if (this.EndState) {
-			endAnimation ();
 			line = gameObject.GetComponent<LineRenderer>();
 			line.enabled = false;
 			line1=auxLine1.GetComponent<LineRenderer>();
 			line1.enabled = false;
 			line2=auxLine2.GetComponent<LineRenderer>();
 			line2.enabled = false;
+			line3=auxLine3.GetComponent<LineRenderer>();
+			line3.enabled = false;
+			endAnimation ();
+
 		}
 		if (isAlarm) {
 			line = gameObject.GetComponent<LineRenderer>();
@@ -383,6 +388,7 @@ public class MarkerBehaviour : MonoBehaviour {
 							mf.c = colorMesura1;
 							gameObject.GetComponent<Renderer> ().material.color = c;
 							line = gameObject.GetComponent<LineRenderer> ();
+							isWifi = true;
 							/*if (isPlataforma) {
 								line.enabled = true;
 								isNeuronal = true;
@@ -395,6 +401,7 @@ public class MarkerBehaviour : MonoBehaviour {
 							line = gameObject.GetComponent<LineRenderer> ();
 							line.enabled = false;
 							isNeuronal = false;
+							isWifi = false;
 						}
 					}
 
@@ -414,6 +421,7 @@ public class MarkerBehaviour : MonoBehaviour {
 							line = gameObject.GetComponent<LineRenderer> ();
 							line.enabled = false;
 							isNeuronal = false;
+							isWifi = false;
 						}
 					}
 				}
@@ -450,6 +458,7 @@ public class MarkerBehaviour : MonoBehaviour {
 							c= colorMesura1;
 							gameObject.GetComponent<Renderer> ().material.color = c;
 							line = gameObject.GetComponent<LineRenderer> ();
+							isWifi = true;
 							/*if (isPlataforma) {
 								line.enabled = true;
 								isNeuronal = true;
@@ -476,6 +485,7 @@ public class MarkerBehaviour : MonoBehaviour {
 							c= colorPlataforma3;
 							gameObject.GetComponent<Renderer> ().material.color = c;
 							line = gameObject.GetComponent<LineRenderer> ();
+							isWifi = true;
 							/*if (isPlataforma) {
 								line.enabled = true;
 								isNeuronal = true;
@@ -492,7 +502,11 @@ public class MarkerBehaviour : MonoBehaviour {
 					}
 				}
 
-			} else {
+			} else { //Borrado?
+				isWifi = false;
+				line1.enabled=false;
+				line2.enabled=false;
+				line3.enabled=false;
 				/*for (int i = 0; i < m1.Count; i++) {
 					//Debug.Log ("State:0 m1[i]:"+m1[i]+" Codigo:"+codigo);
 					if (codigo == m1 [i]) {
@@ -736,8 +750,8 @@ public class MarkerBehaviour : MonoBehaviour {
 		}
 	}
 	public void wifi(){
-		int prob=0;
-		if (xradius == 0 || xradius>=maxRadius) {
+		float prob=0;
+		if (xradius == 0 || xradius>=maxRadius-1) {
 			prob = Random.Range (0,100);
 			if (prob < probabilidadWifi) {
 				isDrawWifi = true;
@@ -761,20 +775,13 @@ public class MarkerBehaviour : MonoBehaviour {
 		float alphaMap = xradius;
 		line = gameObject.GetComponent<LineRenderer>();
 		if(isDrawWifi){
-			line.enabled=true;
 			line1.enabled=true;
 			line2.enabled=true;
+			line3.enabled=true;
 			//alphaMap = RemapVal (alphaMap,0,maxRadius,1,0);
 			Color c = line.material.color;
 			//c.a = alphaMap;
 			//Debug.Log ("Alpharadar: " + alphaMap);
-			line.material.color=c;
-
-			line.SetVertexCount (segments + 1);
-			line.useWorldSpace = false;
-			line.startWidth = 4;
-			line.endWidth = 4;
-
 			line1.material.color=c;
 			line1.SetVertexCount (segments + 1);
 			line1.useWorldSpace = false;
@@ -786,12 +793,18 @@ public class MarkerBehaviour : MonoBehaviour {
 			line2.useWorldSpace = false;
 			line2.startWidth = 4;
 			line2.endWidth = 4;
+
+			line3.material.color=c;
+			line3.SetVertexCount (segments + 1);
+			line3.useWorldSpace = false;
+			line3.startWidth = 4;
+			line3.endWidth = 4;
 			CreatePoints2();
 		}
 		else{
-			line.enabled=false;
 			line1.enabled=false;
 			line2.enabled=false;
+			line3.enabled=false;
 		}
 
 	}
@@ -801,8 +814,8 @@ public class MarkerBehaviour : MonoBehaviour {
 		float y,y1,y2;
 		float z,z1,z2 = 0f;
 
-		float angle = 135f;
-		float angle2 = 200f;
+		float angle = 170f;
+		float angle2 = angle +60f;
 
 		for (int i = 0; i < (segments + 1); i++)
 		{
@@ -816,9 +829,9 @@ public class MarkerBehaviour : MonoBehaviour {
 			z2 = Mathf.Cos (Mathf.Deg2Rad * angle) * yradius2;
 			y2 = -400;
 
-			line.SetPosition (i,new Vector3(x,y,z) );
-			line1.SetPosition (i,new Vector3(x1,y,z1) );
-			line2.SetPosition (i,new Vector3(x2,y,z2) );
+			line1.SetPosition (i,new Vector3(x,y,z) );
+			line2.SetPosition (i,new Vector3(x1,y,z1) );
+			line3.SetPosition (i,new Vector3(x2,y,z2) );
 
 			angle += (90f / segments);
 
