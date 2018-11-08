@@ -159,9 +159,9 @@ public class SceneControl : MonoBehaviour {
 		public int layerMAzonas=0;
 		public int layerMAparques=1;
 		public int layerMAPoligonos=2;
-		public int layerMAturismo1=3;
-		public int layerMAturismo2=4;
-		public int layerMAturismo3=5;
+		public int layerMAParquesContornos=3;
+		public int layerMAtransp=4;
+		public int layerMAtransp2=5;
 		public int layerMAvideoAnimado=6;
 		public int layerMACo2impar=7;
 		public int layerMACo2par=8;
@@ -329,6 +329,7 @@ public class SceneControl : MonoBehaviour {
 		public Texture[] texturasInfraestructuras;
 		public Texture[] texturasMunicipiosSolos;
 		public Sprite[] texturesTurismo;
+		public Texture[] texturasContornosParcs;
 
 	 
 
@@ -432,10 +433,10 @@ public class SceneControl : MonoBehaviour {
 			c.a = 0;
 				m[layerMAPoligonos].color = c; //Poligonos
 
-				c = m[layerMAturismo1].color;
+				c = m[layerMAParquesContornos].color;
 			c.a = 0;
-				m[layerMAturismo1].color = c; //Turismo1
-
+				m[layerMAParquesContornos].color = c; //Turismo1
+				/*
 				c = m[layerMAturismo2].color;
 			c.a = 0;
 				m[layerMAturismo2].color = c; //Turismo2
@@ -443,7 +444,7 @@ public class SceneControl : MonoBehaviour {
 				c = m[layerMAturismo3].color;
 			c.a = 0;
 				m[layerMAturismo3].color = c; //Turismo3
-
+	*/
 				c = m[layerMAvideoAnimado].color;
 			c.a = 0;
 				m[layerMAvideoAnimado].color = c; //VideoAnimado
@@ -3648,26 +3649,119 @@ public class SceneControl : MonoBehaviour {
 			if (message == 0) StartIntro (codigosParques[0]);
 			else StartContent (codigosParques[message-1]);
 		}
-	public void StartParcs(int value )
+		public void StartParcs(int value)
 	{
+			if(!isParcs){
+				isParcs = true;
+				isStartParcs = true;
+				isEndParcs = false;
+				//Animaciones maqueta2
+				changeAlphaMaterialMaqueta(layerRios,1);
+				changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
+				changeAlphaMaterialMaquetaAnim(layerMAtransp,1);
+				changeAlphaMaterialMaquetaAnim(layerMAtransp2,0.38f);
+				enableAnimationLayer(1);
+			}
 			estadoActual[2] = value;
+			//apagar emisiones
+			isEndEmisions=true;
 			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 		Debug.Log( "Received: Parcs ");
-		LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = true;
-		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[2];
-		LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;
+
+		if(value==0){ //Parques todos
+			isParcs = true;
+			isStartParcs = true;
+			isEndParcs = false;
+			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasOficinaPatrimoni[0]);
+			writeTextLanguage(0, value);
+		}else{
+				if(value==codigosParques[0]){ //Parques 1
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[0]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[1]){ //Parques 2
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[1]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[2]){ //Parques 3
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[2]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[3]){ //Parques 4
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[3]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[4]){ //Parques 5
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[4]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[5]){ //Parques 6
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[5]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[6]){ //Parques 7
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[6]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[7]){ //Parques 8
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[7]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[8]){ //Parques 9
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[8]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[9]){ //Parques 10
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[9]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[10]){ //Parques 7
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[10]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[11]){ //Parques 7
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[11]);
+					writeTextLanguage(0, value);
+				}
+				if(value==codigosParques[12]){ //Parques 7
+					isParcs = true;
+					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
+					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[12]);
+					writeTextLanguage(0, value);
+				}
+		}
+
+		/*LeyendaMarcadorb [0].GetComponent<SpriteRenderer>().enabled = true;
+		//LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[2];
+		//LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().enabled = true;*/
 		activeTablets [0] = true;
-		isParcs = true;
-		isStartParcs = true;
-		isEndParcs = false;
-		//apagar emisiones
-			isEndEmisions=true;
+		
 
-		writeTextLanguage (0, value);
-
-		//Animaciones maqueta2
-		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
-		enableAnimationLayer(1);
+		
 
 		/*if (lenguajeTablets [0] == "cat") {
 		Titulos[0].text="Àrees dels parcs naturals";
@@ -4546,6 +4640,8 @@ public void Clean1(int value)//OscMessage message
 			isEndTurismo = true;
 			isEndSuperposicion = true;
 		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
+	changeAlphaMaterialMaquetaAnim(layerMAtransp,0);
+	changeAlphaMaterialMaquetaAnim(layerMAtransp2,0);
 	changeAlphaMaterialMaqueta (layerMunicipiosSolos, 0);
 	//limpiar iconos
 	enableIconosLeyenda (IconosTablet1[0], colorPERSONAS,0); 
