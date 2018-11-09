@@ -1,12 +1,6 @@
 COSAS PARA CAMBIAR TABLET
 
-- Osc de superposicion debe de ser:  /superposicion (codigo del contenido)
-- Serveis de teleasistencia no manda osc, y va al contenido de bibliotecas
-- Km2 despues del video En la tablet va a contenido de promocio economica y ocupacio, o a libraries
-- En oficina de patrimoni cultural, arxius municipals y museus locals tienen el parametro de envio osc cambiado (el 2 es el 3 y viceversa)
-
-- Enrera doble
-Repetir titulo dentro del popup
+- El enrera no sale al entrar en un contenido, solo hay que quitarlo en el popup de mas info
 
 COSAS PARA CAMBIAR JSON
 - En gobern obert faltan las leyendas de subcontenidos en ingles y español
@@ -20,6 +14,7 @@ COSAS PARA CAMBIAR JSON
 
 COSAS PARA CAMBIAR UNITY
 CONTENIDOS
+Linea mas para poner las dos de teleasis y las 3 de wifi
 
 Promocio
 ----------
@@ -31,17 +26,9 @@ Punto de tablet 1 no se pone al color sostenibilidad
 
 Municipis
 -----------
-Iconos descriptivos - a la izquierda + a la derecha
-Mapear bien los mapas de co2
-Revisar que las fechas del co2 vayan bien con las imagenes (no una desplazada)
-Temperatura no pone iconos
 
 Parques
 -----------
-Parcs naturals poner plano con lo que sale del parque
-Activar capas de fondo nuevo con opacidad y rios
-Desactivarlas despues
-
 
 Turismo
 ----------
@@ -51,7 +38,7 @@ Fibra optica
 -------------
 Mapear bien las imagenes
 
-Borrar bien las lineas de las animaciones.
+
 Volver al standby
 cuando vuelva al inicio que haga clean general...
 

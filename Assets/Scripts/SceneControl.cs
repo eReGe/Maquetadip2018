@@ -14,6 +14,7 @@ public class SceneControl : MonoBehaviour {
 	public Camera CamaraCotas;
 	public Camera CamaraAnimaciones;
 	public GameObject[] Maquetas;
+		public GameObject PlanoParque;
 	public GameObject[] MaquetasCotas;
 	public GameObject[] MaquetasAnimaciones;
     public GameObject[] ZonasLisas;
@@ -408,6 +409,9 @@ public class SceneControl : MonoBehaviour {
 				m[layerVideoMapping].color = c; //Video mapping
 
         }
+
+		//Plano parques
+			changeAlphaPlanoParques (0);
         //Maqueta animaciones
 			for (int i = 0; i < MaquetasAnimaciones.Length; i++)
 		{
@@ -436,15 +440,15 @@ public class SceneControl : MonoBehaviour {
 				c = m[layerMAParquesContornos].color;
 			c.a = 0;
 				m[layerMAParquesContornos].color = c; //Turismo1
-				/*
-				c = m[layerMAturismo2].color;
-			c.a = 0;
-				m[layerMAturismo2].color = c; //Turismo2
 
-				c = m[layerMAturismo3].color;
+				c = m[layerMAtransp].color;
 			c.a = 0;
-				m[layerMAturismo3].color = c; //Turismo3
-	*/
+				m[layerMAtransp].color = c; //Turismo2
+
+				c = m[layerMAtransp2].color;
+			c.a = 0;
+				m[layerMAtransp2].color = c; //Turismo3
+	
 				c = m[layerMAvideoAnimado].color;
 			c.a = 0;
 				m[layerMAvideoAnimado].color = c; //VideoAnimado
@@ -658,7 +662,11 @@ public class SceneControl : MonoBehaviour {
 					Material[] m =MaquetasAnimaciones [0].GetComponent<Renderer>().materials;
 					c = m [numTexturaParcs].color;
 					c.a = c.a + parcSpeed;
+
 					changeAlphaMaterialMaquetaAnim (numTexturaParcs, c.a);
+					changeAlphaMaterialMaquetaAnim (layerMAParquesContornos, c.a);
+					changeAlphaPlanoParques (c.a);
+
 					if (c.a >= 0.75f) {
 						c.a = 0.75f;
 						isStartParcs = false;
@@ -701,9 +709,17 @@ public class SceneControl : MonoBehaviour {
 						c.a = c.a - parcSpeed;
 
 						m [numTexturaParcs].color = c;
+						m [layerMAParquesContornos].color = c;
 					}
+					Material[] m2 = PlanoParque.GetComponent<Renderer> ().materials;
+					Color cc = m2 [1].color;
+					cc.a=cc.a- parcSpeed;
+					m2[0].color = c;
+					m2[1].color = cc;
 					if (c.a <= 0) {
-						c.a = 0;
+						cc.a = 0;
+						m2[0].color = c;
+						m2[1].color = cc;
 						isEndParcs = false;
 						isParcs = false;
 					}
@@ -1134,7 +1150,29 @@ public class SceneControl : MonoBehaviour {
 				
 
 	}//END UPDATE
-    
+		void changeAlphaPlanoParques(float a)
+		{
+			
+				Material[] m = PlanoParque.GetComponent<Renderer>().materials;
+				Color cp = m[0].color;
+				cp.a = a;
+				Color cc = m[1].color;
+				cc.a = a;
+
+				m[0].color = cp; //colorLiso
+			m[1].color = cc; 
+
+
+		}
+		void changeTextureMaterialPlanoParque(Texture t)
+		{
+			
+			Material[] m = PlanoParque.GetComponent<Renderer>().materials;
+
+				m[1].SetTexture("_MainTex",t);
+
+
+		}
 
     void changeAlphaMaterialMaqueta(int material, float a)
     {
@@ -2013,6 +2051,9 @@ public class SceneControl : MonoBehaviour {
 			//oscIn.MapInt( "/superposicion", StartSuperposition );
 			//oscIn.Map( "/superposicion/out", oscEndSuperposition );
 			//ESPERA
+
+			//Municipios
+			oscIn.MapInt( "/municipio", oscMunicipio );
 
 		oscIn.Map( "/personas/espera", Clean1osc );
 			oscIn.Map( "/sostenibilidad/espera", Clean1osc );
@@ -3200,6 +3241,23 @@ public class SceneControl : MonoBehaviour {
 			}
 		}
 	}
+
+
+		public void oscMunicipio(int message)
+		{
+			Debug.Log ("municipio:"+ message);
+			if(message==0){
+				//changeTextureMaterialMaqueta(layerMunicipiosSolos,texturasMunicipiosSolos[Random.Range(0,texturasMunicipiosSolos.Length)]);
+				changeAlphaMaterialMaqueta (layerMunicipiosSolos, 0);
+			}
+			else{
+				changeTextureMaterialMaqueta(layerMunicipiosSolos,texturasMunicipiosSolos[Random.Range(0,texturasMunicipiosSolos.Length)]);
+				changeAlphaMaterialMaqueta (layerMunicipiosSolos, 1);
+			}
+
+
+		}
+
 		public void oscBiblio(int message)
 	{
 			Debug.Log (message);
@@ -3660,6 +3718,7 @@ public class SceneControl : MonoBehaviour {
 				changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.38f);
 				changeAlphaMaterialMaquetaAnim(layerMAtransp,1);
 				changeAlphaMaterialMaquetaAnim(layerMAtransp2,0.38f);
+				changeAlphaPlanoParques (1);
 				enableAnimationLayer(1);
 			}
 			estadoActual[2] = value;
@@ -3679,78 +3738,91 @@ public class SceneControl : MonoBehaviour {
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[0]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[0]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[1]){ //Parques 2
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[1]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[1]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[2]){ //Parques 3
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[2]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[2]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[3]){ //Parques 4
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[3]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[3]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[4]){ //Parques 5
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[4]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[4]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[5]){ //Parques 6
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[5]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[5]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[6]){ //Parques 7
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[6]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[6]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[7]){ //Parques 8
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[7]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[7]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[8]){ //Parques 9
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[8]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[8]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[9]){ //Parques 10
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[9]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[9]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[10]){ //Parques 7
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[10]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[10]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[11]){ //Parques 7
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[11]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[11]);
 					writeTextLanguage(0, value);
 				}
 				if(value==codigosParques[12]){ //Parques 7
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[12]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[2]);
 					writeTextLanguage(0, value);
 				}
 		}
@@ -3901,6 +3973,7 @@ public class SceneControl : MonoBehaviour {
 				CleanZonas ();
 				enableIconosLeyenda (IconosTablet1[0], colorSOSTENIBILIDAD,1);
 				disableIconosExplicativos();
+				disableIconosCo2 ();
 				MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
 				AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
 				mc.colorToChange = colorSOSTENIBILIDAD;
@@ -3916,6 +3989,7 @@ public class SceneControl : MonoBehaviour {
 				//enableIconosPaes();
 				//changeTexturaIconosPaes ();
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[0]);
+				disableIconosCo2 ();
 				enableIconosExplicativos(IconosTablet2[1]);
 				writeTextLanguage(0, value);
 				//Encender capas de municipios
@@ -3927,6 +4001,7 @@ public class SceneControl : MonoBehaviour {
 				Debug.Log( "Received: Paes sequeras ");
 				enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[1]);
+				disableIconosCo2 ();
 				enableIconosExplicativos(IconosTablet2[2]);
 				writeTextLanguage(0, value);
 				//Encender capas de municipios
@@ -3938,6 +4013,7 @@ public class SceneControl : MonoBehaviour {
 				Debug.Log( "Received: Paes boscos ");
 				enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[2]);
+				disableIconosCo2 ();
 				enableIconosExplicativos(IconosTablet2[3]);
 				writeTextLanguage(0, value);
 				//Encender capas de municipios
@@ -4187,8 +4263,11 @@ public class SceneControl : MonoBehaviour {
 			//Encender capas de municipios
 			//changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
 			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
+			//Animaciones lineas maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.58f);
+			enableAnimationLayer(1);
 		}
-		else if(value == codigosTurismo[1]){
+		else if(value == codigosTurismo[1]){ //xarax de rutas
 			isEndTurismo = true;
 			enableIconosLeyenda (IconosTablet1[5], colorSOSTENIBILIDAD,1);
 			CleanPuntos ();
@@ -4197,6 +4276,9 @@ public class SceneControl : MonoBehaviour {
 			//changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);
 			changeAlphaMaterialMaquetaAnim(layerMAzonas,1);
 			writeTextLanguage(0, value);
+			//Animaciones lineas maqueta2
+			changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.18f);
+			enableAnimationLayer(1);
 
 		}
 		else if(value == codigosTurismo[2]){
@@ -4215,9 +4297,7 @@ public class SceneControl : MonoBehaviour {
 
 		}
 
-		//Animaciones lineas maqueta2
-		changeAlphaMaterialMaquetaAnim(layerMAfronteras,0.58f);
-		enableAnimationLayer(1);
+
 	}
 
 		//TECNOLOGIA
