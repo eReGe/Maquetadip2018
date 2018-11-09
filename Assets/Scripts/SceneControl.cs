@@ -799,7 +799,9 @@ public class SceneControl : MonoBehaviour {
 						c.a = c.a - parcSpeed;
 
 						m [numTexturaParcs].color = c;
-						m [layerMAParquesContornos].color = c;
+						Color ccm = m [layerMAParquesContornos].color;
+						ccm.a = c.a;
+						m [layerMAParquesContornos].color = ccm;
 					}
 					Material[] m2 = PlanoParque.GetComponent<Renderer> ().materials;
 					Color cc = m2 [1].color;
@@ -889,7 +891,7 @@ public class SceneControl : MonoBehaviour {
 
 				//este no hace  falta ahora??? se quita con la capa de animacion
 				if (isEndEmisions) {
-					disableIconosCo2 ();
+					//disableIconosCo2 ();
 					alphaCo2impar -= alphaCo2Speed;
 					alphaCo2par -= alphaCo2Speed;
 					if(alphaCo2impar <=0){
@@ -2964,19 +2966,20 @@ public class SceneControl : MonoBehaviour {
 						Debug.Log ("entra a state:"+leyendaParques[j].codigo);
 						for (int i = 0; i < 3; i++)
 						{
+							Debug.Log ("Texto Parque:"+leyendaParques[j].codigo);
 							if (lenguajeTablets[i] == 0)
 							{
-								Titulos[i].text=leyendaParques [0].leyenda_cat;
+								Titulos[i].text=leyendaParques [j].leyenda_cat;
 								Subtitulos[i].text="";
 							}
 							else if (lenguajeTablets[i] == 2)
 							{
-								Titulos [i].text = leyendaParques [0].leyenda_ing;
+								Titulos [i].text = leyendaParques [j].leyenda_ing;
 								Subtitulos [i].text = "";
 							}
 							else if (lenguajeTablets[i] == 1)
 							{
-								Titulos[i].text = leyendaParques [0].leyenda_esp;
+								Titulos[i].text = leyendaParques [j].leyenda_esp;
 								Subtitulos[i].text = "";
 							}
 						}
@@ -3673,7 +3676,7 @@ public class SceneControl : MonoBehaviour {
 				MarkerControl mc=AnimStarters[0].GetComponent<MarkerControl>();
 				AnimationTrigger at=AnimStarters[0].GetComponent<AnimationTrigger>();
 				mc.colorToChange = colorPERSONAS;
-				at.contenido = "ServeisEmpresas";
+				at.contenido = "Bibliotecas";
 				at.isGrowing = true;
 
 				writeTextLanguage(0, value);
@@ -3938,7 +3941,7 @@ public class SceneControl : MonoBehaviour {
 					isParcs = true;
 					changeAlphaMaterialMaquetaAnim(layerMAParquesContornos,1);
 					changeTextureMaterialMaquetaAnim (layerMAParquesContornos,texturasContornosParcs[12]);
-					changeTextureMaterialPlanoParque (texturasContornosParcs[2]);
+					changeTextureMaterialPlanoParque (texturasContornosParcs[12]);
 					writeTextLanguage(0, value);
 				}
 		}
@@ -3979,8 +3982,8 @@ public class SceneControl : MonoBehaviour {
 			activeTablets [1] = true;
 
 			if(value == codigosXarxaCiutats[0] ||value == 0){
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[6];
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
+				//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[6];
+				//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
 				mc.colorToChange = colorSOSTENIBILIDAD;
 				at.contenido = "CambioClimatico";
 				at.isGrowing = true;
@@ -3995,8 +3998,8 @@ public class SceneControl : MonoBehaviour {
 
 			}
 			else if(value == codigosXarxaCiutats[1]){
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[7];
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
+				//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[7];
+				//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
 				mc.colorToChange = colorSOSTENIBILIDAD;
 				at.contenido = "Sostenibilitat";
 				at.isGrowing = true;
@@ -4011,8 +4014,8 @@ public class SceneControl : MonoBehaviour {
 
 			}
 			else if(value == codigosXarxaCiutats[2]){
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[9];
-				LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
+				//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().sprite = IconosTablet2[9];
+				//LeyendaMarcadorc [1].GetComponent<SpriteRenderer>().enabled = true;
 				mc.colorToChange = colorSOSTENIBILIDAD;
 				at.contenido = "EconomiaCircular";
 				at.isGrowing = true;
@@ -4045,7 +4048,9 @@ public class SceneControl : MonoBehaviour {
 			enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 			CleanPuntos ();
 			//LeyendaMarcador [1].GetComponent<MeshRenderer> ().enabled = true;
-			enableIconosCo2();
+			//enableIconosCo2();
+			enableIconosExplicativos(IconosTablet2[0]);
+
 			//LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().enabled=true;
 			//LeyendaMarcadorb [3].GetComponent<SpriteRenderer>().sprite=IconosTablet2[0];
 
@@ -4088,12 +4093,12 @@ public class SceneControl : MonoBehaviour {
 				Debug.Log( "Received: Paes ");
 				CleanZonas ();
 				enableIconosLeyenda (IconosTablet1[0], colorSOSTENIBILIDAD,1);
-				disableIconosExplicativos();
+				//disableIconosExplicativos();
 				disableIconosCo2 ();
 				MarkerControl mc=AnimStarters[1].GetComponent<MarkerControl>();
 				AnimationTrigger at=AnimStarters[1].GetComponent<AnimationTrigger>();
 				mc.colorToChange = colorSOSTENIBILIDAD;
-				at.contenido = "GestionContabilidad";
+				at.contenido = "CambioClimatico";
 				at.isGrowing = true;
 				writeTextLanguage(0, value);
 			}
@@ -4105,7 +4110,8 @@ public class SceneControl : MonoBehaviour {
 				//enableIconosPaes();
 				//changeTexturaIconosPaes ();
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[0]);
-				disableIconosCo2 ();
+				//disableIconosCo2 ();
+				//enableIconosCo2();
 				enableIconosExplicativos(IconosTablet2[1]);
 				writeTextLanguage(0, value);
 				//Encender capas de municipios
@@ -4117,7 +4123,8 @@ public class SceneControl : MonoBehaviour {
 				Debug.Log( "Received: Paes sequeras ");
 				enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[1]);
-				disableIconosCo2 ();
+				//disableIconosCo2 ();
+				//enableIconosCo2();
 				enableIconosExplicativos(IconosTablet2[2]);
 				writeTextLanguage(0, value);
 				//Encender capas de municipios
@@ -4129,7 +4136,8 @@ public class SceneControl : MonoBehaviour {
 				Debug.Log( "Received: Paes boscos ");
 				enableIconosLeyenda (IconosTablet1[2], colorSOSTENIBILIDAD,1);
 				changeTextureMaterialMaquetaAnim (layerMAzonas,texturasPAES[2]);
-				disableIconosCo2 ();
+				//disableIconosCo2 ();
+				//enableIconosCo2();
 				enableIconosExplicativos(IconosTablet2[3]);
 				writeTextLanguage(0, value);
 				//Encender capas de municipios
@@ -4375,6 +4383,7 @@ public class SceneControl : MonoBehaviour {
 
 			at.contenido = "Turisme";
 			at.isGrowing = true;
+			changeColorMaterialMaquetaAnim (layerMAzonas,Color.white);
 			changeTextureMaterialMaquetaAnim (layerMAzonas,texturasTurismoSostenible[0]);
 			//Encender capas de municipios
 			//changeColorMaterialMaquetaAnim (layerMAzonas,colorSOSTENIBILIDAD);

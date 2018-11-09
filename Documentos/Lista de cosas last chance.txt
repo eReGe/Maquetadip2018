@@ -15,34 +15,27 @@ COSAS PARA CAMBIAR JSON
 COSAS PARA CAMBIAR UNITY
 CONTENIDOS
 
-Fondo liso gris a 56
 
 
 Promocio
 ----------
-Servei empresas no lanza puntos (no tiene los datos - poner otros ? o revisar  del año pasado)
+Servei empresas
 
 Xarxa
 ----------
-Punto de tablet 1 no se pone al color sostenibilidad
 
 Municipis
 -----------
 
 Parques
 -----------
-El borde de los parques se ve verde a veces
-Poner imagen 13
-No cambia el nombre
+
 
 Turismo
 ----------
-Revisar en sostenibilidad donde se tinta la capa de municipios, o tintarla de blanco al entrar en turismo
-Texto de 
 
 Fibra optica
 -------------
-Mapear bien las imagenes
 
 
 Volver al standby
