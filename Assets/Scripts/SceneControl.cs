@@ -1392,6 +1392,12 @@ public class SceneControl : MonoBehaviour {
 				StartIntro (1);
             //StartGovernObert(130);
         }
+			if (Input.GetKeyDown(KeyCode.L))
+			{
+				Debug.Log("NAVIDAD");
+				oscMunicipio (500);
+				//StartGovernObert(130);
+			}
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("startXALOC");
@@ -3251,7 +3257,11 @@ public class SceneControl : MonoBehaviour {
 				changeAlphaMaterialMaqueta (layerMunicipiosSolos, 0);
 			}
 			else{
-				changeTextureMaterialMaqueta(layerMunicipiosSolos,texturasMunicipiosSolos[Random.Range(0,texturasMunicipiosSolos.Length)]);
+				/*for(int i=0;i< texturasMunicipiosSolos.Length; i++){
+					changeTextureMaterialMaqueta(layerMunicipiosSolos,texturasMunicipiosSolos[i]);
+					changeAlphaMaterialMaqueta (layerMunicipiosSolos, 1);
+				}*/
+				changeTextureMaterialMaqueta(layerMunicipiosSolos,texturasMunicipiosSolos[message-1]);//Random.Range(0,texturasMunicipiosSolos.Length)
 				changeAlphaMaterialMaqueta (layerMunicipiosSolos, 1);
 			}
 

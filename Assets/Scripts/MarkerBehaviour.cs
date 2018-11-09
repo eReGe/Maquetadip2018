@@ -46,7 +46,8 @@ public class MarkerBehaviour : MonoBehaviour {
 	LineRenderer line1;
 	LineRenderer line2;
 	LineRenderer line3;
-	public GameObject auxLine1,auxLine2,auxLine3;
+	LineRenderer line4;
+	public GameObject auxLine1,auxLine2,auxLine3,auxLine4;
 	public float speedAlarm;
 	public float speedWifi;
 	public float maxRadius;
@@ -91,6 +92,7 @@ public class MarkerBehaviour : MonoBehaviour {
 
 		line2=auxLine2.GetComponent<LineRenderer>();
 		line3=auxLine3.GetComponent<LineRenderer>();
+		line4=auxLine4.GetComponent<LineRenderer>();
 	}
 	public void setYpos(float _y){
 		yPos = _y;
@@ -110,6 +112,8 @@ public class MarkerBehaviour : MonoBehaviour {
 			line2.enabled = false;
 			line3=auxLine3.GetComponent<LineRenderer>();
 			line3.enabled = false;
+			line4=auxLine4.GetComponent<LineRenderer>();
+			line4.enabled = false;
 			endAnimation ();
 
 		}
@@ -507,6 +511,7 @@ public class MarkerBehaviour : MonoBehaviour {
 				line1.enabled=false;
 				line2.enabled=false;
 				line3.enabled=false;
+				line4.enabled=false;
 				/*for (int i = 0; i < m1.Count; i++) {
 					//Debug.Log ("State:0 m1[i]:"+m1[i]+" Codigo:"+codigo);
 					if (codigo == m1 [i]) {
@@ -698,7 +703,7 @@ public class MarkerBehaviour : MonoBehaviour {
 		line = gameObject.GetComponent<LineRenderer>();
 		if(isDrawAlarm){
 			line.enabled=true;
-			line1.enabled=true;
+			line4.enabled=true;
 			alphaMap = RemapVal (alphaMap,0,maxRadius,1,0);
 			Color c = line.material.color;
 			c.a = alphaMap;
@@ -710,16 +715,16 @@ public class MarkerBehaviour : MonoBehaviour {
 			line.startWidth = 4;
 			line.endWidth = 4;
 
-			line1.material.color=c;
-			line1.SetVertexCount (segments + 1);
-			line1.useWorldSpace = false;
-			line1.startWidth = 4;
-			line1.endWidth = 4;
+			line4.material.color=c;
+			line4.SetVertexCount (segments + 1);
+			line4.useWorldSpace = false;
+			line4.startWidth = 4;
+			line4.endWidth = 4;
 			CreatePoints ();
 		}
 		else{
 			line.enabled=false;
-			line1.enabled=false;
+			line4.enabled=false;
 		}
 
 	}
@@ -743,7 +748,7 @@ public class MarkerBehaviour : MonoBehaviour {
 			y1 = -400;
 
 			line.SetPosition (i,new Vector3(x,y,z) );
-			line1.SetPosition (i,new Vector3(x1,y,z1) );
+			line4.SetPosition (i,new Vector3(x1,y,z1) );
 
 			angle += (60f / segments);
 			angle2 += (60f / segments);
