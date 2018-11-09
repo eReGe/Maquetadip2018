@@ -42,6 +42,8 @@ public class MarkerBehaviour : MonoBehaviour {
 	public int segments;
 	public float xradius,xradius1,xradius2;
 	public float yradius,yradius1,yradius2;
+	public float xradiusA,xradius1A,xradius2A;
+	public float yradiusA,yradius1A,yradius2A;
 	LineRenderer line;
 	LineRenderer line1;
 	LineRenderer line2;
@@ -55,6 +57,7 @@ public class MarkerBehaviour : MonoBehaviour {
 	public bool isDrawWifi=false;
 	public float probabilidadRadar;
 	public float probabilidadWifi;
+	public float angleOndas;
 	public bool isSuperposition = false;
 	public bool superposed=false;
 
@@ -93,6 +96,7 @@ public class MarkerBehaviour : MonoBehaviour {
 		line2=auxLine2.GetComponent<LineRenderer>();
 		line3=auxLine3.GetComponent<LineRenderer>();
 		line4=auxLine4.GetComponent<LineRenderer>();
+		angleOndas = Random.Range (0, 360);
 	}
 	public void setYpos(float _y){
 		yPos = _y;
@@ -126,8 +130,8 @@ public class MarkerBehaviour : MonoBehaviour {
 			//wifi();
 		}
 		if (isWifi) {
-			line = gameObject.GetComponent<LineRenderer>();
-			line.enabled = true;
+			//line = gameObject.GetComponent<LineRenderer>();
+			//line.enabled = true;
 
 			wifi();
 		}
@@ -682,7 +686,7 @@ public class MarkerBehaviour : MonoBehaviour {
 	}
 	public void alarma(){
 		int prob=0;
-		if (xradius == 0 || xradius>=maxRadius) {
+		if (xradiusA == 0 || xradiusA>=maxRadius) {
 			prob = Random.Range (0,100);
 			if (prob < probabilidadRadar) {
 				isDrawAlarm = true;
@@ -691,14 +695,14 @@ public class MarkerBehaviour : MonoBehaviour {
 				isDrawAlarm=false;
 			}
 		}
-		xradius = xradius + speedAlarm;
-		xradius = xradius % maxRadius;
-		xradius1 = xradius1 + speedAlarm;
-		xradius1 = xradius1 % maxRadius;
-		xradius2 = xradius2 + speedAlarm;
-		xradius2 = xradius2 % maxRadius;
-		yradius = yradius + speedAlarm;
-		yradius = yradius % maxRadius;
+		xradiusA = xradiusA + speedAlarm;
+		xradiusA = xradiusA % maxRadius;
+		xradius1A = xradius1A + speedAlarm;
+		xradius1A = xradius1A % maxRadius;
+		xradius2A = xradius2A + speedAlarm;
+		xradius2A = xradius2A % maxRadius;
+		yradiusA = yradiusA + speedAlarm;
+		yradiusA = yradiusA % maxRadius;
 		float alphaMap = xradius;
 		line = gameObject.GetComponent<LineRenderer>();
 		if(isDrawAlarm){
@@ -735,16 +739,16 @@ public class MarkerBehaviour : MonoBehaviour {
 		float y,y1;
 		float z,z1 = 0f;
 
-		float angle = 90f-30f;
-		float angle2 = 270f-30f;
+		float angle = angleOndas;// 90f-30f;
+		float angle2 = angleOndas +180f;//270f-30f;
 
 		for (int i = 0; i < (segments + 1); i++)
 		{
-			x = Mathf.Sin (Mathf.Deg2Rad * angle) * xradius;
-			z = Mathf.Cos (Mathf.Deg2Rad * angle) * yradius;
+			x = Mathf.Sin (Mathf.Deg2Rad * angle) * xradiusA;
+			z = Mathf.Cos (Mathf.Deg2Rad * angle) * yradiusA;
 			y = -400;
-			x1 = Mathf.Sin (Mathf.Deg2Rad * angle2) * xradius;
-			z1 = Mathf.Cos (Mathf.Deg2Rad * angle2) * yradius;
+			x1 = Mathf.Sin (Mathf.Deg2Rad * angle2) * xradiusA;
+			z1 = Mathf.Cos (Mathf.Deg2Rad * angle2) * yradiusA;
 			y1 = -400;
 
 			line.SetPosition (i,new Vector3(x,y,z) );

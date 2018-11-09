@@ -57,6 +57,7 @@ public class SceneControl : MonoBehaviour {
 
 
         //CONTROL
+
         public float[] estadoActual;  //codigos del json que indican en que estado estamos [tema, subestado,datos]
         public float estadoSiguiente;
         public float estadoSuperposicion;
@@ -181,6 +182,11 @@ public class SceneControl : MonoBehaviour {
 		public float parcSpeed;
 		public float fibraFlickerSpeed;
 
+		public bool isStartEspera=false;
+		public bool isEspera=false;
+		public bool isEndEspera=false;
+		public float esperaSpeed;
+		public float esperaFlickerSpeed;
 		public bool	isEmisions = false;
 		public bool isStartEmisions = false;
 		public bool isEndEmisions = false;
@@ -280,6 +286,9 @@ public class SceneControl : MonoBehaviour {
 
 
 	//COLORES
+		private Color colorWait;
+		public Color colorEspera;
+		public Color colorEndEspera;
     public Color colorPERSONAS;
 	public Color colorSOSTENIBILIDAD;
 	public Color colorTECNOLOGIA;
@@ -524,6 +533,11 @@ public class SceneControl : MonoBehaviour {
                     changeAlphaMaterialPlanos(layerLisoFondo, 1);
 					changeAlphaMaterialMaqueta (layerRios, 0);
 					changeAlphaMaterialMaqueta (layerRios2, 0);
+
+					isEspera = true;
+					isStartEspera = true;
+					colorWait.a = 0;
+					//colorWait=colorEspera;
 					isChange = false;
 
                 }
@@ -653,6 +667,82 @@ public class SceneControl : MonoBehaviour {
 			}
 			*/
 
+		//MODO ESPERA
+		//Color ce = new Color();
+			int numTexturaEspera = 14; //hacerlo solo para 
+		if(isEspera){
+				if (isStartEspera) {
+					Debug.Log ("start espera"+colorWait.a);
+				//Material[] m =Maquetas [0].GetComponent<Renderer>().materials;
+					//colorWait =colorEspera;// m [numTexturaEspera].color;
+
+					colorWait.a = colorWait.a + esperaSpeed;
+
+					changeAlphaMaterialMaqueta (numTexturaEspera, colorWait.a);
+					changeColorMaterialMaqueta (numTexturaEspera, colorWait);
+				
+					if (colorWait.a >= 0.75f) {
+						colorWait.a = 0.75f;
+						isStartEspera = false;
+				}
+
+				}else if(!isEndEspera ){
+					Debug.Log (" espera change");
+				float spd = esperaFlickerSpeed;
+					for (int i = 0; i < Maquetas.Length; i++) {
+						Material[] m =Maquetas[i].GetComponent<Renderer>().materials;
+						colorWait = m [numTexturaEspera].color;
+						colorWait.a = colorWait.a + esperaFlickerSpeed;
+						if (colorWait.a >= 0.75f) {
+							colorWait.a = 0.75f;
+					}
+						if (colorWait.a <= 0.25f) {
+							colorWait.a = 0.25f;
+					}
+						m [numTexturaEspera].color = colorWait;
+				}
+
+					if (colorWait.a >= 0.75f) {
+						colorWait.a = 0.75f;
+					//isStartParcs = false;
+						esperaFlickerSpeed = -esperaFlickerSpeed;
+				} 
+					if(colorWait.a<=0.25f){
+						colorWait.a = 0.25f;
+					//isStartParcs = false;
+						esperaFlickerSpeed = -esperaFlickerSpeed;
+				}
+				
+
+
+			}
+
+			if (isEndEspera) {
+					Debug.Log (" espera end");
+				for (int i = 0; i < Maquetas.Length; i++) {
+						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+						//colorWait = m [numTexturaEspera].color;
+						colorWait.a = colorWait.a - esperaSpeed;
+
+						m [numTexturaEspera].color = colorWait;
+					
+				}
+				
+				if (colorWait.a <= 0) {
+					for (int i = 0; i < Maquetas.Length; i++) {
+						Material[] m =Maquetas [i].GetComponent<Renderer>().materials;
+							changeAlphaMaterialMaqueta (numTexturaEspera, 0);
+							//changeColorMaterialMaqueta (numTexturaEspera, colorWait);
+
+						//m [numTexturaEspera].color = colorEndEspera;
+					}
+				
+				isEndEspera = false;
+				isEspera = false;
+				}
+			}
+
+		}
 
 		//PARCS
 		Color c = new Color();
@@ -1198,6 +1288,15 @@ public class SceneControl : MonoBehaviour {
 		}
 
 	}
+		void changeColorMaterialMaqueta(int material, Color c)
+		{
+			for (int i = 0; i < Maquetas.Length; i++)
+			{
+				Material[] m = Maquetas[i].GetComponent<Renderer>().materials;
+				m[material].color = c; //colorLiso
+			}
+
+		}
 	void changeColorMaterialMaquetaAnim(int material, Color c)
 	{
 		for (int i = 0; i < MaquetasAnimaciones.Length; i++)
@@ -2071,16 +2170,21 @@ public class SceneControl : MonoBehaviour {
 	}
 	public void oscPersonas(int value)
 	{
+			Debug.Log ("Transicion personas");
 			StartTransition (1);
+
+			colorWait = colorPERSONAS;
 	}
 	public void oscSostenibilidad(int value)
 	{
 			StartTransition (2);
+			colorWait = colorSOSTENIBILIDAD;
 	}
 	public void oscTecnologia(int value)
 	{
 		
 			StartTransition (3);
+			colorWait = colorTECNOLOGIA;
 	}
 	public void oscInicio(int value)
 	{
@@ -2088,6 +2192,7 @@ public class SceneControl : MonoBehaviour {
 		if (value == 0)EndTransition (1);
 		else if (value == 1)EndTransition (2);
 		else if (value == 2)EndTransition (3);
+			isEndEspera = true;
 	}
 	public void oscVideoStop(int value)
 	{
@@ -2165,6 +2270,7 @@ public class SceneControl : MonoBehaviour {
 
     public void StartIntro(float state) //Comienza videos introductorios
     {
+			isEndEspera = true;
 			estadoSiguiente = state;
 			//personas
 			if(state==codigosBibliotecas[0] || state==codigosBibliotecas[1] || state==codigosBibliotecas[2]) //bibliotecas
@@ -3293,7 +3399,7 @@ public class SceneControl : MonoBehaviour {
 				estadoActual[2] = value;
 				if(super==0){
 	               
-				    mc.colorToChange = colorBibliotecas;
+					mc.colorToChange = colorPERSONAS;
 				    at.contenido = "Bibliotecas";
 	                writeTextLanguage(0, value);
 
@@ -3317,11 +3423,11 @@ public class SceneControl : MonoBehaviour {
                 estadoActual[2] = value;
                 //activar bibliobus
 				changeAlphaMaterialMaqueta(layerVideoMapping,1);
-				changeColorVideoMaqueta (layerVideoMapping, colorBibliobuses);
+				changeColorVideoMaqueta (layerVideoMapping, colorPERSONAS);
 				videoPlayerMapping.clip = videosMapping[2];
                
                 //at.contenido = "Bibliobuses";
-				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorBibliobuses;
+				LeyendaMarcador [0].GetComponent<Renderer> ().material.color = colorPERSONAS;
                 writeTextLanguage(0,value);
 
 				LeyendaMarcadorc [0].GetComponent<SpriteRenderer>().sprite = IconosTablet1[1];
@@ -4664,6 +4770,9 @@ public void StartFibra(int value , int sup)
 	//Limpiadores
 public void Clean1osc(OscMessage m){
 			Clean1 (0);
+			isEspera = true;
+			isStartEspera = true;
+			isEndEspera = false;
 }
 public void CleanPuntos()//OscMessage message
 {
@@ -4715,6 +4824,10 @@ public void CleanZonas()//OscMessage message
 public void Clean1(int value)//OscMessage message
     {
             Debug.Log("Received: Clean1 ");// + message );
+
+	//Por si acaso poner skipvideo a false
+	skipVideo=false;
+
         //Limpiar contornos
 		
 		
@@ -4729,6 +4842,8 @@ public void Clean1(int value)//OscMessage message
 		isEndPolig = true;
 			isEndTurismo = true;
 			isEndSuperposicion = true;
+			isEspera = true;
+		isEndEspera = true;
 		//changeAlphaMaterialMaquetaAnim(layerMAfronteras,0);
 	changeAlphaMaterialMaquetaAnim(layerMAtransp,0);
 	changeAlphaMaterialMaquetaAnim(layerMAtransp2,0);
