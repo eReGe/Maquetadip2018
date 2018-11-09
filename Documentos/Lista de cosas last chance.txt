@@ -39,7 +39,8 @@ Temperatura no pone iconos
 Parques
 -----------
 Parcs naturals poner plano con lo que sale del parque
-Poner rios con los parques
+Activar capas de fondo nuevo con opacidad y rios
+Desactivarlas despues
 
 
 Turismo

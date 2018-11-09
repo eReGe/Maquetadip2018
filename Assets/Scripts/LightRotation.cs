@@ -138,7 +138,7 @@ public class LightRotation : MonoBehaviour {
 			cLights = m [4].color;
 			cLights = Color.Lerp (startColorL, endColorL, t2);
 			c = Color.Lerp (startColor, endColor, t2);
-			m [0].color = c;
+			//m [0].color = c;
 			m [1].color = c;
 			m [2].color = c;
 
