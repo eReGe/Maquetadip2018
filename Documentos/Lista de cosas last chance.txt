@@ -15,6 +15,8 @@ COSAS PARA CAMBIAR JSON
 COSAS PARA CAMBIAR UNITY
 CONTENIDOS
 
+Fondo liso gris a 56
+
 
 Promocio
 ----------
@@ -29,10 +31,14 @@ Municipis
 
 Parques
 -----------
+El borde de los parques se ve verde a veces
+Poner imagen 13
+No cambia el nombre
 
 Turismo
 ----------
 Revisar en sostenibilidad donde se tinta la capa de municipios, o tintarla de blanco al entrar en turismo
+Texto de 
 
 Fibra optica
 -------------
